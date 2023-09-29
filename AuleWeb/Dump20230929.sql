@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: aule_web
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -211,7 +211,7 @@ CREATE TABLE `utenti` (
   `cognome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password_account` varchar(255) NOT NULL,
-  `role` enum('admin','student') DEFAULT NULL,
+  `role_user` enum('admin','student') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -227,13 +227,9 @@ INSERT INTO `utenti` VALUES (1,'Mario','Rossi','mario.rossi@example.com','passwo
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'aule_web'
---
-
---
 -- Dumping routines for database 'aule_web'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `MostraEventiAttuali` */;
+/*!50003 DROP PROCEDURE IF EXISTS `EsportaConfigurazioneAule` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -243,117 +239,13 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MostraEventiAttuali`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EsportaConfigurazioneAule`()
 BEGIN
-    DECLARE data_attuale DATETIME;
-    DECLARE data_fine DATETIME;
-    SET data_attuale = NOW();
-    
-    SET data_fine = DATE_ADD(data_attuale, INTERVAL 3 HOUR);
-
-    SELECT e.*
-    FROM Eventi e
-    JOIN Calendario c ON e.id = c.id_evento
-    WHERE (c.giorno = DATE(data_attuale) AND c.ora_inizio >= TIME(data_attuale))
-        OR (c.giorno = DATE_ADD(DATE(data_attuale), INTERVAL 1 DAY))
-        OR (c.giorno > DATE(data_attuale) AND c.giorno <= DATE(data_fine));
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `MostraEventiAulaSettimana` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MostraEventiAulaSettimana`(
-    IN aula_id INT,
-    IN data_inizio DATE
-)
-BEGIN
-    DECLARE giorno_settimana INT;
-	DECLARE data_fine DATE;
-    SET giorno_settimana = DAYOFWEEK(data_inizio);
-    SET data_inizio = DATE_SUB(data_inizio, INTERVAL giorno_settimana - 2 DAY);
-    SET data_inizio = DATE(data_inizio);
-
-   
-    SET data_fine = DATE_ADD(data_inizio, INTERVAL 7 DAY);
-
-    SELECT e.*
-    FROM Eventi e
-    JOIN Calendario c ON e.id = c.id_evento
-    WHERE c.id_aula = aula_id
-        AND c.giorno >= data_inizio
-        AND c.giorno < data_fine;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `MostraEventiAuleGiorno` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MostraEventiAuleGiorno`(
-    IN data_selezionata DATE
-)
-BEGIN
-    SELECT a.nome AS nome_aula, e.*
-    FROM Aule a
-    LEFT JOIN Calendario c ON a.id = c.id_aula
-    LEFT JOIN Eventi e ON c.id_evento = e.id
-    WHERE c.giorno = data_selezionata OR c.giorno IS NULL;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `MostraEventiCorsoSettimana` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MostraEventiCorsoSettimana`(
-    IN corso_id INT,
-    IN data_inizio DATE
-)
-BEGIN
-    DECLARE giorno_settimana INT;
-     DECLARE data_fine DATE;
-    SET giorno_settimana = DAYOFWEEK(data_inizio);
-    SET data_inizio = DATE_SUB(data_inizio, INTERVAL giorno_settimana - 2 DAY);
-    SET data_inizio = DATE(data_inizio);
-
-   
-    SET data_fine = DATE_ADD(data_inizio, INTERVAL 7 DAY);
-
-    SELECT e.*
-    FROM Eventi e
-    JOIN Calendario c ON e.id = c.id_evento
-    WHERE e.id_corso = corso_id
-        AND c.giorno >= data_inizio
-        AND c.giorno < data_fine;
+    SELECT a.nome, a.capienza, a.prese_elettriche, a.prese_rete, a.attrezzatura, a.note, a.luogo, a.edificio, a.piano, r.email FROM Aule AS a
+    JOIN Responsabile AS r ON r.id = a.id_responsabile
+    INTO OUTFILE 'C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\aule.csv'
+    FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+    LINES TERMINATED BY '\n';
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -370,4 +262,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-31 16:33:40
+-- Dump completed on 2023-09-29 17:31:28
