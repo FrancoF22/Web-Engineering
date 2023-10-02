@@ -49,7 +49,7 @@ public class UtentiImpl implements Utenti {
     }
 
     @Override
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

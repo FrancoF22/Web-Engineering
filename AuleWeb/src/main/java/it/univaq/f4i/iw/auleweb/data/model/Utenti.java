@@ -20,7 +20,7 @@ public interface Utenti {
     
     String getPassword();
     
-    void setId(int id);
+    void setId(Integer id);
     
     void setNome(String n);
     
