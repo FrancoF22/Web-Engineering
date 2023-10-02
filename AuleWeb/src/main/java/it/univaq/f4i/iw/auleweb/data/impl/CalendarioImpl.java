@@ -19,7 +19,6 @@ import java.time.LocalTime;
  */
 public class CalendarioImpl implements Calendario {
     
-    private Integer id;
     private Aula aula;
     private Eventi eventi;
     private Ricorrenza ricorrenza;
@@ -29,7 +28,6 @@ public class CalendarioImpl implements Calendario {
 
     public CalendarioImpl() {
        super();
-       this.id = null;
        this.aula = null;
        this.eventi = null;
        this.giorno = Date.valueOf(LocalDate.now());
@@ -38,11 +36,6 @@ public class CalendarioImpl implements Calendario {
        this.oraFine = Time.valueOf(LocalTime.now());
        this.ricorrenza = Ricorrenza.giornaliera;
        this.ripetizioni=1;
-    }
-    
-    @Override
-    public Integer getID() {
-        return id;
     }
 
     @Override
@@ -83,11 +76,6 @@ public class CalendarioImpl implements Calendario {
     @Override
     public int getRipetizioni() {
         return ripetizioni;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

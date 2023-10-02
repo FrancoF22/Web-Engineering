@@ -10,15 +10,11 @@ package it.univaq.f4i.iw.auleweb.data.model;
  */
 public interface Gruppo {
     
-    Integer getId();
-    
     String getNome();
     
     String getDescrizione();
     
     TipoGruppo getTipoGruppo();
-    
-    void setId(int id);
     
     void setNome(String n);
     

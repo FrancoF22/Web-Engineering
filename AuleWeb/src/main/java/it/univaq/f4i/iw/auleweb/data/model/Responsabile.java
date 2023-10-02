@@ -10,15 +10,11 @@ package it.univaq.f4i.iw.auleweb.data.model;
  */
 public interface Responsabile {
     
-    Integer getId();
-    
     String getNome();
     
     String getCognome();
     
     String getEmail();
-    
-    void setId(int id);
     
     void setNoem(String n);
     

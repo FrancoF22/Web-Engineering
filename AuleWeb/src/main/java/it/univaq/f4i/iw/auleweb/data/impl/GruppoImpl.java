@@ -12,22 +12,14 @@ import it.univaq.f4i.iw.auleweb.data.model.TipoGruppo;
  * @author franc
  */
 public class GruppoImpl implements Gruppo {
-    
-    private Integer id;
     private String nome, descrizione;
     private TipoGruppo tipoGruppo;
     
     public GruppoImpl(){
         super();
-        this.id = null;
         this.nome = "";
         this.descrizione = "";
         this.tipoGruppo = null;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
     }
 
     @Override
@@ -43,11 +35,6 @@ public class GruppoImpl implements Gruppo {
     @Override
     public TipoGruppo getTipoGruppo() {
         return tipoGruppo;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

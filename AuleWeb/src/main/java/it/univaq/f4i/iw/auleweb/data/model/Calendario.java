@@ -13,8 +13,6 @@ import java.sql.Time;
  */
 public interface Calendario {
     
-    Integer getID();
-    
     Aula getAula(); 
    
     Eventi getEvento(); 
@@ -30,8 +28,6 @@ public interface Calendario {
     Time getOraFine(); 
     
     int getRipetizioni();
-    
-    void setId(int id);
     
     void setAula(Aula aula);
     

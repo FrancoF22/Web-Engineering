@@ -11,21 +11,13 @@ import it.univaq.f4i.iw.auleweb.data.model.Utenti;
  * @author franc
  */
 public class UtentiImpl implements Utenti {
-    
-    private Integer id;
     private String nome, cognome, email, password;
     
     public UtentiImpl(){
-        this.id = null;
         this.nome = "";
         this.cognome = "";
         this.email = "";
         this.password = "";
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
     }
 
     @Override
@@ -46,11 +38,6 @@ public class UtentiImpl implements Utenti {
     @Override
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @Override

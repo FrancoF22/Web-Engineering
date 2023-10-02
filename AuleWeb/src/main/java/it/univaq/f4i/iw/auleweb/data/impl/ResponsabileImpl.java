@@ -11,21 +11,13 @@ import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
  * @author franc
  */
 public class ResponsabileImpl implements Responsabile{
-    
-    private Integer id;
     private String nome, cognome, email;
     
     public ResponsabileImpl(){
         super();
-        this.id = null;
         this.nome = "";
         this.cognome = "";
         this.email = "";
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
     }
 
     @Override
@@ -41,11 +33,6 @@ public class ResponsabileImpl implements Responsabile{
     @Override
     public String getEmail() {
         return email;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

@@ -10,8 +10,6 @@ package it.univaq.f4i.iw.auleweb.data.model;
  */
 public interface Utenti {
     
-    Integer getId();
-    
     String getNome();
     
     String getCognome();
@@ -19,8 +17,6 @@ public interface Utenti {
     String getEmail();
     
     String getPassword();
-    
-    void setId(Integer id);
     
     void setNome(String n);
     

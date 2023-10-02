@@ -18,14 +18,13 @@ import java.util.Set;
  */
 public class AulaImpl implements Aula{
     
-    private Integer Id, capienza, preseElettriche, preseRete;
+    private Integer capienza, preseElettriche, preseRete;
     private String nome, luogo, nota, edificio, piano;
     private Set<Attrezzatura> attrezzatura;
     private Responsabile responsabile;
     
     public AulaImpl(){
         super();
-        this.Id = null;
         this.capienza = 0;
         this.preseElettriche = 0;
         this.preseRete = 0;
@@ -37,10 +36,6 @@ public class AulaImpl implements Aula{
         this.responsabile = null;
     }
 
-    @Override
-    public Integer getId() {
-        return Id;
-    }
 
     @Override
     public String getNome() {
@@ -100,27 +95,22 @@ public class AulaImpl implements Aula{
     }
 
     @Override
-    public void setId(int id) {
-        this.Id = id;
-    }
-
-    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     @Override
-    public void setCapienza(int capienza) {
+    public void setCapienza(Integer capienza) {
         this.capienza = capienza;
     }
 
     @Override
-    public void setPreseElettriche(int preseE) {
+    public void setPreseElettriche(Integer preseE) {
         this.preseElettriche = preseE;
     }
 
     @Override
-    public void setPreseRete(int preseR) {
+    public void setPreseRete(Integer preseR) {
         this.preseRete = preseR;
     }
 

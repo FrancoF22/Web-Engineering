@@ -13,8 +13,6 @@ import java.util.Set;
  */
 public interface Aula {
     
-    Integer getId();
-    
     String getNome();
     
     Integer getCapienza();
@@ -35,15 +33,13 @@ public interface Aula {
   
     Responsabile getIdResponsabile();
     
-    void setId(int id);
-    
     void setNome(String nome);
     
-    void setCapienza(int capienza);
+    void setCapienza(Integer capienza);
     
-    void setPreseElettriche(int preseE);
+    void setPreseElettriche(Integer preseE);
     
-    void setPreseRete(int preseR); 
+    void setPreseRete(Integer preseR); 
     
     void setAttrezzature(Set<Attrezzatura> attrezzature);
     

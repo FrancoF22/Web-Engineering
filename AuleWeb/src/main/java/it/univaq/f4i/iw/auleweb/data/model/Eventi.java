@@ -10,8 +10,6 @@ package it.univaq.f4i.iw.auleweb.data.model;
  */
 public interface Eventi {
     
-    Integer getId();
-    
     String getNome();
     
     String getDescrizione();
@@ -21,8 +19,6 @@ public interface Eventi {
     Responsabile getResponsabile();
     
     Gruppo getCorso();
-    
-    void setId(int id);
     
     void setNome(String n);
     

@@ -14,8 +14,6 @@ import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
  * @author franc
  */
 public class EventiImpl implements Eventi {
-    
-    private Integer id;
     private String nome, descrizione;
     private Tipologia tipo;
     private Responsabile responasabile;
@@ -23,17 +21,11 @@ public class EventiImpl implements Eventi {
     
     public EventiImpl(){
         super();
-        this.id = null;
         this.nome = "";
         this.descrizione = "";
         this.tipo = null;
         this.responasabile = null;
         this.corso = null;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
     }
 
     @Override
@@ -59,11 +51,6 @@ public class EventiImpl implements Eventi {
     @Override
     public Gruppo getCorso() {
         return corso;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
