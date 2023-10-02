@@ -24,7 +24,7 @@ public interface Utenti {
     
     void setNome(String n);
     
-    void setCome(String c);
+    void setCognome(String c);
     
     void setEmail(String email);
     
