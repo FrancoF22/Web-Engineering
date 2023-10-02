@@ -20,7 +20,6 @@ public class EventiImpl implements Eventi {
     private Tipologia tipo;
     private Responsabile responasabile;
     private Gruppo corso;
-    private Responsabile responsabile;
     
     public EventiImpl(){
         super();
@@ -84,7 +83,7 @@ public class EventiImpl implements Eventi {
 
     @Override
     public void setResponsabile(Responsabile r) {
-        this.responsabile  = r;
+        this.responasabile  = r;
     }
 
     @Override
