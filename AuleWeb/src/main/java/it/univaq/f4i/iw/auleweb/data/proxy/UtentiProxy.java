@@ -4,14 +4,14 @@
  */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
-import it.univaq.f4i.iw.auleweb.data.impl.UtentiImpl;
+import it.univaq.f4i.iw.auleweb.data.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 
 /**
  *
  * @author franc
  */
-public class UtentiProxy extends UtentiImpl {
+public class UtentiProxy extends UtenteImpl {
 
     protected boolean modified;
     protected DataLayer dataLayer;

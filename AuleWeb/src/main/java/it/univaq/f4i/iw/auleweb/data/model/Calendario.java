@@ -15,7 +15,7 @@ public interface Calendario {
     
     Aula getAula(); 
    
-    Eventi getEvento(); 
+    Evento getEvento(); 
     
     Ricorrenza getRicorrenza();
    
@@ -31,7 +31,7 @@ public interface Calendario {
     
     void setAula(Aula aula);
     
-    void setEvento(Eventi eventi);
+    void setEvento(Evento eventi);
     
     void setRicorrenza(Ricorrenza ricorrenza);
     

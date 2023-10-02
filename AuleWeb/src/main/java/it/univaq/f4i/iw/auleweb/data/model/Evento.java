@@ -8,7 +8,7 @@ package it.univaq.f4i.iw.auleweb.data.model;
  *
  * @author franc
  */
-public interface Eventi {
+public interface Evento {
     
     String getNome();
     

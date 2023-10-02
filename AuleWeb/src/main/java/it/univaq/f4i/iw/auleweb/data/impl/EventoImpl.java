@@ -4,22 +4,22 @@
  */
 package it.univaq.f4i.iw.auleweb.data.impl;
 
-import it.univaq.f4i.iw.auleweb.data.model.Eventi;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
+import it.univaq.f4i.iw.auleweb.data.model.Evento;
 
 /**
  *
  * @author franc
  */
-public class EventiImpl implements Eventi {
+public class EventoImpl implements Evento {
     private String nome, descrizione;
     private Tipologia tipo;
     private Responsabile responasabile;
     private Gruppo corso;
     
-    public EventiImpl(){
+    public EventoImpl(){
         super();
         this.nome = "";
         this.descrizione = "";

@@ -4,16 +4,16 @@
  */
 package it.univaq.f4i.iw.auleweb.data.impl;
 
-import it.univaq.f4i.iw.auleweb.data.model.Utenti;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 
 /**
  *
  * @author franc
  */
-public class UtentiImpl implements Utenti {
+public class UtenteImpl implements Utente {
     private String nome, cognome, email, password;
     
-    public UtentiImpl(){
+    public UtenteImpl(){
         this.nome = "";
         this.cognome = "";
         this.email = "";

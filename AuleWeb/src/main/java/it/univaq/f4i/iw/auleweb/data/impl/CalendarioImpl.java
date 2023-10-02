@@ -6,12 +6,12 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
-import it.univaq.f4i.iw.auleweb.data.model.Eventi;
 import it.univaq.f4i.iw.auleweb.data.model.Ricorrenza;
 import java.sql.Time;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import it.univaq.f4i.iw.auleweb.data.model.Evento;
 
 /**
  *
@@ -20,7 +20,7 @@ import java.time.LocalTime;
 public class CalendarioImpl implements Calendario {
     
     private Aula aula;
-    private Eventi eventi;
+    private Evento eventi;
     private Ricorrenza ricorrenza;
     private Date giorno, giornoFine;
     private Time oraInizio, oraFine;
@@ -44,7 +44,7 @@ public class CalendarioImpl implements Calendario {
     }
 
     @Override
-    public Eventi getEvento() {
+    public Evento getEvento() {
         return eventi;
     }
 
@@ -84,7 +84,7 @@ public class CalendarioImpl implements Calendario {
     }
 
     @Override
-    public void setEvento(Eventi eventi) {
+    public void setEvento(Evento eventi) {
         this.eventi = eventi;
     }
 
