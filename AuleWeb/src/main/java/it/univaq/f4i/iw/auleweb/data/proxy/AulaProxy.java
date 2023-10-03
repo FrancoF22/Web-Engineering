@@ -4,10 +4,12 @@
  */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.impl.AulaImpl;
+
 /**
  *
  * @author franc
  */
-public class AulaProxy {
+public class AulaProxy extends AulaImpl{
     
 }

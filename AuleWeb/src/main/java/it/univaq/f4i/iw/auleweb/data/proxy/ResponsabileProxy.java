@@ -4,10 +4,12 @@
  */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.impl.ResponsabileImpl;
+
 /**
  *
  * @author franc
  */
-public class ResponsabileProxy {
+public class ResponsabileProxy extends ResponsabileImpl{
     
 }

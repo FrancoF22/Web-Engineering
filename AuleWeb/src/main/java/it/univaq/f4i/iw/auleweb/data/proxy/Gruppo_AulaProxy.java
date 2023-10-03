@@ -4,10 +4,12 @@
  */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.impl.Gruppo_AulaImpl;
+
 /**
  *
  * @author franc
  */
-public class Gruppo_AulaProxy {
+public class Gruppo_AulaProxy extends Gruppo_AulaImpl{
     
 }

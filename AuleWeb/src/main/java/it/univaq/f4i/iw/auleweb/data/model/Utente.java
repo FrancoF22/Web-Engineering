@@ -18,6 +18,8 @@ public interface Utente {
     
     String getPassword();
     
+    Ruolo getRuolo();
+    
     void setNome(String n);
     
     void setCognome(String c);
@@ -25,4 +27,6 @@ public interface Utente {
     void setEmail(String email);
     
     void setPassword(String password);
+    
+    void setRuolo(Ruolo r);
 }

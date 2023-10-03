@@ -4,10 +4,12 @@
  */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.impl.EventoImpl;
+
 /**
  *
  * @author franc
  */
-public class EventiProxy {
+public class EventoProxy extends EventoImpl{
     
 }
