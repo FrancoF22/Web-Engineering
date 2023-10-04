@@ -4,10 +4,23 @@
  */
 package it.univaq.f4i.iw.auleweb.data.dao;
 
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
+import it.univaq.f4i.iw.framework.data.DataException;
+
 /**
  *
  * @author franc
  */
 public interface UtenteDAO {
+    
+    Utente createUtente();
+
+    Utente getUtente(int user_key) throws DataException;
+    
+    Utente getUtenteByUsername(String username) throws DataException;
+
+    void storeUtente(Utente user) throws DataException;
+    
+    void deleteUtente(Integer id) throws DataException;
     
 }
