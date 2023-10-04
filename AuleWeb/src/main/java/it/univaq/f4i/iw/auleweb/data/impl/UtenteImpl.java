@@ -6,12 +6,13 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Ruolo;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class UtenteImpl implements Utente {
+public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     
     private String nome, cognome, email, password;
     private Ruolo ruolo;

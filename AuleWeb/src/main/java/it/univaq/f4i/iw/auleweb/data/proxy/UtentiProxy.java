@@ -5,20 +5,21 @@
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
 import it.univaq.f4i.iw.auleweb.data.impl.UtenteImpl;
+import it.univaq.f4i.iw.auleweb.data.model.Ruolo;
+import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 
 /**
  *
  * @author franc
  */
-public class UtentiProxy extends UtenteImpl {
+public class UtentiProxy extends UtenteImpl implements DataItemProxy{
 
     protected boolean modified;
     protected DataLayer dataLayer;
 
     public UtentiProxy(DataLayer d) {
         super();
-        //dependency injection
         this.dataLayer = d;
         this.modified = false;
     }
@@ -35,12 +36,20 @@ public class UtentiProxy extends UtenteImpl {
         this.modified = true;
     }
 
-    public void setModified(boolean dirty) {
-        this.modified = dirty;
+    @Override
+    public void setRuolo(Ruolo r) {
+        super.setRuolo(r);
+        this.modified = true;
     }
-
+    
+    @Override
     public boolean isModified() {
         return modified;
+    }
+
+    @Override
+    public void setModified(boolean dirty) {
+        this.modified = dirty;
     }
 
 }

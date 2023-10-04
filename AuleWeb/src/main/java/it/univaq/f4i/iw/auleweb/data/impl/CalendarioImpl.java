@@ -12,12 +12,13 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class CalendarioImpl implements Calendario {
+public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario {
     
     private Aula aula;
     private Evento eventi;

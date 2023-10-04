@@ -7,6 +7,7 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Set;
  *
  * @author franc
  */
-public class AulaImpl implements Aula{
+public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     
     private Integer capienza, preseElettriche, preseRete;
     private String nome, luogo, nota, edificio, piano;
@@ -90,7 +91,7 @@ public class AulaImpl implements Aula{
     }
 
     @Override
-    public Responsabile getIdResponsabile() {
+    public Responsabile getResponsabile() {
         return responsabile;
     }
 
@@ -140,7 +141,7 @@ public class AulaImpl implements Aula{
     }
 
     @Override
-    public void setIdResponsabile(Responsabile resp) {
+    public void setResponsabile(Responsabile resp) {
         this.responsabile = resp;
     }
     

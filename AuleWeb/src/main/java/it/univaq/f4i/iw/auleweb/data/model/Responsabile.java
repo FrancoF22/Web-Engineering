@@ -4,11 +4,13 @@
  */
 package it.univaq.f4i.iw.auleweb.data.model;
 
+import it.univaq.f4i.iw.framework.data.DataItem;
+
 /**
  *
  * @author franc
  */
-public interface Responsabile {
+public interface Responsabile extends DataItem<Integer>{
     
     String getNome();
     
@@ -16,7 +18,7 @@ public interface Responsabile {
     
     String getEmail();
     
-    void setNoem(String n);
+    void setNome(String n);
     
     void setCognome(String cognome);
     

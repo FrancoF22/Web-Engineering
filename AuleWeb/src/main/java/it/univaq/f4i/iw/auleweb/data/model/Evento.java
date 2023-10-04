@@ -4,11 +4,13 @@
  */
 package it.univaq.f4i.iw.auleweb.data.model;
 
+import it.univaq.f4i.iw.framework.data.DataItem;
+
 /**
  *
  * @author franc
  */
-public interface Evento {
+public interface Evento extends DataItem<Integer>{
     
     String getNome();
     
@@ -20,6 +22,8 @@ public interface Evento {
     
     Gruppo getCorso();
     
+    Tipologia getTipologia(); 
+    
     void setNome(String n);
     
     void setDescrizione(String descrizione);
@@ -29,5 +33,7 @@ public interface Evento {
     void setResponsabile(Responsabile r);
     
     void setGruppo(Gruppo g);
+    
+    void setCorso(Gruppo c);
     
 }

@@ -4,6 +4,7 @@
  */
 package it.univaq.f4i.iw.auleweb.data.model;
 
+import it.univaq.f4i.iw.framework.data.DataItem;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -11,7 +12,7 @@ import java.sql.Time;
  *
  * @author franc
  */
-public interface Calendario {
+public interface Calendario extends DataItem<Integer>{
     
     Aula getAula(); 
    

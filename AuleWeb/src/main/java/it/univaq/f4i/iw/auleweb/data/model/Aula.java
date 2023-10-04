@@ -4,6 +4,7 @@
  */
 package it.univaq.f4i.iw.auleweb.data.model;
 
+import it.univaq.f4i.iw.framework.data.DataItem;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  *
  * @author franc
  */
-public interface Aula {
+public interface Aula extends DataItem<Integer>{
     
     String getNome();
     
@@ -31,7 +32,7 @@ public interface Aula {
     
     String getPiano();
   
-    Responsabile getIdResponsabile();
+    Responsabile getResponsabile();
     
     void setNome(String nome);
     
@@ -51,5 +52,5 @@ public interface Aula {
     
     void setPiano(String piano);
   
-    void setIdResponsabile(Responsabile resp);
+    void setResponsabile(Responsabile resp);
 }

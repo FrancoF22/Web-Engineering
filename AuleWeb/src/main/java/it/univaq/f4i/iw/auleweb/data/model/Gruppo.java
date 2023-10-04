@@ -4,11 +4,13 @@
  */
 package it.univaq.f4i.iw.auleweb.data.model;
 
+import it.univaq.f4i.iw.framework.data.DataItem;
+
 /**
  *
  * @author franc
  */
-public interface Gruppo {
+public interface Gruppo extends DataItem<Integer>{
     
     String getNome();
     

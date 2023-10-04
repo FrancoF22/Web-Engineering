@@ -6,12 +6,14 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.TipoGruppo;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class GruppoImpl implements Gruppo {
+public class GruppoImpl extends DataItemImpl<Integer> implements Gruppo {
+    
     private String nome, descrizione;
     private TipoGruppo tipoGruppo;
     

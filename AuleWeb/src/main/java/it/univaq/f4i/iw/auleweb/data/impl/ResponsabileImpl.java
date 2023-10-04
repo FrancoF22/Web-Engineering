@@ -5,12 +5,13 @@
 package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class ResponsabileImpl implements Responsabile{
+public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsabile{
     private String nome, cognome, email;
     
     public ResponsabileImpl(){
@@ -36,7 +37,7 @@ public class ResponsabileImpl implements Responsabile{
     }
 
     @Override
-    public void setNoem(String n) {
+    public void setNome(String n) {
         this.nome = n;
     }
 

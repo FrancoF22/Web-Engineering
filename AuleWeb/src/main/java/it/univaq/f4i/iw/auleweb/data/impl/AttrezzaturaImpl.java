@@ -5,12 +5,13 @@
 package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class AttrezzaturaImpl implements Attrezzatura {
+public class AttrezzaturaImpl extends DataItemImpl<Integer> implements Attrezzatura {
    
     private String nome;
     

@@ -7,12 +7,13 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo_Aula;
+import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class Gruppo_AulaImpl implements Gruppo_Aula{
+public class Gruppo_AulaImpl extends DataItemImpl<Integer> implements Gruppo_Aula{
     
     private Gruppo gruppo;
     private Aula aula;
