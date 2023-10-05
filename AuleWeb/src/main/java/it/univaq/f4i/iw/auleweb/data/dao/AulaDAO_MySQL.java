@@ -1,5 +1,6 @@
 package it.univaq.f4i.iw.auleweb.data.dao;
 
+import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.proxy.AulaProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
@@ -94,13 +95,12 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         return a;
     }
     
-    //per il metodo che segue serve implementare DataCache
     @Override
     public Aula getAula(int id_aula) throws DataException{
         Aula a = null;
         if (dataLayer.getCache().has(Aula.class, id_aula)) {
             a = dataLayer.getCache().get(Aula.class, id_aula);
-        } else (
+        }else{
             try{
                 sAulaById.setInt(1, id_aula);
                 try (ResultSet rs = sAulaById.executeQuery()) {
@@ -114,9 +114,64 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             }catch (SQLException ex) {
                 throw new DataException("Unable to load article by ID", ex);
             }
-        )
+        }
         return a;
     }
     
-    //mancano ancora diversi metodi, ma intanto carico le modifiche
+    //i metodi di seguito vanno modificati
+
+    @Override
+    public Attrezzatura createAttrezzatura() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Aula getAula(String nome) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Attrezzatura getAttrezzatura(String nome) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public List<Aula> getAllAule() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void storeAula(Aula aula) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void addAttrezzatura(String nome) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteAula(int id) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteAttrezzatura(String nome) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Attrezzatura> gettAllAttrezzature() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<String> getLuoghi() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Aula> getAuleFromLuogo(String luogo) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

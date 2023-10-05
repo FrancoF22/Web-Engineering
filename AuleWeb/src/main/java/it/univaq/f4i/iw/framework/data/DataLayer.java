@@ -19,12 +19,14 @@ public class DataLayer implements AutoCloseable {
     private final DataSource datasource;
     private Connection connection;
     private final Map<Class, DAO> daos;
-
+    private final DataCache cache;
+    
     public DataLayer(DataSource datasource) throws SQLException {
         super();
         this.datasource = datasource;
         this.connection = datasource.getConnection();
         this.daos = new HashMap<>();
+        this.cache = new DataCache();
         System.out.println("DATASOURCE: " + this.datasource);
     }
 
@@ -58,6 +60,10 @@ public class DataLayer implements AutoCloseable {
 
     public Connection getConnection() {
         return connection;
+    }
+    
+    public DataCache getCache() {
+        return cache;
     }
 
     //metodo dell'interfaccia AutoCloseable (permette di usare questa classe nei try-with-resources)
