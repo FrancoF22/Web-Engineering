@@ -49,9 +49,8 @@ public class CreaAula extends AuleWebBaseController {
                 aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id);
                 if(aula == null) aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
                 aula.setNome(request.getParameter("nome"));
-                //da rendere string
-                //int piano = SecurityHelpers.checkNumeric(request.getParameter("piano"));
-                //aula.setPiano(piano);
+                String piano = request.getParameter("piano");
+                aula.setPiano(piano);
                 int capienza = SecurityHelpers.checkNumeric(request.getParameter("capienza"));
                 aula.setCapienza(capienza);
                 aula.setEdificio(request.getParameter("edificio"));

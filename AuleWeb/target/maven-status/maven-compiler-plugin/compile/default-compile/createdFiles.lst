@@ -1,4 +1,3 @@
-it\univaq\f4i\iw\auleweb\controller\HomeResponsabile_1.class
 it\univaq\f4i\iw\auleweb\data\model\Aula.class
 it\univaq\f4i\iw\framework\data\DataException.class
 it\univaq\f4i\iw\auleweb\controller\CreaEvento.class
@@ -35,7 +34,6 @@ it\univaq\f4i\iw\auleweb\data\model\Ruolo.class
 it\univaq\f4i\iw\auleweb\data\impl\GruppoImpl.class
 it\univaq\f4i\iw\auleweb\data\model\Gruppo.class
 it\univaq\f4i\iw\auleweb\controller\Login.class
-it\univaq\f4i\iw\auleweb\controller\HomeAdmin_1.class
 it\univaq\f4i\iw\framework\controller\AbstractBaseController.class
 it\univaq\f4i\iw\auleweb\data\model\Calendario.class
 it\univaq\f4i\iw\auleweb\data\proxy\GruppoProxy.class
@@ -66,7 +64,6 @@ it\univaq\f4i\iw\auleweb\controller\AuleWebBaseController.class
 it\univaq\f4i\iw\auleweb\data\dao\ResponsabileDAO.class
 it\univaq\f4i\iw\framework\result\FailureResult.class
 it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO.class
-it\univaq\f4i\iw\auleweb\controller\DummyModelFiller_1.class
 it\univaq\f4i\iw\auleweb\data\impl\UtenteImpl.class
 it\univaq\f4i\iw\framework\data\DataCache.class
 it\univaq\f4i\iw\auleweb\data\impl\ResponsabileImpl.class

@@ -18,7 +18,6 @@ C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\i
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataCache.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\security\SecurityHelpers.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\Logout.java
-C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\DummyModelFiller_1.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraFacolta.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AuleWebDataLayer.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\UtenteImpl.java
@@ -73,5 +72,3 @@ C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\i
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Aula.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\UtentiProxy.java
 C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AttrezzaturaProxy.java
-C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\HomeAdmin_1.java
-C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\HomeResponsabile_1.java
