@@ -1,0 +1,597 @@
+
+@import url('normalize.css');
+.home-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+ html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    
+    body {
+      background-color: #f0f0f0;
+    }
+.home-home {
+  width: 100%;
+  height: 1024px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+.home-text {
+  top: 166px;
+  left: 37px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  font-style: normal;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-frame3 {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 156px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(222, 143, 26, 1);
+}
+.home-univaq-logo1 {
+  top: 19px;
+  left: -10px;
+  height: 130px;
+  position: absolute;
+}
+.home-text02 {
+  top: 19px;
+  left: 512px;
+  color: rgba(0, 0, 0, 1);
+  width: 521px;
+  height: auto;
+  position: absolute;
+  font-size: 96px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-Accedi-Esci {
+  top: 78px;
+  left: 1294px;
+  width: 87px;
+  height: 27px;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  align-items: flex-end;
+  flex-shrink: 0;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 8px;
+  color: black;
+  background-color: ghostwhite;
+  border: solid 1px;
+  cursor: pointer;
+}
+.home-text07 {
+  color: rgba(0, 0, 0, 1);
+  width: 85px;
+  height: auto;
+  font-size: 17px;
+  font-style: normal;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-frame-Dipartimenti {
+  top: 280px;
+  left: 179px;
+  width: 1017px;
+  height: 482px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.Dipartimento-Ingegneria-civile {
+  top: 0px;
+  left: 0px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.Dipartimento-ingengeria-scenze {
+  top: 0px;
+  left: 388px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.Dipartimento-ingegneria-industriale {
+  top: 0px;
+  left: 776px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.Dipartimento-Fisica {
+  top: 292px;
+  left: 776px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+}
+.Dipartimento-medicina {
+  top: 292px;
+  left: 0px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.Dipartimento-scienze-cliniche {
+  top: 292px;
+  left: 388px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.Dipartimento-scenze-umane {
+  top: 542px;
+  left: 388px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.home-text12 {
+  top: 220px;
+  color: rgba(0, 0, 0, 1);
+  width: 300px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-text14 {
+  top: 220px;
+  left: 388px;
+  color: rgba(0, 0, 0, 1);
+  width: 197px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-text16 {
+  top: 220px;
+  left: 776px;
+  color: rgba(0, 0, 0, 1);
+  width: 189px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.home-text18 {
+  color: rgba(255, 255, 255, 1);
+  width: 147px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-text20 {
+  top: 235px;
+  left: 175px;
+  color: rgba(0, 0, 0, 1);
+  width: 350px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-text22 {
+  top: 210px;
+  left: 567px;
+  color: rgba(0, 0, 0, 1);
+  width: 217px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-text24 {
+  top: 210px;
+  left: 956px;
+  color: rgba(0, 0, 0, 1);
+  width: 240px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-text26 {
+  top: 773px;
+  left: 569px;
+  color: rgba(0, 0, 0, 1);
+  width: 195px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.admin-home-frame2 {
+  top: 512px;
+  left: 173px;
+  width: 1069px;
+  height: 247px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.Gestisci-Responsabile {
+  top: 0px;
+  left: 0px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+}.admin-home-text10 {
+   top: 448px;
+   left: 173px;
+   color: rgba(0, 0, 0, 1);
+   width: 269px;
+   height: auto;
+   position: absolute;
+   font-size: 20px;
+   font-style: normal;
+   text-align: left;
+   font-family: Arial;
+   font-weight: 400;
+   line-height: normal;
+   font-stretch: normal;
+   text-decoration: none;
+ }
+.admin-home-text12 {
+  top: 451px;
+  left: 587px;
+  color: rgba(0, 0, 0, 1);
+  width: 217px;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.admin-home-text14 {
+  top: 454px;
+  left: 959px;
+  color: rgba(0, 0, 0, 1);
+  width: 240px;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.Modifica-crea-aula {
+  top: 0px;
+  left: 388px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-radius: 8px;
+}
+.Modifica-crea-gruppi {
+  top: 0px;
+  left: 776px;
+  width: 241px;
+  height: 190px;
+  position: absolute;
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+}
+.Iscrizione-text{
+  top: 50px;
+  left: 400px;
+  color: rgba(0, 0, 0, 1);
+  width: 700px;
+  height: auto;
+  position: absolute;
+  font-size: 50px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 350;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.iscrizione-frame {
+  gap: 10px;
+  top: 740px;
+  left: 470px;
+  width: 93px;
+  display: flex;
+  padding: 8px 10px;
+  position: absolute;
+  align-items: flex-start;
+  border-radius: 8px;
+  background-color: rgba(26, 143, 221, 1);
+  font-size: 16px;
+}
+.iscrizione-frame button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(26, 143, 221, 1);
+  color: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.iscrizione-text02 {
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  font-size: 20px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.iscrizione-accedi {
+  gap: 10px;
+  top: 740px;
+  left: 876px;
+  width: 85px;
+  display: flex;
+  padding: 8px 10px;
+  position: absolute;
+  align-items: flex-start;
+  border-radius: 8px;
+  background-color: rgba(26, 143, 221, 1);
+  font-size: 16px;
+}
+.iscrizione-text04 {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(26, 143, 221, 1);
+  color: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.username {
+  gap: 10px;
+  top: 494px;
+  left: 563px;
+  width: 304px;
+  height: 39px;
+  display: flex;
+  padding: 8px 10px;
+  position: absolute;
+  align-items: center;
+  flex-shrink: 0;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+
+}
+.username input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+.iscrizione-text06 {
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  font-size: 20px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.password {
+  gap: 10px;
+  top: 603px;
+  left: 563px;
+  width: 304px;
+  height: 39px;
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+}
+.password input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+.iscrizione-text08 {
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  font-size: 20px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.iscrizione-username {
+  top: 512px;
+  left: 292px;
+  color: rgba(0, 0, 0, 1);
+  width: 261px;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.iscrizione-password {
+  top: 619px;
+  left: 292px;
+  color: rgba(0, 0, 0, 1);
+  width: 261px;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.iscrizione-rectangle8 {
+  top: 189px;
+  left: 217px;
+  width: 1006px;
+  height: 200px;
+  position: absolute;
+}
+.iscrizione-frame25 {
+  gap: 10px;
+  top: 189px;
+  left: 353px;
+  width: 671px;
+  height: 194px;
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+.iscrizione-logocustomer1 {
+  width: 654px;
+  height: 168px;
+}
+

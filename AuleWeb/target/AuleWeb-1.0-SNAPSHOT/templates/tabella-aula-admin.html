@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <link href="style/Tabelle.css" rel="stylesheet" />
+  <title>Aule web </title>
+</head>
+<body>
+<div class="home-container">
+    <div class="home-home">
+        <div class="home-frame3">
+            <img
+                    alt="UnivaqLogo116"
+                    src="images/UnivAQ_logoC.png"
+                    class="home-univaq-logo1"
+            />
+        </div>
+        <div class="lower">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Luogo</th>
+                        <th>Edificio</th>
+                        <th>Piano</th>
+                        <th>Capienza</th>
+                        <th>Numero di prese elettriche</th>
+                        <th>Numero di prese di rete</th>
+                        <th>Responsabile</th>
+                        <th>Attrezzature</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <#if (ListaAula?size>0)>
+                    <#list ListaAula as aula>
+                    <tr>
+                        <td>${aula.nome}</td>
+                        <td>${aula.luogo}</td>
+                        <td>${aula.edificio}</td>
+                        <td>${aula.piano}</td>
+                        <td>${aula.capienza}</td>
+                        <td>${aula.NPreseElettriche}</td>
+                        <td>${aula.NPreseRete}</td>
+                        <td><#if aula.responsabile??>${aula.responsabile.email}</#if></td>
+                        <td>
+                            <#list aula.attrezzature as att>
+                            ${att.nome},
+                            </#list>
+                        </td>
+                        <td><a href="aula?id=${aula.id}"><button class="Bottone-tabela">Modifica</button></a><a href="modifica-aule?id=${aula.id}"><button class="Bottone-tabela">Elimina</button></a></td>
+                    </tr>
+                    </#list>
+                    </#if>
+                </tbody>            
+            </table>
+            <div>
+            </div>
+            <button class="my-button" id="downloadBtn" >Scarica in CSV</button>
+       <div class="Admin-aula-bottone">
+            <a  href="home_admin"><button class="my-button">Indietro</button></a>
+            <a href="aula"><button class="my-button">Aggiungi Aula</button></a>
+            <a href="modifica-attrezzatura"><button class="my-button">Visualizza attrezzature</button></a>
+                </div>
+            <script>
+                document.getElementById('downloadBtn').addEventListener('click', function () {
+                    downloadCSV();
+                });
+
+                function downloadCSV() {
+                    var table = document.getElementById('dataTable');
+                    var rows = table.getElementsByTagName('tr');
+                    var csvData = [];
+
+                    // Loop attraverso le righe della tabella e creare un array di array per i dati CSV
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = [], cols = rows[i].querySelectorAll('td, th');
+
+                        for (var j = 0; j < cols.length -1; j++) {
+                            row.push(cols[j].innerText);
+                        }
+
+                        csvData.push(row.join(','));
+                    }
+
+                    // Unisci i dati CSV in un'unica stringa
+                    var csvString = csvData.join('\n');
+
+                    // Crea un oggetto Blob con i dati CSV
+                    var blob = new Blob([csvString], { type: 'text/csv' });
+
+                    // Crea un URL temporaneo per il download del file CSV
+                    var url = window.URL.createObjectURL(blob);
+
+                    // Crea un elemento "a" nascosto e simula il clic per avviare il download del file
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'dati.csv';
+                    document.body.appendChild(a);
+                    a.click();
+
+                    // Rimuovi l'elemento "a" nascosto
+                    document.body.removeChild(a);
+                }
+            </script>
+    </div>
+        </div>
+</body>
+</html>

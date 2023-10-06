@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link href="style/Tabelle.css" rel="stylesheet" />
+  <title>Aule web </title>
+</head>
+
+<body>
+<div class="container">
+  <div  class="upper">
+
+    <img
+            alt="UnivaqLogo1852"
+            src="images/UnivAQ_logoC.png"
+            class="home-univaq-logo1"
+    />
+  </div>
+  <div class="lower">
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Azione</th>
+      </tr>
+      </thead>
+      <tbody>
+      <#if (ListaAttrezzature?size>0)>
+      <#list ListaAttrezzature as lista>
+
+      <tr>
+        <td>${lista.nome}</td>
+        <td><a href="modifica-attrezzatura?nome=${lista.nome}"><button name="elimina">Elimina</button></a></td>
+      </tr>
+
+      </#list>
+    </#if>
+    </tbody>
+    </table>
+    <a  href="modifica-aule"><button class="my-button">Indietro</button></a>
+    <form action="modifica-attrezzatura" method="post">
+        <div>
+          <div class="my-button3 ">
+            <input class="Attrezzatura" type="text" name="attrezzatura" placeholder="nome nuova attrezzatura" required>
+          <input type="submit" class="my-button" name="aggiungi" value="Aggiungi">
+            <div>
+        </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

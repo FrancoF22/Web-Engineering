@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      
+  <link href="style/Tabelle.css" rel="stylesheet" />
+  <title>Aule web </title>
+</head>
+
+<body>
+    <div class="container">
+        <div  class="upper">
+            <img
+                alt="UnivaqLogo1852"
+                src="images/UnivAQ_logoC.png"
+                class="home-univaq-logo1"
+            />
+                 <span class="home-text02">
+            Benvenuto
+        </span>
+            <form action="logout" method="post">
+                <input type="submit"  class="home-Accedi-Esci" name="logout" value="Esci">
+            </form>
+        
+        </div>   
+        <div class="lower">
+            <table>
+                <thead>
+                
+                    <tr>
+                        <th>Data</th>
+                        <th>Inizio</th>
+                        <th>Fine</th>
+                        <th>Aula</th>
+                        <th>Nome Evento</th>
+                        <th>Descrizione</th>
+                        <th>Tipologia</th>
+                        <th>Corso</th>
+                         <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <#if (EventiResponsabile?size>0)>
+                    <#list EventiResponsabile as calendario>
+                    <tr>
+                        <td>${calendario.giorno?date?string('dd-MM-yyyy')}</td>
+                        <td>${calendario.oraInizio?time?string('HH:mm')}</td>
+                        <td>${calendario.oraFine?time?string('HH:mm')}</td>
+                        <td>${calendario.aula.nome}</td>
+                        <td>${calendario.evento.nome}</td>
+                        <td>${calendario.evento.descrizione}</td>
+                        <td>${calendario.evento.tipologia}</td>
+                        <td><#if calendario.evento.corso??>${calendario.evento.corso.nome}</#if></td>
+                        <td><a href="evento?id=${calendario.evento.id}&data=${calendario.giorno?date?string('yyyy-MM-dd')}&id_aula=${calendario.aula.id}&redirect=home_responsabile"><button name="modifica">Modifica</button></a><a href="home_responsabile?id=${calendario.evento.id}&data=${calendario.giorno?date?string('yyyy-MM-dd')}"><button name="elimina">Elimina</button></a></td>
+                    </tr>
+                    </#list>
+                    </#if>
+                </tbody>            
+            </table>
+            <a href="aule?responsabile=${email_responsabile}"><button class="my-button">Aggiungi Evento</button></a>
+        </div>
+    </div>
+</body>
+</html>

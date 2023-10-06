@@ -20,8 +20,12 @@ public interface ResponsabileDAO {
 
     List<?> getAllResponsabili() throws DataException; //restituisce i dati dell'utente
     
+    Responsabile getResponsabileUtente(Integer id) throws DataException;
+    
     void storeResponsabile(Responsabile responsabile, String nuovaMail, Integer id_utente) throws DataException;
     
     void deleteResponsabile(Responsabile responsabile) throws DataException;
+
+    
     
 }

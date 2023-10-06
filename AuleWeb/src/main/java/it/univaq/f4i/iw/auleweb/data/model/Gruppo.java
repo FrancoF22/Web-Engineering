@@ -10,17 +10,21 @@ import it.univaq.f4i.iw.framework.data.DataItem;
  *
  * @author franc
  */
-public interface Gruppo extends DataItem<Integer>{
-    
+public interface Gruppo extends DataItem<Integer> {
+
     String getNome();
-    
+
     String getDescrizione();
-    
+
+    Gruppo getDipartimento();
+
     TipoGruppo getTipoGruppo();
-    
+
     void setNome(String n);
-    
+
     void setDescrizione(String d);
-    
+
+    void setDipartimento(Gruppo dipartimento);
+
     void setTipoGruppo(TipoGruppo tg);
 }

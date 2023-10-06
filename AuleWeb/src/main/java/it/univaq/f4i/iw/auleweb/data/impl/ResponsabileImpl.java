@@ -5,20 +5,24 @@
 package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
  *
  * @author franc
  */
-public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsabile{
+public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsabile {
+
     private String nome, cognome, email;
-    
-    public ResponsabileImpl(){
+    private Utente utente;
+
+    public ResponsabileImpl() {
         super();
         this.nome = "";
         this.cognome = "";
         this.email = "";
+        this.utente = null;
     }
 
     @Override
@@ -37,6 +41,11 @@ public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsab
     }
 
     @Override
+    public Utente getUtente() {
+        return utente;
+    }
+
+    @Override
     public void setNome(String n) {
         this.nome = n;
     }
@@ -50,5 +59,10 @@ public class ResponsabileImpl extends DataItemImpl<Integer> implements Responsab
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    @Override
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
 }

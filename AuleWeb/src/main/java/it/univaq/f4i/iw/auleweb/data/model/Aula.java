@@ -50,7 +50,7 @@ public interface Aula extends DataItem<Integer>{
     
     void setEdificio(String edificio);
     
-    void setPiano(String piano);
+     void setPiano(String piano);
   
     void setResponsabile(Responsabile resp);
 }

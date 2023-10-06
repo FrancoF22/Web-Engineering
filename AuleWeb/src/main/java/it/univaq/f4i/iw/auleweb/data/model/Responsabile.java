@@ -18,10 +18,14 @@ public interface Responsabile extends DataItem<Integer>{
     
     String getEmail();
     
+    Utente getUtente();
+    
     void setNome(String n);
     
     void setCognome(String cognome);
     
     void setEmail(String email);
+    
+    void setUtente(Utente utente);
     
 }

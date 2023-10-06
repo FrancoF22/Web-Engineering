@@ -1,0 +1,853 @@
+@import url('normalize.css');
+.home-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+
+}
+
+body {
+  top:100%;
+  left:100%;
+  background-color: white;
+}
+.home-home {
+  width: 100%;
+  height: 1024px;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+.home-text {
+  top: 166px;
+  left: 37px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 36px;
+  font-style: normal;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.home-frame3 {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 156px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(222, 143, 26, 1);
+}
+.home-univaq-logo1 {
+  top: 19px;
+  left: -10px;
+  height: 137px;
+  position: absolute;
+}
+
+.my-button {
+  background-color: rgba(26, 143, 221, 1);
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 100px;
+  width: 200px;
+  height: 70px;
+}
+.nome-evento {
+  gap: 10px;
+  top: 213px;
+  left: 100px;
+  width: 504px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.descrizione-evento {
+  gap: 10px;
+  top: 337px;
+  left: 100px;
+  width: 500px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.responsabile {
+  gap: 10px;
+  top: 450px;
+  left: 100px;
+  width: 307px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.testo-nome-evento {
+  top: 182px;
+  left: 85px;
+  color: rgba(0, 0, 0, 1);
+  width: 237px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-descrizione-evento {
+  top: 308px;
+  left: 100px;
+  color: rgba(0, 0, 0, 1);
+  width: 265px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-responsabile-evento {
+  top: 415px;
+  left: 70px;
+  color: rgba(0, 0, 0, 1);
+  width: 214px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.email-responsabile {
+  gap: 10px;
+  top: 550px;
+  left: 100px;
+  width: 307px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.testo-email-responsabile {
+  top: 515px;
+  left: 100px;
+  color: rgba(0, 0, 0, 1);
+  width: 214px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.data-evento {
+  gap: 10px;
+  top: 220px;
+  left: 1000px;
+  width: 300px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.testo-data-evento {
+  top: 180px;
+  left: 960px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.aula-evento {
+  gap: 10px;
+  top:575px;
+  left: 100px;
+  width: 455px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.home-text02 {
+  top: 50px;
+  left: 512px;
+  color: rgba(0, 0, 0, 1);
+  width: 521px;
+  height: auto;
+  position: absolute;
+  font-size: 60px;
+  font-style: normal;
+  text-align: left;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-aula-evento {
+  top: 530px;
+  left: 75px;
+  color: rgba(0, 0, 0, 1);
+  width: 226px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.testo-edificio-evento {
+  top: 660px;
+  left: 90px;
+  color: rgba(0, 0, 0, 1);
+  width: 226px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.edificio-evento {
+  gap: 10px;
+  top:705px;
+  left: 100px;
+  width: 455px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.testo-piano-evento {
+  top: 800px;
+  left: 80px;
+  color: rgba(0, 0, 0, 1);
+  width: 226px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.piano-evento {
+  gap: 10px;
+  top:850px;
+  left: 100px;
+  width: 455px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.testo-tipologia-evento {
+  top: 800px;
+  left: 965px;
+  color: rgba(0, 0, 0, 1);
+  width: 226px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.tipologia-evento {
+  gap: 10px;
+  top:850px;
+  left: 1000px;
+  width: 455px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.orario-inzio {
+  gap: 10px;
+  top: 350px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.testo-tipologia {
+  top: 554px;
+  left: 1000px;
+  color: rgba(0, 0, 0, 1);
+  width: 211px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-orario-fine {
+  top: 420px;
+  left: 1000px;
+  color: rgba(0, 0, 0, 1);
+  width: 211px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-orario-inizio{
+  top: 310px;
+  left: 960px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.orario-fine {
+  gap: 10px;
+  top: 450px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  background-color: white;
+  border: 1px solid black;
+}
+.tipologia {
+  gap: 10px;
+  top: 600px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.bottone-indietro{
+  top: 200px;
+  left: 40px;
+  position:relative;
+  
+}
+.bottone-csv{
+  top: 800px;
+  left: 1300px;
+  position: absolute;
+}
+.corso {
+  gap: 10px;
+  top: 575px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.testo-corso{
+  top:  530px;
+  left: 950px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.gruppo-corso {
+  gap: 10px;
+  top: 705px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.testo-gruppo-corso{
+  top:  660px;
+  left: 950px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.calendario{
+  top:300px;
+  left:300px;
+  position:absolute;
+}
+.data-elimina{
+  gap: 10px;
+  top: 300px;
+  left: 200px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.inizio-elimina{
+  gap: 10px;
+  top: 450px;
+  left: 200px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.fine-elimina{
+  gap: 10px;
+  top: 600px;
+  left: 200px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.aula-elimina{
+  gap: 10px;
+  top: 300px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.nome-elimina{
+  gap: 10px;
+  top: 500px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.descrizione-elimina{
+  gap: 10px;
+  top: 500px;
+  left: 1000px;
+  width: 339px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+.tipologia-elimina{
+   gap: 10px;
+   top: 650px;
+   left: 1000px;
+   width: 339px;
+   display: flex;
+   padding: 20px;
+   position: absolute;
+   align-items: flex-start;
+   flex-direction: column;
+   background-color: white;
+   border: 1px solid black;
+ }
+.nome-elimina{
+    gap: 10px;
+    top: 400px;
+    left: 1000px;
+    width: 339px;
+    display: flex;
+    padding: 20px;
+    position: absolute;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+  }
+.evento-elimina{
+  gap: 10px;
+  top: 800px;
+  left: 500px;
+  width: 700px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+
+}
+.seleziona-elimia{
+  gap: 10px;
+  top: 900px;
+  left: 600px;
+  width: 700px;
+  display: flex;
+  padding: 20px;
+  position: absolute;
+  align-items: flex-start;
+
+}
+
+.testo-data-elimina{
+  top: 350px;
+  left: 10px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-inizio-elimina{
+  top: 500px;
+  left: 0px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 23px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-fine-elimina{
+  top: 650px;
+  left: 0px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-aula-elimina{
+  top: 330px;
+  left: 800px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-nome-elimina{
+  top: 430px;
+  left: 800px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-descrizione-elimina{
+  top: 530px;
+  left: 750px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-tipologia-elimina{
+  top: 680px;
+  left: 750px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.testo-evento-elimina{
+  top: 1000px;
+  left: 750px;
+  color: rgba(0, 0, 0, 1);
+  width: 294px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.test-seleziona-elimina{
+  top: 170px;
+  left: 550px;
+  color: rgba(0, 0, 0, 1);
+  width: 500px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Arial;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+form {
+  top:250px;
+  left:50px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  width: 1000px;
+  margin-bottom: 20px;
+  position: absolute;
+}
+form input[type="text"],
+form input[type="date"],
+form input[type="time"],
+form select,
+form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+form input[required],
+form select[required] {
+  border-color: black;
+}
+form span {
+  font-weight: bold;
+  margin-bottom: 13px;
+  display: block;
+  font-size: 20px;
+}
+
+form .button {
+  background-color: rgba(26, 143, 221, 1);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+form .button:hover {
+  background-color:dodgerblue;
+}
+
+
+
+
+
+

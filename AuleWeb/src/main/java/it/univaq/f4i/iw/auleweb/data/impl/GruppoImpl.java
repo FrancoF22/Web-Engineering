@@ -13,14 +13,16 @@ import it.univaq.f4i.iw.framework.data.DataItemImpl;
  * @author franc
  */
 public class GruppoImpl extends DataItemImpl<Integer> implements Gruppo {
-    
+
     private String nome, descrizione;
+    private Gruppo dipartimento;
     private TipoGruppo tipoGruppo;
-    
-    public GruppoImpl(){
+
+    public GruppoImpl() {
         super();
         this.nome = "";
         this.descrizione = "";
+        this.dipartimento = null;
         this.tipoGruppo = null;
     }
 
@@ -32,6 +34,11 @@ public class GruppoImpl extends DataItemImpl<Integer> implements Gruppo {
     @Override
     public String getDescrizione() {
         return descrizione;
+    }
+
+    @Override
+    public Gruppo getDipartimento() {
+        return dipartimento;
     }
 
     @Override
@@ -50,8 +57,13 @@ public class GruppoImpl extends DataItemImpl<Integer> implements Gruppo {
     }
 
     @Override
+    public void setDipartimento(Gruppo dipartimento) {
+        this.dipartimento = dipartimento;
+    }
+
+    @Override
     public void setTipoGruppo(TipoGruppo tg) {
         this.tipoGruppo = tg;
     }
-    
+
 }
