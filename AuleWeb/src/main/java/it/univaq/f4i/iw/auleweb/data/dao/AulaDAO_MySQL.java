@@ -24,7 +24,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     public AulaDAO_MySQL(DataLayer d) {
         super(d);
     }
-    private PreparedStatement sAulaById, sAuleByDepartment, sAuleByPolo;
+    private PreparedStatement sAulaById, sAuleByGruppo, sAuleByPolo;
     private PreparedStatement iAula, uAula, dAula;
     
     @Override
@@ -36,7 +36,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             //procedure di ricerca delle aule
             
             sAulaById = connection.prepareStatement("SELECT * FROM aula WHERE id=?");
-            sAuleByDepartment = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga JOIN gruppo AS g WHERE id_gruppo=? AND g.tipologia = 'dipartimento'");
+            sAuleByGruppo = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga ON ga.id_aula = aula.id JOIN gruppo AS g ON ga.id_gruppo = g.id WHERE g.nome=?");
             sAuleByPolo = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga JOIN gruppo AS g WHERE id_gruppo=? AND g.tipologia = 'polo'");
             
             //procedure di inserimento, aggiornamento e eliminazione delle aule
@@ -55,7 +55,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         //chiusura dei preprared statement
         try{
             sAulaById.close();
-            sAuleByDepartment.close();
+            sAuleByGruppo.close();
             sAuleByPolo.close();
             
             iAula.close();
@@ -112,23 +112,21 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                     }
                 }
             }catch (SQLException ex) {
-                throw new DataException("Unable to load article by ID", ex);
+                throw new DataException("Unable to load Aula by ID", ex);
             }
         }
         return a;
     }
     
     //i metodi di seguito vanno modificati
-
+    
+    
+    //serve questo metodo che segue?
     @Override
     public Attrezzatura createAttrezzatura() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public Aula getAula(String nome) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public Attrezzatura getAttrezzatura(String nome) throws DataException {
@@ -136,8 +134,13 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override
-    public List<Aula> getAllAule() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Aula> getAllAule(String) throws DataException {
+        List<Aula> result = new ArrayList();
+        try (ResultSet rs = sAuleByGruppo.) {
+            
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
     }
 
     @Override
@@ -172,6 +175,13 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
     @Override
     public List<Aula> getAuleFromLuogo(String luogo) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
+    //??
+    @Override
+    public Aula getAula(String nome) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
