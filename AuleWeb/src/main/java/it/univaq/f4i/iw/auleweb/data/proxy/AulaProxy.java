@@ -115,4 +115,10 @@ public class AulaProxy extends AulaImpl implements DataItemProxy{
         this.modified = dirty;
     }
     
+    public void setResponsabileKey(int responsabile_key) {
+        this.responsabile_key = responsabile_key;
+        //resettiamo la cache dell'autore
+        //reset author cache
+        super.setResponsabile(null);
+    }
 }

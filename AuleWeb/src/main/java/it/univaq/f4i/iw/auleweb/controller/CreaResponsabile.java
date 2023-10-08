@@ -74,10 +74,10 @@ public class CreaResponsabile extends AuleWebBaseController {
         responsabile.setEmail(request.getParameter("email"));
         if(utente.getNome().length() > 25) throw new DataException("username troppo lungo (>25)");
         if(responsabile.getEmail().length() > 60) throw new DataException("email troppo lunga (>60)");
-        if(datalayer.getUtenteDAO().getUtenteByUsername(utente.getNome()) == null 
+        if(datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()) == null 
            && datalayer.getResponsabileDAO().getResponsabile(responsabile.getEmail()) == null) {
             datalayer.getUtenteDAO().storeUtente(utente);
-            datalayer.getResponsabileDAO().storeResponsabile(responsabile, request.getParameter("nuovaMail"), datalayer.getUtenteDAO().getUtenteByUsername(utente.getNome()).getKey());
+            datalayer.getResponsabileDAO().storeResponsabile(responsabile, request.getParameter("nuovaMail"), datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()).getKey());
         } else throw new DataException("l'username o l'email inserita sono già presenti nel db, si prega di inserire nuovi dati");
         try {
             response.sendRedirect("gestisci_responsabile");

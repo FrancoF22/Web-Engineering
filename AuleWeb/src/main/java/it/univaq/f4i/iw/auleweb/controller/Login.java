@@ -59,7 +59,7 @@ public class Login extends AuleWebBaseController {
                 
             } else {
                 try {
-                    Utente u = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByUsername(username);
+                    Utente u = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(username);
                     if(u == null) throw new DataException("Utente non trovato, username o password errate");
                     Responsabile r = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabileUtente(u.getKey());
                     System.out.println("PASSWORD: " + u.getPassword());

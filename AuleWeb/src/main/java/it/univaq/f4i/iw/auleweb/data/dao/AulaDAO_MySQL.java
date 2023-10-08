@@ -15,6 +15,7 @@ import java.util.List;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 import java.sql.Array;
+import java.util.Set;
 
 /**
  *
@@ -84,12 +85,12 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setCapienza(rs.getInt("capienza"));
             a.setPreseElettriche(rs.getInt("prese_elettriche"));
             a.setPreseRete(rs.getInt("prese_rete"));
-            //a.setAttrezzature(rs.getAttrezzature("attrezzatura"));
+            a.setAttrezzature((Set<Attrezzatura>) rs.getArray("attrezzatura"));
             a.setNota(rs.getString("nota"));
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
             a.setPiano(rs.getString("piano"));
-            //a.setResponsabile(rs.getObject("responsabile", responsabile));
+            a.setResponsabileKey(rs.getInt("id_responsabile"));
             
         }catch (SQLException ex) {
             throw new DataException("Unable to create article object form ResultSet", ex);
