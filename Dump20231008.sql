@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: localhost    Database: aule_web
+-- Host: 127.0.0.1    Database: aule_web
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
@@ -36,20 +36,10 @@ CREATE TABLE `aula` (
   `id_responsabile` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nome` (`nome`),
-  KEY `id_responsabile` (`id_responsabile`),
-  CONSTRAINT `aula_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `responsabile` (`id`) ON UPDATE CASCADE
+  KEY `aula_ibfk_1_idx` (`id_responsabile`),
+  CONSTRAINT `aula_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `utente` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `aula`
---
-
-LOCK TABLES `aula` WRITE;
-/*!40000 ALTER TABLE `aula` DISABLE KEYS */;
-INSERT INTO `aula` VALUES (1,'Aula 1',50,10,5,'proiettore,schermo motorizzato','Aula con proiettore e schermo motorizzato','Coppito','Edificio A','Piano 1',1);
-/*!40000 ALTER TABLE `aula` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `calendario`
@@ -77,16 +67,6 @@ CREATE TABLE `calendario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `calendario`
---
-
-LOCK TABLES `calendario` WRITE;
-/*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
-INSERT INTO `calendario` VALUES (1,1,1,'nessuna','2023-07-19',NULL,'10:00:00','12:00:00',0);
-/*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `evento`
 --
 
@@ -101,22 +81,12 @@ CREATE TABLE `evento` (
   `id_responsabile` int NOT NULL,
   `id_corso` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_responsabile` (`id_responsabile`),
   KEY `id_corso` (`id_corso`),
-  CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `responsabile` (`id`) ON UPDATE CASCADE,
+  KEY `evento_ibfk_1_idx` (`id_responsabile`),
+  CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `utente` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `evento_ibfk_2` FOREIGN KEY (`id_corso`) REFERENCES `gruppo` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `evento`
---
-
-LOCK TABLES `evento` WRITE;
-/*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'Lezione di Matematica','Lezione di matematica avanzata','lezione',1,1);
-/*!40000 ALTER TABLE `evento` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `gruppo`
@@ -133,16 +103,6 @@ CREATE TABLE `gruppo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `gruppo`
---
-
-LOCK TABLES `gruppo` WRITE;
-/*!40000 ALTER TABLE `gruppo` DISABLE KEYS */;
-INSERT INTO `gruppo` VALUES (1,'Dipartimento di Informatica','Dipartimento di Informatica dell\'Università','dipartimento');
-/*!40000 ALTER TABLE `gruppo` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `gruppo_aula`
@@ -162,43 +122,6 @@ CREATE TABLE `gruppo_aula` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `gruppo_aula`
---
-
-LOCK TABLES `gruppo_aula` WRITE;
-/*!40000 ALTER TABLE `gruppo_aula` DISABLE KEYS */;
-INSERT INTO `gruppo_aula` VALUES (1,1);
-/*!40000 ALTER TABLE `gruppo_aula` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `responsabile`
---
-
-DROP TABLE IF EXISTS `responsabile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `responsabile` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `cognome` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `responsabile`
---
-
-LOCK TABLES `responsabile` WRITE;
-/*!40000 ALTER TABLE `responsabile` DISABLE KEYS */;
-INSERT INTO `responsabile` VALUES (1,'Luigi','Verdi','luigi.verdi@example.com');
-/*!40000 ALTER TABLE `responsabile` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `utente`
 --
 
@@ -211,20 +134,10 @@ CREATE TABLE `utente` (
   `cognome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password_account` varchar(255) NOT NULL,
-  `role_user` enum('admin','student') NOT NULL DEFAULT 'student',
+  `ruolo` enum('admin','studente','responsabile') NOT NULL DEFAULT 'studente',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `utente`
---
-
-LOCK TABLES `utente` WRITE;
-/*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (1,'Mario','Rossi','mario.rossi@example.com','password123','admin');
-/*!40000 ALTER TABLE `utente` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'aule_web'
@@ -489,4 +402,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 18:30:27
+-- Dump completed on 2023-10-08 21:10:21
