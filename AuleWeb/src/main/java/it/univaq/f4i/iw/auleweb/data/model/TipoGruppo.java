@@ -10,7 +10,6 @@ package it.univaq.f4i.iw.auleweb.data.model;
  */
 public enum TipoGruppo {
     
-    corso,
     polo,
     dipartimento
     
