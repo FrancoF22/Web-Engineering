@@ -10,6 +10,7 @@ it\univaq\f4i\iw\auleweb\data\proxy\AttrezzaturaProxy.class
 it\univaq\f4i\iw\auleweb\data\dao\AulaDAO_MySQL.class
 it\univaq\f4i\iw\auleweb\data\model\Tipologia.class
 it\univaq\f4i\iw\auleweb\controller\HomeAdmin.class
+it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO_MySQL.class
 it\univaq\f4i\iw\auleweb\data\dao\AuleWebDataLayer.class
 it\univaq\f4i\iw\auleweb\data\impl\AttrezzaturaImpl.class
 it\univaq\f4i\iw\auleweb\data\model\Evento.class

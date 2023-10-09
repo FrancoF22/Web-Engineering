@@ -66,6 +66,16 @@ public class Gruppo_AulaProxy extends Gruppo_AulaImpl implements DataItemProxy{
         this.modified = true;
     }
 
+    public void setAulaKey(int aula_key) {
+        this.aula_key = aula_key;
+        super.setAula(null);
+    }
+    
+    public void setGruppoKey(int aula_key) {
+        this.gruppo_key = gruppo_key;
+        super.setGruppo(null);
+    }
+    
     @Override
     public boolean isModified() {
         return modified;

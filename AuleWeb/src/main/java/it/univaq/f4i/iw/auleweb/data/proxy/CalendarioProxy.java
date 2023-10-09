@@ -100,6 +100,16 @@ public class CalendarioProxy extends CalendarioImpl implements DataItemProxy{
         this.modified = true;
     }
 
+    public void setAulaKey(int aula_key) {
+        this.aula_key = aula_key;
+        super.setAula(null);
+    }
+
+    public void setEventoKey(int evento_key) {
+        this.evento_key = evento_key;
+        super.setEvento(null);
+    }
+    
     @Override
     public boolean isModified() {
         return modified;

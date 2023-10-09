@@ -91,6 +91,17 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
        return super.getResponsabile();
     }
     */
+    
+    public void setCorsoKey(int corso_key) {
+        this.corso_key = corso_key;
+        super.setCorso(null);
+    }
+
+    public void setResponsabileKey(int responsabile_key) {
+        this.responsabile_key = responsabile_key;
+        super.setResponsabile(null);
+    }
+    
    @Override
     public boolean isModified() {
         return modified;
