@@ -1,75 +1,76 @@
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\UtenteImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\Gruppo_AulaProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AulaDAO_MySQL.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Ruolo.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\EventoImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\EventoDAO.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\Login.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\TipoGruppo.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Gruppo_Aula.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AuleWebDataLayer.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciResponsabile.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\EventoProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItemImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AttrezzaturaProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\GruppoProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\UtentiProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciAttrezzatura.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciCalendarioEventi.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\SplitSlashesFmkExt.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\ResponsabileImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\FailureResult.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AulaDAO.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\AuleWebBaseController.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiCorso.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItemProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciAula.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\DummyModelFiller.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO_MySQL.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\DataModelFiller.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaEvento.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\ResponsabileProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\HomeAdmin.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\OptimisticLockException.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\CalendarioProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\Logout.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraDipartimenti.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItem.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\TemplateManagerException.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciGruppo.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItemProxyImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Utente.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DAO.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\AulaImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\Gruppo_AulaImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\CalendarioImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AulaProxy.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\controller\AbstractBaseController.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaGruppo.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraAule.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Attrezzatura.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Responsabile.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaResponsabile.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\TemplateResult.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiAttuali.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Ricorrenza.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\HomeResponsabile.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraEventi.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Calendario.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraFacolta.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\ResponsabileDAO.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataException.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\AttrezzaturaImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Tipologia.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\InfoEvento.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Evento.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\GruppoImpl.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataCache.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Gruppo.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataLayer.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\security\SecurityHelpers.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaAula.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\StreamResult.java
-C:\Users\franc\Desktop\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Aula.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\CalendarioProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItemProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Responsabile.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataException.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Attrezzatura.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaAula.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItemProxyImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\SplitSlashesFmkExt.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\HomeResponsabile.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\CalendarioImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\InfoEvento.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\controller\AbstractBaseController.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\EventoProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaGruppo.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\FailureResult.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\AttrezzaturaImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Ricorrenza.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataCache.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\security\SecurityHelpers.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\Logout.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraFacolta.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AuleWebDataLayer.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\UtenteImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraDipartimenti.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Gruppo_Aula.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciAttrezzatura.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO_MySQL.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciResponsabile.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\EventoImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO_MySQL.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraAule.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AulaDAO.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\AulaDAO_MySQL.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Evento.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AulaProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Tipologia.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\ResponsabileDAO.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\TemplateManagerException.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiAttuali.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\GruppoImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\TemplateResult.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciCalendarioEventi.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\StreamResult.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\MostraEventi.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\AuleWebBaseController.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaResponsabile.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiCorso.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\OptimisticLockException.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\CreaEvento.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Calendario.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Ruolo.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItemImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\Gruppo_AulaImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\TipoGruppo.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataLayer.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\DummyModelFiller.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Gruppo.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\Login.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\EventoDAO.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DAO.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\ResponsabileProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciAula.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\GestisciGruppo.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\result\DataModelFiller.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\ResponsabileImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\GruppoProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\framework\data\DataItem.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\Gruppo_AulaProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\controller\HomeAdmin.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\AulaImpl.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Utente.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Aula.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\UtentiProxy.java
+C:\Users\pcela\Desktop\netbeans projects\Web-Engineering\AuleWeb\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AttrezzaturaProxy.java

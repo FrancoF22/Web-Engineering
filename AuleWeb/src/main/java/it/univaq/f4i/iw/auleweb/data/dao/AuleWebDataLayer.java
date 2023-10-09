@@ -9,6 +9,7 @@ import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
+import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import java.sql.SQLException;
 import javax.sql.DataSource;
@@ -23,9 +24,14 @@ public class AuleWebDataLayer extends DataLayer{
         super(datasource);
     }
     
-    /*
-    Metodi di creazione delle tabelle mysql da aggiungere
-    */
+    @Override
+    public void init() throws DataException {
+        registerDAO(Utente.class, new UtenteDAO_MySQL(this));
+        //registerDAO(Responsabile.class, new ResponsabileDAO_MySQL(this));
+        registerDAO(Gruppo.class, new GruppoDAO_MySQL(this));
+        //registerDAO(Evento.class, new EventoDAO_MySQL(this));
+        registerDAO(Aula.class, new AulaDAO_MySQL(this));
+    }
     
     //helpers
     public EventoDAO getEventoDAO() {

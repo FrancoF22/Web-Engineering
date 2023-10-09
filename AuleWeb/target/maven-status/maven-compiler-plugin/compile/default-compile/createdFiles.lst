@@ -3,6 +3,7 @@ it\univaq\f4i\iw\framework\data\DataException.class
 it\univaq\f4i\iw\auleweb\controller\CreaEvento.class
 it\univaq\f4i\iw\auleweb\controller\CreaResponsabile.class
 it\univaq\f4i\iw\auleweb\data\model\Responsabile.class
+it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO_MySQL.class
 it\univaq\f4i\iw\framework\result\StreamResult.class
 it\univaq\f4i\iw\auleweb\data\impl\EventoImpl.class
 it\univaq\f4i\iw\auleweb\controller\GestisciAttrezzatura.class
