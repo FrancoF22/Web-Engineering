@@ -76,7 +76,6 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
     
     //helper
-    // è incompleta e ci sono incongruenze con attrezzature e responabile
     private AulaProxy createAula(ResultSet rs) throws DataException {
         AulaProxy a = (AulaProxy) createAula();
         try {
@@ -128,7 +127,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a = dataLayer.getCache().get(Aula.class, nome);
         }else{
             try{
-                try (ResultSet rs = sAulaByNome.executeQuery(nome)) {
+                sAulaByNome.setString(1, nome);
+                try (ResultSet rs = sAulaByNome.executeQuery()) {
                     if (rs.next()) {
                         a = createAula(rs);
                         //e lo mettiamo anche nella cache
