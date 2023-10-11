@@ -3,6 +3,7 @@ package it.univaq.f4i.iw.auleweb.data.dao;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
+import it.univaq.f4i.iw.auleweb.data.proxy.CalendarioProxy;
 import it.univaq.f4i.iw.auleweb.data.proxy.EventoProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -26,6 +27,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     private PreparedStatement sEventoById, sEventoByNome, sEventiByTipo;
     private PreparedStatement sEventoByResponsabile;
     private PreparedStatement iEvento, uEvento, dEvento;
+    private PreparedStatement sGiorniEvento, sDataOdierna;
 
     public EventoDAO_MySQL(DataLayer d) {
         super(d);
@@ -45,6 +47,9 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             iEvento = connection.prepareStatement("INSERT INTO utente (nome,descrizione,tipologia,id_corso,id_responsabile) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uEvento = connection.prepareStatement("UPDATE evento SET nome=?,descrizione=?,tipologia=?,id_corso=?,id_responsabile=? WHERE ID=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE id=?");
+            
+            sGiorniEvento = connection.prepareStatement("SELECT calendario.* FROM calendario JOIN evento ON calendario.id_evento = evento.id WHERE calendario.id_evento=?");
+            sDataOdierna = connection.prepareStatement("SELECT evento.* FROM evento JOIN calendario ON calendario.id_evento = evento.id WHERE calendario.giorno = NOW");
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
         }
@@ -62,6 +67,9 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             iEvento.close();
             uEvento.close();
             dEvento.close();
+            
+            sGiorniEvento.close();
+            sDataOdierna.close();
         } catch (SQLException ex) {
             //
         }
@@ -196,17 +204,45 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     
     @Override
     public Calendario createCalendario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new CalendarioProxy(getDataLayer());
     }
 
+    @Override //non sono sicuro sul funzionamento, dovrebbe creare una lista dei giorni in cui si tiene un evento
+    public List<Calendario> getCalendarioEvento(int evento_key) throws DataException {
+       List<Calendario> result =new ArrayList();
+       
+        try {
+            sGiorniEvento.setInt(1, evento_key);
+            try (ResultSet rs = sGiorniEvento.executeQuery()) {
+                while (rs.next()) {
+                    result.add((Calendario) getEvento(rs.getInt("id")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Date", ex);
+        }
+        return result;
+    }
+    
+    
+    public List<Evento> getEventiOdierni() throws DataException{
+        List<Evento> result = new ArrayList();
+        try {
+            
+            try (ResultSet rs = sDataOdierna.executeQuery()) {
+                while (rs.next()) {
+                    result.add((Evento) getEvento(rs.getInt("id")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load events of today", ex);
+        }
+        return result;
+    }
+    //da qui ci sono metodi non implementati
     @Override
     public Evento getEvento(String nome, Tipologia tipologia) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Calendario> getCalendarioEvento(int evento_key) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); //ne ho creati due divisi
     }
 
     @Override
