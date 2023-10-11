@@ -1,4 +1,5 @@
 it\univaq\f4i\iw\auleweb\data\model\Aula.class
+it\univaq\f4i\iw\auleweb\data\dao\EventoDAO_MySQL.class
 it\univaq\f4i\iw\framework\data\DataException.class
 it\univaq\f4i\iw\auleweb\controller\CreaEvento.class
 it\univaq\f4i\iw\auleweb\controller\CreaResponsabile.class

@@ -29,7 +29,7 @@ public class AuleWebDataLayer extends DataLayer{
         registerDAO(Utente.class, new UtenteDAO_MySQL(this));
         //registerDAO(Responsabile.class, new ResponsabileDAO_MySQL(this));
         registerDAO(Gruppo.class, new GruppoDAO_MySQL(this));
-        //registerDAO(Evento.class, new EventoDAO_MySQL(this));
+        registerDAO(Evento.class, new EventoDAO_MySQL(this));
         registerDAO(Aula.class, new AulaDAO_MySQL(this));
     }
     
