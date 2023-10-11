@@ -18,7 +18,7 @@ public interface GruppoDAO {
     
     Gruppo createGruppo();
     
-    Gruppo_Aula createGruppo_Aula();
+    Gruppo_Aula createGruppoAula();
 
     void addGruppo_Aula(Integer gruppo_key, Integer id_aula) throws DataException;
 
