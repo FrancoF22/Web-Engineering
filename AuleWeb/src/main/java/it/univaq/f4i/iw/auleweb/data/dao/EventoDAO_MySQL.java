@@ -6,7 +6,9 @@ import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.auleweb.data.proxy.EventoProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
+import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -144,6 +146,54 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
+    public void storeEvento(Evento evento) throws DataException {
+         try {
+            if (evento.getKey() != null && evento.getKey() > 0) { //update
+                //non facciamo nulla se l'oggetto è un proxy e indica di non aver subito modifiche
+                if (evento instanceof DataItemProxy && !((DataItemProxy) evento).isModified()) {
+                    return;
+                }
+                uEvento.setString(1, evento.getNome());
+                uEvento.setString(2, evento.getDescrizione());
+                uEvento.setObject(3, evento.getTipologia());
+                if (evento.getResponsabile()!= null) {
+                    uEvento.setInt(4, evento.getResponsabile().getKey());
+                } else {
+                    uEvento.setNull(4, java.sql.Types.INTEGER);
+                }
+
+                if (uEvento.executeUpdate() == 0) {
+                    throw new OptimisticLockException(evento);
+                } else {
+                    //idk cosa deve fare
+                }
+            } else { //insert
+                iEvento.setString(1, evento.getNome());
+                iEvento.setString(2, evento.getDescrizione());
+                iEvento.setObject(3, evento.getTipologia());
+                if (evento.getResponsabile()!= null) {
+                    iEvento.setInt(4, evento.getResponsabile().getKey());
+                } else {
+                    iEvento.setNull(4, java.sql.Types.INTEGER);
+                }
+                if (iEvento.executeUpdate() == 1) {
+                    try (ResultSet keys = iEvento.getGeneratedKeys()) {
+                        if (keys.next()) {
+                            int key = keys.getInt(1);
+                            evento.setKey(key);
+                            dataLayer.getCache().add(Evento.class, evento);
+                        }
+                    }
+                }
+            }
+            if (evento instanceof DataItemProxy) {
+                ((DataItemProxy) evento).setModified(false);
+            }
+        } catch (SQLException | OptimisticLockException ex) {
+            throw new DataException("Unable to store evento", ex);
+        }
+    }
+    
     @Override
     public Calendario createCalendario() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -185,11 +235,6 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override
-    public void storeEvento(Calendario calendario) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Calendario> getEventiSettimana(int id_aula, Date giorno) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -211,6 +256,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     @Override
     public List<Calendario> getAllEventi(int id_dipartimento) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void storeEvento(Calendario calendario) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
