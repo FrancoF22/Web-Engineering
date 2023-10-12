@@ -52,7 +52,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             dGruppo = connection.prepareStatement("DELETE FROM gruppo WHERE ID=?");
 
             iGruppoAula = connection.prepareStatement("INSERT INTO gruppo_aula (id_gruppo,id_aula) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
-            iGruppoAula = connection.prepareStatement("DELETE FROM gruppo_aula WHERE id=?");
+            dGruppoAula = connection.prepareStatement("DELETE FROM gruppo_aula WHERE id=?");
 
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
