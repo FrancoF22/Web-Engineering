@@ -18,12 +18,12 @@ import javax.sql.DataSource;
  *
  * @author franc
  */
-public class AuleWebDataLayer extends DataLayer{
-    
+public class AuleWebDataLayer extends DataLayer {
+
     public AuleWebDataLayer(DataSource datasource) throws SQLException {
         super(datasource);
     }
-    
+
     @Override
     public void init() throws DataException {
         registerDAO(Utente.class, new UtenteDAO_MySQL(this));
@@ -32,7 +32,7 @@ public class AuleWebDataLayer extends DataLayer{
         registerDAO(Evento.class, new EventoDAO_MySQL(this));
         registerDAO(Aula.class, new AulaDAO_MySQL(this));
     }
-    
+
     //helpers
     public EventoDAO getEventoDAO() {
         return (EventoDAO) getDAO(Evento.class);
@@ -53,5 +53,5 @@ public class AuleWebDataLayer extends DataLayer{
     public ResponsabileDAO getResponsabileDAO() {
         return (ResponsabileDAO) getDAO(Responsabile.class);
     }
-    
+
 }
