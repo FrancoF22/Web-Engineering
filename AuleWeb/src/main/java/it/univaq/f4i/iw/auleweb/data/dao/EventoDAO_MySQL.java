@@ -88,7 +88,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             e.setKey(rs.getInt("id"));
             e.setNome(rs.getString("nome"));
             e.setDescrizione(rs.getString("descrizione"));
-            e.setTipo((Tipologia) rs.getObject("tipologia"));
+            e.setTipo(Tipologia.valueOf( rs.getString("tipologia")));
             e.setCorsoKey(rs.getInt("id_corso"));
             e.setResponsabileKey(rs.getInt("id_responsabile"));
 

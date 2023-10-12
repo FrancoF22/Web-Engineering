@@ -93,15 +93,15 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         try {
             g.setKey(rs.getInt("id"));
             g.setNome(rs.getString("nome"));
-            g.setTipoGruppo((TipoGruppo) rs.getObject("tipologia"));
-            g.setDescrizione(rs.getString("descriziopne"));
+            g.setTipoGruppo(TipoGruppo.valueOf(rs.getString("tipologia")));
+            g.setDescrizione(rs.getString("descrizione"));
         } catch (SQLException ex) {
             throw new DataException("Unable to create gruppo object form ResultSet", ex);
         }
         return g;
     }
-
-    public Gruppo getGruppo(int gruppo_key) throws DataException {
+    @Override
+    public Gruppo getGruppoById(int gruppo_key) throws DataException {
         Gruppo g = null;
         //prima vediamo se l'oggetto è già stato caricato
         //first look for this object in the cache
@@ -116,7 +116,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
                     if (rs.next()) {
                         g = createGruppo(rs);
                         //e lo mettiamo anche nella cache
-                        //and put it also in the cache
+                       
                         dataLayer.getCache().add(Gruppo.class, g);
                     }
                 }
@@ -265,11 +265,6 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     @Override
     public Gruppo_Aula getGruppo_Aula(int id_aula) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Gruppo getGruppoById(int gruppo_key) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // ce l'ho, è chiamato diversamente
     }
 
     @Override
