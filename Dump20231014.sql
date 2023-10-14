@@ -67,6 +67,21 @@ CREATE TABLE `calendario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `corso`
+--
+
+DROP TABLE IF EXISTS `corso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `corso` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `descrzione` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `evento`
 --
 
@@ -79,9 +94,12 @@ CREATE TABLE `evento` (
   `descrizione` text,
   `tipologia` enum('lezione','seminario','esame','parziale','riunione','lauree') NOT NULL DEFAULT 'lezione',
   `id_responsabile` int NOT NULL,
+  `id_corso` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `evento_ibfk_1_idx` (`id_responsabile`),
-  CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `utente` (`id`) ON UPDATE CASCADE
+  KEY `evento_ibfk_2_idx` (`id_corso`),
+  CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `utente` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `evento_ibfk_2` FOREIGN KEY (`id_corso`) REFERENCES `corso` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,4 +163,4 @@ CREATE TABLE `utente` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-11 17:39:12
+-- Dump completed on 2023-10-14 13:11:56
