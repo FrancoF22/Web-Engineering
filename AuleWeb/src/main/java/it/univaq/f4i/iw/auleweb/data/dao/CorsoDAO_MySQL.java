@@ -84,7 +84,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
         return c;
     }
     
-    @Override
+    @Override //permette di ottenere il corso tramite l'id
     public Corso getCorsoById(Integer corso_key) throws DataException {
         Corso c = null;
         if (dataLayer.getCache().has(Corso.class, corso_key)) {
@@ -106,7 +106,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
         return c;
     }
 
-    @Override
+    @Override //permette di ottenere la lista dei corsi
     public List<Corso> getCorsi() throws DataException {
         List<Corso> result = new ArrayList();
 

@@ -37,7 +37,7 @@ public class CreaEvento extends AuleWebBaseController {
         Evento evento = dataLayer.getEventoDAO().createEvento();
         evento.setKey(0);
         //evento.setTipologia(Tipologia.lezione);
-        Corso corso = dataLayer.getCorsoDAO().createCorso();
+        Corso corso = dataLayer.getCorsoDAO().createCorso(); //continua a segnare errore -ema
         corso.setKey(0);
         evento.setCorso(corso);
         evento.setResponsabile(dataLayer.getResponsabileDAO().createResponsabile());
@@ -67,7 +67,7 @@ public class CreaEvento extends AuleWebBaseController {
                     Time orainizio = Time.valueOf(request.getParameter("oraInizio"));
                     Time orafine = Time.valueOf(request.getParameter("oraFine"));
                     
-                    List<Calendario> calendarioEventiAulaSelezionata = dataLayer.getEventoDAO().getEventiAula(id_aula, "tutti");
+                    List<Calendario> calendarioEventiAulaSelezionata = dataLayer.getEventoDAO().getEventiAula(id_aula, "tutti"); //non so cosa vuole, probabilmente il metodo si chiama diversamente e richiede input diversi -ema
                     for(Calendario eventoPresente : calendarioEventiAulaSelezionata){
                         while(ripetizioniEvento > 0){
                             if(eventoPresente.getEvento().getKey() == SecurityHelpers.checkNumeric(request.getParameter("id_evento"))) {

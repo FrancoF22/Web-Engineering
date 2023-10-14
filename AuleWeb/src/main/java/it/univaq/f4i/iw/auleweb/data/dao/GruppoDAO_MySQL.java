@@ -100,7 +100,9 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         }
         return g;
     }
-    @Override
+    
+    
+    @Override //permette di ottenere il gruppo tramite l'id
     public Gruppo getGruppoById(int gruppo_key) throws DataException {
         Gruppo g = null;
         //prima vediamo se l'oggetto è già stato caricato
@@ -127,7 +129,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         return g;
     }
 
-    @Override
+    @Override //permette di ottenere il gruppo tramite il nome
     public Gruppo getGruppo(String gruppo_nome) throws DataException {
         Gruppo g = null;
         //prima vediamo se l'oggetto è già stato caricato
@@ -151,7 +153,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         return g;
     }
 
-    @Override
+    @Override //permette di ottenere tutti i dipartimenti
     public List<Gruppo> getAllDipartimenti() throws DataException {
         List<Gruppo> result = new ArrayList();
 
@@ -164,7 +166,8 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         }
         return result;
     }
-
+    
+    //permette ddi ottenere tutti i poli
     public List<Gruppo> getAllPoli() throws DataException {
         List<Gruppo> result = new ArrayList();
 
@@ -255,6 +258,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             throw new DataException("Unable to store gruppo", ex);
         }
     }
+    
     //i metodi che seguono non sono stati implementati, qualcuno potrebbe non servire
 
     @Override

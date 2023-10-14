@@ -48,6 +48,8 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         try {
             sUtenteById.close();
             sUtenteByEmail.close();
+            sUtenteByRuolo.close();
+            
             iUtente.close();
             uUtente.close();
 
@@ -83,7 +85,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
     
-    @Override
+    @Override //permette di ottenere un utente tramite l'id
     public Utente getUtente(int user_key) throws DataException {
          Utente u = null;
         //prima vediamo se l'oggetto è già stato caricato
@@ -111,7 +113,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return u;
     }
 
-    @Override
+    @Override //permette di ottenere un utente tramite l'email
     public Utente getUtenteByEmail(String email) throws DataException {
         try {
             sUtenteByEmail.setString(1, email);
