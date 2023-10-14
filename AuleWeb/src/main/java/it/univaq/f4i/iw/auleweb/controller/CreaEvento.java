@@ -114,7 +114,7 @@ public class CreaEvento extends AuleWebBaseController {
                     calendario.setOraFine(Time.valueOf(request.getParameter("oraFine")));
                     calendario.setOraInizio(Time.valueOf(request.getParameter("oraInizio")));
                     calendario.setRicorrenza(ricorrenzaEvento);
-                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(calendario);
+                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeCalendario(calendario);
                     response.sendRedirect("home_responsabile");
                 } catch (IOException | DataException ex) {
                     handleError(ex, request, response);

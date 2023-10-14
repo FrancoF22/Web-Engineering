@@ -5,7 +5,7 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
+import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -33,7 +33,7 @@ public class EventiCorso extends AuleWebBaseController{
             }
         } else {
             try {
-                request.setAttribute("EventiCorso", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorso(id_corso));
+                request.setAttribute("EventiCorso", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorsoSettimana(id_corso));
             } catch (DataException ex) {
                 handleError(ex, request, response);
             }
@@ -47,7 +47,7 @@ public class EventiCorso extends AuleWebBaseController{
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
-            Gruppo corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppoById(SecurityHelpers.checkNumeric(request.getParameter("corso")));
+            Corso corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso")));
             request.setAttribute("corsoID", corso.getKey());
             request.setAttribute("aulaID", request.getParameter("id_aula"));
             TemplateResult res = new TemplateResult(getServletContext());

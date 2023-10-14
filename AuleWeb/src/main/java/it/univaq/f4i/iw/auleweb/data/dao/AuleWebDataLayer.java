@@ -28,7 +28,7 @@ public class AuleWebDataLayer extends DataLayer {
     @Override
     public void init() throws DataException {
         registerDAO(Utente.class, new UtenteDAO_MySQL(this));
-        //registerDAO(Responsabile.class, new ResponsabileDAO_MySQL(this));
+        registerDAO(Corso.class, new CorsoDAO_MySQL(this));
         registerDAO(Gruppo.class, new GruppoDAO_MySQL(this));
         registerDAO(Evento.class, new EventoDAO_MySQL(this));
         registerDAO(Aula.class, new AulaDAO_MySQL(this));
@@ -55,7 +55,7 @@ public class AuleWebDataLayer extends DataLayer {
         return (ResponsabileDAO) getDAO(Responsabile.class);
     }
 
-    public Object getCorsoDAO() {
+    public CorsoDAO getCorsoDAO() {
         return (CorsoDAO) getDAO(Corso.class);
     }
 

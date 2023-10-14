@@ -25,26 +25,14 @@ public interface EventoDAO {
 
     List<Calendario> getCalendarioEvento(int evento_key) throws DataException;    //ritorna le ripetizioni dell'evento sul calendario
     
-    List<Calendario> getEventiCorso(int corso)throws DataException;
-    
-    List<Calendario> getEventiAula(int id_aula,String campo_ricerca) throws DataException; //come parametro passo il c alendario in modo tale da avere l'unicità sull'evento (evento,giorno,ora_inizio,ora_fine...)
+    List<Calendario> getEventiCorsoSettimana(int corso)throws DataException;
 
     Calendario getCalendario(int evento_key, Date giorno) throws DataException;
 
-    List<Calendario> getEventiResponsabile(String email, String param) throws DataException;
-
     void deleteEvento(Calendario calendario, boolean singolo) throws DataException;
     
-    void storeEvento(Calendario calendario) throws DataException;
-    
-    List<Calendario> getEventiSettimana(int id_aula, Date giorno) throws DataException;
-    
-    List<Calendario> getEventiPerGiorno(int id_aula, Date giorno) throws DataException;
-
-    List<Calendario> getEventiCorsoSettimana(int id_corso, Date giorno) throws DataException;
+    void storeCalendario(Calendario calendario) throws DataException;
 
     List<Calendario> getEventiAttuali(int id_dipartimento) throws DataException;
-
-    List<Calendario> getAllEventi(int id_dipartimento) throws DataException;
     
 }
