@@ -6,8 +6,8 @@ package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
+import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
-import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Ricorrenza;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -37,7 +37,7 @@ public class CreaEvento extends AuleWebBaseController {
         Evento evento = dataLayer.getEventoDAO().createEvento();
         evento.setKey(0);
         //evento.setTipologia(Tipologia.lezione);
-        Gruppo corso = dataLayer.getGruppoDAO().createGruppo();
+        Corso corso = dataLayer.getCorsoDAO().createCorso();
         corso.setKey(0);
         evento.setCorso(corso);
         evento.setResponsabile(dataLayer.getResponsabileDAO().createResponsabile());
@@ -102,7 +102,7 @@ public class CreaEvento extends AuleWebBaseController {
                     if(id_evento > 0) calendario.setEvento(dataLayer.getEventoDAO().getEvento(id_evento)); //modifica
                     calendario.getEvento().setNome(request.getParameter("nome"));
                     //calendario.getEvento().setTipologia(Tipologia.valueOf(request.getParameter("tipo")));
-                    calendario.getEvento().setCorso(dataLayer.getGruppoDAO().getGruppoById(SecurityHelpers.checkNumeric(request.getParameter("corso"))));
+                    calendario.getEvento().setCorso(dataLayer.getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso"))));
                     calendario.getEvento().setDescrizione(request.getParameter("descrizione"));
                     calendario.getEvento().setResponsabile(dataLayer.getResponsabileDAO().getResponsabile((String) SecurityHelpers.checkSession(request).getAttribute("username")));
                     if(id_aula != 0) {
@@ -114,7 +114,6 @@ public class CreaEvento extends AuleWebBaseController {
                     calendario.setOraFine(Time.valueOf(request.getParameter("oraFine")));
                     calendario.setOraInizio(Time.valueOf(request.getParameter("oraInizio")));
                     calendario.setRicorrenza(ricorrenzaEvento);
-                    calendario.setRipetizioni(SecurityHelpers.checkNumeric(request.getParameter("ripetizioni")));
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(calendario);
                     response.sendRedirect("home_responsabile");
                 } catch (IOException | DataException ex) {

@@ -20,7 +20,7 @@ public interface Evento extends DataItem<Integer>{
     
     Responsabile getResponsabile();
     
-    Gruppo getCorso();
+    Corso getCorso();
     
     Tipologia getTipologia(); 
     
@@ -32,8 +32,6 @@ public interface Evento extends DataItem<Integer>{
     
     void setResponsabile(Responsabile r);
     
-    void setGruppo(Gruppo g);
-    
-    void setCorso(Gruppo c);
+    void setCorso(Corso c);
     
 }

@@ -5,7 +5,7 @@
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
 import it.univaq.f4i.iw.auleweb.data.impl.EventoImpl;
-import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
+import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
@@ -36,7 +36,7 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
     }
     
     @Override
-    public void setCorso(Gruppo corso) {
+    public void setCorso(Corso corso) {
         super.setCorso(corso);
         if(corso != null)this.corso_key = corso.getKey();
         this.modified = true;

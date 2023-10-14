@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
+import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
@@ -52,6 +53,10 @@ public class AuleWebDataLayer extends DataLayer {
 
     public ResponsabileDAO getResponsabileDAO() {
         return (ResponsabileDAO) getDAO(Responsabile.class);
+    }
+
+    public Object getCorsoDAO() {
+        return (CorsoDAO) getDAO(Corso.class);
     }
 
 }

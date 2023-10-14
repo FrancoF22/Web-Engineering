@@ -4,7 +4,7 @@
  */
 package it.univaq.f4i.iw.auleweb.data.impl;
 
-import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
+import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
@@ -19,7 +19,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     private String nome, descrizione;
     private Tipologia tipo;
     private Responsabile responasabile;
-    private Gruppo corso;
+    private Corso corso;
     
     public EventoImpl(){
         super();
@@ -56,7 +56,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     }
     
     @Override
-    public Gruppo getCorso() {
+    public Corso getCorso() {
         return corso;
     }
 
@@ -79,14 +79,9 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     public void setResponsabile(Responsabile r) {
         this.responasabile  = r;
     }
-
+    
     @Override
-    public void setGruppo(Gruppo g) {
-        this.corso = g;
-    }
-
-    @Override
-    public void setCorso(Gruppo c) {
+    public void setCorso(Corso c) {
         this.corso = c;
     }
     

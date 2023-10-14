@@ -25,7 +25,6 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     private Ricorrenza ricorrenza;
     private Date giorno, giornoFine;
     private Time oraInizio, oraFine;
-    private int ripetizioni;
 
     public CalendarioImpl() {
        super();
@@ -36,7 +35,6 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
        this.oraInizio = Time.valueOf(LocalTime.now());
        this.oraFine = Time.valueOf(LocalTime.now());
        this.ricorrenza = Ricorrenza.giornaliera;
-       this.ripetizioni=1;
     }
 
     @Override
@@ -75,11 +73,6 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     }
 
     @Override
-    public int getRipetizioni() {
-        return ripetizioni;
-    }
-
-    @Override
     public void setAula(Aula aula) {
         this.aula = aula;
     }
@@ -112,10 +105,5 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     @Override
     public void setOraFine(Time oraFine) {
         this.oraFine = oraFine;
-    }
-
-    @Override
-    public void setRipetizioni(int ripetizioni) {
-        this.ripetizioni = ripetizioni;
     }
 }

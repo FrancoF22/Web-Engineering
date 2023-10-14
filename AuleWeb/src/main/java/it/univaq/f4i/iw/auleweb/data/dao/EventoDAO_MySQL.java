@@ -27,7 +27,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     private PreparedStatement sEventoById, sEventoByNome, sEventiByTipo;
     private PreparedStatement sEventoByResponsabile;
     private PreparedStatement iEvento, uEvento, dEvento;
-    private PreparedStatement sGiorniEvento, sDataOdierna;
+    private PreparedStatement sGiorniEvento, sEventiAulaOggi, sEventiAula;
 
     public EventoDAO_MySQL(DataLayer d) {
         super(d);
@@ -44,12 +44,13 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByTipo = connection.prepareStatement("SELECT id FROM evento WHERE tipologia=?");
             sEventoByResponsabile = connection.prepareStatement("SELECT id FROM evento WHERE id_responsabile=?");
 
-            iEvento = connection.prepareStatement("INSERT INTO utente (nome,descrizione,tipologia,id_corso,id_responsabile) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            iEvento = connection.prepareStatement("INSERT INTO evento (nome,descrizione,tipologia,id_corso,id_responsabile) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uEvento = connection.prepareStatement("UPDATE evento SET nome=?,descrizione=?,tipologia=?,id_corso=?,id_responsabile=? WHERE ID=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE id=?");
             
             sGiorniEvento = connection.prepareStatement("SELECT calendario.* FROM calendario JOIN evento ON calendario.id_evento = evento.id WHERE calendario.id_evento=?");
-            sDataOdierna = connection.prepareStatement("SELECT evento.* FROM evento JOIN calendario ON calendario.id_evento = evento.id WHERE calendario.giorno = NOW");
+            sEventiAulaOggi = connection.prepareStatement("SELECT evento.* FROM evento JOIN calendario ON calendario.id_evento = evento.id WHERE calendario.id_aula=? AND YEAR(calendario.giorno)=YEAR(CURDATE()) AND WEEK(calendario.giorno,1)=WEEK(CURDATE(),1)");
+            sEventiAula = connection.prepareStatement("SELECT evento.* FROM evento JOIN calendario ON calendario.id_evento = evento.id WHERE calendario.id_aula=? AND YEAR(calendario.giorno)=YEAR(?) AND WEEK(calendario.giorno,1)=WEEK(?,1)");
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
         }
@@ -69,7 +70,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             dEvento.close();
             
             sGiorniEvento.close();
-            sDataOdierna.close();
+            sEventiAulaOggi.close();
+            sEventiAula.close();
         } catch (SQLException ex) {
             //
         }
@@ -224,30 +226,41 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    
-    public List<Evento> getEventiOdierni() throws DataException{
+    public List<Evento> getEventiAulaSettimana(int aulaId) throws DataException{
         List<Evento> result = new ArrayList();
         try {
-            
-            try (ResultSet rs = sDataOdierna.executeQuery()) {
+            sEventiAulaOggi.setInt(1,aulaId);
+            try (ResultSet rs = sEventiAulaOggi.executeQuery()) {
                 while (rs.next()) {
                     result.add((Evento) getEvento(rs.getInt("id")));
                 }
             }
         } catch (SQLException ex) {
-            throw new DataException("Unable to load events of today", ex);
+            throw new DataException("Impossibile caricare gli eventi dell'aula", ex);
+        }
+        return result;
+    }
+    
+    public List<Evento> getEventiAula(int aulaId, Date d) throws DataException{
+        List<Evento> result = new ArrayList();
+        try {
+            sEventiAula.setInt(1,aulaId);
+            sEventiAula.setDate(2, d);
+            sEventiAula.setDate(3, d);
+            try (ResultSet rs = sEventiAula.executeQuery()) {
+                while (rs.next()) {
+                    result.add((Evento) getEvento(rs.getInt("id")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Impossibile caricare gli eventi dell'aula", ex);
         }
         return result;
     }
     //da qui ci sono metodi non implementati
     @Override
-    public Evento getEvento(String nome, Tipologia tipologia) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); //ne ho creati due divisi
-    }
-
-    @Override
     public List<Calendario> getEventiCorso(int corso) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); //devo aggiungere il campo corso e renderlo un set o una tabella a parte
     }
 
     @Override

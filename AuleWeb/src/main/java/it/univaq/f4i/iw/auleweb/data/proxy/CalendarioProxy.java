@@ -94,12 +94,6 @@ public class CalendarioProxy extends CalendarioImpl implements DataItemProxy{
         this.modified = true;
     }
 
-    @Override
-    public void setRipetizioni(int ripetizioni){
-        super.setRipetizioni(ripetizioni);
-        this.modified = true;
-    }
-
     public void setAulaKey(int aula_key) {
         this.aula_key = aula_key;
         super.setAula(null);

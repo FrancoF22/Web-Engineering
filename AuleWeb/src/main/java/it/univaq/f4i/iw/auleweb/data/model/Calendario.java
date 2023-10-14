@@ -26,9 +26,7 @@ public interface Calendario extends DataItem<Integer>{
    
     Time getOraInizio(); 
    
-    Time getOraFine(); 
-    
-    int getRipetizioni();
+    Time getOraFine();
     
     void setAula(Aula aula);
     
@@ -42,7 +40,5 @@ public interface Calendario extends DataItem<Integer>{
 
     void setOraInizio(Time oraInizio);
     
-    void setOraFine(Time oraFine); 
-    
-    void setRipetizioni(int ripetizioni); 
+    void setOraFine(Time oraFine);
 }

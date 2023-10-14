@@ -20,8 +20,6 @@ public interface EventoDAO {
     Evento createEvento();
     
     Calendario createCalendario();
-
-    Evento getEvento(String nome,Tipologia tipologia) throws DataException;
     
     Evento getEvento(Integer key) throws DataException;
 
