@@ -1,83 +1,84 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
 
-   <link href="style/Tabelle.css" rel="stylesheet" />
-  <title>Aule web </title>
-</head>
+        <link href="style/Tabelle.css" rel="stylesheet" />
+        <title>Aule web </title>
+    </head>
 
-<body>
-    <div class="home-container">
-        <div  class="home-frame3">
+    <body>
+        <div class="home-container">
+            <div  class="home-frame3">
 
-            <img
-                alt="UnivaqLogo1852"
-                src="images/UnivAQ_logoC.png"
-                class="home-univaq-logo1"
-            />
-        </div>
-        <div class="lower">
-            <div>
-            <table class="table-spacing">
-                <thead>
-                    <tr>
-                        <th colspan="4" class="table-header">POLO</th>
-                    </tr>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrizione</th>
-                        <th>Dipartimento</th>
-                        <th>Azione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <#if (ListaPolo?size>0)>
-                    <#list ListaPolo as polo>
-                    <tr>
-                        <td>${polo.nome}</td>
-                        <td>${polo.descrizione}</td>
-                        <td>${polo.dipartimento.nome}</td>
-                        <td><a href="gruppo?id=${polo.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${polo.id}"><button name="elimina">Elimina</button></a></td>
-                    </tr>
-
-                    </#list>
-                    </#if>
-                </tbody>
-            </table>
-
-        </div>
+                <img
+                    alt="UnivaqLogo1852"
+                    src="images/UnivAQ_logoC.png"
+                    class="home-univaq-logo1"
+                    />
+            </div>
+            <div class="lower">
                 <div>
-                  <table>
-                      <thead>
-                          <tr>
-                              <th colspan="3" class="table-header">CORSI</th>
-                          </tr>
-                          <tr>
-                              <th>Nome</th>
-                              <th>Descrizione</th>
-                              <th>Azione</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <#if (ListaCorsi?size>0)>
-                          <#list ListaCorsi as corso>
-                          <tr>
-                              <td>${corso.nome}</td>
-                              <td>${corso.descrizione}</td>
-                              <td><a href="gruppo?id=${corso.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${corso.id}"><button name="elimina">Elimina</button></a></td>
-                          </tr>
-                          </#list>
-                          </#if>
-                      </tbody>
-                  </table>
-              </div>
+                    <table class="table-spacing">
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="table-header">POLO</th>
+                            </tr>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrizione</th>
+                                <th>Dipartimento</th>
+                                <th>Azione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#if (ListaPolo?size=0)>
+                            <#list ListaPolo as polo>
+                            <tr>
+                                <td>${polo.nome}</td>
+                                <td>${polo.descrizione}</td>
+                                <td>${polo.dipartimento.nome}</td>
+                                <td><a href="gruppo?id=${polo.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${polo.id}"><button name="elimina">Elimina</button></a></td>
+                                <<td>ciao</td>
+                            </tr>
 
-        <a  href="home_admin"><button class="my-button">Indietro</button></a>
-        <a href="gruppo?id=0"><button class="my-button">Aggiungi gruppo</button></a>
+                            </#list>
+                            </#if> 
+                        </tbody>
+                    </table>
+
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="3" class="table-header">CORSI</th>
+                            </tr>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrizione</th>
+                                <th>Azione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#if (ListaCorsi?size>0)>
+                            <#list ListaCorsi as corso>
+                            <tr>
+                                <td>${corso.nome}</td>
+                                <td>${corso.descrizione}</td>
+                                <td><a href="gruppo?id=${corso.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${corso.id}"><button name="elimina">Elimina</button></a></td>
+                            </tr>
+                            </#list>
+                            </#if>
+                        </tbody>
+                    </table>
+                </div>
+
+                <a  href="home_admin"><button class="my-button">Indietro</button></a>
+                <a href="gruppo?id=0"><button class="my-button">Aggiungi gruppo</button></a>
+
+            </div>
+
 
         </div>
-
-
-    </div>
-</body>
+    </body>
 </html>

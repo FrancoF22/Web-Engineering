@@ -58,8 +58,8 @@
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.HomeAdmin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListaFacolta</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.MostraFacolta</servlet-class>
+        <servlet-name>ListaPolo</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.MostraPolo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Responsabile</servlet-name>
@@ -219,8 +219,8 @@
         <url-pattern>/home_responsabile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListaFacolta</servlet-name>
-        <url-pattern>/facolta</url-pattern>
+        <servlet-name>ListaPolo</servlet-name>
+        <url-pattern>/polo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Responsabile</servlet-name>
