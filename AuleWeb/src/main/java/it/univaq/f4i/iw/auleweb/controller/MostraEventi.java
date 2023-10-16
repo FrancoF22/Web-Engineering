@@ -6,6 +6,7 @@ package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.dao.EventoDAO;
+import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo_Aula;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -60,8 +61,8 @@ public class MostraEventi extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException, TemplateManagerException  {
        try {
             TemplateResult res = new TemplateResult(getServletContext());
-            Gruppo_Aula gruppo = (Gruppo_Aula) ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(SecurityHelpers.checkNumeric(request.getParameter("id_aula"))); //cosa si vuole qui§?^ -ema
-            request.setAttribute("id", gruppo.getGruppo().getKey());
+            Gruppo gruppo = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getDipartimento(SecurityHelpers.checkNumeric(request.getParameter("id_aula")));
+            request.setAttribute("id", gruppo.getKey());
             res.activate("tabella-eventi-utente.html", request, response);
        } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
