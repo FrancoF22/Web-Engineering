@@ -21,7 +21,7 @@
             <table class="table-spacing">
                 <thead>
                     <tr>
-                        <th colspan="4" class="table-header">FACOLTA'</th>
+                        <th colspan="4" class="table-header">POLO</th>
                     </tr>
                     <tr>
                         <th>Nome</th>
@@ -31,13 +31,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <#if (ListaFacolta?size>0)>
-                    <#list ListaFacolta as facolta>
+                    <#if (ListaPolo?size>0)>
+                    <#list ListaPolo as polo>
                     <tr>
-                        <td>${facolta.nome}</td>
-                        <td>${facolta.descrizione}</td>
-                        <td>${facolta.dipartimento.nome}</td>
-                        <td><a href="gruppo?id=${facolta.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${facolta.id}"><button name="elimina">Elimina</button></a></td>
+                        <td>${polo.nome}</td>
+                        <td>${polo.descrizione}</td>
+                        <td>${polo.dipartimento.nome}</td>
+                        <td><a href="gruppo?id=${polo.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${polo.id}"><button name="elimina">Elimina</button></a></td>
                     </tr>
 
                     </#list>

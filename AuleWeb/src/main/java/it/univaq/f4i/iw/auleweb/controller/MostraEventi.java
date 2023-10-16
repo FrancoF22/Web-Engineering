@@ -60,7 +60,7 @@ public class MostraEventi extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException, TemplateManagerException  {
        try {
             TemplateResult res = new TemplateResult(getServletContext());
-            Gruppo_Aula gruppo = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(SecurityHelpers.checkNumeric(request.getParameter("id_aula"))); //cosa si vuole qui§?^ -ema
+            Gruppo_Aula gruppo = (Gruppo_Aula) ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(SecurityHelpers.checkNumeric(request.getParameter("id_aula"))); //cosa si vuole qui§?^ -ema
             request.setAttribute("id", gruppo.getGruppo().getKey());
             res.activate("tabella-eventi-utente.html", request, response);
        } catch (DataException ex) {
