@@ -5,7 +5,9 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
+import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
+import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo_Aula;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -40,8 +42,9 @@ public class InfoEvento extends AuleWebBaseController  {
             Date giorno = Date.valueOf(request.getParameter("giorno"));
             TemplateResult res = new TemplateResult(getServletContext());
             Calendario calendarioEvento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getCalendario(id, giorno);
-            Gruppo_Aula grupo_aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(calendarioEvento.getAula().getKey()); //intendi cercare l'aula in cui si situa un evento? -ema
-            request.setAttribute("dipartimento", grupo_aula.getGruppo().getDipartimento());
+            Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendarioEvento.getAula().getKey());
+            Gruppo dipartimento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getDipartimento(calendarioEvento.getAula().getKey()); //intendi cercare l'aula in cui si situa un evento? -ema
+            request.setAttribute("dipartimento", dipartimento);
             request.setAttribute("InfoEvento", calendarioEvento);
             res.activate("informazioni.html", request, response);
         } catch (DataException ex) {
