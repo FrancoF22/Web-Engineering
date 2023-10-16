@@ -28,6 +28,10 @@ public interface GruppoDAO {
     
     Gruppo getGruppo(String nome) throws DataException;
     
+    Gruppo getDipartimento(int id_aula) throws DataException;
+    
+    Gruppo getPolo(int id_aula) throws DataException;
+    
     List<Gruppo> getAllDipartimenti() throws DataException;
     
     List<Gruppo> getAllPoli() throws DataException;

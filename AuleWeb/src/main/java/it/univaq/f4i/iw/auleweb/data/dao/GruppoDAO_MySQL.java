@@ -30,7 +30,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
 
     private PreparedStatement sGruppoById, sGruppoByName;
     private PreparedStatement sAllDepartments, sAllPolo;
-    private PreparedStatement sGruppiAula;
+    private PreparedStatement sGruppiAula, sDipartimentoAula, sPoloAula;
     private PreparedStatement iGruppo, uGruppo, dGruppo;
     private PreparedStatement iGruppoAula, dGruppoAula;
 
@@ -47,8 +47,11 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             sGruppoByName = connection.prepareStatement("SELECT * FROM gruppo WHERE name=?");
             sAllDepartments = connection.prepareStatement("SELECT * FROM gruppo WHERE tipologia='dipartimento'");
             sAllPolo = connection.prepareStatement("SELECT * FROM gruppo WHERE tipologia='polo'");
+
             sGruppiAula = connection.prepareStatement("SELECT g.* FROM gruppo AS g JOIN gruppo_aula AS ga ON ga.id_gruppo=g.id WHERE ga.id_aula=?");
-            
+            sDipartimentoAula = connection.prepareStatement("Select g.* FROM gruppo AS g JOIN gruppo_aula AS ga ON ga.id_gruppo=g.id WHERE ga.id_aula=? AND g.tipologia=dipartimento");
+            sPoloAula = connection.prepareStatement("Select g.* FROM gruppo AS g JOIN gruppo_aula AS ga ON ga.id_gruppo=g.id WHERE ga.id_aula=? AND g.tipologia=polo");
+
             iGruppo = connection.prepareStatement("INSERT INTO gruppo (nome,tipologia) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
             uGruppo = connection.prepareStatement("UPDATE gruppo SET nome=?,tipologia=? WHERE id=?");
             dGruppo = connection.prepareStatement("DELETE FROM gruppo WHERE id=?");
@@ -69,7 +72,10 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             sGruppoByName.close();
             sAllDepartments.close();
             sAllPolo.close();
+
             sGruppiAula.close();
+            sDipartimentoAula.close();
+            sPoloAula.close();
 
             iGruppo.close();
             uGruppo.close();
@@ -102,7 +108,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         }
         return g;
     }
-    
+
     @Override
     public Gruppo_Aula createGruppoAula() {
         return new Gruppo_AulaProxy(getDataLayer());
@@ -137,7 +143,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
                     if (rs.next()) {
                         g = createGruppo(rs);
                         //e lo mettiamo anche nella cache
-                       
+
                         dataLayer.getCache().add(Gruppo.class, g);
                     }
                 }
@@ -172,10 +178,48 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         return g;
     }
 
+    @Override //permette di ottenere il dipartimento di un'aula
+    public Gruppo getDipartimento(int id_aula) throws DataException {
+        Gruppo g = null;
+        try {
+            sDipartimentoAula.setInt(1, id_aula);
+            try (ResultSet rs = sDipartimentoAula.executeQuery()) {
+                if (rs.next()) {
+                    g = createGruppo(rs);
+                    //e lo mettiamo anche nella cache
+                    dataLayer.getCache().add(Gruppo.class, g);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Group", ex);
+
+        }
+        return g;
+    }
+    
+    @Override //permette di ottenere il polo di un'aula
+    public Gruppo getPolo(int id_aula) throws DataException {
+        Gruppo g = null;
+        try {
+            sPoloAula.setInt(1, id_aula);
+            try (ResultSet rs = sPoloAula.executeQuery()) {
+                if (rs.next()) {
+                    g = createGruppo(rs);
+                    //e lo mettiamo anche nella cache
+                    dataLayer.getCache().add(Gruppo.class, g);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Group", ex);
+
+        }
+        return g;
+    }
+
     @Override //permette di ottenere tutti i gruppi ai quali appartiene un'aula
     public List<Gruppo> getGruppo_Aula(int id_aula) throws DataException {
         List<Gruppo> g = new ArrayList();
-        
+
         try (ResultSet rs = sGruppiAula.executeQuery()) {
             while (rs.next()) {
                 g.add((Gruppo) getGruppoById(rs.getInt("id")));
@@ -199,8 +243,8 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         }
         return result;
     }
-    
-    //permette ddi ottenere tutti i poli
+
+    @Override //permette ddi ottenere tutti i poli
     public List<Gruppo> getAllPoli() throws DataException {
         List<Gruppo> result = new ArrayList();
 
@@ -273,10 +317,10 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             throw new DataException("Unable to store Group", ex);
         }
     }
-    
+
     @Override
     public void deleteGruppo(Integer gruppo_key) throws DataException {
-         try {
+        try {
             dGruppo.setInt(1, gruppo_key);
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Group by ID", ex);
@@ -284,7 +328,6 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     }
 
     //i metodi che seguono non sono stati implementati, qualcuno potrebbe non servire
-
     @Override
     public void addGruppo_Aula(Integer gruppo_key, Integer id_aula) throws DataException {
         throw new UnsupportedOperationException("Not supported yet.");
