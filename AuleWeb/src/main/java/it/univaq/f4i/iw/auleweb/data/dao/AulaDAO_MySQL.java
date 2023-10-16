@@ -26,7 +26,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     public AulaDAO_MySQL(DataLayer d) {
         super(d);
     }
-    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo;
+    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo, sAllAule;
     private PreparedStatement iAula, uAula, dAula;
 
     @Override
@@ -41,6 +41,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAuleByGruppoN = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga ON ga.id_aula = aula.id JOIN gruppo AS g ON ga.id_gruppo = g.id WHERE g.nome=?");
             sAuleByGruppo = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga ON ga.id_aula = aula.id WHERE ga.id_gruppo=?");
             sAuleByLuogo = connection.prepareStatement("SELECT aula.* FROM aula WHERE aula.luogo = ?");
+            
+            sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
 
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_responsabile) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -62,6 +64,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAuleByGruppo.close();
             sAuleByLuogo.close();
 
+            sAllAule.close();
+            
             iAula.close();
             uAula.close();
             dAula.close();
@@ -143,6 +147,20 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         return a;
     }
 
+    @Override
+    public List<Aula> getAllAule() throws DataException {
+         List<Aula> result = new ArrayList();
+
+        try (ResultSet rs = sAllAule.executeQuery()) {
+            while (rs.next()) {
+                result.add((Aula) getAula(rs.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+    
     //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve il nome del gruppo)
     public List<Aula> getAllAule(String gruppo_nome) throws DataException {
         List<Aula> result = new ArrayList();
@@ -314,9 +332,4 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    //??
-    @Override
-    public List<Aula> getAllAule() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
