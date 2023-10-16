@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Lenovo
+ * @author pcela
  */
-public class MostraFacolta extends AuleWebBaseController{
+public class MostraPolo extends AuleWebBaseController{
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -32,9 +32,9 @@ public class MostraFacolta extends AuleWebBaseController{
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
          try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("ListaFacolta", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllFacolta(SecurityHelpers.checkNumeric(request.getParameter("dipartimento_key"))));
+            request.setAttribute("ListaPolo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllPolo(SecurityHelpers.checkNumeric(request.getParameter("dipartimento_key"))));
             request.setAttribute("dipartimento", request.getParameter("dipartimento_key"));
-            res.activate("tabella-facoltà-utente.html", request, response);
+            res.activate("tabella-polo-utente.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }

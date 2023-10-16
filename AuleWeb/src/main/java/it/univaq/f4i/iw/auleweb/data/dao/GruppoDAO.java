@@ -32,9 +32,9 @@ public interface GruppoDAO {
     
     List<Gruppo> getAllPoli() throws DataException;
     
-    List<Gruppo> getAllFacolta(int dipartimento_key) throws DataException; //ritorna le facoltà di un dipartimento
+    List<Gruppo> getAllPolo(int dipartimento_key) throws DataException; //ritorna le facoltà di un dipartimento
     
-    List<Gruppo> getAllFacolta() throws DataException; //ritorna la lista di tutte le facoltà
+    List<Gruppo> getAllPolo() throws DataException; //ritorna la lista di tutte le facoltà
 
     List<Aula> getAllAule(int gruppo_key) throws DataException; //ritorna le aule che fanno parte del gruppo
     

@@ -291,12 +291,12 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     }
 
     @Override
-    public List<Gruppo> getAllFacolta(int dipartimento_key) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); //le aule non sono raggruppate in facoltà
+    public List<Gruppo> getAllPolo(int dipartimento_key) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Gruppo> getAllFacolta() throws DataException {
+    public List<Gruppo> getAllPolo() throws DataException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

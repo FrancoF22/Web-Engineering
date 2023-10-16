@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author pcela
  */
 public class GestisciGruppo extends AuleWebBaseController {
 

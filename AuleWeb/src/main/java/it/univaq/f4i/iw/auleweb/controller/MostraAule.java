@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Lenovo
+ * @author pcela
  */
 public class MostraAule extends AuleWebBaseController{
 

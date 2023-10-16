@@ -39,11 +39,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </tr>
                 </thead>
                 <tbody>
-                   <#if (ListaFacolta?size>0)>
+                   <#if (ListaPolo?size>0)>
                     <#list ListaPolo as polo>
                     <tr>
-                        <td>${facolta.nome}</td>
-                        <td>${facolta.descrizione}</td>
+                        <td>${polo.nome}</td>
+                        <td>${polo.descrizione}</td>
                         <td><a href="aule?id_gruppo=${polo.id}"><button name="seleziona">Seleziona</button></a></td>
                     </tr>
 

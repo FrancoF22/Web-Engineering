@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Lenovo
+ * @author pcela
  */
 public class EventiCorso extends AuleWebBaseController{
 
