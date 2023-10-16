@@ -40,7 +40,7 @@ public class GestisciGruppo extends AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("ListaDipartimenti", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllDipartimenti());
-            request.setAttribute("ListaPoli", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllPoli(SecurityHelpers.checkNumeric(request.getParameter("dipartimento_key"))));
+            request.setAttribute("ListaPoli", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllPoli());
             res.activate("tabella-gruppi-admin.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);

@@ -32,7 +32,7 @@ public class MostraPolo extends AuleWebBaseController{
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
          try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("ListaPolo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllPoli(SecurityHelpers.checkNumeric(request.getParameter("dipartimento_key"))));
+            request.setAttribute("ListaPolo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllPoli());
             request.setAttribute("dipartimento", request.getParameter("dipartimento_key"));
             res.activate("tabella-polo-utente.html", request, response);
         } catch (DataException ex) {
