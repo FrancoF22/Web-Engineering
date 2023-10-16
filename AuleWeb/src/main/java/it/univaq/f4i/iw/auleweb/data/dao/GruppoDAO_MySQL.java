@@ -245,7 +245,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     }
 
     @Override //permette ddi ottenere tutti i poli
-    public List<Gruppo> getAllPoli(int checkNumeric) throws DataException {
+    public List<Gruppo> getAllPoli() throws DataException {
         List<Gruppo> result = new ArrayList();
 
         try (ResultSet rs = sAllPolo.executeQuery()) {

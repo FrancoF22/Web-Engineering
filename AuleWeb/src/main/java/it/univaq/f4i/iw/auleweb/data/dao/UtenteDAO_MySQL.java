@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +21,7 @@ import java.sql.Statement;
  */
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
     
-    private PreparedStatement sUtenteById, sUtenteByEmail, sUtenteByRuolo, iUtente, uUtente;
+    private PreparedStatement sUtenteById, sUtenteByEmail, sUtenteByRuolo, iUtente, uUtente, sResponsabili;
 
     public UtenteDAO_MySQL(DataLayer d) {
         super(d);
@@ -32,8 +34,9 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
 
             //precompiliamo tutte le query utilizzate nella classe
             sUtenteById = connection.prepareStatement("SELECT * FROM utente WHERE Id=?");
-            sUtenteByEmail = connection.prepareStatement("SELECT id FROM utente WHERE email=?");
-            sUtenteByRuolo = connection.prepareStatement("SELECT id FROM utente WHERE ruolo=?");
+            sUtenteByEmail = connection.prepareStatement("SELECT utente.* FROM utente WHERE email=?");
+            sUtenteByRuolo = connection.prepareStatement("SELECT utente.* FROM utente WHERE ruolo=?");
+            sResponsabili = connection.prepareStatement("SELECT utente.* FROM utente WHERE ruolo='responsabile'");
             
             iUtente = connection.prepareStatement("INSERT INTO utente (nome,cognome,email,password_account,ruolo) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uUtente = connection.prepareStatement("UPDATE utente SET nome=?,cognome=?,email=?,password_account=?,ruolo=? WHERE ID=?");
@@ -49,6 +52,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             sUtenteById.close();
             sUtenteByEmail.close();
             sUtenteByRuolo.close();
+            sResponsabili.close();
             
             iUtente.close();
             uUtente.close();
@@ -127,7 +131,19 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
         return null;
     }
-
+    
+    public List<Utente> getAllResponsabili() throws DataException{
+        List<Utente> u = new ArrayList();
+        try (ResultSet rs = sResponsabili.executeQuery()) {
+            while (rs.next()) {
+                u.add((Utente) getUtente(rs.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Responsabili", ex);
+        }
+        return u;
+    }
+    
     @Override
     public void storeUtente(Utente user) throws DataException {
        try {
