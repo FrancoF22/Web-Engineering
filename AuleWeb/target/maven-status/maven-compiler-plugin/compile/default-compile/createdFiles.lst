@@ -20,7 +20,6 @@ it\univaq\f4i\iw\auleweb\controller\HomeResponsabile.class
 it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO.class
 it\univaq\f4i\iw\auleweb\controller\MostraDipartimenti.class
 it\univaq\f4i\iw\auleweb\data\proxy\AulaProxy.class
-it\univaq\f4i\iw\auleweb\controller\MostraFacolta.class
 it\univaq\f4i\iw\auleweb\data\impl\AulaImpl.class
 it\univaq\f4i\iw\auleweb\data\proxy\CalendarioProxy.class
 it\univaq\f4i\iw\auleweb\data\dao\EventoDAO.class
