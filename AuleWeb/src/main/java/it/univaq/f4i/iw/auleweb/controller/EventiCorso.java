@@ -12,6 +12,8 @@ import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,9 +29,9 @@ public class EventiCorso extends AuleWebBaseController{
         int id_corso = SecurityHelpers.checkNumeric(request.getParameter("corso"));
         if(request.getParameter("filtra") != null){
             try {
-                request.setAttribute("EventiCorso", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorsoSettimana(id_corso,Date.valueOf(request.getParameter("datepicker"))));
+                request.setAttribute("EventiCorso", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorso(id_corso,Date.valueOf(request.getParameter("datepicker"))));
             } catch (DataException ex) {
-                handleError(ex, request, response);
+                Logger.getLogger(EventiCorso.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             try {

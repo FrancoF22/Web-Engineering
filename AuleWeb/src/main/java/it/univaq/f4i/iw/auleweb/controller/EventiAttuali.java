@@ -21,17 +21,17 @@ public class EventiAttuali extends AuleWebBaseController {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        int dipartimento = SecurityHelpers.checkNumeric(request.getParameter("id_dipartimento"));
-        request.setAttribute("dipartimentoID", dipartimento);
+        int dipartimento_key = SecurityHelpers.checkNumeric(request.getParameter("id_dipartimento"));
+        request.setAttribute("dipartimentoID", dipartimento_key);
         if(request.getParameter("button1") != null){
             try {
-                request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAttuali(dipartimento));
+                request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAttuali(dipartimento_key));
             } catch (DataException ex) {
                 handleError(ex, request, response);
             }
         } else {
             try {
-                request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi(dipartimento));
+                request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAttuali(dipartimento_key));
             } catch (DataException ex) {
                 handleError(ex, request, response);
             }

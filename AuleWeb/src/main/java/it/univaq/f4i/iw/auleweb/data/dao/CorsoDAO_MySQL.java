@@ -107,7 +107,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
     }
 
     @Override //permette di ottenere la lista dei corsi
-    public List<Corso> getCorsi() throws DataException {
+    public List<Corso> getAllCorsi() throws DataException {
         List<Corso> result = new ArrayList();
 
         try (ResultSet rs = sAllCorsi.executeQuery()) {
@@ -159,8 +159,12 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
     }
 
     @Override
-    public void deleteCorso(Integer key) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // non supportato
+    public void deleteCorso(Integer id_corso) throws DataException {
+       try {
+            dCorso.setInt(1, id_corso);
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete Corso by ID", ex);
+        }
     }
 
 }

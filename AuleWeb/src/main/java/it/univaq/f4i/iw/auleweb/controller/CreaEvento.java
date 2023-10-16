@@ -67,7 +67,7 @@ public class CreaEvento extends AuleWebBaseController {
                     Time orainizio = Time.valueOf(request.getParameter("oraInizio"));
                     Time orafine = Time.valueOf(request.getParameter("oraFine"));
                     
-                    List<Calendario> calendarioEventiAulaSelezionata = dataLayer.getEventoDAO().getEventiAula(id_aula, "tutti"); //non so cosa vuole, probabilmente il metodo si chiama diversamente e richiede input diversi -ema
+                    List<Calendario> calendarioEventiAulaSelezionata = dataLayer.getEventoDAO().getAllEventiAula(id_aula); //non so cosa vuole, probabilmente il metodo si chiama diversamente e richiede input diversi -ema
                     for(Calendario eventoPresente : calendarioEventiAulaSelezionata){
                         while(ripetizioniEvento > 0){
                             if(eventoPresente.getEvento().getKey() == SecurityHelpers.checkNumeric(request.getParameter("id_evento"))) {
@@ -138,7 +138,7 @@ public class CreaEvento extends AuleWebBaseController {
             request.setAttribute("sendredirect", request.getParameter("redirect"));
             System.out.println("REDIRECT: " + request.getParameter("redirect"));
             System.out.println("ATTRIBUTO: " + request.getParameter("attribute"));
-            request.setAttribute("Corsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllCorsi());
+            request.setAttribute("Corsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi());
             res.activate("aggiungi-evento-responsabile.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);

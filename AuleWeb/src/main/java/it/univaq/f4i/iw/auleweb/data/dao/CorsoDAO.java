@@ -18,7 +18,7 @@ public interface CorsoDAO {
     
     Corso getCorsoById(Integer key) throws DataException;
     
-    List<Corso> getCorsi() throws DataException;
+    List<Corso> getAllCorsi() throws DataException;
     
     void deleteCorso(Integer key) throws DataException;
     

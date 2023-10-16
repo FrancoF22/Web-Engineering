@@ -52,7 +52,7 @@ public class HomeResponsabile extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("page_title", "Home Responsabile");
             request.setAttribute("email_responsabile",SecurityHelpers.checkSession(request).getAttribute("username"));
-            request.setAttribute("EventiResponsabile", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiResponsabile((String) SecurityHelpers.checkSession(request).getAttribute("username")/*email responsabile da riprendere dalla sessione*/,"tutti"));
+            request.setAttribute("EventiResponsabile", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiResponsabile((String) SecurityHelpers.checkSession(request).getAttribute("username")/*email responsabile da riprendere dalla sessione*/));
             res.activate("home-responsabile.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);

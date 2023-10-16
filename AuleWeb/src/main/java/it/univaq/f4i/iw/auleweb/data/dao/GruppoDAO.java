@@ -22,15 +22,15 @@ public interface GruppoDAO {
 
     void addGruppo_Aula(Integer gruppo_key, Integer id_aula) throws DataException;
 
-    Gruppo_Aula getGruppo_Aula(int id_aula) throws DataException;
+    List<Gruppo> getGruppo_Aula(int id_aula) throws DataException;
 
     Gruppo getGruppoById(int gruppo_key) throws DataException;
     
     Gruppo getGruppo(String nome) throws DataException;
-
-    List<Gruppo> getAllCorsi() throws DataException;
     
     List<Gruppo> getAllDipartimenti() throws DataException;
+    
+    List<Gruppo> getAllPoli() throws DataException;
     
     List<Gruppo> getAllFacolta(int dipartimento_key) throws DataException; //ritorna le facoltà di un dipartimento
     
@@ -47,5 +47,5 @@ public interface GruppoDAO {
     void storeGruppo(Gruppo gruppo) throws DataException;
     
     List<Aula> getAuleDisponibili(int id_gruppo) throws DataException;
-    
+
 }

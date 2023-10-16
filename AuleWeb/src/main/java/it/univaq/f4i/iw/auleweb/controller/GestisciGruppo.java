@@ -21,7 +21,7 @@ public class GestisciGruppo extends AuleWebBaseController {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        if(request.getParameter("id") != null){
+        if (request.getParameter("id") != null) {
             try {
                 int id = SecurityHelpers.checkNumeric(request.getParameter("id"));
                 ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().deleteGruppo(id);
@@ -30,7 +30,7 @@ public class GestisciGruppo extends AuleWebBaseController {
             }
         }
         try {
-            action_default(request,response);
+            action_default(request, response);
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
         }
@@ -39,12 +39,12 @@ public class GestisciGruppo extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("ListaCorsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllCorsi());
-            request.setAttribute("ListaFacolta", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllFacolta());
+            request.setAttribute("ListaDipartimenti", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllDipartimenti());
+            request.setAttribute("ListaPoli", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllPoli());
             res.activate("tabella-gruppi-admin.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);
         }
     }
-    
+
 }

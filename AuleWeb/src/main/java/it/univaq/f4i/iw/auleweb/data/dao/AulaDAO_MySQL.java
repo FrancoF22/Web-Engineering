@@ -144,10 +144,10 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve il nome del gruppo)
-    public List<Aula> getAllAule(String gruppo) throws DataException {
+    public List<Aula> getAllAule(String gruppo_nome) throws DataException {
         List<Aula> result = new ArrayList();
 
-        try (ResultSet rs = sAuleByGruppoN.executeQuery(gruppo)) {
+        try (ResultSet rs = sAuleByGruppoN.executeQuery(gruppo_nome)) {
             while (rs.next()) {
                 result.add((Aula) getAula(rs.getInt("id")));
             }
@@ -301,8 +301,11 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+    @Override 
     public List<Attrezzatura> gettAllAttrezzature() throws DataException {
+        //questo metodo può essere reso statico:
+        //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
+        //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

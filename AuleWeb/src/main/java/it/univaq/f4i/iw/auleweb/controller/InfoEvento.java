@@ -40,7 +40,7 @@ public class InfoEvento extends AuleWebBaseController  {
             Date giorno = Date.valueOf(request.getParameter("giorno"));
             TemplateResult res = new TemplateResult(getServletContext());
             Calendario calendarioEvento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getCalendario(id, giorno);
-            Gruppo_Aula grupo_aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(calendarioEvento.getAula().getKey());
+            Gruppo_Aula grupo_aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(calendarioEvento.getAula().getKey()); //intendi cercare l'aula in cui si situa un evento? -ema
             request.setAttribute("dipartimento", grupo_aula.getGruppo().getDipartimento());
             request.setAttribute("InfoEvento", calendarioEvento);
             res.activate("informazioni.html", request, response);
