@@ -34,7 +34,7 @@ public interface GruppoDAO {
     
     List<Gruppo> getAllDipartimenti() throws DataException;
     
-    List<Gruppo> getAllPoli() throws DataException;
+    List<Gruppo> getAllPoli(int checkNumeric) throws DataException;
     
     List<Gruppo> getAllPolo(int dipartimento_key) throws DataException; //ritorna le facoltà di un dipartimento
     
