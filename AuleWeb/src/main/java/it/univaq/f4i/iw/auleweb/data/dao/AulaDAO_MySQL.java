@@ -110,7 +110,6 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                     if (rs.next()) {
                         a = createAula(rs);
                         //e lo mettiamo anche nella cache
-                        //and put it also in the cache
                         dataLayer.getCache().add(Aula.class, a);
                     }
                 }
@@ -273,8 +272,12 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override
-    public void deleteAula(int id) throws DataException {
-
+    public void deleteAula(int id_aula) throws DataException {
+        try {
+            dAula.setInt(1, id_aula);
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete Aula by ID", ex);
+        }
     }
 
     //i metodi di seguito vanno modificati, oppure non servono
