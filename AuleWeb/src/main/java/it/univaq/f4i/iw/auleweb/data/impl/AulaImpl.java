@@ -7,11 +7,10 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -21,8 +20,8 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     
     private Integer capienza, preseElettriche, preseRete;
     private String nome, luogo, nota, edificio, piano;
-    private Set<Attrezzatura> attrezzatura;
-    private Responsabile responsabile;
+    private List<Attrezzatura> attrezzatura;
+    private Utente responsabile;
     
     public AulaImpl(){
         super();
@@ -33,7 +32,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
         this.nota = "";
         this.edificio = "";
         this.piano = "";
-        this.attrezzatura = new HashSet<>();
+        this.attrezzatura = new ArrayList<>();
         this.responsabile = null;
     }
 
@@ -91,7 +90,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public Responsabile getResponsabile() {
+    public Utente getResponsabile() {
         return responsabile;
     }
 
@@ -116,7 +115,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public void setAttrezzature(Set<Attrezzatura> attrezzature) {
+    public void setAttrezzature(List<Attrezzatura> attrezzature) {
         this.attrezzatura = attrezzature;
     }
 
@@ -141,7 +140,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public void setResponsabile(Responsabile resp) {
+    public void setResponsabile(Utente resp) {
         this.responsabile = resp;
     }
     

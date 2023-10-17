@@ -1,15 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.dao.CorsoDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.EventoImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
+import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
+import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -66,19 +67,19 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
         super.setTipo(t);
         this.modified = true;
     }
-    /*
+
     @Override
-    public Gruppo getCorso() {
+    public Corso getCorso() {
         if (super.getCorso() == null && corso_key > 0) {
             try {
-                super.setCorso(((GruppoDAO) dataLayer.getDAO(Gruppo.class)).getGruppoById(corso_key));
+                super.setCorso(((CorsoDAO) dataLayer.getDAO(Gruppo.class)).getCorsoById(corso_key));
             } catch (DataException ex) {
                 Logger.getLogger(AulaProxy.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
        return super.getCorso();
     }
-    
+    /*
     @Override
     public Responsabile getResponsabile() {
        if (super.getResponsabile() == null && !email_responsabile.isEmpty()) {

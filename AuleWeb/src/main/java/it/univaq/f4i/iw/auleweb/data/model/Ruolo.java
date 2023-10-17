@@ -11,6 +11,6 @@ package it.univaq.f4i.iw.auleweb.data.model;
 public enum Ruolo {
     
     studente,
-    admin
-    
+    admin,
+    responsabile,
 }

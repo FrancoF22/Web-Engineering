@@ -89,7 +89,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setCapienza(rs.getInt("capienza"));
             a.setPreseElettriche(rs.getInt("prese_elettriche"));
             a.setPreseRete(rs.getInt("prese_rete"));
-            a.setAttrezzature((Set<Attrezzatura>) rs.getArray("attrezzatura"));
+            a.setAttrezzature((List<Attrezzatura>) rs.getArray("attrezzatura"));
             a.setNota(rs.getString("nota"));
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
@@ -97,7 +97,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setResponsabileKey(rs.getInt("id_responsabile"));
 
         } catch (SQLException ex) {
-            throw new DataException("Unable to create article object form ResultSet", ex);
+            throw new DataException("Unable to create aula object form ResultSet", ex);
         }
         return a;
     }
@@ -217,7 +217,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 uAula.setInt(2, aula.getCapienza());
                 uAula.setInt(3, aula.getPreseElettriche());
                 uAula.setInt(4, aula.getPreseRete());
-                uAula.setArray(5, (Array) aula.getAttrezzature()); //non so quanto è corretto
+                uAula.setArray(5, (Array) aula.getAttrezzature());
                 uAula.setString(6, aula.getNota());
                 uAula.setString(7, aula.getLuogo());
                 uAula.setString(8, aula.getEdificio());
@@ -238,7 +238,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 iAula.setInt(2, aula.getCapienza());
                 iAula.setInt(3, aula.getPreseElettriche());
                 iAula.setInt(4, aula.getPreseRete());
-                iAula.setArray(5, (Array) aula.getAttrezzature()); //non so quanto è corretto
+                iAula.setArray(5, (Array) aula.getAttrezzature());
                 iAula.setString(6, aula.getNota());
                 iAula.setString(7, aula.getLuogo());
                 iAula.setString(8, aula.getEdificio());

@@ -8,11 +8,13 @@ import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +33,7 @@ public class CreaAula extends AuleWebBaseController {
         
         Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
         aula.setKey(0);
-        Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().createResponsabile();
+        Utente responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().createUtente();
         aula.setResponsabile(responsabile); //inserisco un responsabile fittizio
         if(request.getParameter("id") != null) {
             try {
@@ -61,9 +63,9 @@ public class CreaAula extends AuleWebBaseController {
                 aula.setPreseRete(npr);
                 aula.setNota(request.getParameter("note"));
                 responsabile = null;
-                if(!request.getParameter("responsabile").isEmpty() || request.getParameter("responsabile") != null) responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(request.getParameter("responsabile"));
+                if(!request.getParameter("responsabile").isEmpty() || request.getParameter("responsabile") != null) responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(request.getParameter("responsabile"));
                 aula.setResponsabile(responsabile);
-                Set<Attrezzatura> attrezzature = new HashSet<>();
+                List<Attrezzatura> attrezzature = new ArrayList<>();
                 List<Attrezzatura> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature();
                 for(Attrezzatura a : allAttrezzature){
                     if(request.getParameter(a.getNome()) != null) attrezzature.add(a); //checkbox null or on

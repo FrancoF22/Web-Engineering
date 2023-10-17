@@ -132,6 +132,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return null;
     }
     
+    @Override
     public List<Utente> getAllResponsabili() throws DataException{
         List<Utente> u = new ArrayList();
         try (ResultSet rs = sResponsabili.executeQuery()) {

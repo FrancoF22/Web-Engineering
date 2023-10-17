@@ -1,14 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.dao.AulaDAO;
+import it.univaq.f4i.iw.auleweb.data.dao.GruppoDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.Gruppo_AulaImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
+import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author franc
@@ -27,7 +28,7 @@ public class Gruppo_AulaProxy extends Gruppo_AulaImpl implements DataItemProxy{
         this.gruppo_key = 0;
         this.aula_key = 0;
     }
-    /*
+
     @Override
     public Gruppo getGruppo() {
         if (super.getGruppo() == null && gruppo_key > 0) {
@@ -51,7 +52,7 @@ public class Gruppo_AulaProxy extends Gruppo_AulaImpl implements DataItemProxy{
         }
        return super.getAula();
     }
-    */
+    
     @Override
     public void setGruppo(Gruppo gruppo) {
         super.setGruppo(gruppo);
@@ -71,7 +72,7 @@ public class Gruppo_AulaProxy extends Gruppo_AulaImpl implements DataItemProxy{
         super.setAula(null);
     }
     
-    public void setGruppoKey(int aula_key) {
+    public void setGruppoKey(int gruppo_key) {
         this.gruppo_key = gruppo_key;
         super.setGruppo(null);
     }

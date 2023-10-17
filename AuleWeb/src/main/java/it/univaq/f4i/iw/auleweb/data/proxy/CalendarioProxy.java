@@ -1,16 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.dao.AulaDAO;
+import it.univaq.f4i.iw.auleweb.data.dao.EventoDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.CalendarioImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
+import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -30,7 +31,7 @@ public class CalendarioProxy extends CalendarioImpl implements DataItemProxy{
         this.aula_key = 0;
         this.evento_key = 0;
     }
-/*
+    
     @Override
     public Aula getAula() {
         if (super.getAula() == null && aula_key > 0) {
@@ -54,7 +55,6 @@ public class CalendarioProxy extends CalendarioImpl implements DataItemProxy{
         }
        return super.getEvento();
     }
-*/
     
     @Override
     public void setAula(Aula aula) {

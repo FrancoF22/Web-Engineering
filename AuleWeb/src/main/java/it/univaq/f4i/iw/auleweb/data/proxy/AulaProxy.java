@@ -1,37 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
 import it.univaq.f4i.iw.auleweb.data.impl.AulaImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
-import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
-import java.util.Set;
+import java.util.List;
 
 /**
  *
  * @author franc
  */
-public class AulaProxy extends AulaImpl implements DataItemProxy{
-    
+public class AulaProxy extends AulaImpl implements DataItemProxy {
+
     protected boolean modified;
     protected int responsabile_key;
     protected DataLayer dataLayer;
-    
-    public AulaProxy(DataLayer d){
+
+    public AulaProxy(DataLayer d) {
         this.modified = false;
         this.responsabile_key = 0;
         this.dataLayer = d;
     }
-    
+
     @Override
     public void setKey(Integer key) {
         super.setKey(key);
         this.modified = true;
     }
+
     /*
     @Override
     public Responsabile getResponsabile() {
@@ -44,44 +41,44 @@ public class AulaProxy extends AulaImpl implements DataItemProxy{
         }
        return super.getResponsabile();
     }
-    */
+     */
     @Override
     public void setNome(String nome) {
-         super.setNome(nome);
-         this.modified = true;
+        super.setNome(nome);
+        this.modified = true;
     }
 
     @Override
     public void setLuogo(String luogo) {
-       super.setLuogo(luogo);
-       this.modified = true;
+        super.setLuogo(luogo);
+        this.modified = true;
     }
 
     @Override
     public void setEdificio(String Edificio) {
         super.setEdificio(Edificio);
-       this.modified = true;
+        this.modified = true;
     }
 
     @Override
     public void setPiano(String piano) {
         super.setPiano(piano);
-       this.modified = true;
+        this.modified = true;
     }
 
     @Override
     public void setCapienza(Integer capienza) {
         super.setCapienza(capienza);
-       this.modified = true;
+        this.modified = true;
     }
 
     @Override
-    public void setResponsabile(Responsabile resp) {
+    public void setResponsabile(Utente resp) {
         super.setResponsabile(resp);
         this.responsabile_key = resp.getKey();
         this.modified = true;
     }
-    
+
     @Override
     public void setPreseElettriche(Integer preseE) {
         super.setPreseElettriche(preseE);
@@ -89,13 +86,14 @@ public class AulaProxy extends AulaImpl implements DataItemProxy{
     }
 
     @Override
-    public void setPreseRete(Integer preseR){
+    public void setPreseRete(Integer preseR) {
         super.setPreseRete(preseR);
         this.modified = true;
     }
+
     @Override
-    public void setAttrezzature(Set<Attrezzatura> attrezzature) {
-        super.setAttrezzature(attrezzature);
+    public void setAttrezzature(List<Attrezzatura> attrezzatura) {
+        super.setAttrezzature(attrezzatura);
         this.modified = true;
     }
 
@@ -114,11 +112,11 @@ public class AulaProxy extends AulaImpl implements DataItemProxy{
     public void setModified(boolean dirty) {
         this.modified = dirty;
     }
-    
+
     public void setResponsabileKey(int responsabile_key) {
         this.responsabile_key = responsabile_key;
-        //resettiamo la cache dell'autore
-        //reset author cache
+        //resettiamo la cache 
         super.setResponsabile(null);
     }
+
 }

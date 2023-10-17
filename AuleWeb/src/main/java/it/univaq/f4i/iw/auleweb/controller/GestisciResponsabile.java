@@ -1,7 +1,7 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -21,8 +21,8 @@ public class GestisciResponsabile extends AuleWebBaseController {
         if(request.getParameter("resp") != null){
             email = request.getParameter("resp");
             try {
-                Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(email);
-                ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().deleteResponsabile(responsabile);
+                Utente responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(email);
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().deleteUtente(responsabile.getKey());
             } catch (DataException ex) {
                 handleError(ex, request, response);
             }
@@ -35,7 +35,7 @@ public class GestisciResponsabile extends AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("page_title", "Gestione Responsabili");
-            request.setAttribute("ListaResponsabili", ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getAllResponsabili());
+            request.setAttribute("ListaResponsabili", ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getAllResponsabili());
             res.activate("Tabella-Responsabile-admin.html", request, response);
         } catch (TemplateManagerException | DataException ex) {
             handleError(ex, request, response);
