@@ -23,14 +23,14 @@ public class CreaResponsabile extends AuleWebBaseController {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         
-        Responsabile responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().createResponsabile();
+        Utente responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().createUtente();
         //creo un utente fittizio per il responsabile vuoto, in quanto responsabile.getUtente() restituisce null altrimenti
         Utente utente = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().createUtente();
         utente.setKey(0);
-        responsabile.setUtente(utente);
+        //responsabile.setUtente(utente);
         if(request.getParameter("resp") != null) {
             try {
-                responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabile(request.getParameter("resp"));
+                responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(request.getParameter("resp"));
             } catch (DataException ex) {
                 handleError(ex, request, response);
             }
