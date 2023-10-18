@@ -62,7 +62,7 @@ public class CreaResponsabile extends AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
-    
+/*    
     private void create_responsabile(HttpServletRequest request, HttpServletResponse response) throws DataException, InvalidKeySpecException, NoSuchAlgorithmException {
         AuleWebDataLayer datalayer = ((AuleWebDataLayer) request.getAttribute("datalayer"));
         Utente utente = datalayer.getUtenteDAO().createUtente();
@@ -108,5 +108,49 @@ public class CreaResponsabile extends AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
-
+*/
+    private void create_responsabile(HttpServletRequest request, HttpServletResponse response) throws DataException, InvalidKeySpecException, NoSuchAlgorithmException {
+        AuleWebDataLayer datalayer = ((AuleWebDataLayer) request.getAttribute("datalayer"));
+        Utente utente = datalayer.getUtenteDAO().createUtente();
+        utente.setPassword(SecurityHelpers.getPasswordHashPBKDF2(request.getParameter("p")));
+        utente.setNome(request.getParameter("u"));
+        Utente responsabile = datalayer.getUtenteDAO().createUtente();
+        responsabile.setNome(request.getParameter("nome"));
+        responsabile.setCognome(request.getParameter("cognome"));
+        responsabile.setEmail(request.getParameter("email"));
+        if(utente.getNome().length() > 25) throw new DataException("username troppo lungo (>25)");
+        if(responsabile.getEmail().length() > 60) throw new DataException("email troppo lunga (>60)");
+        if(datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()) == null 
+           && datalayer.getResponsabileDAO().getResponsabile(responsabile.getEmail()) == null) {
+            datalayer.getUtenteDAO().storeUtente(utente);
+            datalayer.getUtenteDAO().storeUtente(responsabile, request.getParameter("nuovaMail"), datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()).getKey());
+        } else throw new DataException("l'username o l'email inserita sono già presenti nel db, si prega di inserire nuovi dati");
+        try {
+            response.sendRedirect("gestisci_responsabile");
+        } catch (IOException ex) {
+            handleError(ex, request, response);
+        }
+    }
+    
+    private void modifica_responsabile(HttpServletRequest request, HttpServletResponse response) throws DataException, InvalidKeySpecException, NoSuchAlgorithmException {
+        AuleWebDataLayer dataLayer = ((AuleWebDataLayer) request.getAttribute("datalayer"));
+        Utente responsabile = dataLayer.getUtenteDAO().getResponsabile(request.getParameter("responsabile"));
+        //modifica del responsabile
+        responsabile.setNome(request.getParameter("nome")); //modifica nome
+        responsabile.setCognome(request.getParameter("cognome")); //modifica cognome
+        //come email lascio la precedente per ritrovare il responsabile da modificare, verrà aggiornata successivamente dalla query
+        if(request.getParameter("email").length() > 60) throw new DataException("email troppo lunga (>60)");
+        dataLayer.getUtenteDAO().storeUtente(responsabile,request.getParameter("email"),responsabile.getKey());
+        //modifica dell'utente
+        responsabile.setNome(request.getParameter("u"));
+        responsabile.setPassword(SecurityHelpers.getPasswordHashPBKDF2(request.getParameter("p")));
+        if(responsabile.getNome().length() > 25) throw new DataException("username troppo lungo (>25)");
+        dataLayer.getUtenteDAO().storeUtente(responsabile);
+        //redirect
+        try {
+            response.sendRedirect("gestisci_responsabile");
+        } catch (IOException ex) {
+            handleError(ex, request, response);
+        }
+    } 
 }
