@@ -211,10 +211,5 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
     public void storeUtente(Utente responsabile, String parameter, Integer key) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public Utente getResponsabile(String parameter) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
 }

@@ -121,7 +121,7 @@ public class CreaResponsabile extends AuleWebBaseController {
         if(utente.getNome().length() > 25) throw new DataException("username troppo lungo (>25)");
         if(responsabile.getEmail().length() > 60) throw new DataException("email troppo lunga (>60)");
         if(datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()) == null 
-           && datalayer.getResponsabileDAO().getResponsabile(responsabile.getEmail()) == null) {
+           && datalayer.getUtenteDAO().getUtenteByEmail(responsabile.getEmail()) == null) {
             datalayer.getUtenteDAO().storeUtente(utente);
             datalayer.getUtenteDAO().storeUtente(responsabile, request.getParameter("nuovaMail"), datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()).getKey());
         } else throw new DataException("l'username o l'email inserita sono già presenti nel db, si prega di inserire nuovi dati");
@@ -134,7 +134,7 @@ public class CreaResponsabile extends AuleWebBaseController {
     
     private void modifica_responsabile(HttpServletRequest request, HttpServletResponse response) throws DataException, InvalidKeySpecException, NoSuchAlgorithmException {
         AuleWebDataLayer dataLayer = ((AuleWebDataLayer) request.getAttribute("datalayer"));
-        Utente responsabile = dataLayer.getUtenteDAO().getResponsabile(request.getParameter("responsabile"));
+        Utente responsabile = dataLayer.getUtenteDAO().getUtenteByEmail(request.getParameter("responsabile"));
         //modifica del responsabile
         responsabile.setNome(request.getParameter("nome")); //modifica nome
         responsabile.setCognome(request.getParameter("cognome")); //modifica cognome
