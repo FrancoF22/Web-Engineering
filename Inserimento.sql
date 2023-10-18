@@ -6,7 +6,6 @@ Insert into utente(id, nome, cognome, email, password, ruolo)
 values (2,"Luigi","Verdi","lv@gmail.com","luigitime","admin");
 Insert into utente(id, nome, cognome, email, password, ruolo)
 values (3,"Wario","Giallo","wg@gmail.com","money","studente");
-Delete from aula;
 /*Aula
 Insert into aula(id, nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_responsabile)
 Values ('1', 'Aula Magna', '45', '6', '4', ('proiettore,schermo motorizzato,schermo manuale,impianto audio,pc fisso,microfono a filo'), 'Coppito', 'Blocco 2', 'Primo', '1');*/
@@ -32,3 +31,5 @@ Delete from gruppo_aula;
 /*Gruppo_Aula*/
 Delete from aula;
 /*Aula*/
+Insert into aula(id, nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_responsabile)
+Values (2, "Aula Magna", 45, 6, 4, null,"condizionatore rotto","Coppito", "Blocco 2", "Primo", 1);
