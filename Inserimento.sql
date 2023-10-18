@@ -32,4 +32,4 @@ Delete from gruppo_aula;
 Delete from aula;
 /*Aula*/
 Insert into aula(id, nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_responsabile)
-Values (2, "Aula Magna", 45, 6, 4, null,"condizionatore rotto","Coppito", "Blocco 2", "Primo", 1);
+Values (2, "Aula Magna", 45, 6, 4, "impianto audio,pc fisso","condizionatore rotto","Coppito", "Blocco 2", "Primo", 1);
