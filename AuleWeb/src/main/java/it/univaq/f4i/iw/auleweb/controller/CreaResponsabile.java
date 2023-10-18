@@ -1,7 +1,6 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -140,7 +139,8 @@ public class CreaResponsabile extends AuleWebBaseController {
         responsabile.setCognome(request.getParameter("cognome")); //modifica cognome
         //come email lascio la precedente per ritrovare il responsabile da modificare, verrà aggiornata successivamente dalla query
         if(request.getParameter("email").length() > 60) throw new DataException("email troppo lunga (>60)");
-        dataLayer.getUtenteDAO().storeUtente(responsabile,request.getParameter("email"),responsabile.getKey());
+        dataLayer.getUtenteDAO().storeUtente(responsabile);
+        //dataLayer.getUtenteDAO().storeUtente(responsabile,request.getParameter("email"),responsabile.getKey());
         //modifica dell'utente
         responsabile.setNome(request.getParameter("u"));
         responsabile.setPassword(SecurityHelpers.getPasswordHashPBKDF2(request.getParameter("p")));
