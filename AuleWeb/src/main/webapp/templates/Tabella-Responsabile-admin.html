@@ -29,22 +29,7 @@
                         <th>Azione</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <#if (ListaResponsabili?size>0)>
-                    <#list ListaResponsabili as lista>
-                
-                    <tr>
-                        <td>${lista.responsabile.nome}</td>
-                        <td>${lista.responsabile.cognome}</td>
-                        <td>${lista.responsabile.email}</td>
-                        <td>${lista.utente.username}</td>
-                        <td>${lista.utente.password}</td>
-                        <td><a href="responsabile?resp=${lista.responsabile.email}"><button name="modifica">Modifica</button></a><a href="gestisci_responsabile?resp=${lista.responsabile.email}"><button name="elimina">Elimina</button></a></td>
-                    </tr>
-      
-                    </#list>
-                    </#if>
-                </tbody>            
+                         
             </table>
             <div>
             <a  href="home_admin"><button class="my-button">Indietro</button></a>

@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
     
-    private PreparedStatement sUtenteById, sUtenteByEmail, sUtenteByRuolo, iUtente, uUtente, sResponsabili;
+    private PreparedStatement sUtenteById, sUtenteByEmail, iUtente, uUtente, sResponsabili;
 
     public UtenteDAO_MySQL(DataLayer d) {
         super(d);
@@ -35,11 +35,10 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             //precompiliamo tutte le query utilizzate nella classe
             sUtenteById = connection.prepareStatement("SELECT * FROM utente WHERE Id=?");
             sUtenteByEmail = connection.prepareStatement("SELECT utente.* FROM utente WHERE email=?");
-            sUtenteByRuolo = connection.prepareStatement("SELECT utente.* FROM utente WHERE ruolo=?");
             sResponsabili = connection.prepareStatement("SELECT utente.* FROM utente WHERE ruolo='responsabile'");
             
-            iUtente = connection.prepareStatement("INSERT INTO utente (nome,cognome,email,password_account,ruolo) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uUtente = connection.prepareStatement("UPDATE utente SET nome=?,cognome=?,email=?,password_account=?,ruolo=? WHERE ID=?");
+            iUtente = connection.prepareStatement("INSERT INTO utente (nome,cognome,email,password,ruolo) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            uUtente = connection.prepareStatement("UPDATE utente SET nome=?,cognome=?,email=?,password=?,ruolo=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
         }
@@ -51,7 +50,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         try {
             sUtenteById.close();
             sUtenteByEmail.close();
-            sUtenteByRuolo.close();
             sResponsabili.close();
             
             iUtente.close();
@@ -82,7 +80,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             a.setCognome(rs.getString("cognome"));
             a.setEmail(rs.getString("email"));
             a.setPassword(rs.getString("password"));
-            a.setRuolo((Ruolo) rs.getObject("ruolo"));
             return a;
         } catch (SQLException ex) {
             throw new DataException("Unable to create user object form ResultSet", ex);
@@ -158,7 +155,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 uUtente.setString(2, user.getCognome());
                 uUtente.setString(3, user.getEmail());
                 uUtente.setString(4, user.getPassword());
-                uUtente.setObject(5, user.getRuolo());
 
                 uUtente.setInt(6, user.getKey());
 
@@ -172,7 +168,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 iUtente.setString(2, user.getCognome());
                 iUtente.setString(3, user.getEmail());
                 iUtente.setString(4, user.getPassword());
-                iUtente.setObject(5, user.getRuolo());
 
                 if (iUtente.executeUpdate() == 1) {
                     //per leggere la chiave generata dal database

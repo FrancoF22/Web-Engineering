@@ -20,8 +20,6 @@ public interface Utente extends DataItem<Integer>{
     
     String getPassword();
     
-    Ruolo getRuolo();
-    
     void setNome(String n);
     
     void setCognome(String c);
@@ -29,6 +27,4 @@ public interface Utente extends DataItem<Integer>{
     void setEmail(String email);
     
     void setPassword(String password);
-    
-    void setRuolo(Ruolo r);
 }

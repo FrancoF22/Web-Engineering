@@ -37,7 +37,7 @@ public class UtentiProxy extends UtenteImpl implements DataItemProxy{
     }
 
     @Override
-    public void setRuolo(Ruolo r) {
+    public void setRuolo(String r) {
         super.setRuolo(r);
         this.modified = true;
     }

@@ -4,7 +4,6 @@
  */
 package it.univaq.f4i.iw.auleweb.data.impl;
 
-import it.univaq.f4i.iw.auleweb.data.model.Ruolo;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
@@ -15,14 +14,12 @@ import it.univaq.f4i.iw.framework.data.DataItemImpl;
 public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     
     private String nome, cognome, email, password;
-    private Ruolo ruolo;
     
     public UtenteImpl(){
         this.nome = "";
         this.cognome = "";
         this.email = "";
         this.password = "";
-        this.ruolo= null;
     }
 
     @Override
@@ -44,11 +41,6 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     public String getPassword() {
         return password;
     }
-    
-    @Override
-    public Ruolo getRuolo() {
-        return ruolo;
-    }
 
     @Override
     public void setNome(String n) {
@@ -68,11 +60,6 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     @Override
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public void setRuolo(Ruolo r) {
-        this.ruolo = r;
     }
     
 }

@@ -1,7 +1,6 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -61,11 +60,10 @@ public class Login extends AuleWebBaseController {
                 try {
                     Utente u = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(username);
                     if(u == null) throw new DataException("Utente non trovato, username o password errate");
-                    Responsabile r = ((AuleWebDataLayer) request.getAttribute("datalayer")).getResponsabileDAO().getResponsabileUtente(u.getKey());
                     System.out.println("PASSWORD: " + u.getPassword());
                     if (SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
                         //se la validazione ha successo
-                        SecurityHelpers.createSession(request, r.getEmail(), u.getKey());
+                        SecurityHelpers.createSession(request, u.getEmail(), u.getKey());
                         System.out.println("SESSION RESPONSABILE: " + SecurityHelpers.checkSession(request).getAttribute("username"));
                         //creazione vista responsabile
                         //request.setAttribute("email", r.getEmail());
