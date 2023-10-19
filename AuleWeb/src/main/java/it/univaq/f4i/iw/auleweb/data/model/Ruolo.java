@@ -9,7 +9,6 @@ package it.univaq.f4i.iw.auleweb.data.model;
  * @author franc
  */
 public enum Ruolo {
-    
     studente,
-    responsabile,
+    responsabile
 }
