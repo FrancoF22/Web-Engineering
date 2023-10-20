@@ -156,7 +156,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 uUtente.setString(3, user.getEmail());
                 uUtente.setString(4, user.getPassword());
 
-                uUtente.setInt(6, user.getKey());
+                uUtente.setInt(5, user.getKey());
 
                 if (uUtente.executeUpdate() == 0) {
                     throw new OptimisticLockException(user);
