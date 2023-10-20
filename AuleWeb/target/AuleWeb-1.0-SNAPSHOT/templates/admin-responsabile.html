@@ -1,55 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link  rel="stylesheet" href="style/admin-azioni.css" type="text/css"/>
-    <title>Aule web </title>
-</head>
-<body>
+    <head>
+        <link  rel="stylesheet" href="style/admin-azioni.css" type="text/css"/>
+        <title>Aule web </title>
+    </head>
+    <body>
 
-<div class="home-container">
-    <div class="home-home">
-        <span class="home-text">Crea e modifica responsabiele</span>
+        <div class="home-container">
+            <div class="home-home">
+                <span class="home-text">Crea e modifica responsabile</span>
 
 
-        <div class="home-frame3">
-            <img
-                    alt="UnivaqLogo116"
-                    src="images/UnivAQ_logoC.png"
-                    class="home-univaq-logo1"
-            />
+                <div class="home-frame3">
+                    <img
+                        alt="UnivaqLogo116"
+                        src="images/UnivAQ_logoC.png"
+                        class="home-univaq-logo1"
+                        />
+                </div>
+
+                <div class="Bottone-Indietro">
+                    <a href="gestisci_responsabile"><button class="Bottone-indietro2">Indietro</button></a>
+                </div>
+                <form action="responsabile" method="post">
+                    <input type="hidden" name="responsabile" value="${responsabile_modifica.email}">
+
+                    <span class="admin-responsabile-text04"><span>Nome</span></span>
+                    <input type="text" name="nome" id="nome" placeholder="Inserisci il Nome" required>
+
+                    <span class="admin-responsabile-text06"><span>Cognome</span></span>
+                    <input type="text" name="cognome" id="cognome" placeholder="Inserisci il Cognome" required>
+
+                    <span class="admin-responsabile-text08"><span>E-mail</span></span>
+                    <input type="email" name="email" id="email" placeholder="Inserisci l'E-mail" required>
+
+                    <span class="admin-responsabile-text10"><span>Username</span></span>
+                    <input type="text" name="username" id="username" placeholder="Inserisci lo Username" required>
+
+                    <span class="admin-responsabile-text12"><span>Password</span></span>
+                    <input type="password" name="password" id="password" placeholder="Inserisci la Password" required>
+
+                    <div class="bottone-Salva">
+                        <input type="submit" class="Bottone-indietro2" value="Salva" name="salva">
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="Bottone-Indietro">
-                <a href="gestisci_responsabile"><button class="Bottone-indietro2">Indietro</button></a>
-            </div>
-        <form action="responsabile" method="post">
-            <input type="hidden" name="responsabile" value="${responsabile_modifica.email}">
-                    <div class="Responsabile-nome">
-                        <input type="text" name="nome" value="${responsabile_modifica.nome}" required> 
-                    </div>
-                    <div class="Responsabile-cognome">
-                        <input type="text" name="cognome" value="${responsabile_modifica.cognome}" required>
-                    </div>
-                    <div class="Responsabile-email">
-                        <input type=email name="email" value="${responsabile_modifica.email}" required>
-                    </div>
-                  <span class="admin-responsabile-text04"><span>Nome</span></span>
-                  <span class="admin-responsabile-text06"><span>Cognome</span></span>
-                  <span class="admin-responsabile-text08"><span>E-mail</span></span>
-                  
-                  <div class="Responsabile-username">
-                      <input type="text" name="u" value="${responsabile_modifica.utente.username}" required>
-                  </div>
-                  <span class="admin-responsabile-text10"><span>Username</span></span>
-                  <div class="Responsabile-password">
-                      <input type=password name="p" value="${responsabile_modifica.utente.password}" required>
-                  </div>
-                  <span class="admin-responsabile-text12"><span>Password</span></span>
-           <div class="bottone-Salva">
-                <input type="submit" class="Bottone-indietro2" value="Salva" name="salva">
-            </div>
-        </form>
-    </div>
-  </div>
-</body>
+    </body>
 </html>
