@@ -26,7 +26,6 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Descrizione</th>
-                                <th>Dipartimento</th>
                                 <th>Azione</th>
                             </tr>
                         </thead>
@@ -36,9 +35,7 @@
                             <tr>
                                 <td>${polo.nome}</td>
                                 <td>${polo.descrizione}</td>
-                                <td>${polo.dipartimento.nome}</td>
-                                <td><a href="gruppo?id=${polo.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${polo.id}"><button name="elimina">Elimina</button></a></td>
-                                <<td>ciao</td>
+                                <td><a href="gruppo?nome=${polo.nome}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?nome=${polo.nome}"><button name="elimina">Elimina</button></a></td>
                             </tr>
 
                             </#list>
@@ -73,7 +70,7 @@
                     </table>
                 </div>
 
-                <a  href="home_admin"><button class="my-button">Indietro</button></a>
+                <a href="home_admin"><button class="my-button">Indietro</button></a>
                 <a href="gruppo?id=0"><button class="my-button">Aggiungi gruppo</button></a>
 
             </div>
