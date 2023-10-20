@@ -12,93 +12,26 @@
                         alt="UnivaqLogo116"
                         src="images/UnivAQ_logoC.png"
                         class="home-univaq-logo1"
-                        />
+                    />
                     <h1 class="home-text02">Benvenuto</h1>
                     <form action="login" method="get">
                         <input type="submit" class="home-Accedi-Esci" name="accedi" value="Accedi">
                     </form>
                 </div>
 
-                <h2 class="home-text">Seleziona Dipartimenti</h2>
+                <h2 class="home-text">Seleziona Dipartimenti o Poli</h2>
 
                 <div class="home-frame-Dipartimenti">
-                    <a href="polo?dipartimento_key=2">
-                        <div class="department Dipartimento-Ingegneria-civile">
-                            <img
-                                alt="Rectangle2114"
-                                src="images/rectangle2114-k0bh-300w.png"
-                                />
-                            <div class="home-text-description">
-                                Dipartimento di Ingegneria civile, edile - architettura e ambientale
+                    <#list ListaDipartimenti as dipartimento>
+                        <a href="polo?dipartimento_key=${dipartimento.id}">
+                            <div class="department">
+                                <img alt="Rectangle2114" src="images/rectangle2114-k0bh-300w.png" />
+                                <div class="home-text-description">
+                                    ${dipartimento.nome}
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="polo?dipartimento_key=1">
-                        <div class="department Dipartimento-ingegneria-scienze">
-                            <img
-                                alt="Rectangle3115"
-                                src="images/rectangle3115-ild-300w.png"
-                                />
-                            <div class="home-text-description">
-                                Dipartimento di Ingegneria e scienze dell'informazione e matematica
-                            </div>
-                        </div>
-                    </a>
-                    <a href="polo?dipartimento_key=3">
-                        <div class="department Dipartimento-ingegneria-industriale">
-                            <img
-                                alt="Rectangle4116"
-                                src="images/rectangle4116-0ofk-300w.png"
-                                />
-                            <div class="home-text-description">
-                                Descrizione del Dipartimento di Ingegneria industriale
-                            </div>
-                        </div>
-                    </a>
-                    <a href="polo?dipartimento_key=6">
-                        <div class="department Dipartimento-Fisica">
-                            <img
-                                alt="Rectangle7119"
-                                src="images/rectangle7119-7lx.svg"
-                                />
-                            <div class="home-text-description">
-                                Descrizione del Dipartimento di Fisica
-                            </div>
-                        </div>
-                    </a>
-                    <a href="polo?dipartimento_key=4">
-                        <div class="department Dipartimento-medicina">
-                            <img
-                                alt="Rectangle5117"
-                                src="images/rectangle5117-py7l-300w.png"
-                                />
-                            <div class="home-text-description">
-                                Descrizione del Dipartimento di Medicina
-                            </div>
-                        </div>
-                    </a>
-                    <a href="polo?dipartimento_key=5">
-                        <div class="department Dipartimento-scienze-cliniche">
-                            <img
-                                alt="Rectangle6118"
-                                src="images/rectangle6118-9xhb-300w.png"
-                                />
-                            <div class="home-text-description">
-                                Descrizione del Dipartimento di Scienze cliniche
-                            </div>
-                        </div>
-                    </a>
-                    <a href="polo?dipartimento_key=7">
-                        <div class="department Dipartimento-scenze-umane">
-                            <img
-                                alt="Rectangle61510"
-                                src="images/rectangle61510-hd8f-300w.png"
-                                />
-                            <div class="home-text-description">
-                                Descrizione del Dipartimento di Scienze umane
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    </#list>
                 </div>
             </div>
         </div>

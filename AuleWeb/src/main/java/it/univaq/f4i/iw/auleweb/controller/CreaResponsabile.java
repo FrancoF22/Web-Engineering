@@ -123,6 +123,8 @@ public class CreaResponsabile extends AuleWebBaseController {
            && datalayer.getUtenteDAO().getUtenteByEmail(responsabile.getEmail()) == null) {
             datalayer.getUtenteDAO().storeUtente(utente);
             datalayer.getUtenteDAO().storeUtente(responsabile, request.getParameter("nuovaMail"), datalayer.getUtenteDAO().getUtenteByEmail(utente.getNome()).getKey());
+            // storeUtente serve per la modifica nel database, capisco che serve che controllate,
+            // ma non so se crea problemi successivamente - ema
         } else throw new DataException("l'username o l'email inserita sono già presenti nel db, si prega di inserire nuovi dati");
         try {
             response.sendRedirect("gestisci_responsabile");

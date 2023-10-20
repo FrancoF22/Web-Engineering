@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
 
     private PreparedStatement sGruppoById, sGruppoByName;
-    private PreparedStatement sAllDepartments, sAllPolo;
+    private PreparedStatement sAllGruppi, sAllDepartments, sAllPolo;
     private PreparedStatement sGruppiAula, sDipartimentoAula, sPoloAula;
     private PreparedStatement iGruppo, uGruppo, dGruppo;
     private PreparedStatement iGruppoAula, dGruppoAula;
@@ -45,6 +45,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
 
             sGruppoById = connection.prepareStatement("SELECT * FROM gruppo WHERE id=?");
             sGruppoByName = connection.prepareStatement("SELECT * FROM gruppo WHERE name=?");
+            sAllGruppi = connection.prepareStatement("SELECT * FROM gruppo");
             sAllDepartments = connection.prepareStatement("SELECT * FROM gruppo WHERE tipologia='dipartimento'");
             sAllPolo = connection.prepareStatement("SELECT * FROM gruppo WHERE tipologia='polo'");
 
@@ -70,6 +71,8 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
 
             sGruppoById.close();
             sGruppoByName.close();
+
+            sAllGruppi.close();
             sAllDepartments.close();
             sAllPolo.close();
 
@@ -131,12 +134,10 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     public Gruppo getGruppoById(int gruppo_key) throws DataException {
         Gruppo g = null;
         //prima vediamo se l'oggetto è già stato caricato
-        //first look for this object in the cache
         if (dataLayer.getCache().has(Gruppo.class, gruppo_key)) {
             g = dataLayer.getCache().get(Gruppo.class, gruppo_key);
         } else {
             //altrimenti lo carichiamo dal database
-            //otherwise load it from database
             try {
                 sGruppoById.setInt(1, gruppo_key);
                 try (ResultSet rs = sGruppoById.executeQuery()) {
@@ -196,7 +197,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         }
         return g;
     }
-    
+
     @Override //permette di ottenere il polo di un'aula
     public Gruppo getPolo(int id_aula) throws DataException {
         Gruppo g = null;
@@ -228,6 +229,20 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             throw new DataException("Unable to load Groups", ex);
         }
         return g;
+    }
+
+    @Override //permette di ottenere tutti i dipartimenti
+    public List<Gruppo> getAllGruppi() throws DataException {
+        List<Gruppo> result = new ArrayList();
+
+        try (ResultSet rs = sAllGruppi.executeQuery()) {
+            while (rs.next()) {
+                result.add((Gruppo) getGruppoById(rs.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Groups", ex);
+        }
+        return result;
     }
 
     @Override //permette di ottenere tutti i dipartimenti
@@ -330,37 +345,17 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
     //i metodi che seguono non sono stati implementati, qualcuno potrebbe non servire
     @Override
     public void addGruppo_Aula(Integer gruppo_key, Integer id_aula) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Gruppo> getAllPolo(int dipartimento_key) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Gruppo> getAllPolo() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Aula> getAllAule(int gruppo_key) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // ce l'ho altrove
-    }
-
-    @Override
-    public List<Aula> getAuleGruppo(Integer id_gruppo) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("addGruppo_Aula not supported yet.");
     }
 
     @Override
     public void deleteAulaFromGruppo(Integer id_gruppo, Integer id_aula) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); //devo implementare la logica
+        throw new UnsupportedOperationException("deleteAulaFromGruppo not supported yet."); //devo implementare la logica
     }
 
     @Override
     public List<Aula> getAuleDisponibili(int id_gruppo) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); //devo implementare la logica, potenzialmente starà in un file diverso
+        throw new UnsupportedOperationException("getAuleDisponibili Not supported yet."); //devo implementare la logica, potenzialmente starà in un file diverso
     }
 
 }

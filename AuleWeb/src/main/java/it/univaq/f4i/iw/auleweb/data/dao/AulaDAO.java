@@ -29,6 +29,8 @@ public interface AulaDAO {
     
     List<Aula> getAllAule() throws DataException;
     
+    List<Aula> getAllAule(int id_gruppo) throws DataException;
+    
     void storeAula(Aula aula) throws DataException;
     
     void addAttrezzatura(String nome) throws DataException;

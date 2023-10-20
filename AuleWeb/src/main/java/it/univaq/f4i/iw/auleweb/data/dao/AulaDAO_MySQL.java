@@ -176,6 +176,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve l'id del gruppo)
+    @Override
     public List<Aula> getAllAule(int id_gruppo) throws DataException {
         List<Aula> result = new ArrayList();
         try {
@@ -301,22 +302,22 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     //i metodi di seguito vanno modificati, oppure non servono
     @Override
     public Attrezzatura createAttrezzatura() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("createAttrezzatura not supported yet.");
     }
 
     @Override
     public Attrezzatura getAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("getAttrezzatura not supported yet.");
     }
 
     @Override
     public void addAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("addAttrezzatura not supported yet.");
     }
 
     @Override
     public void deleteAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("deleteAttrezzatura not supported yet.");
     }
 
     @Override 
@@ -324,12 +325,12 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         //questo metodo può essere reso statico:
         //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
         //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("gettAllAttrezzature not supported yet.");
     }
 
     @Override
     public List<String> getLuoghi() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("getLuoghi not supported yet.");
     }
 
 }

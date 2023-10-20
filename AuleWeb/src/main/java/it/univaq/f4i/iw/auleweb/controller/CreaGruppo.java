@@ -39,12 +39,12 @@ public class CreaGruppo extends AuleWebBaseController {
                 }
                 request.setAttribute("gruppo_modifica", gruppo); //carico il gruppo con le informazioni sulle aule
                 if(gruppo.getTipoGruppo() == TipoGruppo.polo) request.setAttribute("tipo", true); else request.setAttribute("tipo", false);
-                request.setAttribute("aule_gruppo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllAule(gruppo.getKey()));
+                request.setAttribute("aule_gruppo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(gruppo.getKey()));
              } catch (DataException ex) {
                 handleError(ex, request, response);
             }
         }
-        
+        // mi serve che mi spiegate cosa significa questo if? - ema
         if(request.getParameter("luogo") != null){
             try {
                 request.setAttribute("AuleFromLuogo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleFromLuogo(request.getParameter("luogo")));

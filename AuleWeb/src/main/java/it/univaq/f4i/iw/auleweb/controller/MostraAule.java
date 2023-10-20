@@ -37,7 +37,7 @@ public class MostraAule extends AuleWebBaseController{
                 request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
                 request.setAttribute("responsabile", Boolean.valueOf(request.getParameter("responsabile")));
             } else {
-                request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAuleGruppo(SecurityHelpers.checkNumeric(request.getParameter("id_gruppo"))));
+                request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(SecurityHelpers.checkNumeric(request.getParameter("id_gruppo"))));
                 Gruppo Facolta = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppoById(SecurityHelpers.checkNumeric(request.getParameter("id_gruppo")));
                 request.setAttribute("id", Facolta.getDipartimento().getKey());
                 
