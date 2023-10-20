@@ -35,12 +35,6 @@ public class UtentiProxy extends UtenteImpl implements DataItemProxy{
         super.setPassword(surname);
         this.modified = true;
     }
-
-    @Override
-    public void setRuolo(String r) {
-        super.setRuolo(r);
-        this.modified = true;
-    }
     
     @Override
     public boolean isModified() {

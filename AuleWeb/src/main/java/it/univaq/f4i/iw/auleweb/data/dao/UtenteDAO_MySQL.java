@@ -35,7 +35,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             //precompiliamo tutte le query utilizzate nella classe
             sUtenteById = connection.prepareStatement("SELECT * FROM utente WHERE Id=?");
             sUtenteByEmail = connection.prepareStatement("SELECT utente.* FROM utente WHERE email=?");
-            sResponsabili = connection.prepareStatement("SELECT utente.* FROM utente WHERE ruolo='responsabile'");
+            sResponsabili = connection.prepareStatement("SELECT utente.* FROM utente");
             
             iUtente = connection.prepareStatement("INSERT INTO utente (nome,cognome,email,password,ruolo) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uUtente = connection.prepareStatement("UPDATE utente SET nome=?,cognome=?,email=?,password=?,ruolo=? WHERE ID=?");
