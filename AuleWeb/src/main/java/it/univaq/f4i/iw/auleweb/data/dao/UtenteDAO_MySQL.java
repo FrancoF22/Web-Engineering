@@ -1,6 +1,5 @@
 package it.univaq.f4i.iw.auleweb.data.dao;
 
-import it.univaq.f4i.iw.auleweb.data.model.Ruolo;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.auleweb.data.proxy.UtentiProxy;
 import it.univaq.f4i.iw.framework.data.DAO;

@@ -422,8 +422,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uEvento.setNull(4, java.sql.Types.INTEGER);
                 }
-                if (evento.getResponsabile()!= null) {
-                    uEvento.setInt(5, evento.getResponsabile().getKey());
+                if (evento.getUtente()!= null) {
+                    uEvento.setInt(5, evento.getUtente().getKey());
                 } else {
                     uEvento.setNull(5, java.sql.Types.INTEGER);
                 }
@@ -442,8 +442,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iEvento.setNull(4, java.sql.Types.INTEGER);
                 }
-                if (evento.getResponsabile()!= null) {
-                    iEvento.setInt(5, evento.getResponsabile().getKey());
+                if (evento.getUtente()!= null) {
+                    iEvento.setInt(5, evento.getUtente().getKey());
                 } else {
                     iEvento.setNull(5, java.sql.Types.INTEGER);
                 }

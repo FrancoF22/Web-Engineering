@@ -37,10 +37,10 @@ public class CreaEvento extends AuleWebBaseController {
         Evento evento = dataLayer.getEventoDAO().createEvento();
         evento.setKey(0);
         //evento.setTipologia(Tipologia.lezione);
-        Corso corso = dataLayer.getCorsoDAO().createCorso(); //continua a segnare errore -ema
+        /*Corso corso = dataLayer.getCorsoDAO().createCorso(); //continua a segnare errore -ema
         corso.setKey(0);
-        evento.setCorso(corso);
-        evento.setResponsabile(dataLayer.getResponsabileDAO().createResponsabile());
+        evento.setCorso(corso);*/
+        evento.setUtente(dataLayer.getUtenteDAO().createUtente());
         calendario.setEvento(evento);
         if(request.getParameter("id") != null) {
             try {
@@ -104,7 +104,7 @@ public class CreaEvento extends AuleWebBaseController {
                     //calendario.getEvento().setTipologia(Tipologia.valueOf(request.getParameter("tipo")));
                     calendario.getEvento().setCorso(dataLayer.getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso"))));
                     calendario.getEvento().setDescrizione(request.getParameter("descrizione"));
-                    calendario.getEvento().setResponsabile(dataLayer.getResponsabileDAO().getResponsabile((String) SecurityHelpers.checkSession(request).getAttribute("username")));
+                    calendario.getEvento().setUtente(dataLayer.getUtenteDAO().getUtenteByEmail((String) SecurityHelpers.checkSession(request).getAttribute("email")));
                     if(id_aula != 0) {
                         calendario.setAula(dataLayer.getAulaDAO().getAula(id_aula));
                     } else {

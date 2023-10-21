@@ -223,8 +223,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 uAula.setString(7, aula.getLuogo());
                 uAula.setString(8, aula.getEdificio());
                 uAula.setString(9, aula.getPiano());
-                if (aula.getResponsabile() != null) {
-                    uAula.setInt(10, aula.getResponsabile().getKey());
+                if (aula.getUtente() != null) {
+                    uAula.setInt(10, aula.getUtente().getKey());
                 } else {
                     uAula.setNull(10, java.sql.Types.INTEGER);
                 }
@@ -244,8 +244,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 iAula.setString(7, aula.getLuogo());
                 iAula.setString(8, aula.getEdificio());
                 iAula.setString(9, aula.getPiano());
-                if (aula.getResponsabile() != null) {
-                    iAula.setInt(10, aula.getResponsabile().getKey());
+                if (aula.getUtente() != null) {
+                    iAula.setInt(10, aula.getUtente().getKey());
                 } else {
                     iAula.setNull(10, java.sql.Types.INTEGER);
                 }

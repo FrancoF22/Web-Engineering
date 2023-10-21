@@ -31,7 +31,7 @@ public interface Aula extends DataItem<Integer>{
     
     String getPiano();
   
-    Utente getResponsabile();
+    Utente getUtente();
     
     void setNome(String nome);
     
@@ -51,5 +51,5 @@ public interface Aula extends DataItem<Integer>{
     
      void setPiano(String piano);
   
-    void setResponsabile(Utente resp);
+    void setUtente(Utente resp);
 }

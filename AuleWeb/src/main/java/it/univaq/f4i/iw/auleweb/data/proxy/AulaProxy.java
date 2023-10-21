@@ -73,8 +73,8 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     }
 
     @Override
-    public void setResponsabile(Utente resp) {
-        super.setResponsabile(resp);
+    public void setUtente(Utente resp) {
+        super.setUtente(resp);
         this.responsabile_key = resp.getKey();
         this.modified = true;
     }
@@ -116,7 +116,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     public void setResponsabileKey(int responsabile_key) {
         this.responsabile_key = responsabile_key;
         //resettiamo la cache 
-        super.setResponsabile(null);
+        super.setUtente(null);
     }
 
 }

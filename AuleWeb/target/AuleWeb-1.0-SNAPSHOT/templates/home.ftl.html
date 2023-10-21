@@ -23,16 +23,9 @@
 
                 <div class="home-frame-Dipartimenti">
                     <#list ListaDipartimenti as dipartimento>
-                    <#if dipartimento.id??>
-                    <a href="polo?dipartimento_key=${dipartimento.id}">
-                        <div class="department">
-                            <img alt="Rectangle2114" src="images/rectangle2114-k0bh-300w.png" />
-                            <div class="home-text-description">
-                                ${dipartimento.nome}
-                            </div>
-                        </div>
-                    </a>
-                    </#if>
+
+                    <a href="evento?k=${dipartimento.key}">${dipartimento.nome}</a>
+
                     </#list>
                 </div>
 

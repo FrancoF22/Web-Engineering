@@ -4,8 +4,8 @@ import it.univaq.f4i.iw.auleweb.data.dao.CorsoDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.EventoImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
-import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
+import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -56,8 +56,8 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
     }
 
    @Override
-    public void setResponsabile(Responsabile resp) {
-        super.setResponsabile(resp);
+    public void setUtente(Utente resp) {
+        super.setUtente(resp);
         this.responsabile_key = resp.getKey();
         this.modified = true;
     }
@@ -81,15 +81,15 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
     }
     /*
     @Override
-    public Responsabile getResponsabile() {
-       if (super.getResponsabile() == null && !email_responsabile.isEmpty()) {
+    public Responsabile getUtente() {
+       if (super.getUtente() == null && !email_responsabile.isEmpty()) {
             try {
-                super.setResponsabile(((ResponsabileDAO) dataLayer.getDAO(Responsabile.class)).getResponsabile(email_responsabile));
+                super.setUtente(((ResponsabileDAO) dataLayer.getDAO(Responsabile.class)).getUtente(email_responsabile));
             } catch (DataException ex) {
                 Logger.getLogger(AulaProxy.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       return super.getResponsabile();
+       return super.getUtente();
     }
     */
     
@@ -100,7 +100,7 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
 
     public void setResponsabileKey(int responsabile_key) {
         this.responsabile_key = responsabile_key;
-        super.setResponsabile(null);
+        super.setUtente(null);
     }
     
    @Override

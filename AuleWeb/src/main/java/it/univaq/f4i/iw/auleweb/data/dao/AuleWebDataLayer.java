@@ -8,7 +8,6 @@ import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
-import it.univaq.f4i.iw.auleweb.data.model.Responsabile;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -49,10 +48,6 @@ public class AuleWebDataLayer extends DataLayer {
 
     public UtenteDAO getUtenteDAO() {
         return (UtenteDAO) getDAO(Utente.class);
-    }
-
-    public ResponsabileDAO getResponsabileDAO() {
-        return (ResponsabileDAO) getDAO(Responsabile.class);
     }
 
     public CorsoDAO getCorsoDAO() {

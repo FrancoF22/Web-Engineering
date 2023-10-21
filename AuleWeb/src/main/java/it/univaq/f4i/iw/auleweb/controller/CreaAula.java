@@ -31,7 +31,7 @@ public class CreaAula extends AuleWebBaseController {
         Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
         aula.setKey(0);
         Utente responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().createUtente();
-        aula.setResponsabile(responsabile); //inserisco un responsabile fittizio
+        aula.setUtente(responsabile); //inserisco un responsabile fittizio
         if(request.getParameter("id") != null) {
             try {
                 int id = SecurityHelpers.checkNumeric(request.getParameter("id"));
@@ -61,7 +61,7 @@ public class CreaAula extends AuleWebBaseController {
                 aula.setNota(request.getParameter("note"));
                 responsabile = null;
                 if(!request.getParameter("responsabile").isEmpty() || request.getParameter("responsabile") != null) responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(request.getParameter("responsabile"));
-                aula.setResponsabile(responsabile);
+                aula.setUtente(responsabile);
                 List<Attrezzatura> attrezzature = new ArrayList<>();
                 List<Attrezzatura> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature();
                 for(Attrezzatura a : allAttrezzature){

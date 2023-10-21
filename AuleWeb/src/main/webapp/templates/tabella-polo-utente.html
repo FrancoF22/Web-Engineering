@@ -5,53 +5,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 
 <html>
-  <head>
+    <head>
 
-   <link href="style/Tabelle.css" rel="stylesheet" />
-  <title>Aule web </title>
-</head>
+        <link href="style/Tabelle.css" rel="stylesheet" />
+        <title>Aule web </title>
+    </head>
 
-<body>
-    <div class="home-container">
-        <div  class="home-frame3">
+    <body>
+        <div class="home-container">
+            <div  class="home-frame3">
 
-             <a href="home"> <img 
-                 
-                alt="UnivaqLogo1852"
-                src="images/UnivAQ_logoC.png"
-                class="home-univaq-logo1"
-            />
-                 </a>
+                <a href="home"> <img 
+
+                        alt="UnivaqLogo1852"
+                        src="images/UnivAQ_logoC.png"
+                        class="home-univaq-logo1"
+                        />
+                </a>
+
+            </div>
             
-        </div>
-        <a href="eventi-programmati?id_dipartimento=${dipartimento}"><button class="my-button2">Visualizza lista completa eventi</button></a>
-        <div class="lower">
-            <table class="table-spacing" >
-                <thead>
-                    <tr>
-                        <th colspan="3" class="table-header">POLO</th>
-                    </tr>
-                   
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrizione</th>
-                        <th>Azione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   <#if (ListaPolo?size>0)>
-                    <#list ListaPolo as polo>
-                    <tr>
-                        <td>${polo.nome}</td>
-                        <td>${polo.descrizione}</td>
-                        <td><a href="aule?id_gruppo=${polo.id}"><button name="seleziona">Seleziona</button></a></td>
-                    </tr>
+            <div class="lower">
+                <table class="table-spacing" >
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="table-header">POLO</th>
+                        </tr>
 
-                    </#list>
-                    </#if>
-                </tbody>
-            </table>
-            <a  href="home"><button class="my-button">Indietro</button></a>
-              </div>
-</body>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                            <th>Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <#if (ListaPolo?size>0)>
+                        <#list ListaPolo as polo>
+                        <tr>
+                            <td>${polo.nome}</td>
+                            <td>${polo.descrizione}</td>
+                            
+                        </tr>
+
+                        </#list>
+                        </#if>
+                    </tbody>
+                </table>
+                <a  href="home"><button class="my-button">Indietro</button></a>
+            </div>
+    </body>
 </html>
