@@ -3,93 +3,94 @@
 collegare eventi (info.html) nell href
 -->
 <html>
-  <head>
-   <link href="style/Tabelle.css" rel="stylesheet" />
-  <title>Aule web </title>
-</head>
-<body>
-<div class="home-container">
-    <div class="home-home">
-        <div class="home-frame3">
+    <head>
+        <link href="style/Tabelle.css" rel="stylesheet" />
+        <title>Aule web </title>
+    </head>
+    <body>
+        <div class="home-container">
+            <div class="home-home">
+                <div class="home-frame3">
 
-                <#if responsabile??>
+                    <#if responsabile??>
 
-                <a href="home_responsabile"> <img
-                        alt="UnivaqLogo116"
-                        src="images/UnivAQ_logoC.png"
-                        class="home-univaq-logo1"
-                />
-            </a>
-            <#else>
-            <a href="home"> <img
-                    alt="UnivaqLogo116"
-                    src="images/UnivAQ_logoC.png"
-                    class="home-univaq-logo1"
-            />
-            </#if>
-
-            
-        </div>
-        <span class="home-text02">
-          Lista aule 
-        </span>
-        <div class="lower">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Luogo</th>
-                        <th>Edificio</th>
-                        <th>Piano</th>
-                        <th>Capienza</th>
-                        <th>Numero di prese elettriche</th>
-                        <th>Numero di prese di rete</th>
-                        <th>Responsabile</th>
-                        <th>Attrezzature</th>
-                        <th>Azione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                     <#if (ListaAule?size>0)>
-                    <#list ListaAule as aula>
-                    <tr>
-                        <td>${aula.nome}</td>
-                        <td>${aula.luogo}</td>
-                        <td>${aula.edificio}</td>
-                        <td>${aula.piano}</td>
-                        <td>${aula.capienza}</td>
-                        <td>${aula.NPreseElettriche}</td>
-                        <td>${aula.NPreseRete}</td>
-                        <td><#if aula.responsabile??>${aula.responsabile.email}</#if></td>
-                        <td>
-                            <#list aula.attrezzature as att>
-                            ${att.nome},
-                            </#list>
-                        </td>
-                        <td>
-                            <#if responsabile??>
-                                <a href="evento?id_aula=${aula.id}&attribute=modifica&redirect=${thispageurl?url}"><button class="Bottone-tabela">Seleziona</button></a>
-                            <#else>
-                                <a href="eventi?id_aula=${aula.id}"><button class="Bottone-tabela">Seleziona</button></a>
-                            </#if>
-                        </td>
-                    </tr>
-                    </#list>
+                    <a href="home_responsabile"> <img
+                            alt="UnivaqLogo116"
+                            src="images/UnivAQ_logoC.png"
+                            class="home-univaq-logo1"
+                            />
+                    </a>
+                    <#else>
+                    <a href="home"> <img
+                            alt="UnivaqLogo116"
+                            src="images/UnivAQ_logoC.png"
+                            class="home-univaq-logo1"
+                            />
+                    </a>
                     </#if>
-                </tbody>            
-            </table>
-            
-            <div>
-                <#if responsabile??>
-                    <a href="home_responsabile"><button class="my-button">Indietro</button></a>
-                <#else>
-                    <a  href="facolta?dipartimento_key=${id}"><button class="my-button">Indietro</button></a>
-                </#if>
+
+
+                </div>
+                <span class="home-text02">
+                    Lista aule 
+                </span>
+                <div class="lower">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Luogo</th>
+                                <th>Edificio</th>
+                                <th>Piano</th>
+                                <th>Capienza</th>
+                                <th>Numero di prese elettriche</th>
+                                <th>Numero di prese di rete</th>
+                                <th>Responsabile</th>
+                                <th>Attrezzature</th>
+                                <th>Azione</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#if (ListaAule?size>0)>
+                            <#list ListaAule as aula>
+                            <tr>
+                                <td>${aula.nome}</td>
+                                <td>${aula.luogo}</td>
+                                <td>${aula.edificio}</td>
+                                <td>${aula.piano}</td>
+                                <td>${aula.capienza}</td>
+                                <td>${aula.NPreseElettriche}</td>
+                                <td>${aula.NPreseRete}</td>
+                                <td><#if aula.responsabile??>${aula.responsabile.email}</#if></td>
+                                <td>
+                                    <#list aula.attrezzature as att>
+                                    ${att.nome},
+                                    </#list>
+                                </td>
+                                <td>
+                                    <#if responsabile??>
+                                    <a href="evento?id_aula=${aula.id}&attribute=modifica&redirect=${thispageurl?url}"><button class="Bottone-tabela">Seleziona</button></a>
+                                    <#else>
+                                    <a href="eventi?id_aula=${aula.id}"><button class="Bottone-tabela">Seleziona</button></a>
+                                    </#if>
+                                </td>
+                            </tr>
+                            </#list>
+                            </#if>
+                        </tbody>            
+                    </table>
+
+                    <div>
+                        <#if responsabile??>
+                        <a href="home_responsabile"><button class="my-button">Indietro</button></a>
+                        <#else>
+                        <a  href="facolta?dipartimento_key=${id}"><button class="my-button">Indietro</button></a>
+                        </#if>
+                    </div>
+
+                </div>
+
             </div>
-            
-    </div>
-        
         </div>
-    
-</body>
+    </body>
 </html>

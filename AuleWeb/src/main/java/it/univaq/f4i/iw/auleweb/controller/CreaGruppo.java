@@ -39,7 +39,7 @@ public class CreaGruppo extends AuleWebBaseController {
                 }
                 request.setAttribute("gruppo_modifica", gruppo); //carico il gruppo con le informazioni sulle aule
                 if(gruppo.getTipoGruppo() == TipoGruppo.polo) request.setAttribute("tipo", true); else request.setAttribute("tipo", false);
-                request.setAttribute("aule_gruppo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(gruppo.getKey()));
+                request.setAttribute("aule_gruppo", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAuleGI(gruppo.getKey()));
              } catch (DataException ex) {
                 handleError(ex, request, response);
             }

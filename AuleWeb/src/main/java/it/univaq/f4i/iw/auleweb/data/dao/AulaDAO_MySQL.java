@@ -94,7 +94,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
             a.setPiano(rs.getString("piano"));
-            a.setResponsabileKey(rs.getInt("id_responsabile"));
+            a.setUtenteKey(rs.getInt("id_responsabile"));
 
         } catch (SQLException ex) {
             throw new DataException("Unable to create aula object form ResultSet", ex);
@@ -162,7 +162,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
     
     //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve il nome del gruppo)
-    public List<Aula> getAllAule(String gruppo_nome) throws DataException {
+    public List<Aula> getAllAuleGN(String gruppo_nome) throws DataException {
         List<Aula> result = new ArrayList();
 
         try (ResultSet rs = sAuleByGruppoN.executeQuery(gruppo_nome)) {
@@ -177,7 +177,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
     //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve l'id del gruppo)
     @Override
-    public List<Aula> getAllAule(int id_gruppo) throws DataException {
+    public List<Aula> getAllAuleGI(int id_gruppo) throws DataException {
         List<Aula> result = new ArrayList();
         try {
             sAuleByGruppo.setInt(1, id_gruppo);

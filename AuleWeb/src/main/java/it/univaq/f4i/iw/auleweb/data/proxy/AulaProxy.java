@@ -14,12 +14,12 @@ import java.util.List;
 public class AulaProxy extends AulaImpl implements DataItemProxy {
 
     protected boolean modified;
-    protected int responsabile_key;
+    protected int utente_key;
     protected DataLayer dataLayer;
 
     public AulaProxy(DataLayer d) {
         this.modified = false;
-        this.responsabile_key = 0;
+        this.utente_key = 0;
         this.dataLayer = d;
     }
 
@@ -75,7 +75,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     @Override
     public void setUtente(Utente resp) {
         super.setUtente(resp);
-        this.responsabile_key = resp.getKey();
+        this.utente_key = resp.getKey();
         this.modified = true;
     }
 
@@ -113,8 +113,8 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         this.modified = dirty;
     }
 
-    public void setResponsabileKey(int responsabile_key) {
-        this.responsabile_key = responsabile_key;
+    public void setUtenteKey(int utente_key) {
+        this.utente_key = utente_key;
         //resettiamo la cache 
         super.setUtente(null);
     }
