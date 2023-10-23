@@ -6,7 +6,6 @@ package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
-import java.util.List;
 
 /**
  *
@@ -20,12 +19,12 @@ public interface UtenteDAO {
     
     Utente getUtenteByEmail(String username) throws DataException;
     
-    List<Utente> getAllResponsabili() throws DataException;
+    //List<Utente> getAllResponsabili() throws DataException;
 
     void storeUtente(Utente user) throws DataException;
     
     void deleteUtente(Integer id) throws DataException;
 
-    void storeUtente(Utente utente, String parameter, Integer key);
+    //void storeUtente(Utente utente, String parameter, Integer key);
     
 }

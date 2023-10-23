@@ -10,13 +10,14 @@ import it.univaq.f4i.iw.framework.data.DataItem;
  *
  * @author franc
  */
-public interface Utente extends DataItem<Integer>{
-   
-    String getEmail();
+public interface Professore extends DataItem<Integer>{
     
-    String getPassword();
+    String getNome();
     
-    void setEmail(String email);
+    String getCognome();
     
-    void setPassword(String password);
+    void setNome(String c);
+
+    void setCognome(String c);
+    
 }

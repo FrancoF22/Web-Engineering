@@ -4,7 +4,7 @@
  */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
-import it.univaq.f4i.iw.auleweb.data.impl.UtenteImpl;
+import it.univaq.f4i.iw.auleweb.data.impl.ProfessoreImpl;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 
@@ -12,30 +12,29 @@ import it.univaq.f4i.iw.framework.data.DataLayer;
  *
  * @author franc
  */
-
-public class UtentiProxy extends UtenteImpl implements DataItemProxy{
-
+public class ProfessoreProxy extends ProfessoreImpl implements DataItemProxy{
+    
     protected boolean modified;
     protected DataLayer dataLayer;
 
-    public UtentiProxy(DataLayer d) {
+    public ProfessoreProxy(DataLayer d) {
         super();
         this.dataLayer = d;
         this.modified = false;
     }
-
-    @Override
-    public void setEmail(String name) {
-        super.setEmail(name);
-        this.modified = true;
-    }
-
-    @Override
-    public void setPassword(String surname) {
-        super.setPassword(surname);
-        this.modified = true;
-    }
     
+    @Override
+    public void setNome(String n) {
+        super.setNome(n);
+        this.modified = true;
+    }
+
+    @Override
+    public void setCognome(String c) {
+        super.setCognome(c);
+        this.modified = true;
+    }
+
     @Override
     public boolean isModified() {
         return modified;
@@ -45,5 +44,5 @@ public class UtentiProxy extends UtenteImpl implements DataItemProxy{
     public void setModified(boolean dirty) {
         this.modified = dirty;
     }
-
+    
 }

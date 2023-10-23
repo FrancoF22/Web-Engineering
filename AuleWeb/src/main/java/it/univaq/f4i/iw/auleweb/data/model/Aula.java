@@ -5,7 +5,7 @@
 package it.univaq.f4i.iw.auleweb.data.model;
 
 import it.univaq.f4i.iw.framework.data.DataItem;
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -21,7 +21,7 @@ public interface Aula extends DataItem<Integer>{
     
     Integer getPreseRete(); 
     
-    List<Attrezzatura> getAttrezzature();
+    Set<Attrezzatura> getAttrezzature();
     
     String getNota();
     
@@ -41,7 +41,7 @@ public interface Aula extends DataItem<Integer>{
     
     void setPreseRete(Integer preseR); 
     
-    void setAttrezzature(List<Attrezzatura> attrezzature);
+    void setAttrezzature(Set<Attrezzatura> attrezzature);
     
     void setNota(String nome);
     

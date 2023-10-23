@@ -5,7 +5,7 @@ import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -92,7 +92,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     }
 
     @Override
-    public void setAttrezzature(List<Attrezzatura> attrezzatura) {
+    public void setAttrezzature(Set<Attrezzatura> attrezzatura) {
         super.setAttrezzature(attrezzatura);
         this.modified = true;
     }

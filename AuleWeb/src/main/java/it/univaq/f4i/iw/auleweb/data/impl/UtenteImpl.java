@@ -13,23 +13,11 @@ import it.univaq.f4i.iw.framework.data.DataItemImpl;
  */
 public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     
-    private String nome, cognome, email, password;
+    private String email, password;
     
     public UtenteImpl(){
-        this.nome = "";
-        this.cognome = "";
         this.email = "";
         this.password = "";
-    }
-
-    @Override
-    public String getNome() {
-        return nome;
-    }
-
-    @Override
-    public String getCognome() {
-        return cognome;
     }
 
     @Override
@@ -40,16 +28,6 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     @Override
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public void setNome(String n) {
-        this.nome = n;
-    }
-
-    @Override
-    public void setCognome(String c) {
-        this.cognome = c;
     }
 
     @Override
