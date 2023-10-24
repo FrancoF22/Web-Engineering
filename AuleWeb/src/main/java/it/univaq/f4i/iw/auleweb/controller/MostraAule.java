@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author pcela
+ * da rifare, deve mostrare le aule di un gruppo
  */
 public class MostraAule extends AuleWebBaseController{
 
@@ -42,7 +42,7 @@ public class MostraAule extends AuleWebBaseController{
                 request.setAttribute("id", Facolta.getDipartimento().getKey());
                 
             }
-            res.activate("tabella-aule-utente.html", request, response);
+            res.activate("Mostra_Aule.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style/Tabelle.css" rel="stylesheet" />
+        <title>Aule web </title>
+    </head>
+    <body>
+        <div class="home-container">
+            <div class="home-home">
+
+                <div class="home-frame3">
+                    <img
+                        alt="UnivaqLogo116"
+                        src="images/UnivAQ_logoC.png"
+                        class="home-univaq-logo1"
+                        />
+
+                </div>
+                <div class="lower">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <#if (ListaResponsabili?size>0)>
+                            <#list ListaResponsabili as lista>
+
+                            <tr>
+                                <td>${lista.nome}</td>
+                                <td>${lista.cognome}</td>
+                            </tr>
+                            </#list>
+                            </#if>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a href="home_admin"><button class="my-button">Indietro</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

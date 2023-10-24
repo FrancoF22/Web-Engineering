@@ -18,6 +18,8 @@ public interface ProfessoreDAO {
     
     Professore getProfessoreById(int professore_key) throws DataException;
     
+    Professore getProfessore(String cognome) throws DataException;
+    
     List<Professore> getProfessori() throws DataException;
     
     void storeProfessore(Professore Professore) throws DataException;

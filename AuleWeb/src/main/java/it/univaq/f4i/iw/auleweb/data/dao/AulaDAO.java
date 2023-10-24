@@ -8,6 +8,7 @@ import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.framework.data.DataException;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -39,7 +40,7 @@ public interface AulaDAO {
     
     void deleteAttrezzatura(String nome) throws DataException;
 
-    List<Attrezzatura> gettAllAttrezzature() throws DataException;
+    Set<Attrezzatura> gettAllAttrezzature() throws DataException;
     
     List<String> getLuoghi() throws DataException;
     

@@ -104,7 +104,7 @@ public class CreaEvento extends AuleWebBaseController {
                     //calendario.getEvento().setTipologia(Tipologia.valueOf(request.getParameter("tipo")));
                     calendario.getEvento().setCorso(dataLayer.getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso"))));
                     calendario.getEvento().setDescrizione(request.getParameter("descrizione"));
-                    calendario.getEvento().setUtente(dataLayer.getUtenteDAO().getUtenteByEmail((String) SecurityHelpers.checkSession(request).getAttribute("email")));
+                    calendario.getEvento().setProfessore(dataLayer.getProfessoreDAO().getProfessore((String) SecurityHelpers.checkSession(request).getAttribute("cognome")));
                     if(id_aula != 0) {
                         calendario.setAula(dataLayer.getAulaDAO().getAula(id_aula));
                     } else {
@@ -139,7 +139,7 @@ public class CreaEvento extends AuleWebBaseController {
             System.out.println("REDIRECT: " + request.getParameter("redirect"));
             System.out.println("ATTRIBUTO: " + request.getParameter("attribute"));
             request.setAttribute("Corsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi());
-            res.activate("aggiungi-evento-responsabile.html", request, response);
+            res.activate("Crea_Evento.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);
         }

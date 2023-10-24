@@ -89,7 +89,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setCapienza(rs.getInt("capienza"));
             a.setPreseElettriche(rs.getInt("prese_elettriche"));
             a.setPreseRete(rs.getInt("prese_rete"));
-            a.setAttrezzature((List<Attrezzatura>) rs.getArray("attrezzatura"));
+            a.setAttrezzature((Set<Attrezzatura>) rs.getArray("attrezzatura"));
             a.setNota(rs.getString("nota"));
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
@@ -321,7 +321,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override 
-    public List<Attrezzatura> gettAllAttrezzature() throws DataException {
+    public Set<Attrezzatura> gettAllAttrezzature() throws DataException {
         //questo metodo può essere reso statico:
         //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
         //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano

@@ -25,6 +25,6 @@ public class HomeAdmin extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws TemplateManagerException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Home Admin");
-        res.activate("admin-home.html", request, response);
+        res.activate("Home_Admin.html", request, response);
     }
 }

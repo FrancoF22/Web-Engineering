@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
     
-    private PreparedStatement sProfById;
+    private PreparedStatement sProfById, sProfBC;
     private PreparedStatement sProfessori;
     private PreparedStatement iProfessore, uProfessore, dProfessore;
     
@@ -31,6 +31,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
 
             //precompiliamo tutte le query utilizzate nella classe
             sProfById = connection.prepareStatement("SELECT * FROM professore WHERE Id=?");
+            sProfBC = connection.prepareStatement("SELECT * FROM professore WHERE cognome=?");
             sProfessori = connection.prepareStatement("SELECT professore.* FROM professore");
             
             iProfessore = connection.prepareStatement("INSERT INTO professore (nome,cognome,email) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -46,6 +47,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         //anche chiudere i PreparedStamenent è una buona pratica...
         try {
             sProfById.close();
+            sProfBC.close();
             sProfessori.close();
             
             iProfessore.close();
@@ -102,6 +104,29 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         return p;
     }
 
+    @Override
+    public Professore getProfessore(String cognome) throws DataException {
+        
+         Professore p = null;
+        if (dataLayer.getCache().has(Professore.class, cognome)) {
+            p = dataLayer.getCache().get(Professore.class, cognome);
+        } else {
+            try {
+                sProfBC.setString(1, cognome);
+                try ( ResultSet rs = sProfBC.executeQuery()) {
+                    if (rs.next()) {
+                        p = createProfessore(rs);
+                        //e lo mettiamo anche nella cache
+                        dataLayer.getCache().add(Professore.class, p);
+                    }
+                }
+            } catch (SQLException ex) {
+                throw new DataException("Unable to load professor", ex);
+            }
+        }
+        return p;
+    }
+    
     @Override
     public List<Professore> getProfessori() throws DataException {
          List<Professore> u = new ArrayList();

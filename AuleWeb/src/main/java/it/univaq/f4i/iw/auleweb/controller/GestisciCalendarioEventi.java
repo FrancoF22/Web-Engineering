@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author pcela
+ * controllare e modificare
  */
 public class GestisciCalendarioEventi extends AuleWebBaseController {
 

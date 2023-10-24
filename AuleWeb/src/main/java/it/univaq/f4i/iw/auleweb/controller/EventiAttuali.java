@@ -45,7 +45,7 @@ public class EventiAttuali extends AuleWebBaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws TemplateManagerException {
         TemplateResult res = new TemplateResult(getServletContext());
-        res.activate("tabella-completa-eventi-utente.html", request, response);
+        res.activate("Eventi_Attuali.html", request, response);
     }
     
 }

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author pcela
+ * controllare con esempio newspaper
  */
 public class Login extends AuleWebBaseController {
 
@@ -41,7 +41,7 @@ public class Login extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, TemplateManagerException {
         TemplateResult result = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Accedi");
-        result.activate("iscrizione.ftl.html", request, response);
+        result.activate("Login.ftl.html", request, response);
     }
 
     //nota: utente di default nel database: nome n, password p

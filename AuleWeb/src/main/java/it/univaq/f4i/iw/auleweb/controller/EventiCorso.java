@@ -53,7 +53,7 @@ public class EventiCorso extends AuleWebBaseController{
             request.setAttribute("corsoID", corso.getKey());
             request.setAttribute("aulaID", request.getParameter("id_aula"));
             TemplateResult res = new TemplateResult(getServletContext());
-            res.activate("tabella-corso-utente.html", request, response);
+            res.activate("Eventi_Corso.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);
         }

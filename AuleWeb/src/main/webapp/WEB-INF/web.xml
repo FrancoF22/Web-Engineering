@@ -5,7 +5,6 @@
         <!-- Tomcat must have write permissions on this folder -->
         <param-value>d:/Java/TomcatWork</param-value>
     </context-param>
-    
     <context-param>
         <param-name>view.date_format</param-name>
         <param-value>dd/MM/yyyy hh:mm:ss</param-value>
@@ -34,11 +33,10 @@
         <param-name>view.error_template</param-name>
         <param-value>error.ftl.html</param-value>
     </context-param>
-    
     <context-param>
         <param-name>security.protect.patterns</param-name>
         <!-- qui configuriamo i pattern delle URL da proteggere -->
-        <param-value>/home_admin,/responsabile,/aula,/evento,/modifica-aule,/attrezzatura,/modifica-evento,/modifica-gruppo,/gruppo,/gestisci_responsabile,/modifica-calendario</param-value>        
+        <param-value>/home_admin,/responsabile,/aula,/evento,/modifica-aule,/attrezzatura,/modifica-evento,/modifica-gruppo,/gruppo,/gestisci_responsabile,/modifica-calendario</param-value>
     </context-param>
     <context-param>
         <param-name>data.source</param-name>
@@ -51,15 +49,11 @@
     </servlet>
     <servlet>
         <servlet-name>GestioneGruppo</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciGruppo</servlet-class>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciGruppi</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AccessoAdmin</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.HomeAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListaPolo</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.MostraPolo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Responsabile</servlet-name>
@@ -67,7 +61,7 @@
     </servlet>
     <servlet>
         <servlet-name>GestioneResponsabile</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciResponsabile</servlet-class>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaProfessori</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Attrezzatura</servlet-name>
@@ -75,7 +69,7 @@
     </servlet>
     <servlet>
         <servlet-name>GestioneAttrezzatura</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciAttrezzatura</servlet-class>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ModificaAttrezzatura</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListaAttrezzature</servlet-name>
@@ -87,7 +81,7 @@
     </servlet>
     <servlet>
         <servlet-name>GestioneAula</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciAula</servlet-class>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaAule</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListaAule</servlet-name>
@@ -100,10 +94,6 @@
     <servlet>
         <servlet-name>GestioneCalendario</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciCalendarioEventi</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EventiResponsabile</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.HomeResponsabile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListaEventi</servlet-name>
@@ -127,7 +117,7 @@
     </servlet>
     <servlet>
         <servlet-name>ListaDipartimenti</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.MostraDipartimenti</servlet-class>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.Home</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListaDipartimenti</servlet-name>
@@ -152,8 +142,7 @@
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.Logout</servlet-class>
-    </servlet>   
-    
+    </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
@@ -194,7 +183,7 @@
         <servlet-name>GestioneCalendario</servlet-name>
         <url-pattern>/modifica-calendario</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ListaEventi</servlet-name>
         <url-pattern>/eventi</url-pattern>
     </servlet-mapping>
@@ -213,14 +202,6 @@
     <servlet-mapping>
         <servlet-name>EventiCorso</servlet-name>
         <url-pattern>/eventi-corso</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EventiResponsabile</servlet-name>
-        <url-pattern>/home_responsabile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListaPolo</servlet-name>
-        <url-pattern>/polo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Responsabile</servlet-name>

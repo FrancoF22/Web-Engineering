@@ -7,7 +7,6 @@ package it.univaq.f4i.iw.auleweb.controller;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.dao.EventoDAO;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
-import it.univaq.f4i.iw.auleweb.data.model.Gruppo_Aula;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author pcela
+ * deve mostrare gli eventi di una determinata aula
  */
 public class MostraEventi extends AuleWebBaseController {
 
@@ -63,7 +62,7 @@ public class MostraEventi extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
             Gruppo gruppo = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getDipartimento(SecurityHelpers.checkNumeric(request.getParameter("id_aula")));
             request.setAttribute("id", gruppo.getKey());
-            res.activate("tabella-eventi-utente.html", request, response);
+            res.activate("Mostra_Eventi.html", request, response);
        } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }

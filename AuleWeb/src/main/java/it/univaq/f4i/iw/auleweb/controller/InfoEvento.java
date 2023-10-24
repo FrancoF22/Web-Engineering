@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author pcela
+ * da rifare
  */
 public class InfoEvento extends AuleWebBaseController  {
 
@@ -46,7 +46,7 @@ public class InfoEvento extends AuleWebBaseController  {
             Gruppo dipartimento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getDipartimento(calendarioEvento.getAula().getKey()); //intendi cercare l'aula in cui si situa un evento? -ema
             request.setAttribute("dipartimento", dipartimento);
             request.setAttribute("InfoEvento", calendarioEvento);
-            res.activate("informazioni.html", request, response);
+            res.activate("Info_Evento.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
