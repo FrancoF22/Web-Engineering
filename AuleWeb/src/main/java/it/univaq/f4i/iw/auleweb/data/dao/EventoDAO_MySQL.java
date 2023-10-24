@@ -45,7 +45,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventoById = connection.prepareStatement("SELECT * FROM evento WHERE Id=?");
             sEventoByNome = connection.prepareStatement("SELECT id FROM evento WHERE nome=?");
             sEventiByTipo = connection.prepareStatement("SELECT id FROM evento WHERE tipologia=?");
-            sEventiByResponsabile = connection.prepareStatement("SELECT id FROM evento WHERE id_responsabile=?");
+            sEventiByResponsabile = connection.prepareStatement("SELECT id FROM evento WHERE id_professore=?");
 
             sGiorniEvento = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_evento=?");
             sEventoSingolo = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id_evento=? AND giorno=?");
@@ -123,7 +123,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             e.setDescrizione(rs.getString("descrizione"));
             e.setTipo(Tipologia.valueOf( rs.getString("tipologia")));
             e.setCorsoKey(rs.getInt("id_corso"));
-            e.setResponsabileKey(rs.getInt("id_responsabile"));
+            e.setProfessoreKey(rs.getInt("id_professore"));
 
         } catch (SQLException ex) {
             throw new DataException("Unable to create event object form ResultSet", ex);
@@ -422,8 +422,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uEvento.setNull(4, java.sql.Types.INTEGER);
                 }
-                if (evento.getUtente()!= null) {
-                    uEvento.setInt(5, evento.getUtente().getKey());
+                if (evento.getProfessore()!= null) {
+                    uEvento.setInt(5, evento.getProfessore().getKey());
                 } else {
                     uEvento.setNull(5, java.sql.Types.INTEGER);
                 }
@@ -442,8 +442,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iEvento.setNull(4, java.sql.Types.INTEGER);
                 }
-                if (evento.getUtente()!= null) {
-                    iEvento.setInt(5, evento.getUtente().getKey());
+                if (evento.getProfessore()!= null) {
+                    iEvento.setInt(5, evento.getProfessore().getKey());
                 } else {
                     iEvento.setNull(5, java.sql.Types.INTEGER);
                 }

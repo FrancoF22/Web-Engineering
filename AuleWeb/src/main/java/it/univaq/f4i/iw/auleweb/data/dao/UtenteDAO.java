@@ -22,8 +22,6 @@ public interface UtenteDAO {
     //List<Utente> getAllResponsabili() throws DataException;
 
     void storeUtente(Utente user) throws DataException;
-    
-    void deleteUtente(Integer id) throws DataException;
 
     //void storeUtente(Utente utente, String parameter, Integer key);
     

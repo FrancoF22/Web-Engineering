@@ -7,7 +7,7 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
-import it.univaq.f4i.iw.auleweb.data.model.Utente;
+import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
@@ -18,7 +18,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     
     private String nome, descrizione;
     private Tipologia tipo;
-    private Utente utente;
+    private Professore professore;
     private Corso corso;
     
     public EventoImpl(){
@@ -26,7 +26,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
         this.nome = "";
         this.descrizione = "";
         this.tipo = null;
-        this.utente = null;
+        this.professore = null;
         this.corso = null;
     }
 
@@ -46,8 +46,8 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     }
 
     @Override
-    public Utente getUtente() {
-        return utente;
+    public Professore getProfessore() {
+        return professore;
     }
 
     @Override
@@ -76,8 +76,8 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     }
 
     @Override
-    public void setUtente(Utente r) {
-        this.utente  = r;
+    public void setProfessore(Professore r) {
+        this.professore  = r;
     }
     
     @Override

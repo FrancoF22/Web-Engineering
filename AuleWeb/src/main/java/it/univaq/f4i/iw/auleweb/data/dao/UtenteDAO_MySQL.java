@@ -175,7 +175,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
     
-    @Override
     public void deleteUtente(Integer id) throws DataException {
         throw new UnsupportedOperationException("Not supported yet.");
     }

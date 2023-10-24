@@ -4,6 +4,7 @@ import it.univaq.f4i.iw.auleweb.data.dao.CorsoDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.EventoImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
+import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -21,13 +22,13 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
 
     protected boolean modified;
     protected DataLayer dataLayer;
-    protected int corso_key, responsabile_key;
+    protected int corso_key, professore_key;
     
     public EventoProxy(DataLayer d){
         super();
         this.modified = false;
         this.corso_key = 0;
-        this.responsabile_key = 0;
+        this.professore_key = 0;
     }
     
     @Override
@@ -56,9 +57,9 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
     }
 
    @Override
-    public void setUtente(Utente resp) {
-        super.setUtente(resp);
-        this.responsabile_key = resp.getKey();
+    public void setProfessore(Professore prof) {
+        super.setProfessore(prof);
+        this.professore_key = prof.getKey();
         this.modified = true;
     }
 
@@ -98,9 +99,9 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
         super.setCorso(null);
     }
 
-    public void setResponsabileKey(int responsabile_key) {
-        this.responsabile_key = responsabile_key;
-        super.setUtente(null);
+    public void setProfessoreKey(int professore_key) {
+        this.professore_key = professore_key;
+        super.setProfessore(null);
     }
     
    @Override
