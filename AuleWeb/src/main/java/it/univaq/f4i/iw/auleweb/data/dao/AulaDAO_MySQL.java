@@ -45,8 +45,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
 
-            iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_responsabile) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uAula = connection.prepareStatement("UPDATE aula SET nome=?, capienza=?, prese_elettriche=?, prese_rete=?, attrezzatura=?, nota=?, luogo=?, edificio=?, piano=?, id_responsabile=? WHERE id=?");
+            iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            uAula = connection.prepareStatement("UPDATE aula SET nome=?, capienza=?, prese_elettriche=?, prese_rete=?, attrezzatura=?, nota=?, luogo=?, edificio=?, piano=?, id_professore=? WHERE id=?");
             dAula = connection.prepareStatement("DELETE FROM aula WHERE id=?");
 
         } catch (SQLException ex) {
@@ -94,7 +94,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
             a.setPiano(rs.getString("piano"));
-            a.setUtenteKey(rs.getInt("id_responsabile"));
+            a.setProfessoreKey(rs.getInt("id_professore"));
 
         } catch (SQLException ex) {
             throw new DataException("Unable to create aula object form ResultSet", ex);
@@ -223,8 +223,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 uAula.setString(7, aula.getLuogo());
                 uAula.setString(8, aula.getEdificio());
                 uAula.setString(9, aula.getPiano());
-                if (aula.getUtente() != null) {
-                    uAula.setInt(10, aula.getUtente().getKey());
+                if (aula.getProfessore() != null) {
+                    uAula.setInt(10, aula.getProfessore().getKey());
                 } else {
                     uAula.setNull(10, java.sql.Types.INTEGER);
                 }
@@ -244,8 +244,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 iAula.setString(7, aula.getLuogo());
                 iAula.setString(8, aula.getEdificio());
                 iAula.setString(9, aula.getPiano());
-                if (aula.getUtente() != null) {
-                    iAula.setInt(10, aula.getUtente().getKey());
+                if (aula.getProfessore() != null) {
+                    iAula.setInt(10, aula.getProfessore().getKey());
                 } else {
                     iAula.setNull(10, java.sql.Types.INTEGER);
                 }

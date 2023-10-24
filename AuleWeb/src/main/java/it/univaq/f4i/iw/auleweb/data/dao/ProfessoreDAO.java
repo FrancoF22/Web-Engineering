@@ -16,8 +16,11 @@ public interface ProfessoreDAO {
     
     Professore createProfessore();
     
-    Professore getProfessore(int professore_key) throws DataException;
+    Professore getProfessoreById(int professore_key) throws DataException;
     
-    List<Professore> getProfessore() throws DataException;;
+    List<Professore> getProfessori() throws DataException;
     
+    void storeProfessore(Professore Professore) throws DataException;
+    
+    void deleteProfessore(Integer id_prof) throws DataException;
 }

@@ -33,11 +33,11 @@ CREATE TABLE `aula` (
   `luogo` varchar(255) DEFAULT NULL,
   `edificio` varchar(255) DEFAULT NULL,
   `piano` varchar(255) DEFAULT NULL,
-  `id_responsabile` int NOT NULL,
+  `id_professore` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nome` (`nome`),
-  KEY `aula_ibfk_1_idx` (`id_responsabile`),
-  CONSTRAINT `aula_ibfk_1` FOREIGN KEY (`id_responsabile`) REFERENCES `utente` (`id`) ON UPDATE CASCADE
+  KEY `aula_ibfk_1_idx` (`id_professore`),
+  CONSTRAINT `aula_ibfk_1` FOREIGN KEY (`id_professore`) REFERENCES `professore` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,6 +196,31 @@ INSERT INTO `gruppo_aula` VALUES (2,2);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `professore`
+--
+
+DROP TABLE IF EXISTS `professore`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `professore` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `cognome` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `professore`
+--
+
+LOCK TABLES `professore` WRITE;
+/*!40000 ALTER TABLE `professore` DISABLE KEYS */;
+INSERT INTO `professore` VALUES (1,'Mario','Rossi');
+/*!40000 ALTER TABLE `professore` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `utente`
 --
 
@@ -204,8 +229,6 @@ DROP TABLE IF EXISTS `utente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utente` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `cognome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `ruolo` enum('studente','responsabile') NOT NULL DEFAULT 'studente',
@@ -219,7 +242,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (1,'Mario','Rossi','mr@gmail.com','numer1','responsabile'),(3,'Wario','Giallo','wg@gmail.com','money','studente');
+INSERT INTO `utente` VALUES (1,'mr@gmail.com','numer1','responsabile'),(3,'wg@gmail.com','money','studente');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -232,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-19 16:04:24
+-- Dump completed on 2023-10-24  9:43:29

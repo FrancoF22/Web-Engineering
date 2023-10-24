@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
     
-    private PreparedStatement sUtenteById, sUtenteByEmail, iUtente, uUtente, sResponsabili;
+    private PreparedStatement sUtenteById, sUtenteByEmail, iUtente, uUtente;
 
     public UtenteDAO_MySQL(DataLayer d) {
         super(d);
@@ -34,10 +34,9 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             //precompiliamo tutte le query utilizzate nella classe
             sUtenteById = connection.prepareStatement("SELECT * FROM utente WHERE Id=?");
             sUtenteByEmail = connection.prepareStatement("SELECT utente.* FROM utente WHERE email=?");
-            sResponsabili = connection.prepareStatement("SELECT utente.* FROM utente");
             
-            iUtente = connection.prepareStatement("INSERT INTO utente (nome,cognome,email,password,ruolo) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uUtente = connection.prepareStatement("UPDATE utente SET nome=?,cognome=?,email=?,password=?,ruolo=? WHERE ID=?");
+            iUtente = connection.prepareStatement("INSERT INTO utente (email,password) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
+            uUtente = connection.prepareStatement("UPDATE utente SET email=?,password=?,ruolo=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
         }
@@ -49,7 +48,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         try {
             sUtenteById.close();
             sUtenteByEmail.close();
-            sResponsabili.close();
             
             iUtente.close();
             uUtente.close();
@@ -75,8 +73,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         try {
             UtentiProxy a = (UtentiProxy) createUtente();
             a.setKey(rs.getInt("Id"));
-            a.setNome(rs.getString("nome"));
-            a.setCognome(rs.getString("cognome"));
             a.setEmail(rs.getString("email"));
             a.setPassword(rs.getString("password"));
             return a;
@@ -129,19 +125,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
     }
     
     @Override
-    public List<Utente> getAllResponsabili() throws DataException{
-        List<Utente> u = new ArrayList();
-        try (ResultSet rs = sResponsabili.executeQuery()) {
-            while (rs.next()) {
-                u.add((Utente) getUtente(rs.getInt("id")));
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to load Responsabili", ex);
-        }
-        return u;
-    }
-    
-    @Override
     public void storeUtente(Utente user) throws DataException {
        try {
             if (user.getKey() != null && user.getKey() > 0) { //update
@@ -150,12 +133,10 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 if (user instanceof DataItemProxy && !((DataItemProxy) user).isModified()) {
                     return;
                 }
-                uUtente.setString(1, user.getNome());
-                uUtente.setString(2, user.getCognome());
-                uUtente.setString(3, user.getEmail());
-                uUtente.setString(4, user.getPassword());
+                uUtente.setString(1, user.getEmail());
+                uUtente.setString(2, user.getPassword());
 
-                uUtente.setInt(5, user.getKey());
+                uUtente.setInt(3, user.getKey());
 
                 if (uUtente.executeUpdate() == 0) {
                     throw new OptimisticLockException(user);
@@ -163,10 +144,8 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                    //?
                 }
             } else { //insert
-                iUtente.setString(1, user.getNome());
-                iUtente.setString(2, user.getCognome());
-                iUtente.setString(3, user.getEmail());
-                iUtente.setString(4, user.getPassword());
+                iUtente.setString(1, user.getEmail());
+                iUtente.setString(2, user.getPassword());
 
                 if (iUtente.executeUpdate() == 1) {
                     //per leggere la chiave generata dal database
@@ -201,7 +180,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+    
     public void storeUtente(Utente responsabile, String parameter, Integer key) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

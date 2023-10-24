@@ -7,6 +7,7 @@ package it.univaq.f4i.iw.auleweb.controller;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
+import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -30,8 +31,8 @@ public class CreaAula extends AuleWebBaseController {
         
         Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
         aula.setKey(0);
-        Utente responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().createUtente();
-        aula.setUtente(responsabile); //inserisco un responsabile fittizio
+        Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().createProfessore();
+        aula.setProfessore(prof); //inserisco un responsabile fittizio
         if(request.getParameter("id") != null) {
             try {
                 int id = SecurityHelpers.checkNumeric(request.getParameter("id"));
@@ -59,9 +60,9 @@ public class CreaAula extends AuleWebBaseController {
                 int npr = SecurityHelpers.checkNumeric(request.getParameter("prese_rete"));
                 aula.setPreseRete(npr);
                 aula.setNota(request.getParameter("note"));
-                responsabile = null;
-                if(!request.getParameter("responsabile").isEmpty() || request.getParameter("responsabile") != null) responsabile = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(request.getParameter("responsabile"));
-                aula.setUtente(responsabile);
+                prof = null;
+                if(!request.getParameter("prof").isEmpty() || request.getParameter("prof") != null) prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(request.getParameter("responsabile")); //il Professore non ha email tra i campi - ema
+                aula.setProfessore(prof);
                 List<Attrezzatura> attrezzature = new ArrayList<>();
                 List<Attrezzatura> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature();
                 for(Attrezzatura a : allAttrezzature){

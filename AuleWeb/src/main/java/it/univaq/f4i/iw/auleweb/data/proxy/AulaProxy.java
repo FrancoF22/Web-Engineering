@@ -2,6 +2,7 @@ package it.univaq.f4i.iw.auleweb.data.proxy;
 
 import it.univaq.f4i.iw.auleweb.data.impl.AulaImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
+import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -14,12 +15,12 @@ import java.util.Set;
 public class AulaProxy extends AulaImpl implements DataItemProxy {
 
     protected boolean modified;
-    protected int utente_key;
+    protected int professore_key;
     protected DataLayer dataLayer;
 
     public AulaProxy(DataLayer d) {
         this.modified = false;
-        this.utente_key = 0;
+        this.professore_key = 0;
         this.dataLayer = d;
     }
 
@@ -73,9 +74,9 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     }
 
     @Override
-    public void setUtente(Utente resp) {
-        super.setUtente(resp);
-        this.utente_key = resp.getKey();
+    public void setProfessore(Professore resp) {
+        super.setProfessore(resp);
+        this.professore_key = resp.getKey();
         this.modified = true;
     }
 
@@ -113,10 +114,14 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         this.modified = dirty;
     }
 
-    public void setUtenteKey(int utente_key) {
-        this.utente_key = utente_key;
+    public void setProfessoreKey(int prof_key) {
+        this.professore_key = prof_key;
         //resettiamo la cache 
-        super.setUtente(null);
+        super.setProfessore(null);
+    }
+
+    public void setProfKey(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

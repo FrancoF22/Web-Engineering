@@ -8,6 +8,7 @@ import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
+import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -27,6 +28,7 @@ public class AuleWebDataLayer extends DataLayer {
     @Override
     public void init() throws DataException {
         registerDAO(Utente.class, new UtenteDAO_MySQL(this));
+        registerDAO(Professore.class, new ProfessoreDAO_MySQL(this));
         registerDAO(Corso.class, new CorsoDAO_MySQL(this));
         registerDAO(Gruppo.class, new GruppoDAO_MySQL(this));
         registerDAO(Evento.class, new EventoDAO_MySQL(this));
@@ -53,5 +55,8 @@ public class AuleWebDataLayer extends DataLayer {
     public CorsoDAO getCorsoDAO() {
         return (CorsoDAO) getDAO(Corso.class);
     }
-
+    
+    public ProfessoreDAO getProfessoreDAO() {
+        return (ProfessoreDAO) getDAO(Professore.class);
+    }
 }

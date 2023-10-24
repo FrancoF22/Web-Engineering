@@ -6,7 +6,7 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
-import it.univaq.f4i.iw.auleweb.data.model.Utente;
+import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     private Integer capienza, preseElettriche, preseRete;
     private String nome, luogo, nota, edificio, piano;
     private Set<Attrezzatura> attrezzatura;
-    private Utente utente;
+    private Professore professore;
     
     public AulaImpl(){
         super();
@@ -32,7 +32,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
         this.edificio = "";
         this.piano = "";
         this.attrezzatura = new HashSet<>();
-        this.utente = null;
+        this.professore = null;
     }
 
 
@@ -89,8 +89,8 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public Utente getUtente() {
-        return utente;
+    public Professore getProfessore() {
+        return professore;
     }
 
     @Override
@@ -139,8 +139,8 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public void setUtente(Utente resp) {
-        this.utente = resp;
+    public void setProfessore(Professore resp) {
+        this.professore = resp;
     }
     
 }
