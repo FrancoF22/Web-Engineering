@@ -40,7 +40,7 @@ public class CreaEvento extends AuleWebBaseController {
         /*Corso corso = dataLayer.getCorsoDAO().createCorso(); //continua a segnare errore -ema
         corso.setKey(0);
         evento.setCorso(corso);*/
-        evento.setUtente(dataLayer.getUtenteDAO().createUtente());
+        evento.setProfessore(dataLayer.getProfessoreDAO().createProfessore());
         calendario.setEvento(evento);
         if(request.getParameter("id") != null) {
             try {
