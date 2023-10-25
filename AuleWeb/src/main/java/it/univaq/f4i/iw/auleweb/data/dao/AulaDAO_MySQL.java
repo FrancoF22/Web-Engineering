@@ -10,8 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 import java.sql.*;
@@ -89,10 +88,17 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setPreseElettriche(rs.getInt("prese_elettriche"));
             a.setPreseRete(rs.getInt("prese_rete"));
             
-            String s = rs.getString("attrezzatura");
-            String[] elements = s.split(",");
-            System.out.println(elements);
-            //a.setAttrezzature(new HashSet<>(Arrays.asList(elements)));
+            String attrezzature = rs.getString("attrezzatura");
+            Set<String> at;
+            if(attrezzature!=null){
+                at = new HashSet<>();
+                String[] sa = attrezzature.split(",");
+                for(String s: sa){
+                    at.add(s);
+                }
+            }else{
+                   at = null;
+            }
             a.setNota(rs.getString("nota"));
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
@@ -100,7 +106,6 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setProfessoreKey(rs.getInt("id_professore"));
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
             throw new DataException("Unable to create aula object form ResultSet", ex);
         }
         return a;
@@ -325,7 +330,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override 
-    public ArrayList<String> gettAllAttrezzature() throws DataException {
+    public ArrayList<Attrezzatura> gettAllAttrezzature() throws DataException {
         //questo metodo può essere reso statico:
         //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
         //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano
