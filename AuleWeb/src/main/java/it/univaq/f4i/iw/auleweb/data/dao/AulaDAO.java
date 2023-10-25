@@ -25,7 +25,7 @@ public interface AulaDAO {
     
     Aula getAula(String nome) throws DataException;
     
-    Attrezzatura getAttrezzatura(String nome) throws DataException;
+    String getAttrezzatura(String nome) throws DataException;
     
     List<Aula> getAllAule() throws DataException;
     
@@ -39,7 +39,7 @@ public interface AulaDAO {
     
     void deleteAttrezzatura(String nome) throws DataException;
 
-    ArrayList<Attrezzatura> gettAllAttrezzature() throws DataException;
+    ArrayList<String> gettAllAttrezzature() throws DataException;
     
     List<String> getLuoghi() throws DataException;
     

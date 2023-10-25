@@ -310,7 +310,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override
-    public Attrezzatura getAttrezzatura(String nome) throws DataException {
+    public String getAttrezzatura(String nome) throws DataException {
         throw new UnsupportedOperationException("getAttrezzatura not supported yet.");
     }
 
@@ -325,7 +325,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override 
-    public ArrayList<Attrezzatura> gettAllAttrezzature() throws DataException {
+    public ArrayList<String> gettAllAttrezzature() throws DataException {
         //questo metodo può essere reso statico:
         //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
         //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano

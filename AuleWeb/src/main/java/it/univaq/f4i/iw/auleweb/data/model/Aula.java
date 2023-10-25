@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.auleweb.data.model;
 
 import it.univaq.f4i.iw.framework.data.DataItem;
+import java.sql.Array;
 import java.util.*;
 
 /**
@@ -21,7 +22,7 @@ public interface Aula extends DataItem<Integer>{
     
     Integer getPreseRete(); 
     
-    List<Attrezzatura> getAttrezzature();
+    List<String> getAttrezzature();
     
     String getNota();
     
@@ -41,7 +42,7 @@ public interface Aula extends DataItem<Integer>{
     
     void setPreseRete(Integer preseR); 
     
-    void setAttrezzature(ArrayList<Attrezzatura> a);
+    void setAttrezzature(ArrayList<String> a);
     
     void setNota(String nome);
     

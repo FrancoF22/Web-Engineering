@@ -57,10 +57,10 @@ public class CreaAula extends AuleWebBaseController {
                 prof = null;
                 if(!request.getParameter("prof").isEmpty() || request.getParameter("prof") != null) prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessore(request.getParameter("responsabile")); //il Professore non ha email tra i campi - ema
                 aula.setProfessore(prof);
-                Set<Attrezzatura> attrezzature = new HashSet<>();
-                Set<Attrezzatura> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature();
-                for(Attrezzatura a : allAttrezzature){
-                    if(request.getParameter(a.getNome()) != null) attrezzature.add(a); //checkbox null or on
+                ArrayList<String> attrezzature = new ArrayList<>();
+                ArrayList<String> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature();
+                for(String s : allAttrezzature){
+                    if(request.getParameter(s) != null) attrezzature.add(s); //checkbox null or on
                 }
                 aula.setAttrezzature(attrezzature);
                 ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
