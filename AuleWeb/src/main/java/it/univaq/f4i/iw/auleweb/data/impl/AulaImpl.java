@@ -8,8 +8,7 @@ import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -19,7 +18,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     
     private Integer capienza, preseElettriche, preseRete;
     private String nome, luogo, nota, edificio, piano;
-    private Set<Attrezzatura> attrezzatura;
+    private ArrayList<Attrezzatura> attrezzatura;
     private Professore professore;
     
     public AulaImpl(){
@@ -31,7 +30,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
         this.nota = "";
         this.edificio = "";
         this.piano = "";
-        this.attrezzatura = new HashSet<>();
+        this.attrezzatura = new ArrayList<>();
         this.professore = null;
     }
 
@@ -57,15 +56,16 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public Set<Attrezzatura> getAttrezzature() {
+    public List<Attrezzatura> getAttrezzature() {
         
-    Set<Attrezzatura> ListaAttrezzature = new HashSet<>();
+        List<Attrezzatura> la = new ArrayList<>();
         
         for(Attrezzatura a: attrezzatura){
-            if(a!=null) ListaAttrezzature.add(a);
+            if(a!=null) la.add(a);
         }
         
-        return ListaAttrezzature;
+        return la;
+        
     }
 
     @Override
@@ -114,8 +114,8 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public void setAttrezzature(Set<Attrezzatura> attrezzature) {
-        this.attrezzatura = attrezzature;
+    public void setAttrezzature(ArrayList<Attrezzatura> a) {
+        this.attrezzatura = a;
     }
 
     @Override
@@ -142,5 +142,5 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     public void setProfessore(Professore resp) {
         this.professore = resp;
     }
-    
+
 }
