@@ -39,15 +39,15 @@
                         <td>${aula.edificio}</td>
                         <td>${aula.piano}</td>
                         <td>${aula.capienza}</td>
-                        <td>${aula.PreseElettriche}</td>
-                        <td>${aula.PreseRete}</td>
-                        <td><#if aula.responsabile??>${aula.responsabile.email}</#if></td>
+                        <td>${aula.preseElettriche}</td>
+                        <td>${aula.preseRete}</td>
+                        <td><#if aula.professore??>${aula.professore.nome}</#if></td>
                         <td>
                             <#list aula.attrezzature as att>
                             ${att.nome},
                             </#list>
                         </td>
-                        <td><a href="aula?id=${aula.id}"><button class="Bottone-tabela">Modifica</button></a><a href="modifica-aule?id=${aula.id}"><button class="Bottone-tabela">Elimina</button></a></td>
+                        <td><a href="aula?id=${aula.key}"><button class="Bottone-tabela">Modifica</button></a><a href="modifica-aule?id=${aula.key}"><button class="Bottone-tabela">Elimina</button></a></td>
                     </tr>
                     </#list>
                     </#if>
