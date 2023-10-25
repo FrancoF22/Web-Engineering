@@ -1,11 +1,15 @@
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
+import it.univaq.f4i.iw.auleweb.data.dao.ProfessoreDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.AulaImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Professore;
+import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,7 +18,7 @@ import java.util.*;
 public class AulaProxy extends AulaImpl implements DataItemProxy {
 
     protected boolean modified;
-    protected int professore_key;
+    protected int professore_key = 0;
     protected DataLayer dataLayer;
 
     public AulaProxy(DataLayer d) {
@@ -29,19 +33,21 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
         this.modified = true;
     }
 
-    /*
     @Override
-    public Responsabile getResponsabile() {
-       if (super.getResponsabile() == null && !email.isEmpty()) {
+    public Professore getProfessore() {
+        //notare come l'autore in relazione venga caricato solo su richiesta
+        //note how the related author is loaded only after it is requested
+        if (super.getProfessore() == null && professore_key > 0) {
             try {
-                super.setResponsabile(((ResponsabileDAO) dataLayer.getDAO(Responsabile.class)).getResponsabile(email));
+                super.setProfessore(((ProfessoreDAO) dataLayer.getDAO(Professore.class)).getProfessoreById(professore_key));
             } catch (DataException ex) {
-                Logger.getLogger(AulaProxy.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProfessoreProxy.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       return super.getResponsabile();
+       
+        return super.getProfessore();
     }
-     */
+    
     @Override
     public void setNome(String nome) {
         super.setNome(nome);
@@ -92,7 +98,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
     }
 
     @Override
-    public void setAttrezzature(Set<Attrezzatura> attrezzatura) {
+    public void setAttrezzature(List<String> attrezzatura) {
         super.setAttrezzature(attrezzatura);
         this.modified = true;
     }
@@ -115,12 +121,7 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
 
     public void setProfessoreKey(int prof_key) {
         this.professore_key = prof_key;
-        //resettiamo la cache 
         super.setProfessore(null);
-    }
-
-    public void setProfKey(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

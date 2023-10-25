@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
 import it.univaq.f4i.iw.auleweb.data.impl.ProfessoreImpl;
@@ -21,6 +17,12 @@ public class ProfessoreProxy extends ProfessoreImpl implements DataItemProxy{
         super();
         this.dataLayer = d;
         this.modified = false;
+    }
+    
+    @Override
+    public void setKey(Integer key) {
+        super.setKey(key);
+        this.modified = true;
     }
     
     @Override

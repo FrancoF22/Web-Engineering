@@ -39,7 +39,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAuleByGruppoN = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga ON ga.id_aula = aula.id JOIN gruppo AS g ON ga.id_gruppo = g.id WHERE g.nome=?");
             sAuleByGruppo = connection.prepareStatement("SELECT aula.* FROM aula JOIN gruppo_aula AS ga ON ga.id_aula = aula.id WHERE ga.id_gruppo=?");
             sAuleByLuogo = connection.prepareStatement("SELECT aula.* FROM aula WHERE aula.luogo = ?");
-            
+
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
 
@@ -63,7 +63,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAuleByLuogo.close();
 
             sAllAule.close();
-            
+
             iAula.close();
             uAula.close();
             dAula.close();
@@ -87,24 +87,19 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setCapienza(rs.getInt("capienza"));
             a.setPreseElettriche(rs.getInt("prese_elettriche"));
             a.setPreseRete(rs.getInt("prese_rete"));
-            
+
             String attrezzature = rs.getString("attrezzatura");
-            Set<String> at;
-            if(attrezzature!=null){
-                at = new HashSet<>();
-                String[] sa = attrezzature.split(",");
-                for(String s: sa){
-                    at.add(s);
-                }
-            }else{
-                   at = null;
-            }
+            String[] attArr = attrezzature.split(",");
+            ArrayList<String> attList = new ArrayList<String>(Arrays.asList(attArr));
+            a.setAttrezzature(attList);
+
             a.setNota(rs.getString("nota"));
             a.setLuogo(rs.getString("luogo"));
             a.setEdificio(rs.getString("edificio"));
             a.setPiano(rs.getString("piano"));
             a.setProfessoreKey(rs.getInt("id_professore"));
-
+            System.out.println("######### " + rs.getInt("id_professore") + " #########");
+            System.out.println("######### " + a.getProfessore() + " #########");
         } catch (SQLException ex) {
             throw new DataException("Unable to create aula object form ResultSet", ex);
         }
@@ -158,7 +153,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
     @Override
     public List<Aula> getAllAule() throws DataException {
-         List<Aula> result = new ArrayList();
+        List<Aula> result = new ArrayList();
 
         try (ResultSet rs = sAllAule.executeQuery()) {
             while (rs.next()) {
@@ -169,7 +164,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
         return result;
     }
-    
+
     //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve il nome del gruppo)
     public List<Aula> getAllAuleGN(String gruppo_nome) throws DataException {
         List<Aula> result = new ArrayList();
@@ -227,7 +222,15 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 uAula.setInt(2, aula.getCapienza());
                 uAula.setInt(3, aula.getPreseElettriche());
                 uAula.setInt(4, aula.getPreseRete());
-                uAula.setArray(5, (Array) aula.getAttrezzature());
+                String attStr = "";
+                for (String x : aula.getAttrezzature()) {
+                    if (attStr.equals("")) {
+                        attStr = x;
+                    } else {
+                        attStr = "," + attStr + x + ",";
+                    }
+                }
+                uAula.setString(5, attStr);
                 uAula.setString(6, aula.getNota());
                 uAula.setString(7, aula.getLuogo());
                 uAula.setString(8, aula.getEdificio());
@@ -248,7 +251,15 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 iAula.setInt(2, aula.getCapienza());
                 iAula.setInt(3, aula.getPreseElettriche());
                 iAula.setInt(4, aula.getPreseRete());
-                iAula.setArray(5, (Array) aula.getAttrezzature());
+                String attStr = "";
+                for (String x : aula.getAttrezzature()) {
+                    if (attStr.equals("")) {
+                        attStr = x;
+                    } else {
+                        attStr = "," + attStr + x + ",";
+                    }
+                }
+                iAula.setString(5, attStr);
                 iAula.setString(6, aula.getNota());
                 iAula.setString(7, aula.getLuogo());
                 iAula.setString(8, aula.getEdificio());
@@ -308,6 +319,13 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
     }
 
+    @Override
+    public List<String> getAllAttrezzature() throws DataException {
+        ArrayList<String> result = new ArrayList<>();
+       
+        return result;
+    }
+
     //i metodi di seguito vanno modificati, oppure non servono
     @Override
     public Attrezzatura createAttrezzatura() {
@@ -327,14 +345,6 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     @Override
     public void deleteAttrezzatura(String nome) throws DataException {
         throw new UnsupportedOperationException("deleteAttrezzatura not supported yet.");
-    }
-
-    @Override 
-    public ArrayList<Attrezzatura> gettAllAttrezzature() throws DataException {
-        //questo metodo può essere reso statico:
-        //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
-        //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano
-        throw new UnsupportedOperationException("gettAllAttrezzature not supported yet.");
     }
 
     @Override

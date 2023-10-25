@@ -21,7 +21,7 @@ public interface Aula extends DataItem<Integer>{
     
     Integer getPreseRete(); 
     
-    List<Attrezzatura> getAttrezzature();
+    List<String> getAttrezzature();
     
     String getNota();
     
@@ -41,7 +41,7 @@ public interface Aula extends DataItem<Integer>{
     
     void setPreseRete(Integer preseR); 
     
-    void setAttrezzature(Set<Attrezzatura> a);
+    void setAttrezzature(List<String> a);
     
     void setNota(String nome);
     

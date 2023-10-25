@@ -25,8 +25,7 @@ public class CreaAula extends AuleWebBaseController {
         
         Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
         aula.setKey(0);
-        Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().createProfessore();
-        aula.setProfessore(prof); //inserisco un responsabile fittizio
+       
         if(request.getParameter("id") != null) {
             try {
                 int id = SecurityHelpers.checkNumeric(request.getParameter("id"));
@@ -54,11 +53,10 @@ public class CreaAula extends AuleWebBaseController {
                 int npr = SecurityHelpers.checkNumeric(request.getParameter("prese_rete"));
                 aula.setPreseRete(npr);
                 aula.setNota(request.getParameter("note"));
-                prof = null;
-                if(!request.getParameter("prof").isEmpty() || request.getParameter("prof") != null) prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessore(request.getParameter("responsabile")); //il Professore non ha email tra i campi - ema
-                aula.setProfessore(prof);
-                ArrayList<String> attrezzature = new ArrayList<>();
-                ArrayList<String> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature();
+                List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
+                request.setAttribute("professori", professori);
+                List<String> attrezzature = new ArrayList<>();
+                List<String> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature();
                 for(String s : allAttrezzature){
                     if(request.getParameter(s) != null) attrezzature.add(s); //checkbox null or on
                 }
@@ -70,7 +68,7 @@ public class CreaAula extends AuleWebBaseController {
             }
         } else {
             try {
-                request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature());
+                request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature());
                 action_default(request,response);
             } catch (DataException ex) {
                 handleError(ex, request, response);

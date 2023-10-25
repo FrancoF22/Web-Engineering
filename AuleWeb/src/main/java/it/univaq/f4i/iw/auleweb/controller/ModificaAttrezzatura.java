@@ -44,7 +44,7 @@ public class ModificaAttrezzatura extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature());
+            request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature());
             res.activate("Modifica_Attrezzatura.html", request, response);
         } catch (DataException ex) {
             handleError(ex, request, response);

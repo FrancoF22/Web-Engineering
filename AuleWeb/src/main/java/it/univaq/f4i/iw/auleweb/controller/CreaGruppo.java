@@ -96,7 +96,7 @@ public class CreaGruppo extends AuleWebBaseController {
             }
         } else {
             try {
-                request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().gettAllAttrezzature());
+                request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature());
                 action_default(request,response);
             } catch (DataException | TemplateManagerException ex) {
                 handleError(ex, request, response);

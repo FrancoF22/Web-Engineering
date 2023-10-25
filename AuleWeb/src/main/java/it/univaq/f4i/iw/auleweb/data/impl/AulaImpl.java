@@ -18,7 +18,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     
     private Integer capienza, preseElettriche, preseRete;
     private String nome, luogo, nota, edificio, piano;
-    private Set<Attrezzatura> attrezzatura;
+    private List<String> attrezzatura;
     private Professore professore;
     
     public AulaImpl(){
@@ -30,7 +30,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
         this.nota = "";
         this.edificio = "";
         this.piano = "";
-        this.attrezzatura = new HashSet<>();
+        this.attrezzatura = new ArrayList<>();
         this.professore = null;
     }
 
@@ -56,11 +56,11 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public List<Attrezzatura> getAttrezzature() {
+    public List<String> getAttrezzature() {
         
-        List<Attrezzatura> la = new ArrayList<>();
+        List<String> la = new ArrayList<>();
         
-        for(Attrezzatura a: attrezzatura){
+        for(String a: attrezzatura){
             if(a!=null) la.add(a);
         }
         
@@ -114,7 +114,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
-    public void setAttrezzature(Set<Attrezzatura> a) {
+    public void setAttrezzature(List<String> a) {
         this.attrezzatura = a;
     }
     
