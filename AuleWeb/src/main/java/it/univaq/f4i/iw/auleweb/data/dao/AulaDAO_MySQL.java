@@ -14,10 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
-import java.sql.Array;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.*;
 
 /**
  *
@@ -328,7 +325,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override 
-    public Set<Attrezzatura> gettAllAttrezzature() throws DataException {
+    public ArrayList<Attrezzatura> gettAllAttrezzature() throws DataException {
         //questo metodo può essere reso statico:
         //se vogliamo le attrezzature di un aula usiamo il aula.getAttrezzature;
         //se le vogliamo invece tutte quelle esistenti,, voglio ricordare che non cambiano
