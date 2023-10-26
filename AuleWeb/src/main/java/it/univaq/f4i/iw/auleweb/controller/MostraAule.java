@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * da rifare, deve mostrare le aule di un gruppo
- */
+ 
 public class MostraAule extends AuleWebBaseController{
 
     @Override
@@ -50,5 +50,31 @@ public class MostraAule extends AuleWebBaseController{
     }
     
     
+    
+}*/
+public class MostraAule extends AuleWebBaseController{
+
+    private void action_default(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException, TemplateManagerException {
+        try {
+            TemplateResult res = new TemplateResult(getServletContext());
+            request.setAttribute("page_title", "Issues");
+            request.setAttribute("issues", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
+            res.activate("Mostra_Aule.html", request, response);          
+        }catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+}
+    
+    @Override
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException {
+
+        try {
+            action_default(request, response);
+
+        } catch (IOException | TemplateManagerException ex) {
+            handleError(ex, request, response);
+        }
+    }
     
 }
