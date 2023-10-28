@@ -57,8 +57,8 @@ public class MostraAule extends AuleWebBaseController{
     private void action_default(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("page_title", "Issues");
-            request.setAttribute("issues", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
+            request.setAttribute("page_title", "ListaAule");
+            request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
             res.activate("Mostra_Aule.html", request, response);          
         }catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
