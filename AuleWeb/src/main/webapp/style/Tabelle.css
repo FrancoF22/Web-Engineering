@@ -1,747 +1,751 @@
 @import url('normalize.css');
 
 .home-container {
-  width: 100%;
-  display: flex;
-  overflow: auto;
-  min-height: 100vh;
-  align-items: center;
-  flex-direction: column;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
 }
- html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 
-    }
+}
 
-    body {
-      top:100%;
-      left:100%;
-      background-color: #f0f0f0;
-    }
+body {
+    top:100%;
+    left:100%;
+    background-color: #f0f0f0;
+}
 .home-home {
-  width: 100%;
-  height: 1024px;
-  display: flex;
-  overflow: hidden;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 1024px;
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 1);
 }
 .home-Accedi-Esci {
-  top: 78px;
-  left: 1294px;
-  width: 87px;
-  height: 27px;
-  display: flex;
-  overflow: hidden;
-  position: absolute;
-  align-items: flex-end;
-  flex-shrink: 0;
-  justify-content: center;
-  text-decoration: none;
-  border-radius: 8px;
-  color: black;
-  background-color: ghostwhite;
-  border: solid 1px;
-  cursor: pointer;
+    top: 78px;
+    left: 1294px;
+    width: 87px;
+    height: 27px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-end;
+    flex-shrink: 0;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 8px;
+    color: black;
+    background-color: ghostwhite;
+    border: solid 1px;
+    cursor: pointer;
 }
 .home-text {
-  top: 166px;
-  left: 37px;
-  color: rgba(0, 0, 0, 1);
-  height: auto;
-  position: absolute;
-  font-size: 36px;
-  font-style: normal;
-  text-align: center;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 166px;
+    left: 37px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 36px;
+    font-style: normal;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-frame3 {
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 156px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background-color: rgba(222, 143, 26, 1);
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 156px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(222, 143, 26, 1);
 }
 .home-univaq-logo1 {
-  top: 15px;
-  left: -10px;
-  height: 137px;
-  position: absolute;
+    top: 15px;
+    left: -10px;
+    height: 137px;
+    position: absolute;
 }
 .home-text02 {
-  top: 19px;
-  left: 512px;
-  color: rgba(0, 0, 0, 1);
-  width: 521px;
-  height: auto;
-  position: absolute;
-  font-size: 96px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 19px;
+    left: 512px;
+    color: rgba(0, 0, 0, 1);
+    width: 521px;
+    height: auto;
+    position: absolute;
+    font-size: 96px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-frame1 {
-  top: 78px;
-  left: 1294px;
-  width: 87px;
-  height: 24px;
-  display: flex;
-  overflow: hidden;
-  position: absolute;
-  align-items: flex-end;
-  flex-shrink: 0;
-  border-radius: 8px;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 1);
+    top: 78px;
+    left: 1294px;
+    width: 87px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-end;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 1);
 }
 .home-text07 {
-  color: rgba(0, 0, 0, 1);
-  width: 85px;
-  height: auto;
-  font-size: 17px;
-  font-style: normal;
-  text-align: center;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    width: 85px;
+    height: auto;
+    font-size: 17px;
+    font-style: normal;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-frame2 {
-  top: 280px;
-  left: 179px;
-  width: 1017px;
-  height: 482px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
+    top: 280px;
+    left: 179px;
+    width: 1017px;
+    height: 482px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
 }
 .home-rectangle2 {
-  top: 0px;
-  left: 0px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 0px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-rectangle3 {
-  top: 0px;
-  left: 388px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 388px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-rectangle4 {
-  top: 0px;
-  left: 776px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 776px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-rectangle7 {
-  top: 292px;
-  left: 776px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
+    top: 292px;
+    left: 776px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
 }
 .home-rectangle5 {
-  top: 292px;
-  left: 0px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 292px;
+    left: 0px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-rectangle6 {
-  top: 292px;
-  left: 388px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 292px;
+    left: 388px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-rectangle61 {
-  top: 542px;
-  left: 388px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 542px;
+    left: 388px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-text12 {
-  top: 241px;
-  color: rgba(0, 0, 0, 1);
-  width: 222px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 241px;
+    color: rgba(0, 0, 0, 1);
+    width: 222px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-text14 {
-  top: 232px;
-  left: 388px;
-  color: rgba(0, 0, 0, 1);
-  width: 197px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 232px;
+    left: 388px;
+    color: rgba(0, 0, 0, 1);
+    width: 197px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-text16 {
-  top: 232px;
-  left: 776px;
-  color: rgba(0, 0, 0, 1);
-  width: 189px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 232px;
+    left: 776px;
+    color: rgba(0, 0, 0, 1);
+    width: 189px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-primarybutton {
-  top: 176px;
-  left: 637px;
-  width: 147px;
-  height: 25px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
-  border-radius: 8px;
-  background-color: rgba(255, 247, 247, 1);
+    top: 176px;
+    left: 637px;
+    width: 147px;
+    height: 25px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background-color: rgba(255, 247, 247, 1);
 }
 .home-rectangle {
-  top: 0px;
-  left: 0px;
-  width: 147px;
-  height: 25px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 0px;
+    width: 147px;
+    height: 25px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-text18 {
-  color: rgba(255, 255, 255, 1);
-  width: 147px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: center;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    width: 147px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-text20 {
-  top: 235px;
-  left: 187px;
-  color: rgba(0, 0, 0, 1);
-  width: 224px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 235px;
+    left: 187px;
+    color: rgba(0, 0, 0, 1);
+    width: 224px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-text22 {
-  top: 221px;
-  left: 567px;
-  color: rgba(0, 0, 0, 1);
-  width: 217px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 221px;
+    left: 567px;
+    color: rgba(0, 0, 0, 1);
+    width: 217px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-text24 {
-  top: 225px;
-  left: 956px;
-  color: rgba(0, 0, 0, 1);
-  width: 240px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 225px;
+    left: 956px;
+    color: rgba(0, 0, 0, 1);
+    width: 240px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-text26 {
-  top: 782px;
-  left: 569px;
-  color: rgba(0, 0, 0, 1);
-  width: 195px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 782px;
+    left: 569px;
+    color: rgba(0, 0, 0, 1);
+    width: 195px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: normal;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-searchcamporicerca1 {
-  top: 177px;
-  left: 755px;
-  width: 32px;
-  height: 23px;
-  position: absolute;
+    top: 177px;
+    left: 755px;
+    width: 32px;
+    height: 23px;
+    position: absolute;
 }
 
 .my-button {
-  background-color: rgba(26, 143, 221, 1);
-  border: none;
-  color: white;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 0 auto;
-  cursor: pointer;
-  border-radius: 10px;
-  margin: 100px;
-  width: 200px; 
-  height: 50px;
+    background-color: rgba(26, 143, 221, 1);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 100px;
+    width: 200px;
+    height: 50px;
 }
 
 .lower {
-  width: 100%;
-  display: block;
-  overflow: hidden;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background-color: white;
-  left: 0px;
-  bottom: 0px;
-  top: 158px;
-  flex-grow: 1;
-  overflow-y: auto;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: white;
+    left: 0px;
+    bottom: 0px;
+    top: 158px;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 
 .home-corso-home-corso {
-  width: 100%;
-  height: 1024px;
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 1024px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  overflow: auto;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: auto;
 }
 
 th, td {
-  text-align: left;
-  padding: 8px;
-  border: 1px solid #000;
-  padding: 10px;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #000;
+    padding: 10px;
 }
 
 th {
-  background-color: deepskyblue;
+    background-color: deepskyblue;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 tr:hover {
-  background-color: skyblue;
+    background-color: skyblue;
 }
 
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 .table-header {
-  padding: 10px;
-  font-size: 15px;
-  text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .table-spacing {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
- .upper {
-  left: 0px;
-  width: 100%;
-  display: flex;
-  position: absolute;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) ;
-  align-items: flex-start;
-  flex-shrink: 0;
-  border-color: rgba(0, 0, 0, 1);
-  border-style: solid;
-  border-width: 1px;
-  top: 0px;
-  height: 156px;
-  flex-shrink: 0;
-  background-color: rgba(222, 143, 26, 1);
-}    
+.upper {
+    left: 0px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) ;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 1px;
+    top: 0px;
+    height: 156px;
+    flex-shrink: 0;
+    background-color: rgba(222, 143, 26, 1);
+}
 
-  .container {
-  width: 100%;
-  display: flex;
-  overflow: auto;
-  min-height: 100vh;
-  align-items: center;
-  flex-direction: column;
+.container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
 }
 .Admin-aula-bottone{
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
 }
 .Bottone-tabela{
-  background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 8px;
-  cursor: pointer;
+    background-color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .my-button {
-  background-color: rgba(26, 143, 221, 1);
-  border: none;
-  color: white;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 0 auto;
-  cursor: pointer;
-  border-radius: 10px;
-  margin: 100px;
-  width: 200px; 
-  height: 70px;
+    background-color: rgba(26, 143, 221, 1);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block; /* Per posizionare i bottoni sulla stessa riga */
+    font-size: 15px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 200px;
+    height: 70px;
+    margin: 5px; /* Aggiungi spazio tra i bottoni se necessario */
 }
 .home-corso-frame1 {
-  gap: 10px;
-  top: 78px;
-  left: 1294px;
-  width: 87px;
-  height: 24px;
-  display: flex;
-  overflow: hidden;
-  position: absolute;
-  align-items: flex-end;
-  flex-shrink: 0;
-  border-radius: 8px;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 1);
+    gap: 10px;
+    top: 78px;
+    left: 1294px;
+    width: 87px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-end;
+    flex-shrink: 0;
+    border-radius: 8px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 1);
 }
 .home-corso-text07 {
-  color: rgba(0, 0, 0, 1);
-  width: 85px;
-  height: auto;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: center;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    width: 85px;
+    height: auto;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-frame2 {
-  top: 280px;
-  left: 179px;
-  width: 1017px;
-  height: 482px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 1);
+    top: 280px;
+    left: 179px;
+    width: 1017px;
+    height: 482px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 1);
 }
 .home-corso-rectangle2 {
-  top: 0px;
-  left: 0px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 0px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-corso-rectangle3 {
-  top: 0px;
-  left: 388px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 388px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-corso-rectangle4 {
-  top: 0px;
-  left: 776px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 776px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-corso-rectangle7 {
-  top: 292px;
-  left: 776px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
+    top: 292px;
+    left: 776px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
 }
 .home-corso-rectangle5 {
-  top: 292px;
-  left: 0px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 292px;
+    left: 0px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-corso-rectangle6 {
-  top: 292px;
-  left: 388px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 292px;
+    left: 388px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-corso-rectangle61 {
-  top: 542px;
-  left: 388px;
-  width: 241px;
-  height: 190px;
-  position: absolute;
-  border-radius: 8px;
+    top: 542px;
+    left: 388px;
+    width: 241px;
+    height: 190px;
+    position: absolute;
+    border-radius: 8px;
 }
 .home-corso-text12 {
-  top: 241px;
-  color: rgba(0, 0, 0, 1);
-  width: 222px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 241px;
+    color: rgba(0, 0, 0, 1);
+    width: 222px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-text14 {
-  top: 232px;
-  left: 388px;
-  color: rgba(0, 0, 0, 1);
-  width: 197px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 232px;
+    left: 388px;
+    color: rgba(0, 0, 0, 1);
+    width: 197px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-text16 {
-  top: 232px;
-  left: 776px;
-  color: rgba(0, 0, 0, 1);
-  width: 189px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 232px;
+    left: 776px;
+    color: rgba(0, 0, 0, 1);
+    width: 189px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-primarybutton {
-  top: 176px;
-  left: 637px;
-  width: 147px;
-  height: 25px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 0;
-  border-radius: 8px;
-  background-color: rgba(255, 247, 247, 1);
+    top: 176px;
+    left: 637px;
+    width: 147px;
+    height: 25px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background-color: rgba(255, 247, 247, 1);
 }
 .home-corso-rectangle {
-  top: 0px;
-  left: 0px;
-  width: 147px;
-  height: 25px;
-  position: absolute;
-  border-radius: 8px;
+    top: 0px;
+    left: 0px;
+    width: 147px;
+    height: 25px;
+    position: absolute;
+    border-radius: 8px;
 }
 
 .home-corso-text20 {
-  top: 235px;
-  left: 187px;
-  color: rgba(0, 0, 0, 1);
-  width: 224px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 235px;
+    left: 187px;
+    color: rgba(0, 0, 0, 1);
+    width: 224px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-text22 {
-  top: 221px;
-  left: 567px;
-  color: rgba(0, 0, 0, 1);
-  width: 217px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 221px;
+    left: 567px;
+    color: rgba(0, 0, 0, 1);
+    width: 217px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-text24 {
-  top: 225px;
-  left: 956px;
-  color: rgba(0, 0, 0, 1);
-  width: 240px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 225px;
+    left: 956px;
+    color: rgba(0, 0, 0, 1);
+    width: 240px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-text26 {
-  top: 782px;
-  left: 569px;
-  color: rgba(0, 0, 0, 1);
-  width: 195px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: Regular;
-  text-align: left;
-  font-family: Arial;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
+    top: 782px;
+    left: 569px;
+    color: rgba(0, 0, 0, 1);
+    width: 195px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Regular;
+    text-align: left;
+    font-family: Arial;
+    font-weight: 400;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
 }
 .home-corso-searchcamporicerca1 {
-  top: 177px;
-  left: 755px;
-  width: 32px;
-  height: 23px;
-  position: absolute;
+    top: 177px;
+    left: 755px;
+    width: 32px;
+    height: 23px;
+    position: absolute;
 }
 .my-button2 {
-  left: 1000px;
-  background-color: rgba(26, 143, 221, 1);
-  border: none;
-  color: white;
-  position: absolute;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 0 auto;
-  cursor: pointer;
-  border-radius: 10px;
-  margin: 100px;
-  width: 200px;
-  height: 50px;
+    left: 1000px;
+    background-color: rgba(26, 143, 221, 1);
+    border: none;
+    color: white;
+    position: absolute;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 100px;
+    width: 200px;
+    height: 50px;
 }
 .Attrezzatura{
-  position:absolute;
-  left:350px;
-  top:110px;
-  width: 300px;
-  height: 50px;
-  border: solid 1px black ;
+    position:absolute;
+    left:350px;
+    top:110px;
+    width: 300px;
+    height: 50px;
+    border: solid 1px black ;
 }
 .my-button3{
-  position:absolute;
+    position:absolute;
+}
+
+.table-controls {
+    text-align: center; /* Per centrare i bottoni orizzontalmente */
 }
 
 

@@ -1,57 +1,49 @@
-<!DOCTYPE html>
-<!--
-collegare eventi (info.html) nell href
--->
-<html>
+<!-- collegare eventi (info.html) nell href -->
+<div class="home-container">
+    <div class="home-home">
 
-    <body>
-        <div class="home-container">
-            <div class="home-home">
-
-                <div class="lower">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Luogo</th>
-                                <th>Edificio</th>
-                                <th>Piano</th>
-                                <th>Capienza</th>
-                                <th>Numero di prese elettriche</th>
-                                <th>Numero di prese di rete</th>
-                                <th>Responsabile</th>
-                                <th>Attrezzature</th>
-                                <th>Azione</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <#if (ListaAule?size>0)>
-                            <#list ListaAule as aula>
-                            <tr>
-                                <td>${aula.nome}</td>
-                                <td>${aula.luogo}</td>
-                                <td>${aula.edificio}</td>
-                                <td>${aula.piano}</td>
-                                <td>${aula.capienza}</td>
-                                <td>${aula.preseElettriche}</td>
-                                <td>${aula.preseRete}</td>
-                                <td><#if aula.professore??>${aula.professore.nome} ${aula.professore.cognome}</#if></td>
-                                <td>
-                                    <#list aula.attrezzature as att>
-                                    ${att},
-                                    </#list>
-                                </td>
-                                <!-- <td><a href="eventi?id=${aula.key}">[visualizza eventi]</a></td> -->
-                                <td><a href="aula?id=${aula.key}"><button class="Bottone-tabela">Eventi Aula</button></a></td>
-                            </tr>
+        <div class="lower">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Luogo</th>
+                        <th>Edificio</th>
+                        <th>Piano</th>
+                        <th>Capienza</th>
+                        <th>Numero di prese elettriche</th>
+                        <th>Numero di prese di rete</th>
+                        <th>Responsabile</th>
+                        <th>Attrezzature</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <#if (ListaAule?size>0)>
+                    <#list ListaAule as aula>
+                    <tr>
+                        <td>${aula.nome}</td>
+                        <td>${aula.luogo}</td>
+                        <td>${aula.edificio}</td>
+                        <td>${aula.piano}</td>
+                        <td>${aula.capienza}</td>
+                        <td>${aula.preseElettriche}</td>
+                        <td>${aula.preseRete}</td>
+                        <td><#if aula.professore??>${aula.professore.nome} ${aula.professore.cognome}</#if></td>
+                        <td>
+                            <#list aula.attrezzature as att>
+                            ${att},
                             </#list>
-                            </#if>
-                        </tbody>            
-                    </table>
+                        </td>
+                        <!-- <td><a href="eventi?id=${aula.key}">[visualizza eventi]</a></td> -->
+                        <td><a href="aula?id=${aula.key}"><button class="Bottone-tabela">Eventi Aula</button></a></td>
+                    </tr>
+                    </#list>
+                    </#if>
+                </tbody>            
+            </table>
 
-                </div>
-
-            </div>
         </div>
-    </body>
-</html>
+
+    </div>
+</div>

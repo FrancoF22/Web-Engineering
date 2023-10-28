@@ -1,13 +1,13 @@
 
 body,html {
-    padding:0; 
+    padding:0;
     margin:0;
     font-family: Verdana, Arial, Helvetica;
     font-size: 11pt;
     background: #73A2BD;
 }
 
-#header {    
+#header {
     right: 0;
     height:70px;
     font-size: 20pt;
@@ -23,9 +23,24 @@ body,html {
 }
 
 .logininfo {
-    font-size: 40%;
+    font-family: Arial, sans-serif;
+    font-size: 50%;/* font-size: 40%; */
     text-align: right;
     margin-right: 1em;
+}
+
+.logininfo {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: right;
+}
+
+.logged-in {
+    color: green; /* Cambia il colore del testo quando l'utente è loggato */
+}
+
+.not-logged-in {
+    color: red; /* Cambia il colore del testo quando l'utente non è loggato */
 }
 
 #body {
@@ -33,7 +48,7 @@ body,html {
 }
 
 #footer {
-    height:30px;        
+    height:30px;
     font-size: 9pt;
     text-align: center;
     background-color: #73A2BD;
@@ -94,7 +109,7 @@ input {
 }
 
 .menu.vertical li {
-    margin: 5px 0;    
+    margin: 5px 0;
 }
 
 .figures {
@@ -105,15 +120,15 @@ input {
     border: 1px solid #CCC;
     padding: 5px;
     margin: 10px;
-    float:right;     
+    float:right;
 }
 
 .figure img {
-    display: block;     
+    display: block;
 }
 
 .figure .caption {
-    display: block;     
+    display: block;
     text-align: center;
     font-size: 80%;
 }
@@ -137,13 +152,13 @@ select.medium,input.medium {
 
 
 @media only screen and (max-width: 959px) {
-    body,html {    
+    body,html {
         font-size: 10pt;
     }
 }
 
 @media only screen and (max-width: 767px) {
-    .menu, .menu.horizontal, .menu.vertical { 
+    .menu, .menu.horizontal, .menu.vertical {
         border-bottom: 2px dashed #53829D;
         border-right: none;
     }

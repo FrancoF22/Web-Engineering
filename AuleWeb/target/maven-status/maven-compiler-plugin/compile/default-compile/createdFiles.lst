@@ -44,10 +44,8 @@ it\univaq\f4i\iw\auleweb\data\model\Calendario.class
 it\univaq\f4i\iw\auleweb\data\proxy\GruppoProxy.class
 it\univaq\f4i\iw\auleweb\controller\DummyModelFiller.class
 it\univaq\f4i\iw\framework\result\SplitSlashesFmkExt.class
-it\univaq\f4i\iw\auleweb\controller\CreaGruppo.class
 it\univaq\f4i\iw\framework\data\DataItemImpl.class
 it\univaq\f4i\iw\auleweb\controller\EventiCorso.class
-it\univaq\f4i\iw\auleweb\controller\MostraAule.class
 it\univaq\f4i\iw\framework\security\SecurityHelpers.class
 it\univaq\f4i\iw\auleweb\controller\EventiAttuali.class
 it\univaq\f4i\iw\auleweb\data\model\Attrezzatura.class

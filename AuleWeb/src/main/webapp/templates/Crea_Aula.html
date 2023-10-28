@@ -1,81 +1,73 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link  rel="stylesheet" href="style/admin-azioni.css" type="text/css"/>
-  <title>Aule web </title>
-</head>
-<body>
+<link rel="stylesheet" href="style/admin-azioni.css" type="text/css" />
 
 <div class="home-container">
-  <div class="home-frame3">
-    <img
-            alt="UnivaqLogo116"
-            src="images/UnivAQ_logoC.png"
-            class="home-univaq-logo1"
-    />
-  </div>
-<span class="home-text">Crea e modifica aula</span>
-<form action="aula" method="post">
-    <input type="hidden" name="id_aula" value="${aula_modifica.id}">
-  <div class="Evento-nome-responsabile"><input type="text" name="nome" value="${aula_modifica.nome}"></div>
-  <div class="Evento-descrizione-responsabile"><input type="text" name="luogo" value="${aula_modifica.luogo?if_exists}"></div>
-  <div class="Evento-aula-responsabile"><input type="text" name="edificio" value="${aula_modifica.edificio?if_exists}"></div>
-  <div ><input type="text" name="professore" <#if aula_modifica.professore??>value="${aula_modifica.professore.nome}"</#if>></div>
-  <div ><input type="text" name="note" value="${aula_modifica.note?if_exists}"></div>
-  <span class="agiungi-evento-responsabile-text04">
-        <span>Nome aula</span>
-      </span>
-  <span class="agiungi-evento-responsabile-text06">
-        <span>Luogo</span>
-      </span>
-  <span class="agiungi-evento-responsabile-text08">
-        <span>Edificio</span>
-      </span>
-  <div class="Evento-atrezzature-responsabile"><input type="text" name="capienza" value="${aula_modifica.capienza?if_exists}">
-  </div>
-  <span class="agiungi-evento-responsabile-text10">
-        <span>Capienza</span>
-      </span>
-  <div class="Evento-data-responsabile"><input type="text" name="prese_elettriche" value="${aula_modifica.PreseElettriche?if_exists}"></div>
-  <span class="agiungi-evento-responsabile-text12">
-        <span>PreseElettriche</span>
-      </span>
-  <div class="Evento-orario-responsabile"><input type="text" name="piano" value="${aula_modifica.piano?if_exists}"></div>
-  <span class="agiungi-evento-responsabile-text14">
-        <span>Piano</span>
-      </span>
-  <div class="Evento-piano-responsabile"><input type="text" name="prese_rete" value="${aula_modifica.PreseRete?if_exists}">
-  </div>
-  <span class="agiungi-evento-responsabile-text16">
-        <span>PreseRete</span>
-      </span>
-  <table class="agiungi-evento-responsabile-text18">
-      <thead>
-      <tr>
-          <th>Attrezzatura</th>
-      </tr>
-      </thead>
-      <tbody >
-        <#list ListaAttrezzature as att>
-          <#assign attrezzaturaAula = false>
-          <#list aula_modifica.attrezzature as attAula>
-              <#if att.nome == attAula.nome>
-                 <#assign attrezzaturaAula = true>
-              </#if>
-          </#list>
-          <tr>
-              <td><input type="checkbox" name="${att.nome}" <#if attrezzaturaAula>checked</#if>>${att.nome}</td>
-          </tr>
-        </#list>
-      </tbody>
-   </table>
-<div class="Bottone-salva">
-  <input type="submit" class="button" value="Salva" name="salva">
+    <span class="home-text">Crea e modifica aula</span>
+
+    <form action="aula" method="post">
+        <input type="hidden" name="id_aula" value="${aula_modifica.key}">
+
+        <label for="nome">Nome aula:</label>
+        <input type="text" name="nome" id="nome" value="${aula_modifica.nome}"><br>
+
+        <label for="luogo">Luogo:</label>
+        <input type="text" name="luogo" id="luogo" value="${aula_modifica.luogo?if_exists}"><br>
+
+        <label for="edificio">Edificio:</label>
+        <input type="text" name="edificio" id="edificio" value="${aula_modifica.edificio?if_exists}"><br>
+
+        <label for="professore">Professore:</label>
+        <input type="text" name="professore" id="professore" <#if aula_modifica.professore??>value="${aula_modifica.professore.nome}"</#if>><br>
+
+        <label for="note">Note:</label>
+        <input type="text" name="note" id="note" value="${aula_modifica.note?if_exists}"><br>
+
+        <label for="capienza">Capienza:</label>
+        <input type="text" name="capienza" id="capienza" value="${aula_modifica.capienza?if_exists}"><br>
+
+        <label for="prese_elettriche">Prese Elettriche:</label>
+        <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula_modifica.PreseElettriche?if_exists}"><br>
+
+        <label for="piano">Piano:</label>
+        <input type="text" name="piano" id="piano" value="${aula_modifica.piano?if_exists}"><br>
+
+        <label for="prese_rete">Prese Rete:</label>
+        <input type="text" name="prese_rete" id="prese_rete" value="${aula_modifica.PreseRete?if_exists}"><br>
+
+        <table class="agiungi-evento-responsabile-text18">
+            <thead>
+                <tr>
+                    <th>Attrezzatura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <#list ListaAttrezzature as att>
+                <#assign attrezzaturaAula = false>
+                <#list aula_modifica.attrezzature as attAula>
+                <#if att.nome == attAula.nome>
+                <#assign attrezzaturaAula = true>
+                </#if>
+                </#list>
+                <tr>
+                    <td>
+                        <label for="${att.nome}">
+                            <input type="checkbox" name="${att.nome}" id="${
+                                       att.nome
+                                   }" <#if attrezzaturaAula>checked</#if>>${att.nome}
+                        </label>
+                    </td>
+                </tr>
+                </#list>
+            </tbody>
+        </table>
+
+        <div class="Bottone-salva">
+            <input type="submit" class="button" value="Salva" name="salva">
+        </div>
+    </form>
+
+    <div class="Bottone-indietro">
+        <a href="modifica-aule">
+            <button class="button">Indietro</button>
+        </a>
+    </div>
 </div>
-</form>
-<div class="Bottone-indietro">
-    <a href="modifica-aule"><button class="button">Indietro</button></a>
-</div>
-</div>
-</body>
-</html>
