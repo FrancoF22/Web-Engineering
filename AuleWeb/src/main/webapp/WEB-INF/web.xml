@@ -48,10 +48,6 @@
         <param-value>jdbc/aule_web</param-value>
     </context-param>
     <servlet>
-        <servlet-name>Gruppo</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.CreaGruppo</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>GestioneGruppo</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciGruppi</servlet-class>
     </servlet>
@@ -86,10 +82,6 @@
     <servlet>
         <servlet-name>GestioneAula</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaAule</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListaAule</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.MostraAule</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Calendario</servlet-name>
@@ -156,10 +148,6 @@
         <url-pattern>/aula</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListaAule</servlet-name>
-        <url-pattern>/aule</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>GestioneAula</servlet-name>
         <url-pattern>/modifica-aule</url-pattern>
     </servlet-mapping>
@@ -218,10 +206,6 @@
     <servlet-mapping>
         <servlet-name>GestioneGruppo</servlet-name>
         <url-pattern>/modifica-gruppo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Gruppo</servlet-name>
-        <url-pattern>/gruppo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
