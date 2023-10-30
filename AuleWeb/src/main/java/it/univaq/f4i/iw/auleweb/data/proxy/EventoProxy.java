@@ -64,7 +64,7 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
     }
 
     @Override
-    public void setTipo(Tipologia t) {
+    public void setTipo(String t) {
         super.setTipo(t);
         this.modified = true;
     }
