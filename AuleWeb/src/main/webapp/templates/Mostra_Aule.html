@@ -1,5 +1,52 @@
 <!-- collegare eventi (info.html) nell href -->
+<style>
+
+    .calendar-container {
+        float: right; /* Posiziona il contenitore del calendario a destra */
+        width: 300px; /* Imposta la larghezza desiderata del contenitore */
+        margin-left: 20px; /* Aggiunge uno spazio a sinistra per separarlo dal contenuto principale */
+    }
+
+    .current-day {
+        background-color: #ffff99; /* Cambia il colore di sfondo per evidenziare il giorno corrente */
+        font-weight: bold; /* Opzionale: cambia lo stile del testo per rendere il giorno corrente più evidente */
+    }
+
+    #calendar {
+        width: 300px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #f0f0f0;
+        padding: 10px;
+    }
+
+    .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        padding: 10px;
+    }
+</style>
+<div class="calendar-container">
+    <div id="calendar">
+        <div class="header">
+            <button id="prevMonth">&lt;</button>
+            <h1 id="currentMonth"></h1>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="days">
+            <!-- Inserire qui i giorni del mese -->
+        </div>
+    </div>
+</div>
+
 <div class="home-container">
+
     <div class="home-home">
 
         <div class="lower">
@@ -47,3 +94,55 @@
 
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const prevMonthButton = document.getElementById('prevMonth');
+        const nextMonthButton = document.getElementById('nextMonth');
+        const currentMonthElement = document.getElementById('currentMonth');
+        const daysContainer = document.querySelector('.days');
+
+        let currentDate = new Date();
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const options = {year: 'numeric', month: 'long'};
+
+            currentMonthElement.textContent = currentDate.toLocaleDateString('it-IT', options);
+
+            // Pulisci il container dei giorni
+            daysContainer.innerHTML = '';
+
+            const today = new Date(); // Ottieni la data odierna
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Aggiungi i giorni del mese
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.textContent = day;
+
+                // Aggiungi la classe "current-day" se il giorno è uguale a oggi
+                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                    dayElement.classList.add('current-day');
+                }
+
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        renderCalendar();
+
+        prevMonthButton.addEventListener('click', function () {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        nextMonthButton.addEventListener('click', function () {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+    });
+
+
+</script>
