@@ -5,30 +5,35 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    line-height: 1.6; /* Spazio tra le righe */
+    font-size: 16px; /* Dimensione standard del testo */
 }
 
 /* Stili per il contenitore del calendario e degli eventi */
 .calendar-and-events-container {
     display: flex;
-    flex-wrap: wrap; /* Aggiunge responsività */
+    flex-wrap: nowrap; /* Impedisce agli elementi di andare a capo */
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin: 30px auto; /* Centrato con margini più ampi */
+    max-width: 1200px; /* Massima larghezza per evitare che sia troppo esteso su schermi grandi */
     padding: 20px;
+    box-sizing: border-box; /* Assicura che padding e bordi siano inclusi nella larghezza */
 }
 
 .events-container, #calendar {
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 10px; /* Bordi più arrotondati */
     padding: 20px;
-    width: 100%; /* Per la responsività */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    margin-top: 20px; /* Distanziamento tra i contenitori */
+    width: 48%; /* Larghezza */
+    margin: 1%;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, #f9f9f9, #ffffff);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
     .events-container, #calendar {
-        width: 48%; /* Adattamento per schermi più grandi */
+        width: 100%; /* Permette che i contenitori occupino l'intera larghezza su schermi più piccoli */
+        margin-top: 20px; /* Distanziamento tra i contenitori */
     }
 }
 
@@ -40,8 +45,9 @@ body {
 #calendar .header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
     align-items: center;
+    margin-bottom: 20px;
+
 }
 
 #calendar h1, .events-container h2 {
@@ -51,27 +57,29 @@ body {
 #calendar .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 10px;
     text-align: center;
 }
 
 .day {
-    padding: 10px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
+    padding: 15px;
+    background-color: #e9e9e9;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .day:hover, .day.current-day {
-    background-color: #007bff;
+    background-color: #0066cc;
     color: #ffffff;
+    transform: translateY(-3px); /* Leggero effetto "sollevamento" */
 }
 
 /* Stili per la tabella delle aule */
 .custom-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 .custom-table th, .custom-table td {
@@ -90,20 +98,83 @@ body {
 }
 
 .custom-table tr:hover {
-    background-color: #ddd;
+    background-color: #e0e0e0;
 }
 
 .Bottone-tabella {
     background-color: #007bff;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 15px; /* Distanziamento dal contenuto sopra */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Per evitare problemi di allineamento */
+    text-decoration: none; /* Se è un link */
 }
 
 .Bottone-tabella:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Leggero effetto di zoom */
+}
+
+.Bottone-tabella:focus {
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.5); /* Focus visibile per l'accessibilità */
+}
+
+.Bottone-tabella:active {
+    background-color: #004a9f; /* Colore leggermente più scuro per lo stato attivo */
+}
+
+/* Stile Base per i Bottoni */
+#prevMonth, #nextMonth, #currentDateButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px; /* Assicurati che sia leggibile */
+    margin: 5px; /* Spazio tra i bottoni */
+}
+
+#prevMonth:hover, #nextMonth:hover, #currentDateButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Aggiunta di iconografia ai bottoni può aiutare nell'usabilità */
+#prevMonth:before {
+    content: "\003C"; /* Codice Unicode per '<' */
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#nextMonth:after {
+    content: "\003E"; /* Codice Unicode per '>' */
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* Se desideri rendere il bottone Data Corrente diverso */
+#currentDateButton {
+    background-color: #17a2b8; /* Blu più chiaro */
+}
+
+#currentDateButton:hover {
+    background-color: #138496; /* Un blu leggermente più scuro per l'hover */
+}
+
+.header {
+    display: flex;
+    justify-content: center; /* Centrato orizzontalmente */
+    align-items: center; /* Centrato verticalmente */
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0 20px; /* Aggiunge spazio tra il testo e i bottoni */
+    color: #0056b3; /* Manteniamo il colore coerente */
+    font-size: 1.5em; /* Aumenta leggermente la dimensione per enfasi */
 }
