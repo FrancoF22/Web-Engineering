@@ -1,0 +1,32 @@
+.admin-home-frame2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-home-frame2 a {
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+}
+
+.admin-home-frame2 img {
+    width: 100%; /* Adatta la larghezza dell'immagine alla colonna */
+    height: auto; /* Mantieni l'aspetto dell'immagine */
+    border-radius: 10px; /* Angoli arrotondati per un aspetto morbido */
+    transition: transform 0.3s ease-in-out;
+}
+
+.admin-home-frame2 img:hover {
+    transform: scale(1.05); /* Effetto di ingrandimento all'hover */
+}
+
+.home-text02 {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}

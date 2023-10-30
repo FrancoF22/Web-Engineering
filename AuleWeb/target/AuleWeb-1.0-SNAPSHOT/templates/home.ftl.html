@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="style/home.css" type="text/css" />
-        <title>Aule web</title>
-    </head>
-    <body>
-        
-                
+<link rel="stylesheet" href="style/home.css" type="text/css" />
+<title>Aule web</title>
 
-                <h2 class="home-text">Seleziona Dipartimenti o Poli</h2>
+<h2 class="home-text">Seleziona Dipartimenti o Poli</h2>
 
-                <div class="home-frame-Dipartimenti">
-                    <#list ListaDipartimenti as dipartimento>
+<div class="home-frame-Dipartimenti">
+    <#list ListaDipartimenti as dipartimento>
 
-                    <a href="home?k=${dipartimento.key}">${dipartimento.nome}</a>
+    <a href="home?k=${dipartimento.key}">${dipartimento.nome}</a>
 
-                    </#list>
-                </div>
-
-           
-    </body>
-</html>
+    </#list>
+</div>

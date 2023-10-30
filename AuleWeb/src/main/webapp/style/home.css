@@ -1,266 +1,30 @@
-/* Reset di alcuni stili predefiniti del browser */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #f5f5e5;
-    font-family: Arial, sans-serif;
-}
-
-/* Stili comuni per i pulsanti */
-.button-common {
-    background-color: #fff;
-    color: #007BFF;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.button-common:hover {
-    background-color: #007BFF;
-    color: #fff;
-}
-
-/* Stili per il contenitore principale */
-.home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #e6e6e6, #fff);
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-/* Stili per il contenitore interno */
-.home-home {
-    width: 100%;
-    max-width: 900px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-}
-
-/* Stili per la parte superiore con il logo e il pulsante */
-.home-frame3 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.home-univaq-logo1 {
-    max-height: 100px;
-    width: auto;
-}
-
-/* Stili per le descrizioni sotto le immagini */
-.home-text02 {
-    font-size: 18px;
-    text-align: center;
-    margin-top: 10px;
-    color: #333;
-}
-
-/* Stili per il pulsante "Esci" */
-.home-frame3 form {
-    display: flex;
-    align-items: center;
-}
-
-/* Stili per il pulsante Esci nella parte superiore */
-.home-Accedi-Esci {
-    background-color: #fff;
-    color: #007BFF;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    margin-left: 20px;
-}
-
-.home-Accedi-Esci:hover {
-    background-color: #007BFF;
-    color: #fff;
-}
-
-
-/* Stili per la tabella dei dipartimenti */
-.home-frame-Dipartimenti {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.department {
-    width: 200px;
-    height: 250px;
-    margin: 5px;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background: #fff;
-}
-
-department img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px 8px 0 0;
-}
-
-/* Stili per il testo sotto le immagini dei dipartimenti */
-home-text-description {
-    font-size: 14px;
-    padding: 10px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 0 0 8px 8px;
-    color: #333;
-}
-
-/* Aggiunti stili per i link dei dipartimenti */
-.department a {
-    text-decoration: none;
-}
-
-/* Stili specifici per dispositivi di larghezza inferiore a 768px (ad esempio, dispositivi mobili) */
-@media (max-width: 767px) {
-    .home-frame-Dipartimenti {
-        flex-direction: column;
-    }
-
-    .department {
-        width: 100%;
-    }
-}
-
-/* Stile per iscrizione.ftl.html */
-/* Stili per il testo nella parte superiore */
-.Iscrizione-text {
+.home-text {
+    color: #0056b3; /* Blu scuro per titoli */
     font-size: 24px;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
+    margin-bottom: 20px;
 }
 
-.iscrizione-frame .button-container {
-    text-align: center; /* Centra orizzontalmente il testo (i pulsanti) all'interno del contenitore */
-}
-
-.iscrizione-frame button,
-.iscrizione-accedi input[type="submit"] {
-    background-color: #fff;
-    color: #007BFF;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    margin-top: 20px;
-}
-
-/* Stili per gli input di Username e Password */
-.username, .password {
-    margin-top: 20px;
-}
-
-.username input,
-.password input {
-    width: 50%;
+.home-frame-Dipartimenti {
     padding: 15px;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 18px;
-    display: block; /* Assicura che gli input siano su una riga separata */
-    margin: 0 auto; /* Centra gli input */
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 }
 
-/* Stili per i messaggi sotto gli input */
-.iscrizione-username, .iscrizione-password {
-    font-size: 14px;
-    color: #007BFF;
-    text-align: center;
-    margin-top: 5px;
-}
-
-/* Stili per le pagine admin-home.html */
-.admin-home-frame2 {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.Gestisci-Responsabile,
-.Modifica-crea-aula,
-.Modifica-crea-gruppi {
-    text-align: center;
-    max-width: 300px;
-}
-
-.admin-home-text10,
-.admin-home-text12,
-.admin-home-text14 {
-    text-align: center;
-}
-
-/* Stili per la pagina admin-home.html */
-.admin-home-frame2 a {
-    text-align: center;
+.home-frame-Dipartimenti a {
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
     text-decoration: none;
-    width: 30%; /* Larghezza del frame */
-    margin-bottom: 30px; /* Spazio tra i frame */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Stili per il pulsante Esci nella pagina admin-home.html */
-.admin-home-frame3 form input[type="submit"] {
-    background-color: #fff;
-    color: #007BFF;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    margin-top: 30px;
-}
-
-.admin-home-frame2 form input[type="submit"] {
-    background-color: #fff;
-    color: #007BFF;
-    border: 2px solid #007BFF;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.admin-home-frame2 img {
-    max-width: 100%; /* Larghezza massima per le immagini */
-}
-
-.admin-home-frame2 span {
-    display: block;
-    text-align: center;
+.home-frame-Dipartimenti a:hover {
+    background-color: #0056b3;
+    color: #ddd;
 }

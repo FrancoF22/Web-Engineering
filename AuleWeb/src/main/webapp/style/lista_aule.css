@@ -1,0 +1,72 @@
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.page-title {
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Stile dei bottoni */
+.my-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.my-button:hover {
+    background-color: #0056b3;
+}
+
+.table-controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Stile delle tabelle */
+.my-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+}
+
+.my-table th,
+.my-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.my-table th {
+    background-color: #f0f0f0;
+}
+
+.my-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Stile per i bottoni all'interno della tabella */
+.Bottone-tabela {
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.Bottone-tabela:hover {
+    text-decoration: underline;
+}

@@ -42,7 +42,7 @@ public class ListaProfessori extends AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("page_title", "Gestione professori");
-            request.setAttribute("ListaResponsabili", ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori());
+            request.setAttribute("ListaProfessori", ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori());
             res.activate("Lista_Professori.html", request, response);
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
