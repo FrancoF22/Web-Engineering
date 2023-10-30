@@ -59,6 +59,7 @@ it\univaq\f4i\iw\auleweb\controller\ListaAule.class
 it\univaq\f4i\iw\auleweb\data\impl\CalendarioImpl.class
 it\univaq\f4i\iw\auleweb\controller\GestisciCalendarioEventi.class
 it\univaq\f4i\iw\auleweb\data\model\Corso.class
+it\univaq\f4i\iw\auleweb\controller\AggiungiEvento.class
 it\univaq\f4i\iw\auleweb\controller\InfoEvento.class
 it\univaq\f4i\iw\framework\data\DataItem.class
 it\univaq\f4i\iw\framework\data\DataItemProxyImpl.class

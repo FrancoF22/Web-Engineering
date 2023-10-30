@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
 /* Stili base */
 body, html {
     padding: 0;
     margin: 0;
-    font-family: Verdana, Arial, Helvetica;
+    font-family: "Roboto", sans-serif;
     font-size: 11pt;
     background: #73A2BD;
+}
+
+/* Utilizzo di .container per centrare e contenere il layout */
+.container {
+    max-width: 1200px; /* Massima larghezza del contenitore */
+    margin: 0 auto; /* Centra il contenitore */
+    padding: 20px; /* Padding per non attaccare il contenuto ai bordi */
 }
 
 /* Stili per l'header */
@@ -38,9 +47,15 @@ body, html {
     color: red;
 }
 
-/* Stili per il corpo principale */
+/* Adattamento di #body e .columns per integrarsi con la griglia */
 #body {
     background-color: white;
+    padding: 15px; /* Aggiunto padding */
+}
+
+.fifteen.columns {
+    margin-left: 1em; /* Margine sinistro per la spaziatura */
+    /* Assicurati che questa classe non confligga con grid.css */
 }
 
 /* Stili per il footer */

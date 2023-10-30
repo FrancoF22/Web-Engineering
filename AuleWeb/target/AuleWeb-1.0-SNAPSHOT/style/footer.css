@@ -1,0 +1,22 @@
+/* Footer.css */
+#footer {
+    background-color: #53829D; /* Colore di sfondo del footer */
+    color: white; /* Colore del testo */
+    font-size: 0.8em; /* Dimensione del testo */
+    padding: 15px 0; /* Spazio verticale interno */
+    text-align: center; /* Allineamento del testo al centro */
+    border-top: 1px solid #416270; /* Bordo superiore per una chiara divisione */
+}
+
+#footer a {
+    color: #FFD700; /* Colore dei link, ad esempio giallo oro */
+    text-decoration: none; /* Rimuove il sottolineamento dei link */
+}
+
+#footer a:hover {
+    text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+}
+
+#footer .sixteen.columns {
+    margin: 5px 0; /* Margini per separare gli elementi verticalmente */
+}

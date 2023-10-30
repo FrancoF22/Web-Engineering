@@ -1,0 +1,51 @@
+/* Header.css */
+.row {
+    max-width: 1200px; /* Larghezza massima del contenitore */
+    margin: 0 auto; /* Centra il contenitore */
+    padding: 10px; /* Spazio interno per la separazione */
+}
+
+.sixteen.columns {
+    display: flex; /* Usa flexbox per un allineamento coerente degli elementi */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+    justify-content: space-between; /* Distribuisce gli elementi uniformemente */
+}
+
+.home-univaq-logo {
+    max-width: 100px; /* Larghezza massima del logo */
+    height: auto; /* Altezza automatica per mantenere le proporzioni */
+}
+
+.header-content {
+    flex-grow: 1; /* Permette al contenitore di occupare lo spazio rimanente */
+    padding-left: 20px; /* Spazio dal logo */
+}
+
+.logo-text {
+    font-size: 24px; /* Dimensione del testo per il titolo */
+    font-weight: bold; /* Stile del testo in grassetto */
+    color: #333; /* Colore del testo */
+}
+
+.subtitle {
+    font-size: 14px; /* Dimensione del sottotitolo */
+    color: #666; /* Colore del sottotitolo */
+}
+
+.logininfo {
+    text-align: right; /* Allinea il testo a destra */
+}
+
+.logged-in, .not-logged-in {
+    color: #555; /* Colore del testo per le informazioni di login */
+    font-size: 0.9em; /* Leggera riduzione della dimensione del testo */
+}
+
+.logged-in a, .not-logged-in a {
+    color: #007BFF; /* Colore dei link */
+    text-decoration: none; /* Rimuove il sottolineamento dal link */
+}
+
+.logged-in a:hover, .not-logged-in a:hover {
+    text-decoration: underline; /* Aggiunge sottolineamento al passaggio del mouse */
+}
