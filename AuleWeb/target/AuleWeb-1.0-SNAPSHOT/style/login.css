@@ -33,6 +33,8 @@
 
 .form-actions {
     margin-top: 20px;
+    display: flex; /* Questo renderà tutti gli elementi figli in linea */
+    justify-content: space-between; /* Questo spazierà i bottoni uniformemente */
 }
 
 .btn-primary,
@@ -44,6 +46,11 @@
     font-size: 16px;
     margin: 5px;
     color: white;
+}
+
+.btn-primary, .btn-secondary {
+    margin: 0 5px; /* Aggiunge un piccolo margine tra i bottoni */
+    /* Altri stili per i bottoni (dimensione, padding, ecc.) possono essere aggiunti qui */
 }
 
 .btn-primary {

@@ -1,51 +1,125 @@
 /* Header.css */
 .row {
-    max-width: 1200px; /* Larghezza massima del contenitore */
-    margin: 0 auto; /* Centra il contenitore */
-    padding: 10px; /* Spazio interno per la separazione */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
 }
 
 .sixteen.columns {
-    display: flex; /* Usa flexbox per un allineamento coerente degli elementi */
-    align-items: center; /* Allinea verticalmente gli elementi al centro */
-    justify-content: space-between; /* Distribuisce gli elementi uniformemente */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .home-univaq-logo {
-    max-width: 100px; /* Larghezza massima del logo */
-    height: auto; /* Altezza automatica per mantenere le proporzioni */
+    max-width: 100px;
+    height: auto;
 }
 
 .header-content {
-    flex-grow: 1; /* Permette al contenitore di occupare lo spazio rimanente */
-    padding-left: 20px; /* Spazio dal logo */
+    flex-grow: 1;
+    padding-left: 20px;
 }
 
 .logo-text {
-    font-size: 24px; /* Dimensione del testo per il titolo */
-    font-weight: bold; /* Stile del testo in grassetto */
-    color: #333; /* Colore del testo */
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 .subtitle {
-    font-size: 14px; /* Dimensione del sottotitolo */
-    color: #666; /* Colore del sottotitolo */
+    font-size: 14px;
+    color: #666;
 }
 
 .logininfo {
-    text-align: right; /* Allinea il testo a destra */
+    position: relative;
+    text-align: right;
 }
 
 .logged-in, .not-logged-in {
-    color: #555; /* Colore del testo per le informazioni di login */
-    font-size: 0.9em; /* Leggera riduzione della dimensione del testo */
+    color: #555;
+    font-size: 0.9em;
 }
 
 .logged-in a, .not-logged-in a {
-    color: #007BFF; /* Colore dei link */
-    text-decoration: none; /* Rimuove il sottolineamento dal link */
+    color: #007BFF;
+    text-decoration: none;
 }
 
 .logged-in a:hover, .not-logged-in a:hover {
-    text-decoration: underline; /* Aggiunge sottolineamento al passaggio del mouse */
+    text-decoration: underline;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.username {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.user-avatar, .user-icon {
+    font-size: 24px; /* Dimensione dell'icona */
+    color: #007bff; /* Colore dell'icona */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.user-dropdown a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.user-info:hover .username {
+    color: #007bff;
+}
+
+.user-info:hover .user-avatar, .user-info:hover .user-icon {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.user-dropdown a:hover {
+    background-color: #f8f9fa;
+}
+
+.user-info:hover .user-dropdown {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.not-logged-in {
+    font-style: italic;
+    color: #666;
 }

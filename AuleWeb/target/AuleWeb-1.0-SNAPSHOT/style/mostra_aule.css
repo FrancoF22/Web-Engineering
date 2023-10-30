@@ -1,11 +1,16 @@
-.home-container {
-    font-family: Arial, sans-serif;
+/* Impostazioni base */
+body {
+    font-family: 'Arial', sans-serif;
     color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
 
 /* Stili per il contenitore del calendario e degli eventi */
 .calendar-and-events-container {
     display: flex;
+    flex-wrap: wrap; /* Aggiunge responsività */
     justify-content: space-between;
     margin-bottom: 30px;
     padding: 20px;
@@ -15,9 +20,16 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    width: 48%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%; /* Per la responsività */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
+    margin-top: 20px; /* Distanziamento tra i contenitori */
+}
+
+@media (min-width: 768px) {
+    .events-container, #calendar {
+        width: 48%; /* Adattamento per schermi più grandi */
+    }
 }
 
 #calendar {
@@ -33,12 +45,12 @@
 }
 
 #calendar h1, .events-container h2 {
-    color: #0056b3; /* Blu scuro per titoli */
+    color: #0056b3;
 }
 
 #calendar .days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 giorni per riga */
+    grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     text-align: center;
 }
@@ -81,7 +93,7 @@
     background-color: #ddd;
 }
 
-.Bottone-tabela {
+.Bottone-tabella {
     background-color: #007bff;
     color: white;
     padding: 10px 15px;
@@ -89,8 +101,9 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 15px; /* Distanziamento dal contenuto sopra */
 }
 
-.Bottone-tabela:hover {
+.Bottone-tabella:hover {
     background-color: #0056b3;
 }

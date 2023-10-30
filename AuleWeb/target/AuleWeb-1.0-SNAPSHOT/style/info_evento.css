@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Container Principale */
+.home-container {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Testo Intestazione */
+.home-text02 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Impostazioni Generali per gli Eventi */
+.nome-evento, .descrizione-evento, .responsabile, .tipologia-evento, .gruppo-corso, .data-evento, .aula-evento, .edificio-evento, .piano-evento, .corso, .orario-inzio, .orario-fine {
+    background-color: white;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Titoli delle sezioni */
+.testo-nome-evento, .testo-descrizione-evento, .testo-tipologia-evento, .testo-gruppo-corso, .testo-responsabile-evento, .testo-data-evento, .testo-aula-evento, .testo-edificio-evento, .testo-piano-evento, .testo-corso, .testo-orario-inizio, .testo-orario-fine {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Bottone Indietro */
+.bottone-indietro {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.my-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.my-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+

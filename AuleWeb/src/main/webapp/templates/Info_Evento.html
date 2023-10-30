@@ -1,56 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link  rel="stylesheet" href="style/informazioni.css" type="text/css"/>
-  <title>Aule web </title>
-</head>
-<body>
+<link  rel="stylesheet" href="style/info_evento.css" type="text/css"/>
+
 <div class="home-container">
-  <div class="home-frame3">
-      <a href="home"><img
-            alt="UnivaqLogo116"
-            src="images/UnivAQ_logoC.png"
-            class="home-univaq-logo1"
-    />
-      </a>
     <span class="home-text02">
-            informazioni evento
-        </span>
-  </div>
-  </div>
+        informazioni evento
+    </span>
+</div>
 
+<div class="nome-evento">${InfoEvento.evento.nome}</div>
+<div class="descrizione-evento">${InfoEvento.evento.descrizione}</div>
+<div class="responsabile">${InfoEvento.evento.responsabile.nome}</div>
+<span class="testo-nome-evento"><span>Nome del evento</span></span>
+<span class="testo-descrizione-evento"><span>Descrizione Del evento</span>
+</span>
+<#if InfoEvento.evento.corso??>
+<span class="testo-tipologia-evento"><span>Corso</span></span>
+<div class="tipologia-evento">${InfoEvento.evento.corso.nome}</div>
+<span class="testo-gruppo-corso"><span>Dipartimento</span></span>
+<div class="gruppo-corso">${dipartimento.nome}</div>
+</#if>
+<span class="testo-responsabile-evento"><span>Responsabile</span></span>
+<div class="data-evento">${InfoEvento.giorno?date?string('dd-MM-yyyy')}</div>
+<span class="testo-data-evento"><span>Data evento</span></span>
+<div class="aula-evento">${InfoEvento.aula.nome}</div>
+<span class="testo-aula-evento"><span>Aula dell'evento</span></span>
+<div class="edificio-evento">${InfoEvento.aula.edificio}</div>
+<span class="testo-edificio-evento"><span>Edificio dell'evento</span></span>
+<div class="piano-evento">${InfoEvento.aula.piano}</div>
+<span class="testo-piano-evento"><span>Piano dell'evento</span></span>
+<div class="corso">${InfoEvento.evento.tipologia}</div>
+<span class="testo-corso"><span>Tipologia</span></span>
+<div class="orario-inzio">${InfoEvento.oraInizio?time?string('HH:mm')}</div>
+<span class="testo-orario-inizio"><span>Orario inzio</span></span>
+<span class="testo-orario-fine"><span>Orario-fine</span></span>
+<div class="orario-fine">${InfoEvento.oraFine?time?string('HH:mm')}</div>
 
-      <div class="nome-evento">${InfoEvento.evento.nome}</div>
-      <div class="descrizione-evento">${InfoEvento.evento.descrizione}</div>
-      <div class="responsabile">${InfoEvento.evento.responsabile.nome}</div>
-      <span class="testo-nome-evento"><span>Nome del evento</span></span>
-      <span class="testo-descrizione-evento"><span>Descrizione Del evento</span>
-      </span>
-      <#if InfoEvento.evento.corso??>
-        <span class="testo-tipologia-evento"><span>Corso</span></span>
-        <div class="tipologia-evento">${InfoEvento.evento.corso.nome}</div>
-        <span class="testo-gruppo-corso"><span>Dipartimento</span></span>
-        <div class="gruppo-corso">${dipartimento.nome}</div>
-      </#if>
-      <span class="testo-responsabile-evento"><span>Responsabile</span></span>
-      <div class="data-evento">${InfoEvento.giorno?date?string('dd-MM-yyyy')}</div>
-      <span class="testo-data-evento"><span>Data evento</span></span>
-      <div class="aula-evento">${InfoEvento.aula.nome}</div>
-      <span class="testo-aula-evento"><span>Aula dell'evento</span></span>
-      <div class="edificio-evento">${InfoEvento.aula.edificio}</div>
-      <span class="testo-edificio-evento"><span>Edificio dell'evento</span></span>
-      <div class="piano-evento">${InfoEvento.aula.piano}</div>
-      <span class="testo-piano-evento"><span>Piano dell'evento</span></span>
-       <div class="corso">${InfoEvento.evento.tipologia}</div>
-      <span class="testo-corso"><span>Tipologia</span></span>
-      <div class="orario-inzio">${InfoEvento.oraInizio?time?string('HH:mm')}</div>
-      <span class="testo-orario-inizio"><span>Orario inzio</span></span>
-      <span class="testo-orario-fine"><span>Orario-fine</span></span>
-      <div class="orario-fine">${InfoEvento.oraFine?time?string('HH:mm')}</div>
-     
 
 <div class="bottone-indietro">
-  <a  href="eventi?id_aula=${InfoEvento.aula.id}"><button class="my-button">Indietro</button></a>
-  </div>
-</body>
-</html>
+    <a  href="eventi?id_aula=${InfoEvento.aula.id}"><button class="my-button">Indietro</button></a>
+</div>
+
