@@ -93,7 +93,7 @@
     </servlet>
     <servlet>
         <servlet-name>ListaEventi</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.MostraEventi</servlet-class>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaEventi</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Evento</servlet-name>
