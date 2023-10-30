@@ -6,7 +6,6 @@ package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
-import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.framework.data.DataException;
 import java.sql.Date;
 import java.util.List;
@@ -21,7 +20,7 @@ public interface EventoDAO {
     
     Calendario createCalendario();
     
-    Evento getEvento(Integer key) throws DataException;
+    Evento getEvento(int key) throws DataException;
     
     List<Evento> getEventiResponsabile(String email) throws DataException;
 
@@ -40,6 +39,8 @@ public interface EventoDAO {
     Calendario getCalendario(int evento_key, Date giorno) throws DataException;
 
     void deleteEvento(Calendario calendario, boolean singolo) throws DataException;
+    
+    void storeEvento(Evento evento)throws DataException;
     
     void storeCalendario(Calendario calendario) throws DataException;
 

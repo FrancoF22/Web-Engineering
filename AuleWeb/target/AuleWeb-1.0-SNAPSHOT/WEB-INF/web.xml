@@ -115,6 +115,10 @@
         <servlet-name>ListaDipartimenti</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.Home</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AggiungiEvento</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.AggiungiEvento</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaDipartimenti</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -206,6 +210,10 @@
     <servlet-mapping>
         <servlet-name>GestioneGruppo</servlet-name>
         <url-pattern>/modifica-gruppo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AggiungiEvento</servlet-name>
+        <url-pattern>/aggiungiEvento</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
