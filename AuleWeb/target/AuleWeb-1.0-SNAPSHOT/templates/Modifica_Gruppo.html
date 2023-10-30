@@ -1,16 +1,13 @@
-
-<link rel="stylesheet" href="style/admin-gruppo.css" type="text/css"/>
-
-
+<link rel="stylesheet" href="style/admin-gruppo.css" type="text/css" />
 <form action="gruppo" method="post">
     <span class="admin-gruppo-text04"><span>Nome gruppo</span></span>
-    <input type="hidden" name="gruppo_id" value="${gruppo_modifica.key}">
+    <input type="hidden" name="gruppo_id" value="<#if gruppo_modifica?has_content>${gruppo_modifica.key}</#if>">
     <div class="Admin-gruppo_nome">
-        <input type="text" name="nome" value="${gruppo_modifica.nome?if_exists}">
+        <input type="text" name="nome" value="<#if gruppo_modifica?has_content>${gruppo_modifica.nome}</#if>">
     </div>
     <span class="admin-gruppo-text06"><span>Tipologia</span></span>
     <div class="admin-tipologia-gruppo">
-        <input type="text" name="tipologia" value="${gruppo_modifica.tipogruppo?if_exists}">
+        <input type="text" name="tipologia" value="<#if gruppo_modifica?has_content>${gruppo_modifica.tipogruppo}</#if>">
     </div>
     <span class="admin-gruppo-text08"><span>Dipartimento</span></span>
     <div class="admin-dipartimento-gruppo">
@@ -20,7 +17,7 @@
             <option value="${p.nome}" <#if gruppo_modifica.polo?? && gruppo_modifica.polo.nome == p.nome>selected</#if>>${p.nome}</option>
             </#list>
         </select>
-    </div>
+    </div> 
     <span class="admin-gruppo-text10"><span>Descrizione</span></span>
     <div class="admin-gruppo-descrizione">
         <input type="text" name="descrizione" value="${gruppo_modifica.descrizione?if_exists}">
@@ -42,7 +39,7 @@
             <th>Capienza</th>
             <th>Numero di prese elettriche</th>
             <th>Numero di prese di rete</th>
-            <th>Responsabile</th>
+            <th>Professore</th>
             <th>Attrezzature</th>
             <th>Azione</th>
         </tr>
@@ -88,7 +85,7 @@
             <th>Capienza</th>
             <th>Numero di prese elettriche</th>
             <th>Numero di prese di rete</th>
-            <th>Responsabile</th>
+            <th>Professore</th>
             <th>Attrezzature</th>
             <th>Azione</th>
         </tr>
@@ -118,7 +115,7 @@
 </#if>
 </#if>
 </div>
-</div>
 <div>
     <a href="modifica-gruppo"><button class="button">Indietro</button></a>
 </div>
+
