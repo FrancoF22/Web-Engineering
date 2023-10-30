@@ -1,17 +1,33 @@
 <!-- collegare eventi (info.html) nell href -->
 <style>
-
-    .calendar-container {
-        float: right; /* Posiziona il contenitore del calendario a destra */
-        width: 300px; /* Imposta la larghezza desiderata del contenitore */
-        margin-left: 20px; /* Aggiunge uno spazio a sinistra per separarlo dal contenuto principale */
+    /* stile del calendario e eventi*/
+    .calendar-and-events-container {
+        display: flex; /* Utilizza il flexbox per allineare gli elementi */
+        align-items: flex-start; /* Allinea gli elementi in alto */
+    }
+    /* stile del container degli eventi */
+    .events-container {
+        width: 250px; /* Imposta la larghezza desiderata per il container degli eventi */
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-right: 20px; /* Aggiunge uno spazio a destra per separare il container degli eventi dal calendario */
     }
 
-    .current-day {
-        background-color: #ffff99; /* Cambia il colore di sfondo per evidenziare il giorno corrente */
-        font-weight: bold; /* Opzionale: cambia lo stile del testo per rendere il giorno corrente più evidente */
+    .events-container h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
+    .events-container ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .events-container li {
+        margin-bottom: 5px;
+    }
+
+    /* layout del calendario */
     #calendar {
         width: 300px;
         border: 1px solid #ccc;
@@ -31,26 +47,73 @@
         gap: 5px;
         padding: 10px;
     }
+
+    .current-day {
+        background-color: #ffff99;
+        font-weight: bold;
+    }
+
+    /* stile del pulsante Data Corrente */
+    #currentDateButton {
+        background-color: #007bff; /* Cambia il colore di sfondo */
+        color: #fff; /* Cambia il colore del testo */
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    #currentDateButton:hover {
+        background-color: #0056b3; /* Cambia il colore di sfondo al passaggio del mouse */
+    }
+
+    /* stile tabella */
+    .custom-table {
+        border-collapse: collapse; /* Combina i bordi delle celle adiacenti */
+        width: 100%; /* Imposta la larghezza della tabella al 100% del contenitore */
+    }
+
+    .custom-table th,
+    .custom-table td {
+        border: 1px solid #ddd; /* Aggiungi un bordo di 1px a tutte le celle */
+        padding: 8px; /* Aggiungi spaziatura interna alle celle */
+        text-align: left; /* Allinea il testo a sinistra nelle celle */
+    }
+
+    .custom-table th {
+        background-color: #f2f2f2; /* Sfondo grigio per le intestazioni */
+        font-weight: bold; /* Testo in grassetto per le intestazioni */
+    }
 </style>
-<div class="calendar-container">
-    <div id="calendar">
-        <div class="header">
-            <button id="prevMonth">&lt;</button>
-            <h1 id="currentMonth"></h1>
-            <button id="nextMonth">&gt;</button>
-        </div>
-        <div class="days">
-            <!-- Inserire qui i giorni del mese -->
-        </div>
-    </div>
-</div>
 
 <div class="home-container">
 
-    <div class="home-home">
+    <div class="calendar-and-events-container">
+        <div class="events-container">
+            <!-- Inserisci qui la visualizzazione degli eventi del giorno -->
+            <h2>Eventi di Oggi</h2>
+            <ul>
+                <li>Evento 1</li>
+                <li>Evento 2</li>
+                <!-- Aggiungi gli altri eventi del giorno qui -->
+            </ul>
+        </div>
 
+        <div id="calendar">
+            <button id="currentDateButton">Data Corrente</button>
+            <div class="header">
+                <button id="prevMonth">&lt;</button>
+                <h1 id="currentMonth"></h1>
+                <button id="nextMonth">&gt;</button>
+            </div>
+            <div class="days">
+                <!-- Inserire qui i giorni del mese -->
+            </div>
+        </div>
+    </div>
+
+    <div class="home-home">
         <div class="lower">
-            <table>
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -89,10 +152,9 @@
                     </#if>
                 </tbody>            
             </table>
-
         </div>
-
     </div>
+
 </div>
 
 <script>
@@ -101,6 +163,7 @@
         const nextMonthButton = document.getElementById('nextMonth');
         const currentMonthElement = document.getElementById('currentMonth');
         const daysContainer = document.querySelector('.days');
+        const currentDateButton = document.getElementById('currentDateButton'); // Seleziona il pulsante "Data Corrente"
 
         let currentDate = new Date();
 
@@ -142,7 +205,10 @@
             currentDate.setMonth(currentDate.getMonth() + 1);
             renderCalendar();
         });
+
+        currentDateButton.addEventListener('click', function () {
+            currentDate = new Date(); // Reimposta la data corrente
+            renderCalendar();
+        });
     });
-
-
 </script>

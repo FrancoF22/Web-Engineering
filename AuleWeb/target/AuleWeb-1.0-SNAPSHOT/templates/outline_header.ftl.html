@@ -1,12 +1,45 @@
+<style>
+    .home-univaq-logo {
+        display: inline-block; /* Rende il logo un elemento inline-block */
+        width: 100px; /* Imposta la larghezza desiderata del logo */
+        height: auto; /* Imposta l'altezza in base alla larghezza per mantenere le proporzioni originali */
+        vertical-align: middle; /* Allinea verticalmente il logo al centro */
+        margin-right: 10px; /* Aggiunge uno spazio a destra per separare il logo dal testo */
+    }
+
+    .header-content {
+        display: inline-block; /* Rende il contenuto del titolo un elemento inline-block */
+    }
+
+    .logo-text {
+        font-size: 24px; /* Imposta la dimensione del testo del titolo */
+        font-weight: bold; /* Imposta lo stile del testo in grassetto, se necessario */
+    }
+
+</style>
+
 <div class="row" id="header">
-    <div class="sixteen columns">Aule Web
-        <div class="subtitle">${page_title!"Untitled page"}</div>
-    </div>
-    <div class="logininfo">
-        <#if logininfo??>
-        <p class="logged-in">${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)</p>
-        <#else>
-        <p class="not-logged-in"><em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)</p>
-        </#if>
+    <div class="sixteen columns">
+        <a href="home" style="float: left;">
+            <img
+                alt="UnivaqLogo1852"
+                src="images/UnivAQ_logoC.png"
+                class="home-univaq-logo"
+                />
+        </a>
+        <div class="header-content">
+            <span class="logo-text">Aule Web</span>
+            <div class="subtitle">${page_title!"Untitled page"}</div>
+        </div>
+
+        <div class="logininfo" style="float: right;"> <!-- Utilizza float per spostare logininfo a destra -->
+            <#if logininfo??>
+            <p class="logged-in">${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)</p>
+            <#else>
+            <p class="not-logged-in"><em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)</p>
+            </#if>
+        </div>
     </div>
 </div>
+
+

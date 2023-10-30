@@ -149,8 +149,6 @@ select.medium,input.medium {
     font-weight: bold;
 }
 
-
-
 @media only screen and (max-width: 959px) {
     body,html {
         font-size: 10pt;
