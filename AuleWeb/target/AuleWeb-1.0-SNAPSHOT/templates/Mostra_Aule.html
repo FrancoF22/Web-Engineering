@@ -48,6 +48,15 @@
         padding: 10px;
     }
 
+    .day {
+        cursor: pointer;
+        padding: 5px;
+        border: 1px solid #ccc;
+        background-color: #f0f0f0;
+        text-align: center;
+        user-select: none; /* Per evitare la selezione accidentale del testo */
+    }
+
     .current-day {
         background-color: #ffff99;
         font-weight: bold;
@@ -91,11 +100,12 @@
         <div class="events-container">
             <!-- Inserisci qui la visualizzazione degli eventi del giorno -->
             <h2>Eventi di Oggi</h2>
-            <ul>
-                <li>Evento 1</li>
-                <li>Evento 2</li>
-                <!-- Aggiungi gli altri eventi del giorno qui -->
+            <ul id="eventList">
+                <!-- Gli eventi verranno visualizzati qui -->
             </ul>
+            <div id="eventDetails">
+                <!-- Dettagli degli eventi verranno visualizzati qui -->
+            </div>
         </div>
 
         <div id="calendar">
@@ -164,26 +174,28 @@
         const currentMonthElement = document.getElementById('currentMonth');
         const daysContainer = document.querySelector('.days');
         const currentDateButton = document.getElementById('currentDateButton'); // Seleziona il pulsante "Data Corrente"
+        const eventList = document.getElementById('eventList');
+        const eventDetails = document.getElementById('eventDetails'); // Nuovo elemento per i dettagli degli eventi
+
+        // Ottieni l'anno corrente dalla data locale
+        const currentYear = new Date().getFullYear();
 
         let currentDate = new Date();
 
         function renderCalendar() {
-            const year = currentDate.getFullYear();
+            const year = currentYear; // Utilizza l'anno corrente
             const month = currentDate.getMonth();
             const options = {year: 'numeric', month: 'long'};
-
             currentMonthElement.textContent = currentDate.toLocaleDateString('it-IT', options);
-
             // Pulisci il container dei giorni
             daysContainer.innerHTML = '';
-
             const today = new Date(); // Ottieni la data odierna
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-
             // Aggiungi i giorni del mese
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.textContent = day;
+                dayElement.classList.add('day'); // Aggiungi la classe "day" per identificare i giorni
 
                 // Aggiungi la classe "current-day" se il giorno è uguale a oggi
                 if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
@@ -195,20 +207,82 @@
         }
 
         renderCalendar();
-
         prevMonthButton.addEventListener('click', function () {
             currentDate.setMonth(currentDate.getMonth() - 1);
             renderCalendar();
         });
-
         nextMonthButton.addEventListener('click', function () {
             currentDate.setMonth(currentDate.getMonth() + 1);
             renderCalendar();
         });
-
         currentDateButton.addEventListener('click', function () {
             currentDate = new Date(); // Reimposta la data corrente
             renderCalendar();
         });
+
+        // Aggiungi un listener per il click sui giorni del calendario
+        daysContainer.addEventListener('click', function (event) {
+            const clickedDayElement = event.target;
+            if (clickedDayElement.classList.contains('day')) {
+                const selectedDate = new Date(currentDate);
+                selectedDate.setDate(parseInt(clickedDayElement.textContent)); // Imposta il giorno selezionato
+
+                // Visualizza gli eventi per la data selezionata
+                renderEventsForDay(selectedDate);
+            }
+        });
+
+        function renderEventsForDay(selectedDate) {
+            // Simula il recupero degli eventi dal backend o da un'altra fonte dati
+            const events = getEventsForDate(selectedDate);
+
+            // Aggiungi questo console.log per verificare i dati degli eventi
+            console.log('Eventi per la data selezionata:', events);
+
+            // Visualizza gli eventi nell'elenco degli eventi
+            eventList.innerHTML = '';
+            if (events.length > 0) {
+                events.forEach(event => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = event;
+                    eventList.appendChild(listItem);
+                });
+            } else {
+                const noEventItem = document.createElement('li');
+                noEventItem.textContent = 'Nessun evento per questo giorno.';
+                eventList.appendChild(noEventItem);
+            }
+
+            // Visualizza i dettagli degli eventi nell'area degli eventDetails
+            eventDetails.innerHTML = '';
+            if (events.length > 0) {
+                events.forEach(event => {
+                    const eventDetail = document.createElement('div');
+                    eventDetail.textContent = event;
+                    eventDetails.appendChild(eventDetail);
+                });
+            } else {
+                const noEventDetail = document.createElement('div');
+                noEventDetail.textContent = 'Nessun evento per questo giorno.';
+                eventDetails.appendChild(noEventDetail);
+            }
+        }
+
+        // Funzione di esempio per ottenere gli eventi per una data specifica
+        function getEventsForDate(date) {
+            // Simula il recupero degli eventi dal backend o da un database
+            const events = {
+                '2023-10-30': ['Evento 1', 'Evento 2'],
+                '2023-10-31': ['Evento 3'],
+                // Aggiungi altri dati sugli eventi qui
+            };
+            const formattedDate = formatDate(date);
+            return events[formattedDate] || [];
+        }
+
+        function formatDate(date) {
+            const formattedDate = date.toLocaleDateString('it-IT', {year: 'numeric', month: 'long', day: 'numeric'});
+            return formattedDate;
+        }
     });
 </script>
