@@ -1,4 +1,3 @@
-
 <link href="style/gestisci_gruppi.css" rel="stylesheet" />
 <div class="home-container">
     <div class="lower">
@@ -27,10 +26,10 @@
                     </#if> 
                 </tbody>
             </table>
-
         </div>
+
         <div>
-            <table>
+            <table class="table-spacing">
                 <thead>
                     <tr>
                         <th colspan="3" class="table-header">DIPARTIMENTI</th>
@@ -47,7 +46,7 @@
                     <tr>
                         <td>${dipartimento.nome}</td>
                         <td>${dipartimento.descrizione}</td>
-                        <td><a href="gruppo?id=${dipartimento.id}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${dipartimento.id}"><button name="elimina">Elimina</button></a></td>
+                        <td><a href="gruppo?id=${dipartimento.key}"><button name="modifica">Modifica</button></a><a href="modifica-gruppo?id=${dipartimento.key}"><button name="elimina">Elimina</button></a></td>
                     </tr>
                     </#list>
                     </#if>
@@ -59,4 +58,5 @@
         <a href="modifica-gruppo?g=0"><button class="my-button">Aggiungi gruppo</button></a>
 
     </div>
+</div>
 

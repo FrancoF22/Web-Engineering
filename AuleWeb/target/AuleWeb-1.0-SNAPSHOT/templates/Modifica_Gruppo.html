@@ -1,121 +1,140 @@
-<link rel="stylesheet" href="style/admin-gruppo.css" type="text/css" />
-<form action="gruppo" method="post">
-    <span class="admin-gruppo-text04"><span>Nome gruppo</span></span>
-    <input type="hidden" name="gruppo_id" value="<#if gruppo_modifica?has_content>${gruppo_modifica.key}</#if>">
-    <div class="Admin-gruppo_nome">
-        <input type="text" name="nome" value="<#if gruppo_modifica?has_content>${gruppo_modifica.nome}</#if>">
-    </div>
-    <span class="admin-gruppo-text06"><span>Tipologia</span></span>
-    <div class="admin-tipologia-gruppo">
-        <input type="text" name="tipologia" value="<#if gruppo_modifica?has_content>${gruppo_modifica.tipogruppo}</#if>">
-    </div>
-    <span class="admin-gruppo-text08"><span>Dipartimento</span></span>
-    <div class="admin-dipartimento-gruppo">
-        <select name="polo" <#if tipo>required</#if>>
-            <option value="null" selected>Nessun Polo</option>
-            <#list Polo as p>
-            <option value="${p.nome}" <#if gruppo_modifica.polo?? && gruppo_modifica.polo.nome == p.nome>selected</#if>>${p.nome}</option>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style/crea_modifica_gruppo.css" type="text/css" />
+<title>Gestione Gruppo</title>
+
+<div class="gruppo-container">
+    <form action="gruppo" method="post">
+        <fieldset>
+            <legend>Informazioni sul Gruppo</legend>
+            <input type="hidden" name="gruppo_id" value="<#if gruppo_modifica?has_content>${gruppo_modifica.key}</#if>">
+
+            <div class="input-container">
+                <label for="nome">Nome gruppo:</label>
+                <input type="text" id="nome" name="nome" value="<#if gruppo_modifica?has_content>${gruppo_modifica.nome}</#if>" required>
+            </div>
+
+            <div class="input-container">
+                <label for="tipologia">Tipologia:</label>
+                <input type="text" id="tipologia" name="tipologia" value="<#if gruppo_modifica?has_content>${gruppo_modifica.tipogruppo}</#if>" required>
+            </div>
+
+            <div class="input-container">
+                <label for="polo">Dipartimento:</label>
+                <select id="polo" name="polo" required>
+                    <option value="null">Nessun Polo</option>
+                    <#list Polo as p>
+                    <option value="${p.nome}" <#if gruppo_modifica.polo?? && gruppo_modifica.polo.nome == p.nome>selected</#if>>${p.nome}</option>
+                    </#list>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label for="descrizione">Descrizione:</label>
+                <textarea id="descrizione" name="descrizione" rows="4">${gruppo_modifica.descrizione?if_exists}</textarea>
+            </div>
+
+            <div class="button-container">
+                <input type="submit" class="button" value="Salva">
+            </div>
+        </fieldset>
+    </form>
+
+    <#if tipo>
+    <section>
+        <h2>Aule presenti</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Luogo</th>
+                    <th>Edificio</th>
+                    <th>Piano</th>
+                    <th>Capienza</th>
+                    <th>Numero di prese elettriche</th>
+                    <th>Numero di prese di rete</th>
+                    <th>Professore</th>
+                    <th>Attrezzature</th>
+                    <th>Azione</th>
+                </tr>
+            </thead>
+            <tbody>
+                <#if aule_gruppo?size > 0>
+                <#list aule_gruppo as aula>
+                <tr>
+                    <td>${aula.nome}</td>
+                    <td>${aula.luogo}</td>
+                    <td>${aula.edificio}</td>
+                    <td>${aula.piano}</td>
+                    <td>${aula.capienza}</td>
+                    <td>${aula.PreseElettriche}</td>
+                    <td>${aula.PreseRete}</td>
+                    <td><#if aula.professore??>${aula.professore.email}</#if></td>
+                    <td>
+                        <#list aula.attrezzature as att>
+                        ${att.nome},
+                        </#list>
+                    </td>
+                    <td><a href="gruppo?id_aula=${aula.id}&id=${gruppo_modifica.id}"><button class="Bottone-tabella">Elimina</button></a></td>
+                </tr>
+                </#list>
+                </#if>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Aggiungi Aule</h2>
+        <p>Filtra per Luogo: </p>
+        <div class="filter-buttons">
+            <#if luoghi?size > 0>
+            <#list luoghi as luogo>
+            <!-- <a href="gruppo?luogo=${luogo}&id=${gruppo_modifica.id}"><button name="cerca">${luogo}</button></a> -->
+            <a href="gruppo?luogo=${luogo}&id=${gruppo_modifica.id}"><button class="button">${luogo}</button></a>
             </#list>
-        </select>
-    </div> 
-    <span class="admin-gruppo-text10"><span>Descrizione</span></span>
-    <div class="admin-gruppo-descrizione">
-        <input type="text" name="descrizione" value="${gruppo_modifica.descrizione?if_exists}">
-    </div>
-    <div class="Bottone-salva-gruppo">
-        <input type="submit" class="button" value="Salva" name="salva">
-    </div>
-</form>
+            </#if>
+            <#if AuleFromLuogo?has_content>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Edificio</th>
+                        <th>Piano</th>
+                        <th>Capienza</th>
+                        <th>Numero di prese elettriche</th>
+                        <th>Numero di prese di rete</th>
+                        <th>Professore</th>
+                        <th>Attrezzature</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <#if AuleFromLuogo?size > 0>
+                    <#list AuleFromLuogo as newaula>
+                    <tr>
+                        <td>${newaula.nome}</td>
+                        <td>${newaula.edificio}</td>
+                        <td>${newaula.piano}</td>
+                        <td>${newaula.capienza}</td>
+                        <td>${newaula.PreseElettriche}</td>
+                        <td>${newaula.PreseRete}</td>
+                        <td><#if newaula.professore??>${newaula.professore.email}</#if></td>
+                        <td>
+                            <#list newaula.attrezzature as newatt>
+                            ${newatt.nome},
+                            </#list>
+                        </td>
+                        <td><a href="gruppo?newid_aula=${newaula.id}&id=${gruppo_modifica.id}"><button class="Bottone-tabella">Aggiungi</button></a></td>
+                    </tr>
+                    </#list>
+                    </#if>
+                </tbody>
+            </table>
+            </#if>
+            </#if>
 
-<#if tipo>
-<p class="table-header">Aule presenti</p>
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Luogo</th>
-            <th>Edificio</th>
-            <th>Piano</th>
-            <th>Capienza</th>
-            <th>Numero di prese elettriche</th>
-            <th>Numero di prese di rete</th>
-            <th>Professore</th>
-            <th>Attrezzature</th>
-            <th>Azione</th>
-        </tr>
-    </thead>
-    <tbody>
-        <#if aule_gruppo?size > 0>
-        <#list aule_gruppo as aula>
-        <tr>
-            <td>${aula.nome}</td>
-            <td>${aula.luogo}</td>
-            <td>${aula.edificio}</td>
-            <td>${aula.piano}</td>
-            <td>${aula.capienza}</td>
-            <td>${aula.PreseElettriche}</td>
-            <td>${aula.PreseRete}</td>
-            <td><#if aula.professore??>${aula.professore.email}</#if></td>
-            <td>
-                <#list aula.attrezzature as att>
-                ${att.nome},
-                </#list>
-            </td>
-            <td><a href="gruppo?id_aula=${aula.id}&id=${gruppo_modifica.id}"><button class="Bottone-tabela">Elimina</button></a></td>
-        </tr>
-        </#list>
-        </#if>
-    </tbody>
-</table>
-
-<p class="table-header">Aggiungi Aule</p>
-<p>Filtra per Luogo: </p>
-<#if luoghi?size > 0>
-<#list luoghi as luogo>
-<a href="gruppo?luogo=${luogo}&id=${gruppo_modifica.id}"><button name="cerca">${luogo}</button></a>
-</#list>
-</#if>
-<#if AuleFromLuogo?has_content>
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Edificio</th>
-            <th>Piano</th>
-            <th>Capienza</th>
-            <th>Numero di prese elettriche</th>
-            <th>Numero di prese di rete</th>
-            <th>Professore</th>
-            <th>Attrezzature</th>
-            <th>Azione</th>
-        </tr>
-    </thead>
-    <tbody>
-        <#if AuleFromLuogo?size > 0>
-        <#list AuleFromLuogo as newaula>
-        <tr>
-            <td>${newaula.nome}</td>
-            <td>${newaula.edificio}</td>
-            <td>${newaula.piano}</td>
-            <td>${newaula.capienza}</td>
-            <td>${newaula.PreseElettriche}</td>
-            <td>${newaula.PreseRete}</td>
-            <td><#if newaula.professore??>${newaula.professore.email}</#if></td>
-            <td>
-                <#list newaula.attrezzature as newatt>
-                ${newatt.nome},
-                </#list>
-            </td>
-            <td><a href="gruppo?newid_aula=${newaula.id}&id=${gruppo_modifica.id}"><button class="Bottone-tabela">Aggiungi</button></a></td>
-        </tr>
-        </#list>
-        </#if>
-    </tbody>
-</table>
-</#if>
-</#if>
-</div>
-<div>
+    </section>
     <a href="modifica-gruppo"><button class="button">Indietro</button></a>
 </div>
+
 

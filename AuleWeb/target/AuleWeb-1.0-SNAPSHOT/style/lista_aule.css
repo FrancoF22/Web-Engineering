@@ -4,12 +4,13 @@ body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    margin: 0;
 }
 
 .container {
     width: 80%;
     margin: auto;
-    overflow: hidden;
+    overflow-x: auto; /* Gestisce lo scorrimento orizzontale quando necessario */
 }
 
 .page-title {
@@ -19,7 +20,7 @@ body {
 }
 
 /* Stile dei bottoni */
-.my-button {
+.my-button, .Bottone-tabella {
     display: inline-block;
     text-decoration: none;
     background-color: #007bff;
@@ -27,10 +28,12 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
-.my-button:hover {
+.my-button:hover, .Bottone-tabella:hover {
     background-color: #0056b3;
+    text-decoration: underline; /* Aggiunto per il .Bottone-tabella */
 }
 
 .table-controls {
@@ -42,31 +45,67 @@ body {
 .my-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 25px 0;
+    margin-top: 20px;
 }
 
-.my-table th,
-.my-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+.my-table th, .my-table td {
+    min-width: 120px;
+    max-width: 200px;
+    word-wrap: break-word;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    font-size: 1rem;
     text-align: left;
 }
 
-.my-table th {
-    background-color: #f0f0f0;
+.my-table thead th {
+    background-color: #e9e9e9;
+}
+
+.my-table th.small, .my-table td.small {
+    width: 50px;
+}
+
+.my-table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .my-table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Stile per i bottoni all'interno della tabella */
-.Bottone-tabela {
-    text-decoration: none;
-    color: #007bff;
-    cursor: pointer;
+#dataTable tr:hover {
+    background-color: #f2f2f2;
 }
 
-.Bottone-tabela:hover {
-    text-decoration: underline;
+/* Responsività */
+@media screen and (max-width: 768px) {
+    .my-table th:nth-child(6), .my-table td:nth-child(6),
+    .my-table th:nth-child(7), .my-table td:nth-child(7) {
+        display: none; /* Nasconde colonne specifiche su schermi più piccoli */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .my-table thead, .my-table th {
+        display: none;
+    }
+    .my-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    .my-table td::before {
+        content: attr(data-title);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
 }

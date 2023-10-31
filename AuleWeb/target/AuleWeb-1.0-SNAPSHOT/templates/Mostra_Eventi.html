@@ -6,12 +6,14 @@
 
     <div class="lower">
         <label>Filtra per data:</label>
-        <form action="eventi?id_aula=${aulaID}" method="post">
+        <#if aula??>
+        <form action="eventi?id=${eventi.key}" method="post">
             <input style="border: solid 1px black ;" type="date" id="filtroData" name="datepick" required>
             <input style=" border: solid 1px black; background-color: skyblue; border-radius: 7px;  " type="submit" value="Eventi settimana" name="button1">
             <input style=" border: solid 1px black; background-color: skyblue; border-radius: 7px;  " type="submit" value="Eventi del giorno" name="button2">
         </form>
-        <a href="eventi?id_aula=${aulaID}"><button style="border: solid 1px black; background-color: skyblue; border-radius: 7px;  ">Tutti</button></a>
+        </#if>
+        <a href="eventi?id_aula=${aula!'default_value'}"><button style="border: solid 1px black; background-color: skyblue; border-radius: 7px;  ">Tutti</button></a>
 
         <table id="dataTable" >
             <thead>
@@ -45,7 +47,7 @@
             </tbody>            
         </table>
         <button class="my-button" id="downloadBtn" >Scarica in CSV</button>
-        <a  href="aule?id_gruppo=${id}"><button class="my-button">Indietro</button></a>
+        <a  href="aule?id_gruppo=${gruppo.key}"><button class="my-button">Indietro</button></a>
     </div>
 </div>
 
