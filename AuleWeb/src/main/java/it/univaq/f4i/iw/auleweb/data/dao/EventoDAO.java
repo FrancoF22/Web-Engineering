@@ -8,6 +8,7 @@ import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.framework.data.DataException;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public interface EventoDAO {
     Evento getEvento(int key) throws DataException;
     
     List<Evento> getEventiResponsabile(String email) throws DataException;
+    
+    List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException;
 
     List<Calendario> getCalendarioEvento(int evento_key) throws DataException;    //ritorna le ripetizioni dell'evento sul calendario
     

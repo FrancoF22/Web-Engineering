@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import java.util.List;
  */
 public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
-    private PreparedStatement sEventoById, sEventoByNome, sEventiByTipo, sEventiByResponsabile;
+    private PreparedStatement sEventoById, sEventoByNome, sEventiByTipo, sEventiByResponsabile, sEventoByGO;
     private PreparedStatement sGiorniEvento, sEventoSingolo, sCalendarioById;
     private PreparedStatement sEventiAulaSettCur, sEventiAulaSettimana, sEventiAulaOggi, sAllEventiAula;
     private PreparedStatement sEventiCorsoOggi, sEventiCorso, sEventiGruppo;
@@ -47,6 +48,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByTipo = connection.prepareStatement("SELECT id FROM evento WHERE tipologia=?");
             sEventiByResponsabile = connection.prepareStatement("SELECT id FROM evento WHERE id_professore=?");
 
+            sEventoByGO = connection.prepareStatement("SELECT evento.id FROM evento JOIN calendario as c where c.giorno = ? AND c.ora_inizio = ? AND c.id_aula = ?");
+            
             sGiorniEvento = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_evento=?");
             sEventoSingolo = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id_evento=? AND giorno=?");
             sCalendarioById = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id=");
@@ -82,6 +85,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiByTipo.close();
             sEventiByResponsabile.close();
 
+            sEventoByGO.close();
+            
             sGiorniEvento.close();
             sEventoSingolo.close();
             sCalendarioById.close();
@@ -197,6 +202,24 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             }
         }
         return e;
+    }
+    
+    @Override
+    public List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException {
+       List<Evento> result = new ArrayList();
+        try {
+            sEventoByGO.setDate(1, g);
+            sEventoByGO.setTime(2,t);
+            sEventoByGO.setInt(3, aula_key);
+            try (ResultSet rs = sEventoByGO.executeQuery()) {
+                while (rs.next()) {
+                    result.add( getEvento(rs.getInt("id")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Events", ex);
+        }
+       return result;
     }
     
     //permette di ottenere l'evento singolo nel calendario
