@@ -96,10 +96,6 @@
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaEventi</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Evento</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.CreaEvento</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>GestioneEvento</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.GestisciEvento</servlet-class>
     </servlet>
@@ -182,10 +178,6 @@
     <servlet-mapping>
         <servlet-name>ListaEventi</servlet-name>
         <url-pattern>/eventi</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Evento</servlet-name>
-        <url-pattern>/evento</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GestioneEvento</servlet-name>

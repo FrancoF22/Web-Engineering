@@ -3,7 +3,6 @@ it\univaq\f4i\iw\auleweb\data\model\Aula.class
 it\univaq\f4i\iw\auleweb\controller\GestisciGruppi.class
 it\univaq\f4i\iw\auleweb\data\dao\EventoDAO_MySQL.class
 it\univaq\f4i\iw\framework\data\DataException.class
-it\univaq\f4i\iw\auleweb\controller\CreaEvento.class
 it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO_MySQL.class
 it\univaq\f4i\iw\framework\result\StreamResult.class
 it\univaq\f4i\iw\auleweb\data\impl\EventoImpl.class
@@ -30,7 +29,6 @@ it\univaq\f4i\iw\framework\data\DAO.class
 it\univaq\f4i\iw\auleweb\controller\Logout.class
 it\univaq\f4i\iw\framework\data\OptimisticLockException.class
 it\univaq\f4i\iw\auleweb\controller\MostraEventi.class
-it\univaq\f4i\iw\auleweb\controller\CreaEvento$1.class
 it\univaq\f4i\iw\auleweb\data\model\Utente.class
 it\univaq\f4i\iw\auleweb\data\dao\ProfessoreDAO.class
 it\univaq\f4i\iw\auleweb\data\proxy\Gruppo_AulaProxy.class
