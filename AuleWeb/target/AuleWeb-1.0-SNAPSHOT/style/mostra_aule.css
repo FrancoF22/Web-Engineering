@@ -12,7 +12,7 @@ body {
 /* Stili per il contenitore del calendario e degli eventi */
 .calendar-and-events-container {
     display: flex;
-    flex-wrap: nowrap; /* Impedisce agli elementi di andare a capo */
+    flex-wrap: wrap; /* Ora permette agli elementi di andare a capo quando necessario */
     justify-content: space-between;
     margin: 30px auto; /* Centrato con margini più ampi */
     max-width: 1200px; /* Massima larghezza per evitare che sia troppo esteso su schermi grandi */
@@ -20,18 +20,37 @@ body {
     box-sizing: border-box; /* Assicura che padding e bordi siano inclusi nella larghezza */
 }
 
-.events-container, #calendar {
+.events-container,
+.time-container,
+#calendar {
+    flex: 1; /* Ora i contenitori occupano la stessa quantità di spazio disponibile */
     border: 1px solid #ccc;
     border-radius: 10px; /* Bordi più arrotondati */
     padding: 20px;
-    width: 48%; /* Larghezza */
-    margin: 1%;
+    margin: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     background: linear-gradient(to bottom, #f9f9f9, #ffffff);
 }
 
+.events-container h2,
+.time-container h2 {
+    font-size: 16px; /* Dimensione del titolo */
+}
+
+#eventList,
+#timeList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#eventList li,
+#timeList li {
+    margin-bottom: 5px;
+}
+
 @media (max-width: 767px) {
-    .events-container, #calendar {
+    .events-container, .time-container, #calendar {
         width: 100%; /* Permette che i contenitori occupino l'intera larghezza su schermi più piccoli */
         margin-top: 20px; /* Distanziamento tra i contenitori */
     }
@@ -47,10 +66,10 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-
 }
 
-#calendar h1, .events-container h2 {
+#calendar h1,
+.events-container h2 {
     color: #0056b3;
 }
 
@@ -75,7 +94,7 @@ body {
     transform: translateY(-3px); /* Leggero effetto "sollevamento" */
 }
 
-/* Stili per la tabella delle aule */
+/* Rimozione delle regole di stile duplicate per la tabella delle aule */
 .custom-table {
     width: 100%;
     border-collapse: collapse;
@@ -176,5 +195,4 @@ body {
 .header h1 {
     margin: 0 20px; /* Aggiunge spazio tra il testo e i bottoni */
     color: #0056b3; /* Manteniamo il colore coerente */
-    font-size: 1.5em; /* Aumenta leggermente la dimensione per enfasi */
-}
+    font-size: 1.5em

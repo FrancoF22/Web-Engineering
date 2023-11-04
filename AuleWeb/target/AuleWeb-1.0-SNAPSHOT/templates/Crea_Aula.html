@@ -19,22 +19,22 @@
         <input type="text" name="edificio" id="edificio" value="${aula_modifica.edificio?if_exists}"><br>
 
         <label for="professore">Professore:</label>
-        <input type="text" name="professore" id="professore" <#if aula_modifica.professore??>value="${aula_modifica.professore.nome}"</#if>><br>
+        <input type="text" name="professore" id="professore" <#if aula_modifica.professore??>value="${aula_modifica.professore.nome} ${aula_modifica.professore.cognome}"</#if>><br>
 
         <label for="note">Note:</label>
-        <input type="text" name="note" id="note" value="${aula_modifica.note?if_exists}"><br>
+        <input type="text" name="nota" id="nota" value="${aula_modifica.nota?if_exists}"><br>
 
         <label for="capienza">Capienza:</label>
         <input type="text" name="capienza" id="capienza" value="${aula_modifica.capienza?if_exists}"><br>
 
         <label for="prese_elettriche">Prese Elettriche:</label>
-        <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula_modifica.PreseElettriche?if_exists}"><br>
+        <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula_modifica.preseElettriche?if_exists}"><br>
 
         <label for="piano">Piano:</label>
         <input type="text" name="piano" id="piano" value="${aula_modifica.piano?if_exists}"><br>
 
         <label for="prese_rete">Prese Rete:</label>
-        <input type="text" name="prese_rete" id="prese_rete" value="${aula_modifica.PreseRete?if_exists}"><br>
+        <input type="text" name="prese_rete" id="prese_rete" value="${aula_modifica.preseRete?if_exists}"><br>
 
         <table class="agiungi-evento-professore-text18">
             <thead>

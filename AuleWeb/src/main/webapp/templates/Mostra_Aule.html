@@ -15,6 +15,15 @@
             </div>
         </div>
 
+        <!-- Contenitore per l'orario del giorno -->
+        <div class="time-container">
+            <!-- Inserisci qui l'orario del giorno -->
+            <h2>Orario del Giorno</h2>
+            <ul id="timeList">
+                <!-- L'orario verrà visualizzato qui -->
+            </ul>
+        </div>
+
         <div id="calendar">
             <button id="currentDateButton">Data Corrente</button>
             <div class="header">
@@ -102,7 +111,11 @@
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.textContent = day;
-                dayElement.classList.add('day'); // Aggiungi la classe "day" per identificare i giorni
+                dayElement.classList.add('day');
+                // Aggiungi la classe "day" per identificare i giorni
+                const date = new Date(year, month, day);
+                dayElement.setAttribute('data-date', date.toISOString().split('T')[0]);
+
 
                 // Aggiungi la classe "current-day" se il giorno è uguale a oggi
                 if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
@@ -131,11 +144,12 @@
         daysContainer.addEventListener('click', function (event) {
             const clickedDayElement = event.target;
             if (clickedDayElement.classList.contains('day')) {
-                const selectedDate = new Date(currentDate);
-                selectedDate.setDate(parseInt(clickedDayElement.textContent)); // Imposta il giorno selezionato
+                const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
 
                 // Visualizza gli eventi per la data selezionata
                 renderEventsForDay(selectedDate);
+                // Aggiorna l'orario del giorno per la data selezionata
+                populateTimeList(selectedDate);
             }
         });
 
@@ -175,6 +189,20 @@
             }
         }
 
+        // Modifica la funzione per accettare un parametro date e filtrare l'orario per quella data
+        function populateTimeList(date) {
+            var timeList = document.getElementById("timeList");
+            timeList.innerHTML = ''; // Pulisci la lista prima di popolarla
+
+            // Filtra o genera l'orario per la data selezionata
+            var dailySchedule = getScheduleForDate(date);
+            dailySchedule.forEach(function (item) {
+                var li = document.createElement("li");
+                li.textContent = item.time + ": " + item.subject;
+                timeList.appendChild(li);
+            });
+        }
+
         // Funzione di esempio per ottenere gli eventi per una data specifica
         function getEventsForDate(date) {
             // Simula il recupero degli eventi dal backend o da un database
@@ -192,4 +220,34 @@
             return formattedDate;
         }
     });
+
+    // Array di oggetti per definire le fasce orarie
+    var schedule = [
+        {time: "08:30 - 09:30"},
+        {time: "09:30 - 10:30"},
+        {time: "10:30 - 11:30"},
+        {time: "11:30 - 12:30"},
+        {time: "12:30 - 13:30"},
+        {time: "13:30 - 14:30"},
+        {time: "14:30 - 15:30"},
+        {time: "15:30 - 16:30"},
+        {time: "16:30 - 17:30"},
+        {time: "17:30 - 18:30"},
+        {time: "18:30 - 19:30"},
+        {time: "19:30 - 20:30"},
+    ];
+
+    // Funzione di esempio per ottenere l'orario per una data specifica
+    function getScheduleForDate(date) {
+        // Simula il recupero dell'orario dal backend o da un database
+        // Qui dovresti sostituire questa logica con una che effettivamente recuperi i dati per la data specificata
+        const scheduleForDate = {
+            // ... (esempio di dati dell'orario, organizzati per data)
+        };
+        const formattedDate = date.toISOString().split('T')[0];
+        return scheduleForDate[formattedDate] || [];
+    }
+
+// Chiama la funzione per popolare l'orario del giorno al caricamento della pagina
+    window.addEventListener("DOMContentLoaded", populateTimeList);
 </script>
