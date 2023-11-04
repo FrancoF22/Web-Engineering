@@ -239,7 +239,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 } else {
                     uAula.setNull(10, java.sql.Types.INTEGER);
                 }
-
+                uAula.setInt(11,aula.getKey());
                 if (uAula.executeUpdate() == 0) {
                     throw new OptimisticLockException(aula);
                 } else {
