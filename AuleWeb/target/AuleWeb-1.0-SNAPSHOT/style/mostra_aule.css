@@ -195,4 +195,5 @@ body {
 .header h1 {
     margin: 0 20px; /* Aggiunge spazio tra il testo e i bottoni */
     color: #0056b3; /* Manteniamo il colore coerente */
-    font-size: 1.5em
+    font-size: 1.5em;
+}
