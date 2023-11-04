@@ -131,7 +131,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
                 }
                 uCorso.setString(1, corso.getNome());
                 uCorso.setString(2, corso.getDescrizione());
-
+                uCorso.setInt(11,corso.getKey());
                 if (uCorso.executeUpdate() == 0) {
                     throw new OptimisticLockException(corso);
                 } else {

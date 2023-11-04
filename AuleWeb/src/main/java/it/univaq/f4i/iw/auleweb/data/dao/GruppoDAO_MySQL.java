@@ -283,7 +283,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
                 uGruppo.setString(1, gruppo.getNome());
                 uGruppo.setString(2, gruppo.getDescrizione());
                 uGruppo.setObject(3, gruppo.getTipoGruppo());
-
+                uGruppo.setInt(4,gruppo.getKey());
                 if (uGruppo.executeUpdate() == 0) {
                     throw new OptimisticLockException(gruppo);
                 } else {

@@ -451,7 +451,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uEvento.setNull(5, java.sql.Types.INTEGER);
                 }
-
+                uEvento.setInt(6, evento.getKey());
                 if (uEvento.executeUpdate() == 0) {
                     throw new OptimisticLockException(evento);
                 } else {
@@ -513,7 +513,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 uCalendario.setDate(5, calendario.getGiornoFine());
                 uCalendario.setTime(6, calendario.getOraInizio());
                 uCalendario.setTime(7, calendario.getOraFine());
-
+                uCalendario.setInt(8, calendario.getKey());
                 if (uEvento.executeUpdate() == 0) {
                     throw new OptimisticLockException(calendario);
                 } else {

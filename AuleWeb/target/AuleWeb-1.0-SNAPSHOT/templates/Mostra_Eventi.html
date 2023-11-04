@@ -1,23 +1,21 @@
-
-
 <link href="style/mostra_eventi.css" rel="stylesheet" />
 <title>Aule web </title>
 <div class="container">
-
     <div class="lower">
         <label>Filtra per data:</label>
         <#if aula??>
-        <form action="eventi?id=${eventi.key}" method="post">
-            <input style="border: solid 1px black ;" type="date" id="filtroData" name="datepick" required>
-            <input style=" border: solid 1px black; background-color: skyblue; border-radius: 7px;  " type="submit" value="Eventi settimana" name="button1">
-            <input style=" border: solid 1px black; background-color: skyblue; border-radius: 7px;  " type="submit" value="Eventi del giorno" name="button2">
+        <!-- Assicurati di usare aula.key se stai filtrando per aula -->
+        <form action="eventi?id=${aula.key}" method="post">
+            <input style="border: solid 1px black;" type="date" id="filtroData" name="datepick" required>
+            <input style="border: solid 1px black; background-color: skyblue; border-radius: 7px;" type="submit" value="Eventi settimana" name="button1">
+            <input style="border: solid 1px black; background-color: skyblue; border-radius: 7px;" type="submit" value="Eventi del giorno" name="button2">
         </form>
         </#if>
-        <a href="eventi?id_aula=${aula!'default_value'}"><button style="border: solid 1px black; background-color: skyblue; border-radius: 7px;  ">Tutti</button></a>
+        <!-- Aggiunto controllo aula? prima di accedere alla chiave -->
+        <a href="eventi?id_aula=${aula!'default_value'}"><button style="border: solid 1px black; background-color: skyblue; border-radius: 7px;">Tutti</button></a>
 
-        <table id="dataTable" >
+        <table id="dataTable">
             <thead>
-
                 <tr>
                     <th>Data</th>
                     <th>Inizio</th>
@@ -30,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <#if (ListaEventi?size>0)>
+                <#if (ListaEventi?size > 0)>
                 <#list ListaEventi as calendario>
                 <tr>
                     <td>${calendario.giorno?date?string('dd-MM-yyyy')}</td>
@@ -39,15 +37,26 @@
                     <td>${calendario.aula.nome}</td>
                     <td>${calendario.evento.nome}</td>
                     <td>${calendario.evento.descrizione}</td>
-                    <td><#if calendario.evento.corso??>${calendario.evento.corso.nome} &nbsp; <a href="eventi-corso?corso=${calendario.evento.corso.id}&id_aula=${calendario.aula.id}"><button name="seleziona">Eventi associati</button></#if></a></td>
-                    <td><a href="info-evento?evento_key=${calendario.evento.id}&giorno=${calendario.giorno?date?string('yyyy-MM-dd')}"><button name="seleziona">Seleziona</button></a></td>
+                    <td>
+                        <#if calendario.evento.corso??>
+                        ${calendario.evento.corso.nome} &nbsp;
+                        <a href="eventi-corso?corso=${calendario.evento.corso.id}&id_aula=${calendario.aula.id}">
+                            <button name="seleziona">Eventi associati</button>
+                        </a>
+                        </#if>
+                    </td>
+                    <td>
+                        <a href="info-evento?evento_key=${calendario.evento.id}&giorno=${calendario.giorno?date?string('yyyy-MM-dd')}">
+                            <button name="seleziona">Seleziona</button>
+                        </a>
+                    </td>
                 </tr>
                 </#list>
                 </#if>
             </tbody>            
         </table>
-        <button class="my-button" id="downloadBtn" >Scarica in CSV</button>
-        <a  href="aule?id_gruppo=${gruppo.key}"><button class="my-button">Indietro</button></a>
+        <button class="my-button" id="downloadBtn">Scarica in CSV</button>
+        <a href="aule?id_gruppo=${gruppo!'default_value'}"><button class="my-button">Indietro</button></a>
     </div>
 </div>
 

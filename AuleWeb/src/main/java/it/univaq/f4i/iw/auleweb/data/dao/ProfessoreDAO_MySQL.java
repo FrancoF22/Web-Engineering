@@ -35,7 +35,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
             sProfessori = connection.prepareStatement("SELECT professore.* FROM professore");
             
             iProfessore = connection.prepareStatement("INSERT INTO professore (nome,cognome,email) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uProfessore = connection.prepareStatement("UPDATE professore SET nome=?,cognome=?,email=? WHERE id=?");
+            uProfessore = connection.prepareStatement("UPDATE professore SET nome=?,cognome=? WHERE id=?");
             dProfessore = connection.prepareStatement("DELETE FROM professore WHERE id=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);

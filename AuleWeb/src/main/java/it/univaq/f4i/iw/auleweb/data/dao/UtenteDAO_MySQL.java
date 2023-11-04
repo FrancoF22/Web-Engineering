@@ -36,7 +36,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             sUtenteByEmail = connection.prepareStatement("SELECT utente.* FROM utente WHERE email=?");
             
             iUtente = connection.prepareStatement("INSERT INTO utente (email,password) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
-            uUtente = connection.prepareStatement("UPDATE utente SET email=?,password=?,ruolo=? WHERE ID=?");
+            uUtente = connection.prepareStatement("UPDATE utente SET email=?,password=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
         }
