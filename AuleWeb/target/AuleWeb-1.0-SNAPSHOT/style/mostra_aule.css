@@ -197,3 +197,8 @@ body {
     color: #0056b3; /* Manteniamo il colore coerente */
     font-size: 1.5em;
 }
+
+.selected-day {
+    background-color: #FFD700; /* o qualsiasi altro colore preferisci */
+    color: white;
+}

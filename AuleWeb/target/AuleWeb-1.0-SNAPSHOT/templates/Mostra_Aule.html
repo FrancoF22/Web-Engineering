@@ -190,18 +190,35 @@
         }
 
         // Modifica la funzione per accettare un parametro date e filtrare l'orario per quella data
-        function populateTimeList(date) {
+        function populateTimeList() {
             var timeList = document.getElementById("timeList");
             timeList.innerHTML = ''; // Pulisci la lista prima di popolarla
 
-            // Filtra o genera l'orario per la data selezionata
-            var dailySchedule = getScheduleForDate(date);
-            dailySchedule.forEach(function (item) {
+            // Itera sull'array degli orari e crea un elemento lista per ogni fascia oraria
+            schedule.forEach(function (item) {
                 var li = document.createElement("li");
-                li.textContent = item.time + ": " + item.subject;
+                li.textContent = item.time;
                 timeList.appendChild(li);
             });
         }
+
+        // Aggiungi un listener per il click sui giorni del calendario
+        daysContainer.addEventListener('click', function (event) {
+            const clickedDayElement = event.target;
+            if (clickedDayElement.classList.contains('day')) {
+                // Rimuovi la classe 'selected-day' da tutti i giorni
+                document.querySelectorAll('.day').forEach(function (dayElement) {
+                    dayElement.classList.remove('selected-day');
+                });
+
+                // Aggiungi la classe 'selected-day' al giorno cliccato
+                clickedDayElement.classList.add('selected-day');
+
+                // Chiamata alla funzione per popolare l'orario
+                populateTimeList();
+            }
+        });
+
 
         // Funzione di esempio per ottenere gli eventi per una data specifica
         function getEventsForDate(date) {
@@ -248,6 +265,14 @@
         return scheduleForDate[formattedDate] || [];
     }
 
-// Chiama la funzione per popolare l'orario del giorno al caricamento della pagina
-    window.addEventListener("DOMContentLoaded", populateTimeList);
+    // Popola l'orario al caricamento della pagina
+    window.addEventListener("DOMContentLoaded", function () {
+        populateTimeList(); // Popola l'orario iniziale
+
+        // Seleziona il giorno corrente all'avvio
+        const todayElement = document.querySelector('.current-day');
+        if (todayElement) {
+            todayElement.classList.add('selected-day');
+        }
+    });
 </script>
