@@ -89,7 +89,6 @@
         const currentMonthElement = document.getElementById('currentMonth');
         const daysContainer = document.querySelector('.days');
         const eventList = document.getElementById('eventList');
-        //const eventDetails = document.getElementById('eventDetails');
         const timeList = document.getElementById('timeList');
 
         const today = new Date();
@@ -103,51 +102,34 @@
             const month = currentDate.getMonth();
             const year = currentDate.getFullYear();
             const options = {year: 'numeric', month: 'long'};
-            currentMonthElement.textContent = currentDate.toLocaleDateString('it-IT', options);
+            currentMonthElement.textContent = new Date(year, month).toLocaleDateString('it-IT', options);
 
             // Pulisci il container dei giorni
             daysContainer.innerHTML = '';
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+            // Aggiungi celle vuote per i giorni della settimana precedenti al primo del mese
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.classList.add('day', 'empty');
+                daysContainer.appendChild(emptyCell);
+            }
+
+            // Aggiungi i giorni del mese al calendario
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.textContent = day;
                 dayElement.classList.add('day');
                 const date = new Date(year, month, day);
-                dayElement.setAttribute('data-date', date.toISOString().split('T')[0]);
+                dayElement.setAttribute('data-date', formatDate(date));
 
-                if (date.toDateString() === currentDate.toDateString()) {
+                if (formatDate(date) === formatDate(today)) {
                     dayElement.classList.add('current-day');
                 }
 
                 daysContainer.appendChild(dayElement);
             }
-        }
-
-        // Funzione per ottenere gli eventi per una data specifica
-        function getEventsForDate(date) {
-            // Simula il recupero degli eventi dal backend o da un database
-            const events = {
-                '2023-11-04': ['Math Class', 'Physics Lecture'],
-                '2023-11-05': ['Literature Workshop'],
-                // Add more event data here
-            };
-            const formattedDate = formatDate(date);
-            return events[formattedDate] || [];
-        }
-
-        // Revised to return an array of objects with time slots and event names
-        function getScheduleForDate(date) {
-            const formattedDate = formatDate(date);
-            const dailyEvents = eventsData[formattedDate] || [];
-            const dailySchedule = schedule.map((timeSlot) => {
-                const event = dailyEvents.find(event => event.time === timeSlot);
-                return {
-                    time: timeSlot,
-                    name: event ? event.name : null
-                };
-            });
-            return dailySchedule;
         }
 
         // Assuming you have an array of events
@@ -241,8 +223,19 @@
 
 
         function formatDate(date) {
-            return date.toISOString().split('T')[0];
+            var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
         }
+
 
         // Array di oggetti per definire le fasce orarie
         var schedule = [
@@ -279,7 +272,7 @@
         // Listener per i giorni del calendario
         daysContainer.addEventListener('click', event => {
             const clickedDayElement = event.target;
-            if (clickedDayElement.classList.contains('day')) {
+            if (clickedDayElement.classList.contains('day') && !clickedDayElement.classList.contains('empty')) {
                 const clickedDate = new Date(clickedDayElement.getAttribute('data-date'));
 
                 if (formatDate(clickedDate) !== selectedDay) {
