@@ -53,8 +53,8 @@ public class CreaAula extends AuleWebBaseController {
                 int npr = SecurityHelpers.checkNumeric(request.getParameter("prese_rete"));
                 aula.setPreseRete(npr);
                 aula.setNota(request.getParameter("note"));
-                List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
-                request.setAttribute("professori", professori);
+                Professore professore = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
+                aula.setProfessore(professore);
                 List<String> attrezzature = new ArrayList<>();
                 List<String> allAttrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature();
                 for(String s : allAttrezzature){
@@ -76,10 +76,11 @@ public class CreaAula extends AuleWebBaseController {
         }
     }
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) {
+    private void action_default(HttpServletRequest request, HttpServletResponse response) throws DataException {
         try {
             TemplateResult result = new TemplateResult(getServletContext());
             request.setAttribute("page-title", "Crea e modifica aula");
+            request.setAttribute("ListaProfessori", ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori());
             result.activate("Crea_Aula.html", request, response);
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);

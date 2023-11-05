@@ -19,8 +19,17 @@
         <input type="text" name="edificio" id="edificio" value="${aula_modifica.edificio?if_exists}"><br>
 
         <label for="professore">Professore:</label>
-        <input type="text" name="professore" id="professore" <#if aula_modifica.professore??>value="${aula_modifica.professore.nome} ${aula_modifica.professore.cognome}"</#if>><br>
-
+        
+        <select name="professore">
+            <#list ListaProfessori as professore>
+                <option value="${professore.key}"
+                    <#if (aula_modifica.professore?? && professore.key=aula_modifica.professore.key)>
+                        selected="selected"
+                    </#if>
+                >${professore.nome} ${professore.cognome}</option>
+            </#list> 
+        </select>
+        
         <label for="note">Note:</label>
         <input type="text" name="nota" id="nota" value="${aula_modifica.nota?if_exists}"><br>
 
