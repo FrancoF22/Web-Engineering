@@ -95,6 +95,8 @@
         const today = new Date();
 
         let currentDate = new Date();
+        let selectedDay = formatDate(new Date()); // Memorizza il giorno selezionato all'inizio
+
 
         // Funzione per renderizzare il calendario
         function renderCalendar() {
@@ -146,12 +148,25 @@
                 {name: 'Matematica', description: 'Lezione sulla teoria dei numeri', time: '09:30 - 10:30'},
                 {name: 'Fisica', description: 'Studio della meccanica quantistica', time: '11:30 - 12:30'}
             ],
-            '2023-11-04': [
-                {name: 'Italiano', description: 'Lezione italiano', time: '09:30 - 10:30'},
-                {name: 'Latino', description: 'versione di latino', time: '10:30 - 11:30'}
+            '2023-11-06': [
+                {name: 'Inglese', description: 'Comprensione della lettura', time: '10:00 - 11:00'},
+                {name: 'Storia', description: 'Lezione sul Rinascimento', time: '12:00 - 13:00'}
+            ],
+            '2023-11-07': [
+                {name: 'Chimica', description: 'Laboratorio di chimica organica', time: '09:00 - 10:30'},
+                {name: 'Educazione fisica', description: 'Allenamento di basket', time: '11:00 - 12:00'}
+            ],
+            '2023-11-08': [
+                {name: 'Arte', description: 'Pittura con acquerelli', time: '14:00 - 15:30'},
+                {name: 'Musica', description: 'Lezione di teoria musicale', time: '16:00 - 17:00'}
+            ],
+            '2023-11-09': [
+                {name: 'Informatica', description: 'Programmazione in Python', time: '10:00 - 12:00'},
+                {name: 'Geografia', description: 'Climi del mondo', time: '13:00 - 14:00'}
             ],
             // ... more events for other dates
         };
+
 
         // Function to render events for a specific day
         function renderEventsForDay(date) {
@@ -249,11 +264,18 @@
         daysContainer.addEventListener('click', event => {
             const clickedDayElement = event.target;
             if (clickedDayElement.classList.contains('day')) {
-                document.querySelectorAll('.day.selected-day').forEach(el => el.classList.remove('selected-day'));
-                clickedDayElement.classList.add('selected-day');
-                const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
-                renderEventsForDay(selectedDate);
-                populateTimeList(selectedDate);
+                const clickedDate = formatDate(new Date(clickedDayElement.getAttribute('data-date')));
+
+                // Controlla se il giorno selezionato è diverso da quello già visualizzato
+                if (clickedDate !== selectedDay) {
+                    document.querySelectorAll('.day.selected-day').forEach(el => el.classList.remove('selected-day'));
+                    clickedDayElement.classList.add('selected-day');
+                    selectedDay = clickedDate;
+
+                    const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
+                    renderEventsForDay(selectedDate);
+                    populateTimeList(selectedDate);
+                }
             }
         });
 
@@ -261,8 +283,6 @@
         renderCalendar();
         renderEventsForDay(currentDate);
         populateTimeList(currentDate);
-        renderEventsForDay(today);  // This will populate the events for today
-        populateTimeList(today);    // This will populate the time list for today
 
         // If you have code to highlight the current day in your calendar, you would also call it here
         highlightCurrentDay();  // This is just an example, replace with your actual function if you have one
