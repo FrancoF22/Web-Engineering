@@ -28,7 +28,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     private PreparedStatement sEventoById, sEventoByNome, sEventiByTipo, sEventiByResponsabile, sEventoByGO;
     private PreparedStatement sGiorniEvento, sEventoSingolo, sCalendarioById;
-    private PreparedStatement sEventiAulaSettCur, sEventiAulaSettimana, sEventiAulaOggi, sAllEventiAula;
+    private PreparedStatement sEventiAulaSettCur, sEventiAulaSettimana, sEventiAulaOggi, sAllEventiAula, sAllEventi;
     private PreparedStatement sEventiCorsoOggi, sEventiCorso, sEventiGruppo;
     private PreparedStatement iEvento, uEvento, dEvento;
     private PreparedStatement iCalendario, uCalendario, dCalendario;
@@ -54,6 +54,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventoSingolo = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id_evento=? AND giorno=?");
             sCalendarioById = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id=");
             
+            sAllEventi = connection.prepareStatement("SELECT DISTINCT calendario.id_evento FROM calendario");
             sEventiAulaSettCur = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND YEAR(c.giorno)=YEAR(CURDATE()) AND WEEK(c.giorno,1)=WEEK(CURDATE(),1)");
             sEventiAulaSettimana = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND YEAR(c.giorno)=YEAR(?) AND WEEK(c.giorno,1)=WEEK(?,1)");
             sEventiAulaOggi =  connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND c.giorno=?");
@@ -95,6 +96,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiAulaSettimana.close();
             sEventiAulaOggi.close();
             sAllEventiAula.close();
+            sAllEventi.close();
             
             sEventiCorsoOggi.close();
             sEventiCorso.close();
@@ -573,6 +575,20 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     @Override
     public void deleteEvento(Calendario calendario, boolean singolo) throws DataException {
         
+    }
+
+    @Override
+    public List<Evento> getAllEventi() throws DataException {
+        List<Evento> result = new ArrayList();
+
+        try (ResultSet rs = sAllEventi.executeQuery()) {
+            while (rs.next()) {
+                result.add((Evento) getEvento(rs.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
     }
     
 }

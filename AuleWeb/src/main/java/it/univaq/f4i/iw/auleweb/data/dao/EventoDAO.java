@@ -49,4 +49,6 @@ public interface EventoDAO {
 
     List<Calendario> getEventiAulaGiorno(int id_aula, Date date) throws DataException;
 
+    List<Evento> getAllEventi() throws DataException;
+    
 }

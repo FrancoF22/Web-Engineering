@@ -61,7 +61,7 @@ public class AggiungiEvento extends AuleWebBaseController {
             }
         } else {
             try {
-                request.setAttribute("ListaAttrezzature", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature());
+                request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                 action_default(request,response);
             } catch (DataException ex) {
                 handleError(ex, request, response);
