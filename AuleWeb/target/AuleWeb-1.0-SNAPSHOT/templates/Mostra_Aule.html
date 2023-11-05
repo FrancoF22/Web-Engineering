@@ -136,10 +136,18 @@
          return events[formattedDate] || [];
          }*/
 
+        // Revised to return an array of objects with time slots and event names
         function getScheduleForDate(date) {
-            // For simplicity, we're assuming the schedule is the same every day.
-            // If the schedule varies, you would need logic here to determine the schedule for the given date.
-            return schedule; // Returns the predefined array of time slots
+            const formattedDate = formatDate(date);
+            const dailyEvents = eventsData[formattedDate] || [];
+            const dailySchedule = schedule.map((timeSlot) => {
+                const event = dailyEvents.find(event => event.time === timeSlot);
+                return {
+                    time: timeSlot,
+                    name: event ? event.name : null
+                };
+            });
+            return dailySchedule;
         }
 
         // Assuming you have an array of events
@@ -202,27 +210,35 @@
             });
         }
 
-        // Modifica la funzione per accettare un parametro date e filtrare l'orario per quella data
+        // Function to get events for a specific time slot
+        function getEventsForTimeSlot(date, timeSlot) {
+            const formattedDate = formatDate(date);
+            const events = eventsData[formattedDate] || [];
+            return events.filter(event => event.time === timeSlot);
+        }
+
+        // Modify the populateTimeList function to include event names
         function populateTimeList(date) {
             var timeList = document.getElementById("timeList");
-            timeList.innerHTML = ''; // Pulisci la lista prima di popolarla
+            timeList.innerHTML = ''; // Clear the list before populating it
 
-            var scheduleForDate = getScheduleForDate(date); // Ottieni l'orario per la data selezionata
-
-            // Se non ci sono orari per la data, visualizza un messaggio
-            if (!scheduleForDate.length) {
+            schedule.forEach(function (timeSlot) {
+                var eventsForTimeSlot = getEventsForTimeSlot(date, timeSlot);
                 var li = document.createElement("li");
-                li.textContent = "Nessun orario disponibile per questo giorno.";
+                var text = timeSlot;
+
+                if (eventsForTimeSlot.length > 0) {
+                    text += ': ' + eventsForTimeSlot.map(event => event.name).join(', ');
+                } else {
+                    text += ': Nessun evento';
+                }
+
+                li.textContent = text;
                 timeList.appendChild(li);
-            } else {
-                // Altrimenti, crea un elemento lista per ogni fascia oraria
-                scheduleForDate.forEach(function (item) {
-                    var li = document.createElement("li");
-                    li.textContent = item;
-                    timeList.appendChild(li);
-                });
-            }
+            });
         }
+
+
 
         function formatDate(date) {
             return date.toISOString().split('T')[0];
@@ -264,21 +280,26 @@
         daysContainer.addEventListener('click', event => {
             const clickedDayElement = event.target;
             if (clickedDayElement.classList.contains('day')) {
-                const clickedDate = formatDate(new Date(clickedDayElement.getAttribute('data-date')));
+                const clickedDate = new Date(clickedDayElement.getAttribute('data-date'));
 
-                // Controlla se il giorno selezionato è diverso da quello già visualizzato
-                if (clickedDate !== selectedDay) {
+                if (formatDate(clickedDate) !== selectedDay) {
                     document.querySelectorAll('.day.selected-day').forEach(el => el.classList.remove('selected-day'));
                     clickedDayElement.classList.add('selected-day');
-                    selectedDay = clickedDate;
+                    selectedDay = formatDate(clickedDate);
 
-                    const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
-                    renderEventsForDay(selectedDate);
-                    populateTimeList(selectedDate);
+                    renderEventsForDay(clickedDate);
+                    populateTimeList(clickedDate); // Update the time list for the selected day
                 }
             }
         });
 
+
+        // Initialize the calendar and the schedule for the current day
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCalendar();
+            renderEventsForDay(currentDate);
+            populateTimeList(currentDate);
+        });
         // Inizializzazione
         renderCalendar();
         renderEventsForDay(currentDate);
