@@ -192,6 +192,14 @@
             });
         }
 
+        // Function to get events for a specific time slot
+        function getEventsForTimeSlot(date, timeSlot) {
+            const formattedDate = formatDate(date);
+            const events = eventsData[formattedDate] || [];
+            return events.filter(event => event.time === timeSlot);
+        }
+
+        // Modify the populateTimeList function to include event names
         function populateTimeList(date) {
             var timeList = document.getElementById("timeList");
             timeList.innerHTML = ''; // Clear the list before populating it
@@ -211,13 +219,6 @@
                 timeList.appendChild(li);
             });
         }
-
-        function getEventsForTimeSlot(date, timeSlot) {
-            const formattedDate = formatDate(date);
-            const events = eventsData[formattedDate] || [];
-            return events.filter(event => event.time === timeSlot);
-        }
-
 
 
 
@@ -279,12 +280,11 @@
                     clickedDayElement.classList.add('selected-day');
                     selectedDay = formatDate(clickedDate);
 
-                    renderEventsForDay(clickedDate); // Aggiorna gli eventi per il giorno selezionato
-                    populateTimeList(clickedDate);   // Aggiorna l'orario per il giorno selezionato
+                    renderEventsForDay(clickedDate);
+                    populateTimeList(clickedDate); // Update the time list for the selected day
                 }
             }
         });
-
 
         // Funzione per inizializzare il calendario e gli eventi per il giorno corrente
         function initializeCalendar() {
