@@ -190,32 +190,38 @@
         }
 
         // Modifica la funzione per accettare un parametro date e filtrare l'orario per quella data
-        function populateTimeList() {
+        function populateTimeList(date) {
             var timeList = document.getElementById("timeList");
             timeList.innerHTML = ''; // Pulisci la lista prima di popolarla
 
-            // Itera sull'array degli orari e crea un elemento lista per ogni fascia oraria
-            schedule.forEach(function (item) {
+            var scheduleForDate = getScheduleForDate(date); // Ottieni l'orario per la data selezionata
+
+            // Se non ci sono orari per la data, visualizza un messaggio
+            if (!scheduleForDate.length) {
                 var li = document.createElement("li");
-                li.textContent = item.time;
+                li.textContent = "Nessun orario disponibile per questo giorno.";
                 timeList.appendChild(li);
-            });
+            } else {
+                // Altrimenti, crea un elemento lista per ogni fascia oraria
+                scheduleForDate.forEach(function (item) {
+                    var li = document.createElement("li");
+                    li.textContent = item;
+                    timeList.appendChild(li);
+                });
+            }
         }
 
         // Aggiungi un listener per il click sui giorni del calendario
         daysContainer.addEventListener('click', function (event) {
             const clickedDayElement = event.target;
             if (clickedDayElement.classList.contains('day')) {
-                // Rimuovi la classe 'selected-day' da tutti i giorni
+                const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
                 document.querySelectorAll('.day').forEach(function (dayElement) {
                     dayElement.classList.remove('selected-day');
                 });
-
-                // Aggiungi la classe 'selected-day' al giorno cliccato
                 clickedDayElement.classList.add('selected-day');
-
-                // Chiamata alla funzione per popolare l'orario
-                populateTimeList();
+                renderEventsForDay(selectedDate);
+                populateTimeList(selectedDate);
             }
         });
 
@@ -236,33 +242,40 @@
             const formattedDate = date.toLocaleDateString('it-IT', {year: 'numeric', month: 'long', day: 'numeric'});
             return formattedDate;
         }
+
+        // Inizializza l'orario e gli eventi per il giorno corrente all'avvio
+        const today = new Date();
+        populateTimeList(today);
+        renderEventsForDay(today);
+
+        // Seleziona il giorno corrente all'avvio
+        const todayElement = document.querySelector('.current-day');
+        if (todayElement) {
+            todayElement.click(); // Simula il click per popolare l'orario e gli eventi
+        }
     });
 
     // Array di oggetti per definire le fasce orarie
     var schedule = [
-        {time: "08:30 - 09:30"},
-        {time: "09:30 - 10:30"},
-        {time: "10:30 - 11:30"},
-        {time: "11:30 - 12:30"},
-        {time: "12:30 - 13:30"},
-        {time: "13:30 - 14:30"},
-        {time: "14:30 - 15:30"},
-        {time: "15:30 - 16:30"},
-        {time: "16:30 - 17:30"},
-        {time: "17:30 - 18:30"},
-        {time: "18:30 - 19:30"},
-        {time: "19:30 - 20:30"},
+        "08:30 - 09:30",
+        "09:30 - 10:30",
+        "10:30 - 11:30",
+        "11:30 - 12:30",
+        "12:30 - 13:30",
+        "13:30 - 14:30",
+        "14:30 - 15:30",
+        "15:30 - 16:30",
+        "16:30 - 17:30",
+        "17:30 - 18:30",
+        "18:30 - 19:30",
+        "19:30 - 20:30",
     ];
 
     // Funzione di esempio per ottenere l'orario per una data specifica
     function getScheduleForDate(date) {
-        // Simula il recupero dell'orario dal backend o da un database
-        // Qui dovresti sostituire questa logica con una che effettivamente recuperi i dati per la data specificata
-        const scheduleForDate = {
-            // ... (esempio di dati dell'orario, organizzati per data)
-        };
         const formattedDate = date.toISOString().split('T')[0];
-        return scheduleForDate[formattedDate] || [];
+        // Qui simuliamo che ogni giorno abbia lo stesso orario, ma potresti personalizzarlo
+        return schedule; // Restituisce l'array di orari predefinito
     }
 
     // Popola l'orario al caricamento della pagina
