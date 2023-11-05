@@ -202,3 +202,24 @@ body {
     background-color: #FFD700; /* o qualsiasi altro colore preferisci */
     color: white;
 }
+
+.events-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.events-container li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.events-container h3 {
+    margin-top: 0;
+}
+
+.events-container div,
+.events-container p {
+    margin: 5px 0;
+}

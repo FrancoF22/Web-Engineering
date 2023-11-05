@@ -8,11 +8,8 @@
             <!-- Inserisci qui la visualizzazione degli eventi del giorno -->
             <h2>Eventi di Oggi</h2>
             <ul id="eventList">
-                <!-- Gli eventi verranno visualizzati qui -->
+                <!-- Gli eventi con descrizioni verranno visualizzati qui -->
             </ul>
-            <div id="eventDetails">
-                <!-- Dettagli degli eventi verranno visualizzati qui -->
-            </div>
         </div>
 
         <!-- Contenitore per l'orario del giorno -->
@@ -85,40 +82,39 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Seleziona gli elementi DOM necessari
         const prevMonthButton = document.getElementById('prevMonth');
         const nextMonthButton = document.getElementById('nextMonth');
+        const currentDateButton = document.getElementById('currentDateButton');
         const currentMonthElement = document.getElementById('currentMonth');
         const daysContainer = document.querySelector('.days');
-        const currentDateButton = document.getElementById('currentDateButton'); // Seleziona il pulsante "Data Corrente"
         const eventList = document.getElementById('eventList');
-        const eventDetails = document.getElementById('eventDetails'); // Nuovo elemento per i dettagli degli eventi
+        const eventDetails = document.getElementById('eventDetails');
+        const timeList = document.getElementById('timeList');
 
-        // Ottieni l'anno corrente dalla data locale
-        const currentYear = new Date().getFullYear();
+        const today = new Date();
 
         let currentDate = new Date();
 
+        // Funzione per renderizzare il calendario
         function renderCalendar() {
-            const year = currentYear; // Utilizza l'anno corrente
             const month = currentDate.getMonth();
+            const year = currentDate.getFullYear();
             const options = {year: 'numeric', month: 'long'};
             currentMonthElement.textContent = currentDate.toLocaleDateString('it-IT', options);
+
             // Pulisci il container dei giorni
             daysContainer.innerHTML = '';
-            const today = new Date(); // Ottieni la data odierna
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            // Aggiungi i giorni del mese
+
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.textContent = day;
                 dayElement.classList.add('day');
-                // Aggiungi la classe "day" per identificare i giorni
                 const date = new Date(year, month, day);
                 dayElement.setAttribute('data-date', date.toISOString().split('T')[0]);
 
-
-                // Aggiungi la classe "current-day" se il giorno è uguale a oggi
-                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                if (date.toDateString() === currentDate.toDateString()) {
                     dayElement.classList.add('current-day');
                 }
 
@@ -126,67 +122,69 @@
             }
         }
 
-        renderCalendar();
-        prevMonthButton.addEventListener('click', function () {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
-        });
-        nextMonthButton.addEventListener('click', function () {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
-        });
-        currentDateButton.addEventListener('click', function () {
-            currentDate = new Date(); // Reimposta la data corrente
-            renderCalendar();
-        });
+        // Funzione per ottenere gli eventi per una data specifica
+        /*function getEventsForDate(date) {
+         // Simula il recupero degli eventi dal backend o da un database
+         const events = {
+         '2023-11-04': ['Math Class', 'Physics Lecture'],
+         '2023-11-05': ['Literature Workshop'],
+         // Add more event data here
+         };
+         const formattedDate = formatDate(date);
+         return events[formattedDate] || [];
+         }*/
 
-        // Aggiungi un listener per il click sui giorni del calendario
-        daysContainer.addEventListener('click', function (event) {
-            const clickedDayElement = event.target;
-            if (clickedDayElement.classList.contains('day')) {
-                const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
+        function getScheduleForDate(date) {
+            // For simplicity, we're assuming the schedule is the same every day.
+            // If the schedule varies, you would need logic here to determine the schedule for the given date.
+            return schedule; // Returns the predefined array of time slots
+        }
 
-                // Visualizza gli eventi per la data selezionata
-                renderEventsForDay(selectedDate);
-                // Aggiorna l'orario del giorno per la data selezionata
-                populateTimeList(selectedDate);
-            }
-        });
+        // Assuming you have an array of events
+        var eventsData = {
+            '2023-11-05': [
+                {name: 'Matematica', description: 'Lezione sulla teoria dei numeri', time: '09:30 - 10:30'},
+                {name: 'Fisica', description: 'Studio della meccanica quantistica', time: '11:30 - 12:30'}
+            ],
+            '2023-11-04': [
+                {name: 'Italiano', description: 'Lezione italiano', time: '09:30 - 10:30'},
+                {name: 'Latino', description: 'versione di latino', time: '10:30 - 11:30'}
+            ],
+            // ... more events for other dates
+        };
 
-        function renderEventsForDay(selectedDate) {
-            // Simula il recupero degli eventi dal backend o da un'altra fonte dati
-            const events = getEventsForDate(selectedDate);
+        // Function to render events for a specific day
+        function renderEventsForDay(date) {
+            const formattedDate = date.toISOString().split('T')[0];
+            const events = eventsData[formattedDate] || [];
 
-            // Aggiungi questo console.log per verificare i dati degli eventi
-            console.log('Eventi per la data selezionata:', events);
+            // Update the event list
+            const eventList = document.getElementById('eventList');
+            eventList.innerHTML = ''; // Clear existing list items
 
-            // Visualizza gli eventi nell'elenco degli eventi
-            eventList.innerHTML = '';
-            if (events.length > 0) {
-                events.forEach(event => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = event;
-                    eventList.appendChild(listItem);
-                });
-            } else {
-                const noEventItem = document.createElement('li');
-                noEventItem.textContent = 'Nessun evento per questo giorno.';
-                eventList.appendChild(noEventItem);
-            }
+            events.forEach(event => {
+                const eventItem = document.createElement('li');
 
-            // Visualizza i dettagli degli eventi nell'area degli eventDetails
-            eventDetails.innerHTML = '';
-            if (events.length > 0) {
-                events.forEach(event => {
-                    const eventDetail = document.createElement('div');
-                    eventDetail.textContent = event;
-                    eventDetails.appendChild(eventDetail);
-                });
-            } else {
-                const noEventDetail = document.createElement('div');
-                noEventDetail.textContent = 'Nessun evento per questo giorno.';
-                eventDetails.appendChild(noEventDetail);
-            }
+                // Create a title element for the event name
+                const title = document.createElement('h3');
+                title.textContent = event.name;
+
+                // Create a time element for the event time
+                const time = document.createElement('div');
+                time.textContent = event.time;
+
+                // Create a description element for the event description
+                const description = document.createElement('p');
+                description.textContent = event.description;
+
+                // Append the title, time, and description to the event item
+                eventItem.appendChild(title);
+                eventItem.appendChild(time);
+                eventItem.appendChild(description);
+
+                // Append the event item to the event list
+                eventList.appendChild(eventItem);
+            });
         }
 
         // Modifica la funzione per accettare un parametro date e filtrare l'orario per quella data
@@ -211,81 +209,63 @@
             }
         }
 
-        // Aggiungi un listener per il click sui giorni del calendario
-        daysContainer.addEventListener('click', function (event) {
+        function formatDate(date) {
+            return date.toISOString().split('T')[0];
+        }
+
+        // Array di oggetti per definire le fasce orarie
+        var schedule = [
+            "08:30 - 09:30",
+            "09:30 - 10:30",
+            "10:30 - 11:30",
+            "11:30 - 12:30",
+            "12:30 - 13:30",
+            "13:30 - 14:30",
+            "14:30 - 15:30",
+            "15:30 - 16:30",
+            "16:30 - 17:30",
+            "17:30 - 18:30",
+            "18:30 - 19:30",
+            "19:30 - 20:30",
+        ];
+
+        // Event listeners per la navigazione del calendario
+        prevMonthButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        nextMonthButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        currentDateButton.addEventListener('click', () => {
+            currentDate = new Date();
+            renderCalendar();
+        });
+
+        // Listener per i giorni del calendario
+        daysContainer.addEventListener('click', event => {
             const clickedDayElement = event.target;
             if (clickedDayElement.classList.contains('day')) {
-                const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
-                document.querySelectorAll('.day').forEach(function (dayElement) {
-                    dayElement.classList.remove('selected-day');
-                });
+                document.querySelectorAll('.day.selected-day').forEach(el => el.classList.remove('selected-day'));
                 clickedDayElement.classList.add('selected-day');
+                const selectedDate = new Date(clickedDayElement.getAttribute('data-date'));
                 renderEventsForDay(selectedDate);
                 populateTimeList(selectedDate);
             }
         });
 
+        // Inizializzazione
+        renderCalendar();
+        renderEventsForDay(currentDate);
+        populateTimeList(currentDate);
+        renderEventsForDay(today);  // This will populate the events for today
+        populateTimeList(today);    // This will populate the time list for today
 
-        // Funzione di esempio per ottenere gli eventi per una data specifica
-        function getEventsForDate(date) {
-            // Simula il recupero degli eventi dal backend o da un database
-            const events = {
-                '2023-11-4': ['Evento 1', 'Evento 2'],
-                '2023-11-5': ['Evento 3'],
-                // Aggiungi altri dati sugli eventi qui
-            };
-            const formattedDate = formatDate(date);
-            return events[formattedDate] || [];
-        }
-
-        function formatDate(date) {
-            const formattedDate = date.toLocaleDateString('it-IT', {year: 'numeric', month: 'long', day: 'numeric'});
-            return formattedDate;
-        }
-
-        // Inizializza l'orario e gli eventi per il giorno corrente all'avvio
-        const today = new Date();
-        populateTimeList(today);
-        renderEventsForDay(today);
-
-        // Seleziona il giorno corrente all'avvio
-        const todayElement = document.querySelector('.current-day');
-        if (todayElement) {
-            todayElement.click(); // Simula il click per popolare l'orario e gli eventi
-        }
+        // If you have code to highlight the current day in your calendar, you would also call it here
+        highlightCurrentDay();  // This is just an example, replace with your actual function if you have one
     });
 
-    // Array di oggetti per definire le fasce orarie
-    var schedule = [
-        "08:30 - 09:30",
-        "09:30 - 10:30",
-        "10:30 - 11:30",
-        "11:30 - 12:30",
-        "12:30 - 13:30",
-        "13:30 - 14:30",
-        "14:30 - 15:30",
-        "15:30 - 16:30",
-        "16:30 - 17:30",
-        "17:30 - 18:30",
-        "18:30 - 19:30",
-        "19:30 - 20:30",
-    ];
-
-    // Funzione di esempio per ottenere l'orario per una data specifica
-    function getScheduleForDate(date) {
-        const formattedDate = date.toISOString().split('T')[0];
-        // Qui simuliamo che ogni giorno abbia lo stesso orario, ma potresti personalizzarlo
-        return schedule; // Restituisce l'array di orari predefinito
-    }
-
-    // Popola l'orario al caricamento della pagina
-    window.addEventListener("DOMContentLoaded", function () {
-        populateTimeList(); // Popola l'orario iniziale
-
-        // Seleziona il giorno corrente all'avvio
-        const todayElement = document.querySelector('.current-day');
-        if (todayElement) {
-            todayElement.classList.add('selected-day');
-        }
-    });
 </script>
