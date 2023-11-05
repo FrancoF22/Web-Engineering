@@ -89,7 +89,7 @@
         const currentMonthElement = document.getElementById('currentMonth');
         const daysContainer = document.querySelector('.days');
         const eventList = document.getElementById('eventList');
-        const eventDetails = document.getElementById('eventDetails');
+        //const eventDetails = document.getElementById('eventDetails');
         const timeList = document.getElementById('timeList');
 
         const today = new Date();
@@ -125,16 +125,16 @@
         }
 
         // Funzione per ottenere gli eventi per una data specifica
-        /*function getEventsForDate(date) {
-         // Simula il recupero degli eventi dal backend o da un database
-         const events = {
-         '2023-11-04': ['Math Class', 'Physics Lecture'],
-         '2023-11-05': ['Literature Workshop'],
-         // Add more event data here
-         };
-         const formattedDate = formatDate(date);
-         return events[formattedDate] || [];
-         }*/
+        function getEventsForDate(date) {
+            // Simula il recupero degli eventi dal backend o da un database
+            const events = {
+                '2023-11-04': ['Math Class', 'Physics Lecture'],
+                '2023-11-05': ['Literature Workshop'],
+                // Add more event data here
+            };
+            const formattedDate = formatDate(date);
+            return events[formattedDate] || [];
+        }
 
         // Revised to return an array of objects with time slots and event names
         function getScheduleForDate(date) {
@@ -263,17 +263,17 @@
         // Event listeners per la navigazione del calendario
         prevMonthButton.addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
+            renderCalendar(currentDate);
         });
 
         nextMonthButton.addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
+            renderCalendar(currentDate);
         });
 
         currentDateButton.addEventListener('click', () => {
             currentDate = new Date();
-            renderCalendar();
+            renderCalendar(currentDate);
         });
 
         // Listener per i giorni del calendario
@@ -293,20 +293,17 @@
             }
         });
 
-
-        // Initialize the calendar and the schedule for the current day
-        document.addEventListener('DOMContentLoaded', function () {
-            renderCalendar();
+        // Funzione per inizializzare il calendario e gli eventi per il giorno corrente
+        function initializeCalendar() {
+            renderCalendar(currentDate);
             renderEventsForDay(currentDate);
             populateTimeList(currentDate);
-        });
-        // Inizializzazione
-        renderCalendar();
-        renderEventsForDay(currentDate);
-        populateTimeList(currentDate);
+            // Se hai una funzione per evidenziare il giorno corrente nel tuo calendario, la chiameresti anche qui
+            // highlightCurrentDay();  // Sostituisci con la tua funzione effettiva se ne hai una
+        }
 
-        // If you have code to highlight the current day in your calendar, you would also call it here
-        highlightCurrentDay();  // This is just an example, replace with your actual function if you have one
+        // Chiamata alla funzione di inizializzazione
+        initializeCalendar();
     });
 
 </script>
