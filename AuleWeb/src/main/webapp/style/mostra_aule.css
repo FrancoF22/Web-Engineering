@@ -223,3 +223,8 @@ body {
 .events-container p {
     margin: 5px 0;
 }
+
+
+.day.empty {
+    visibility: hidden;
+}
