@@ -1,8 +1,7 @@
-<head>
-    <link  rel="stylesheet" href="style/informazioni.css" type="text/css"/>
-    <title>Aule web </title>
-</head>
-<body>
+
+<link  rel="stylesheet" href="style/informazioni.css" type="text/css"/>
+<title>Aule web </title>
+
 
 <div class="home-container">
     <div class="home-home">
@@ -11,10 +10,10 @@
 
         <div class="home-frame3">
             <img
-                    alt="UnivaqLogo116"
-                    src="images/UnivAQ_logoC.png"
-                    class="home-univaq-logo1"
-            />
+                alt="UnivaqLogo116"
+                src="images/UnivAQ_logoC.png"
+                class="home-univaq-logo1"
+                />
         </div>
         <form action="evento" method="post">
             <input type="hidden" name="aula_selezionata" value="${aula.id}">
@@ -37,18 +36,18 @@
                 <span>Tipologia dell'evento</span>
                 <select name="tipo">
                     <#list Tipologia as tipo>
-                        <option value="${tipo}" <#if (calendario_modifica.evento.tipologia == tipo)>selected</#if>>${tipo}</option>
+                    <option value="${tipo}" <#if (calendario_modifica.evento.tipologia == tipo)>selected</#if>>${tipo}</option>
                     </#list>
                 </select>
             </div>
             <div class="Evento-orario-responsabile">
-               <span >
-                <span>Corso</span>
-            </span>
+                <span >
+                    <span>Corso</span>
+                </span>
                 <select name="corso">
                     <option value="0" selected>Nessun corso</option>
                     <#list Corsi as corso>
-                        <option value="${corso.id}" <#if (calendario_modifica.evento.corso?? && calendario_modifica.evento.corso.nome == corso.nome)>selected</#if>>${corso.nome}</option>
+                    <option value="${corso.id}" <#if (calendario_modifica.evento.corso?? && calendario_modifica.evento.corso.nome == corso.nome)>selected</#if>>${corso.nome}</option>
                     </#list>
                 </select>
             </div>
@@ -59,18 +58,18 @@
             <span>Ora di inzio dell'evento</span>
 
             <div class="Evento-orario-responsabile"><input type="time" name="oraInizio" value="${calendario_modifica.oraInizio}" required></div>
-               <span>
+            <span>
                 <span>Ora di fine dell'evento</span>
             </span>
 
-           <div class="Evento-orario-responsabile"><input type="time" name="oraFine" value="${calendario_modifica.oraFine}" required></div>
-           <span>
+            <div class="Evento-orario-responsabile"><input type="time" name="oraFine" value="${calendario_modifica.oraFine}" required></div>
+            <span>
                 <span>Quante volte vuoi che l'evento si ripeta?</span>
             </span>
             <div class="Evento-orario-responsabile"><input type="number" min="1" max="15" name="ripetizioni" value="${calendario_modifica.ripetizioni}" <#if !modifica??>readonly</#if>></div>
-    <span>Con quale frequenza?</span>
+            <span>Con quale frequenza?</span>
 
-    <div class="Evento-orario-responsabile">
+            <div class="Evento-orario-responsabile">
                 <select name="frequenza" <#if !modifica??>disabled</#if>>
                     <option value="giornaliera" <#if (calendario_modifica.ricorrenza == "giornaliera")>selected</#if>>Giornaliera</option>
                     <option value="settimanale" <#if (calendario_modifica.ricorrenza == "settimanale")>selected</#if>>Settimanale</option>
@@ -82,9 +81,8 @@
             </div>
         </form>
     </div>
-           <div>
-    <a href="${sendredirect}"><button class="my-button">Indietro</button></a>
+    <div>
+        <a href="${sendredirect}"><button class="my-button">Indietro</button></a>
+    </div>
 </div>
-</div>
-</body>
-</html>
+

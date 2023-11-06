@@ -1,50 +1,41 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
-<head>
-        <link  rel="stylesheet" href="style/informazioni.css" type="text/css"/>
-        <title>Aule web </title>
-       <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-    <div class="home-container">
-        <div class="home-frame3">
-            <img
-                    alt="UnivaqLogo116"
-                    src="images/UnivAQ_logoC.png"
-                    class="home-univaq-logo1"
+
+<link  rel="stylesheet" href="style/informazioni.css" type="text/css"/>
+<title>Aule web </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="home-container">
+    <div class="home-frame3">
+        <img
+            alt="UnivaqLogo116"
+            src="images/UnivAQ_logoC.png"
+            class="home-univaq-logo1"
             />
-            <form action="modifica-calendario" method="post">
-                <input type="hidden" name="id_evento" value="${EventoSelezionato.evento.id}">
-               <div class="id-evento">
-                   <input   type="hidden" name="data_evento" value="${EventoSelezionato.giorno?date?string('yyyy-MM-dd')}">
-               </div>
-                   <h1 class="test-seleziona-elimina">Evento Selezionato:</h1>
-                <spam class="testo-data-elimina">Data:</spam>
-                <p class="data-elimina">${EventoSelezionato.giorno?date?string('dd-MM-yyyy')}</p>
-                <spam class="testo-inizio-elimina">Ora inizio:</spam>
-                <p class="inizio-elimina" >${EventoSelezionato.oraInizio?time?string('HH:mm')}</p>
-                <spam class="testo-fine-elimina">Ora fine:</spam>
-                <p class="fine-elimina">${EventoSelezionato.oraFine?time?string('HH:mm')}</p>
-                <spam class="testo-aula-elimina">Aula:</spam>
-                <p class="aula-elimina">${EventoSelezionato.aula.nome}</p>
-                <spam class="testo-nome-elimina">Nome:</spam>
-                <p class="nome-elimina">${EventoSelezionato.evento.nome}</p>
-                <spam class="testo-descrizione-elimina">Descrizione:</spam>
-                <p class="descrizione-elimina">${EventoSelezionato.evento.descrizione}</p>
-                <spam class="testo-tipologia-elimina">Tipologia:</spam>
-                <p class="tipologia-elimina">tipologia: ${EventoSelezionato.evento.tipologia}</p>
-                <p class="evento-elimina"><#if EventoSelezionato.evento.corso??>corso: ${EventoSelezionato.evento.corso.nome}</#if></p>
-                <div class="seleziona-elimia">
+        <form action="modifica-calendario" method="post">
+            <input type="hidden" name="id_evento" value="${EventoSelezionato.evento.id}">
+            <div class="id-evento">
+                <input   type="hidden" name="data_evento" value="${EventoSelezionato.giorno?date?string('yyyy-MM-dd')}">
+            </div>
+            <h1 class="test-seleziona-elimina">Evento Selezionato:</h1>
+            <spam class="testo-data-elimina">Data:</spam>
+            <p class="data-elimina">${EventoSelezionato.giorno?date?string('dd-MM-yyyy')}</p>
+            <spam class="testo-inizio-elimina">Ora inizio:</spam>
+            <p class="inizio-elimina" >${EventoSelezionato.oraInizio?time?string('HH:mm')}</p>
+            <spam class="testo-fine-elimina">Ora fine:</spam>
+            <p class="fine-elimina">${EventoSelezionato.oraFine?time?string('HH:mm')}</p>
+            <spam class="testo-aula-elimina">Aula:</spam>
+            <p class="aula-elimina">${EventoSelezionato.aula.nome}</p>
+            <spam class="testo-nome-elimina">Nome:</spam>
+            <p class="nome-elimina">${EventoSelezionato.evento.nome}</p>
+            <spam class="testo-descrizione-elimina">Descrizione:</spam>
+            <p class="descrizione-elimina">${EventoSelezionato.evento.descrizione}</p>
+            <spam class="testo-tipologia-elimina">Tipologia:</spam>
+            <p class="tipologia-elimina">tipologia: ${EventoSelezionato.evento.tipologia}</p>
+            <p class="evento-elimina"><#if EventoSelezionato.evento.corso??>corso: ${EventoSelezionato.evento.corso.nome}</#if></p>
+            <div class="seleziona-elimia">
                 <input type="radio" name="radio" value="true" checked>Singolo Evento
                 <input type="radio" name="radio" value="false">Tutte le ripetizioni
                 <input class="my-button" type="submit" name="scelta" value="Conferma">
-                </div>
-            </form>
-        </div>
-    </body>
-</html>
+            </div>
+        </form>
+    </div>
+
