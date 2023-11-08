@@ -2,7 +2,6 @@ package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
-import it.univaq.f4i.iw.auleweb.data.model.Ricorrenza;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.auleweb.data.proxy.CalendarioProxy;
 import it.univaq.f4i.iw.auleweb.data.proxy.EventoProxy;
@@ -150,9 +149,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             c.setKey(rs.getInt("id"));
             c.setAulaKey(rs.getInt("id_aula"));
             c.setEventoKey(rs.getInt("id_evento"));
-            c.setRicorrenza(Ricorrenza.valueOf( rs.getString("ricorrenza")));
             c.setGiorno(rs.getDate("giorno"));
-            c.setGiornoFine(rs.getDate("giorno_fine"));
             c.setOraInizio(rs.getTime("ora_inizio"));
             c.setOraFine(rs.getTime("ora_fine"));
 
@@ -510,9 +507,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                uCalendario.setString(3,calendario.getRicorrenza().toString());
                 uCalendario.setDate(4, calendario.getGiorno());
-                uCalendario.setDate(5, calendario.getGiornoFine());
                 uCalendario.setTime(6, calendario.getOraInizio());
                 uCalendario.setTime(7, calendario.getOraFine());
                 uCalendario.setInt(8, calendario.getKey());
@@ -532,9 +527,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                iCalendario.setString(3,calendario.getRicorrenza().toString());
                 iCalendario.setDate(4, calendario.getGiorno());
-                iCalendario.setDate(5, calendario.getGiornoFine());
                 iCalendario.setTime(6, calendario.getOraInizio());
                 iCalendario.setTime(7, calendario.getOraFine());
                 
