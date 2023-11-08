@@ -17,13 +17,9 @@ public interface Calendario extends DataItem<Integer>{
     Aula getAula(); 
    
     Evento getEvento(); 
-    
-    Ricorrenza getRicorrenza();
    
     Date getGiorno(); 
     
-    Date getGiornoFine();
-   
     Time getOraInizio(); 
    
     Time getOraFine();
@@ -32,11 +28,7 @@ public interface Calendario extends DataItem<Integer>{
     
     void setEvento(Evento eventi);
     
-    void setRicorrenza(Ricorrenza ricorrenza);
-    
     void setGiorno(Date giorno);
-    
-    void setGiornoFine(Date giorno);
 
     void setOraInizio(Time oraInizio);
     

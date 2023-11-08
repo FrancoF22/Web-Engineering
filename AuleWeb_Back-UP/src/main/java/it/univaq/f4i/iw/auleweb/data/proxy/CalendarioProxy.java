@@ -75,12 +75,6 @@ public class CalendarioProxy extends CalendarioImpl implements DataItemProxy{
         super.setGiorno(giorno);
         this.modified = true;
     }
-    
-    @Override
-    public void setGiornoFine(Date giorno) {
-        super.setGiornoFine(giorno);
-        this.modified = true;
-    }
 
     @Override
     public void setOraInizio(Time oraInizio) {

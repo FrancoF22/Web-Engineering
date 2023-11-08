@@ -6,7 +6,6 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
-import it.univaq.f4i.iw.auleweb.data.model.Ricorrenza;
 import java.sql.Time;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -22,8 +21,7 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     
     private Aula aula;
     private Evento eventi;
-    private Ricorrenza ricorrenza;
-    private Date giorno, giornoFine;
+    private Date giorno;
     private Time oraInizio, oraFine;
 
     public CalendarioImpl() {
@@ -31,10 +29,8 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
        this.aula = null;
        this.eventi = null;
        this.giorno = Date.valueOf(LocalDate.now());
-       this.giornoFine = Date.valueOf(LocalDate.now());
        this.oraInizio = Time.valueOf(LocalTime.now());
        this.oraFine = Time.valueOf(LocalTime.now());
-       this.ricorrenza = Ricorrenza.giornaliera;
     }
 
     @Override
@@ -48,18 +44,8 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     }
 
     @Override
-    public Ricorrenza getRicorrenza() {
-        return ricorrenza;
-    }
-
-    @Override
     public Date getGiorno() {
         return giorno;
-    }
-
-    @Override
-    public Date getGiornoFine() {
-        return giornoFine;
     }
 
     @Override
@@ -83,18 +69,8 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     }
 
     @Override
-    public void setRicorrenza(Ricorrenza ricorrenza) {
-        this.ricorrenza = ricorrenza;
-    }
-
-    @Override
     public void setGiorno(Date giorno) {
         this.giorno = giorno;
-    }
-
-    @Override
-    public void setGiornoFine(Date giorno) {
-        this.giornoFine = giorno;
     }
 
     @Override
