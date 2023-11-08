@@ -1,87 +1,85 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package it.univaq.f4i.iw.auleweb.controller;
 
-import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.framework.data.DataException;
-import it.univaq.f4i.iw.framework.result.TemplateManagerException;
-import it.univaq.f4i.iw.framework.result.TemplateResult;
-import it.univaq.f4i.iw.framework.security.SecurityHelpers;
-import java.io.*;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import it.univaq.f4i.iw.auleweb.data.model.Utente;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * controllare con esempio newspaper
+ * @author franc
  */
-public class Login extends AuleWebBaseController {
+public class Login extends HttpServlet {
 
-    @Override
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
-        try {
-            if (request.getParameter("indietro") != null) {
-                response.sendRedirect("home");
-            }
-            if (request.getParameter("login") != null) {
-                action_login(request, response);
-            } else {
-                action_default(request, response);
-            }
-        } catch (IOException | TemplateManagerException ex) {
-            handleError(ex, request, response);
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Login</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, TemplateManagerException {
-        TemplateResult result = new TemplateResult(getServletContext());
-        request.setAttribute("page_title", "Accedi");
-        result.activate("Login.ftl.html", request, response);
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
-    //nota: utente di default nel database: nome n, password p
-    //note: default user in the database: name: a, password p
-    private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String username = request.getParameter("u");
-        String password = request.getParameter("p");
-
-        if (!username.isEmpty() && !password.isEmpty()) {
-            try {
-                Utente u = ((AuleWebDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(username);
-                if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
-                    //se la validazione ha successo
-                    //if the identity validation succeeds
-                    SecurityHelpers.createSession(request, username, u.getKey());
-                    //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
-                    //if an origin URL has been transmitted, return to it
-                    if (request.getParameter("referrer") != null) {
-                        response.sendRedirect(request.getParameter("referrer"));
-                    } else {
-                        response.sendRedirect("home_admin");
-                    }
-                    return;
-                }
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException | DataException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        //se la validazione fallisce...
-        //if the validation fails...
-        handleError("Login failed", request, response);
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }
-
-/**
- * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
- * methods.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws javax.servlet.ServletException
- */
-
