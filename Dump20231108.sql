@@ -38,7 +38,7 @@ CREATE TABLE `aula` (
   UNIQUE KEY `nome` (`nome`),
   KEY `aula_ibfk_1_idx` (`id_professore`),
   CONSTRAINT `aula_ibfk_1` FOREIGN KEY (`id_professore`) REFERENCES `professore` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `aula` (
 
 LOCK TABLES `aula` WRITE;
 /*!40000 ALTER TABLE `aula` DISABLE KEYS */;
-INSERT INTO `aula` VALUES (2,'Aula Magna',45,6,4,'impianto audio,pc fisso','condizionatore rotto','Coppito','Blocco 2','Primo',1);
+INSERT INTO `aula` VALUES (2,'Aula Magna',40,6,4,'',NULL,'Coppito','Blocco 2','Primo',1),(4,'C10',50,6,3,'microfono a filo,Wi Fi','aula grande','coppito','blocco 2','terra',1),(5,'A1.7',65,3,2,'Wi Fi','finestre rotte','Coppito','Blocco 0','primo',2),(6,'D2,10',100,7,4,'impianto audio,Wi Fi','...','Coppito','..','secondo',3),(7,'dd',1,2,6,'',NULL,'dd','dd','ff',2);
 /*!40000 ALTER TABLE `aula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,9 +62,7 @@ CREATE TABLE `calendario` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_aula` int NOT NULL,
   `id_evento` int NOT NULL,
-  `ricorrenza` enum('nessuna','giornaliera','settimanale','mensile') NOT NULL DEFAULT 'nessuna',
   `giorno` date NOT NULL,
-  `giorno_fine` date DEFAULT NULL,
   `ora_inizio` time NOT NULL,
   `ora_fine` time NOT NULL,
   PRIMARY KEY (`id`),
@@ -81,7 +79,7 @@ CREATE TABLE `calendario` (
 
 LOCK TABLES `calendario` WRITE;
 /*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
-INSERT INTO `calendario` VALUES (2,2,1,'settimanale','2021-10-27','2023-11-30','09:30:00','11:30:00');
+INSERT INTO `calendario` VALUES (2,2,1,'2021-10-27','09:30:00','11:30:00');
 /*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +153,7 @@ CREATE TABLE `gruppo` (
   `descrizione` text,
   `tipologia` enum('polo','dipartimento') NOT NULL DEFAULT 'dipartimento',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +162,7 @@ CREATE TABLE `gruppo` (
 
 LOCK TABLES `gruppo` WRITE;
 /*!40000 ALTER TABLE `gruppo` DISABLE KEYS */;
-INSERT INTO `gruppo` VALUES (1,'Ingegneria Informatica','Polo triennale di ingengeria informatica','polo'),(2,'Alan Turing','noto anche come coppito 0 o blocco 0','polo');
+INSERT INTO `gruppo` VALUES (1,'Ingegneria Informatica','Polo triennale di ingengeria informatica','polo'),(2,'Alan Turing','noto anche come coppito 0 o blocco 0','polo'),(3,'DISIM','Dipartimento Ingegneria,scienza e matematica ','dipartimento'),(4,'MESVA','Dipartimento ...','dipartimento');
 /*!40000 ALTER TABLE `gruppo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +189,7 @@ CREATE TABLE `gruppo_aula` (
 
 LOCK TABLES `gruppo_aula` WRITE;
 /*!40000 ALTER TABLE `gruppo_aula` DISABLE KEYS */;
-INSERT INTO `gruppo_aula` VALUES (2,2);
+INSERT INTO `gruppo_aula` VALUES (2,2),(1,4),(3,4),(3,5),(4,6);
 /*!40000 ALTER TABLE `gruppo_aula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +214,7 @@ CREATE TABLE `professore` (
 
 LOCK TABLES `professore` WRITE;
 /*!40000 ALTER TABLE `professore` DISABLE KEYS */;
-INSERT INTO `professore` VALUES (1,'Mario','Rossi');
+INSERT INTO `professore` VALUES (1,'Mario','Rossi'),(2,'Antonio','Verdi'),(3,'Giulia','Colasanti');
 /*!40000 ALTER TABLE `professore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-24 15:51:58
+-- Dump completed on 2023-11-08 16:41:21
