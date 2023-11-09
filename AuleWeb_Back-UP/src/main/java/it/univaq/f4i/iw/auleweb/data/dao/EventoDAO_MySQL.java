@@ -160,13 +160,13 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
     
     @Override //permette di ottenere un evento a partire dall'id
-    public Evento getEvento(int event_key) throws DataException {
+    public Evento getEvento(int id_evento) throws DataException {
         Evento e = null;
-        if (dataLayer.getCache().has(Evento.class, event_key)) {
-            e = dataLayer.getCache().get(Evento.class, event_key);
+        if (dataLayer.getCache().has(Evento.class, id_evento)) {
+            e = dataLayer.getCache().get(Evento.class, id_evento);
         } else {
             try {
-                sEventoById.setInt(1, event_key);
+                sEventoById.setInt(1, id_evento);
                 try (ResultSet rs = sEventoById.executeQuery()) {
                     if (rs.next()) {
                         e = createEvento(rs);

@@ -21,7 +21,7 @@ public interface EventoDAO {
     
     Calendario createCalendario();
     
-    Evento getEvento(int key) throws DataException;
+    Evento getEvento(int id) throws DataException;
     
     List<Evento> getEventiResponsabile(String email) throws DataException;
     

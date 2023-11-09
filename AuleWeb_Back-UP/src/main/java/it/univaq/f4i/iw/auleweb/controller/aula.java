@@ -1,7 +1,6 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.framework.data.DataException;
-import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
@@ -10,7 +9,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Professore;
