@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>images.directory</param-name>
+        <!-- Tomcat must have write permissions on this folder -->
+        <param-value>d:/Java/TomcatWork</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.outline_template</param-name>
+        <param-value>outline.ftl.html</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.date_format</param-name>
+        <param-value>dd/MM/yyyy hh:mm:ss</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.debug</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.template_directory</param-name>
+        <param-value>template</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.data.static.author</param-name>
+        <param-value>AuleWeb-Team</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.data.static.homepage_url</param-name>
+        <param-value>homepage</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.encoding</param-name>
+        <param-value>ISO-8859-1</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.error_template</param-name>
+        <param-value>error.ftl.html</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view.data.filler.timestamp</param-name>
+        <param-value>it.univaq.f4i.iw.ex.newspaper.controller.DummyModelFiller</param-value>
+    </context-param>
+    <context-param>
+        <param-name>data.source</param-name>
+        <!-- qui configuriamo in nome della data source da usare nel codice -->
+        <param-value>jdbc/aule_web</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.Login</servlet-class>
