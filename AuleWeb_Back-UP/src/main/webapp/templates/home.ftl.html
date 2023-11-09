@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<link rel="stylesheet" href="style/home.css" type="text/css" />
+<title>Aule web</title>
+
+<h2 class="home-text">Seleziona Dipartimenti o Poli</h2>
+
+<div class="home-frame-Dipartimenti">
+    <#list ListaDipartimenti as dipartimento>
+
+    <a href="home?k=${dipartimento.key}">${dipartimento.nome}</a>
+
+    </#list>
+</div>

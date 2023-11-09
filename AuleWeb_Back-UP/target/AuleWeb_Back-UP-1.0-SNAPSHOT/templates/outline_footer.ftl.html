@@ -1,0 +1,45 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+<link href="style/footer.css" rel="stylesheet" />
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>About Univaq</h4>
+            <p>L'Universit&agrave; degli Studi dell'Aquila rappresenta un punto di riferimento nel panorama dell'alta formazione e della ricerca. Situata in una citt&agrave; storica, piena di dinamismo e di vita.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/univaq.it" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/univaq" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/univaq/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+
+        </div>
+        <!-- Sezione Link Utili -->
+        <div class="footer-section">
+            <h4>Links Utili</h4>
+            <ul class="footer-links">
+                <li><a href="http://www.univaq.it/">Home</a></li>
+                <li><a href="http://www.univaq.it/section.php?id=463">Amministrazione</a></li>
+                <li><a href="http://www.univaq.it/section.php?id=464">Dipartimenti</a></li>
+                <li><a href="http://www.univaq.it/section.php?id=481">Servizi agli Studenti</a></li>
+            </ul>
+        </div>
+
+        <!-- Sezione Contatti -->
+        <div class="footer-section">
+            <h4>Contatti</h4>
+            <p>Indirizzo:  Piazza dell'Universit&agrave;, 1, 67100 L'Aquila AQ, Italia</p>
+            <p>Email: protocollo@univaq.it</p>
+            <p>Telefono: +39 0862431</p>
+        </div>
+
+        <div class="footer-section issue-section">
+            <#if latest_issue??>
+            <p class="latest-issue">
+                Latest issue published: 
+                <a href="issue?n=${latest_issue.key}">${latest_issue.number}</a>
+            </p>
+            </#if>
+            <p>&copy; 2014 ${defaults.author}. Pagina compilata il ${compiled_on?datetime}</p>
+            <p>&copy; 2023 Universit&agrave; degli Studi dell'Aquila. Tutti i diritti riservati.</p>
+        </div>
+    </div>
+</div>
