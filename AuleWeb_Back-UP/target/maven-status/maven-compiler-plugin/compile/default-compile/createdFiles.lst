@@ -19,8 +19,10 @@ it\univaq\f4i\iw\auleweb\data\impl\AulaImpl.class
 it\univaq\f4i\iw\auleweb\data\proxy\CalendarioProxy.class
 it\univaq\f4i\iw\auleweb\data\dao\EventoDAO.class
 it\univaq\f4i\iw\auleweb\data\dao\ProfessoreDAO_MySQL.class
+it\univaq\f4i\iw\auleweb\controller\VistaEvento.class
 it\univaq\f4i\iw\auleweb\data\model\TipoGruppo.class
 it\univaq\f4i\iw\auleweb\data\dao\CorsoDAO.class
+it\univaq\f4i\iw\auleweb\controller\evento.class
 it\univaq\f4i\iw\auleweb\data\proxy\CorsoProxy.class
 it\univaq\f4i\iw\framework\data\DAO.class
 it\univaq\f4i\iw\auleweb\controller\Logout.class
@@ -47,6 +49,7 @@ it\univaq\f4i\iw\auleweb\data\impl\Gruppo_AulaImpl.class
 it\univaq\f4i\iw\framework\result\TemplateManagerException.class
 it\univaq\f4i\iw\auleweb\data\dao\AulaDAO.class
 it\univaq\f4i\iw\auleweb\data\impl\CalendarioImpl.class
+it\univaq\f4i\iw\auleweb\controller\VistaAula.class
 it\univaq\f4i\iw\auleweb\data\model\Corso.class
 it\univaq\f4i\iw\framework\data\DataItem.class
 it\univaq\f4i\iw\framework\data\DataItemProxyImpl.class
