@@ -34,7 +34,7 @@ public class VistaAula extends AuleWebBaseController {
                 //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
                 //add to the template a wrapper object that allows to call the stripslashes function
                 request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
-                res.activate("article.ftl.html", request, response);
+                res.activate("aula.ftl.html", request, response);
             } else {
                 handleError("Unable to load article", request, response);
             }
@@ -52,7 +52,7 @@ public class VistaAula extends AuleWebBaseController {
             k = SecurityHelpers.checkNumeric(request.getParameter("k"));
             action_article(request, response, k);
         } catch (NumberFormatException ex) {
-            handleError("Article key not specified", request, response);
+            handleError("Aula key not specified", request, response);
         } catch (IOException | TemplateManagerException ex) {
             handleError(ex, request, response);
         }

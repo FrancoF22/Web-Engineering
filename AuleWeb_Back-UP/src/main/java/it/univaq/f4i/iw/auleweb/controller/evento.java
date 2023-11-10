@@ -56,10 +56,15 @@ public class evento extends AuleWebBaseController {
             }
             if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
-                if (prof != null) {
+                Corso c = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso")));
+                if (prof != null && c != null) {
                     evento.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
                     evento.setProfessore(prof);
-                    
+                    evento.setDescrizione(SecurityHelpers.addSlashes(request.getParameter("desrizione")));
+                    //inserire set per la  tipologia di eventi
+                    evento.setCorso(c);
+                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
+                    action_write(request, response, evento.getKey());
                 } else {
                     handleError("Cannot update aula: undefined professor", request, response);
                 }
