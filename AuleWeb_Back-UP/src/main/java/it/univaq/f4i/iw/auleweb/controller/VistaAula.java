@@ -36,7 +36,7 @@ public class VistaAula extends AuleWebBaseController {
                 request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
                 res.activate("aula.ftl.html", request, response);
             } else {
-                handleError("Unable to load article", request, response);
+                handleError("Unable to load aula", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
