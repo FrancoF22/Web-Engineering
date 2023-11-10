@@ -11,9 +11,7 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,6 +61,7 @@ public class evento extends AuleWebBaseController {
             if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
                 Corso corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso")));
+                String tipologiaValue = request.getParameter("tipologia");
                 //Enumeration<?> e = request.getAttributeNames();
                 
                 if (prof != null) {
@@ -77,6 +76,12 @@ public class evento extends AuleWebBaseController {
                         evento.setTipo(t);
                     }
                     */
+                    if(request.getPart("tipo") != null){
+                        if (tipologiaValue != null) {
+                            Tipologia tipologia = Tipologia.valueOf(tipologiaValue);
+                            evento.setTipo(tipologia);
+                        }
+                    }
                     evento.setCorso(corso);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
                     action_write(request, response, evento.getKey());
