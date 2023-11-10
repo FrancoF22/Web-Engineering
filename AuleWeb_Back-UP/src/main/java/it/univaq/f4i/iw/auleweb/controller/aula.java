@@ -51,7 +51,7 @@ public class aula extends AuleWebBaseController {
             } else {
                 aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
             }
-            if (aula != null && request.getParameter("professore") != null && request.getParameter("nome") != null) {
+            if (aula != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("luogo") != null && request.getParameter("edificio") != null && request.getParameter("piano") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
                 if (prof != null) {
                     aula.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
@@ -59,9 +59,7 @@ public class aula extends AuleWebBaseController {
                     aula.setCapienza(SecurityHelpers.checkNumeric(request.getParameter("capienza")));
                     aula.setPreseElettriche(SecurityHelpers.checkNumeric(request.getParameter("prese_elettriche")));
                     aula.setPreseRete(SecurityHelpers.checkNumeric(request.getParameter("prese_rete")));
-                    if (request.getParameter("nota") != null) {
-                        aula.setNota(SecurityHelpers.addSlashes(request.getParameter("nota")));
-                    }
+                    aula.setNota(SecurityHelpers.addSlashes(request.getParameter("nota")));
                     aula.setLuogo(SecurityHelpers.addSlashes(request.getParameter("luogo")));
                     aula.setEdificio(SecurityHelpers.addSlashes(request.getParameter("edificio")));
                     aula.setPiano(SecurityHelpers.addSlashes(request.getParameter("piano")));
