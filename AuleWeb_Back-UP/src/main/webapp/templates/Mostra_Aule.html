@@ -1,0 +1,302 @@
+<!-- collegare eventi (info.html) nell href -->
+<link rel="stylesheet" href="style/mostra_aule.css" type="text/css" />
+
+<div class="home-container">
+
+    <div class="calendar-and-events-container">
+        <div class="events-container">
+            <!-- Inserisci qui la visualizzazione degli eventi del giorno -->
+            <h2>Eventi di Oggi</h2>
+            <ul id="eventList">
+                <!-- Gli eventi con descrizioni verranno visualizzati qui -->
+            </ul>
+        </div>
+
+        <!-- Contenitore per l'orario del giorno -->
+        <div class="time-container">
+            <!-- Inserisci qui l'orario del giorno -->
+            <h2>Orario del Giorno</h2>
+            <ul id="timeList">
+                <!-- L'orario verrà visualizzato qui -->
+            </ul>
+        </div>
+
+        <div id="calendar">
+            <button id="currentDateButton">Data Corrente</button>
+            <div class="header">
+                <button id="prevMonth">&lt;</button>
+                <h1 id="currentMonth"></h1>
+                <button id="nextMonth">&gt;</button>
+            </div>
+            <div class="days">
+                <!-- Inserire qui i giorni del mese -->
+            </div>
+        </div>
+    </div>
+
+    <div class="home-home">
+        <div class="lower">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Luogo</th>
+                        <th>Edificio</th>
+                        <th>Piano</th>
+                        <th>Capienza</th>
+                        <th>Numero di prese elettriche</th>
+                        <th>Numero di prese di rete</th>
+                        <th>Professore</th>
+                        <th>Attrezzature</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <#if (ListaAule?size>0)>
+                    <#list ListaAule as aula>
+                    <tr>
+                        <td>${aula.nome}</td>
+                        <td>${aula.luogo}</td>
+                        <td>${aula.edificio}</td>
+                        <td>${aula.piano}</td>
+                        <td>${aula.capienza}</td>
+                        <td>${aula.preseElettriche}</td>
+                        <td>${aula.preseRete}</td>
+                        <td><#if aula.professore??>${aula.professore.nome} ${aula.professore.cognome}</#if></td>
+                        <td>
+                            <#list aula.attrezzature as att>
+                            ${att},
+                            </#list>
+                        </td>
+                        <!-- <td><a href="eventi?id=${aula.key}">[visualizza eventi]</a></td> -->
+                        <td><a class="Bottone-tabella" href="eventi?id=${aula.key}">Eventi Aula</a></td>
+                    </tr>
+                    </#list>
+                    </#if>
+                </tbody>            
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleziona gli elementi DOM necessari
+        const prevMonthButton = document.getElementById('prevMonth');
+        const nextMonthButton = document.getElementById('nextMonth');
+        const currentDateButton = document.getElementById('currentDateButton');
+        const currentMonthElement = document.getElementById('currentMonth');
+        const daysContainer = document.querySelector('.days');
+        const eventList = document.getElementById('eventList');
+        const timeList = document.getElementById('timeList');
+
+        const today = new Date();
+
+        let currentDate = new Date();
+        let selectedDay = formatDate(new Date()); // Memorizza il giorno selezionato all'inizio
+
+
+        // Funzione per renderizzare il calendario
+        function renderCalendar() {
+            const month = currentDate.getMonth();
+            const year = currentDate.getFullYear();
+            const options = {year: 'numeric', month: 'long'};
+            currentMonthElement.textContent = new Date(year, month).toLocaleDateString('it-IT', options);
+
+            // Pulisci il container dei giorni
+            daysContainer.innerHTML = '';
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Aggiungi celle vuote per i giorni della settimana precedenti al primo del mese
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.classList.add('day', 'empty');
+                daysContainer.appendChild(emptyCell);
+            }
+
+            // Aggiungi i giorni del mese al calendario
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.textContent = day;
+                dayElement.classList.add('day');
+                const date = new Date(year, month, day);
+                dayElement.setAttribute('data-date', formatDate(date));
+
+                if (formatDate(date) === formatDate(today)) {
+                    dayElement.classList.add('current-day');
+                }
+
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        // Assuming you have an array of events
+        var eventsData = {
+            '2023-11-05': [
+                {name: 'Matematica', description: 'Lezione sulla teoria dei numeri', time: '09:30 - 10:30'},
+                {name: 'Fisica', description: 'Studio della meccanica quantistica', time: '11:30 - 12:30'}
+            ],
+            '2023-11-06': [
+                {name: 'Inglese', description: 'Comprensione della lettura', time: '10:00 - 11:00'},
+                {name: 'Storia', description: 'Lezione sul Rinascimento', time: '12:00 - 13:00'}
+            ],
+            '2023-11-07': [
+                {name: 'Chimica', description: 'Laboratorio di chimica organica', time: '09:00 - 10:30'},
+                {name: 'Educazione fisica', description: 'Allenamento di basket', time: '11:00 - 12:00'}
+            ],
+            '2023-11-08': [
+                {name: 'Arte', description: 'Pittura con acquerelli', time: '14:00 - 15:30'},
+                {name: 'Musica', description: 'Lezione di teoria musicale', time: '16:00 - 17:00'}
+            ],
+            '2023-11-09': [
+                {name: 'Informatica', description: 'Programmazione in Python', time: '10:00 - 12:00'},
+                {name: 'Geografia', description: 'Climi del mondo', time: '13:00 - 14:00'}
+            ],
+            // ... more events for other dates
+        };
+
+
+        // Function to render events for a specific day
+        function renderEventsForDay(date) {
+            const formattedDate = date.toISOString().split('T')[0];
+            const events = eventsData[formattedDate] || [];
+
+            // Update the event list
+            const eventList = document.getElementById('eventList');
+            eventList.innerHTML = ''; // Clear existing list items
+
+            events.forEach(event => {
+                const eventItem = document.createElement('li');
+
+                // Create a title element for the event name
+                const title = document.createElement('h3');
+                title.textContent = event.name;
+
+                // Create a time element for the event time
+                const time = document.createElement('div');
+                time.textContent = event.time;
+
+                // Create a description element for the event description
+                const description = document.createElement('p');
+                description.textContent = event.description;
+
+                // Append the title, time, and description to the event item
+                eventItem.appendChild(title);
+                eventItem.appendChild(time);
+                eventItem.appendChild(description);
+
+                // Append the event item to the event list
+                eventList.appendChild(eventItem);
+            });
+        }
+
+        // Function to get events for a specific time slot
+        function getEventsForTimeSlot(date, timeSlot) {
+            const formattedDate = formatDate(date);
+            const events = eventsData[formattedDate] || [];
+            return events.filter(event => event.time === timeSlot);
+        }
+
+        // Modify the populateTimeList function to include event names
+        function populateTimeList(date) {
+            var timeList = document.getElementById("timeList");
+            timeList.innerHTML = ''; // Clear the list before populating it
+
+            schedule.forEach(function (timeSlot) {
+                var eventsForTimeSlot = getEventsForTimeSlot(date, timeSlot);
+                var li = document.createElement("li");
+                var text = timeSlot;
+
+                if (eventsForTimeSlot.length > 0) {
+                    text += ': ' + eventsForTimeSlot.map(event => event.name).join(', ');
+                } else {
+                    text += ': Nessun evento';
+                }
+
+                li.textContent = text;
+                timeList.appendChild(li);
+            });
+        }
+
+
+
+        function formatDate(date) {
+            var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+
+        // Array di oggetti per definire le fasce orarie
+        var schedule = [
+            "08:30 - 09:30",
+            "09:30 - 10:30",
+            "10:30 - 11:30",
+            "11:30 - 12:30",
+            "12:30 - 13:30",
+            "13:30 - 14:30",
+            "14:30 - 15:30",
+            "15:30 - 16:30",
+            "16:30 - 17:30",
+            "17:30 - 18:30",
+            "18:30 - 19:30",
+            "19:30 - 20:30",
+        ];
+
+        // Event listeners per la navigazione del calendario
+        prevMonthButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate);
+        });
+
+        nextMonthButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate);
+        });
+
+        currentDateButton.addEventListener('click', () => {
+            currentDate = new Date();
+            renderCalendar(currentDate);
+        });
+
+        // Listener per i giorni del calendario
+        daysContainer.addEventListener('click', event => {
+            const clickedDayElement = event.target;
+            if (clickedDayElement.classList.contains('day') && !clickedDayElement.classList.contains('empty')) {
+                const clickedDate = new Date(clickedDayElement.getAttribute('data-date'));
+
+                if (formatDate(clickedDate) !== selectedDay) {
+                    document.querySelectorAll('.day.selected-day').forEach(el => el.classList.remove('selected-day'));
+                    clickedDayElement.classList.add('selected-day');
+                    selectedDay = formatDate(clickedDate);
+
+                    renderEventsForDay(clickedDate);
+                    populateTimeList(clickedDate); // Update the time list for the selected day
+                }
+            }
+        });
+
+        // Funzione per inizializzare il calendario e gli eventi per il giorno corrente
+        function initializeCalendar() {
+            renderCalendar(currentDate);
+            renderEventsForDay(currentDate);
+            populateTimeList(currentDate);
+            // Se hai una funzione per evidenziare il giorno corrente nel tuo calendario, la chiameresti anche qui
+            // highlightCurrentDay();  // Sostituisci con la tua funzione effettiva se ne hai una
+        }
+
+        // Chiamata alla funzione di inizializzazione
+        initializeCalendar();
+    });
+
+</script>

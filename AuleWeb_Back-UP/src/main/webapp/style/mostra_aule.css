@@ -1,0 +1,225 @@
+/* Impostazioni base */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    line-height: 1.6; /* Spazio tra le righe */
+    font-size: 16px; /* Dimensione standard del testo */
+}
+
+/* Stili per il contenitore del calendario e degli eventi */
+.calendar-and-events-container {
+    display: flex;
+    flex-wrap: wrap; /* Ora permette agli elementi di andare a capo quando necessario */
+    justify-content: space-between;
+    margin: 30px auto; /* Centrato con margini più ampi */
+    max-width: 1200px; /* Massima larghezza per evitare che sia troppo esteso su schermi grandi */
+    padding: 20px;
+    box-sizing: border-box; /* Assicura che padding e bordi siano inclusi nella larghezza */
+}
+
+.events-container,
+.time-container,
+#calendar {
+    flex: 1; /* Ora i contenitori occupano la stessa quantità di spazio disponibile */
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bordi più arrotondati */
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+}
+
+.events-container h2,
+.time-container h2 {
+    font-size: 16px; /* Dimensione del titolo */
+}
+
+#eventList,
+#timeList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#eventList li,
+#timeList li {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 767px) {
+    .events-container, .time-container, #calendar {
+        width: 100%; /* Permette che i contenitori occupino l'intera larghezza su schermi più piccoli */
+        margin-top: 20px; /* Distanziamento tra i contenitori */
+    }
+}
+
+#calendar {
+    display: flex;
+    flex-direction: column;
+}
+
+#calendar .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#calendar h1,
+.events-container h2 {
+    color: #0056b3;
+}
+
+#calendar .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.day {
+    padding: 15px;
+    background-color: #e9e9e9;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.day:hover, .day.current-day {
+    background-color: #0066cc;
+    color: #ffffff;
+    transform: translateY(-3px); /* Leggero effetto "sollevamento" */
+}
+
+/* Rimozione delle regole di stile duplicate per la tabella delle aule */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.custom-table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.custom-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.Bottone-tabella {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Per evitare problemi di allineamento */
+    text-decoration: none; /* Se è un link */
+}
+
+.Bottone-tabella:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Leggero effetto di zoom */
+}
+
+.Bottone-tabella:focus {
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.5); /* Focus visibile per l'accessibilità */
+}
+
+.Bottone-tabella:active {
+    background-color: #004a9f; /* Colore leggermente più scuro per lo stato attivo */
+}
+
+/* Stile Base per i Bottoni */
+#prevMonth, #nextMonth, #currentDateButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px; /* Assicurati che sia leggibile */
+    margin: 5px; /* Spazio tra i bottoni */
+}
+
+#prevMonth:hover, #nextMonth:hover, #currentDateButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Aggiunta di iconografia ai bottoni può aiutare nell'usabilità */
+#prevMonth:before {
+    content: "\003C"; /* Codice Unicode per '<' */
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#nextMonth:after {
+    content: "\003E"; /* Codice Unicode per '>' */
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* Se desideri rendere il bottone Data Corrente diverso */
+#currentDateButton {
+    background-color: #17a2b8; /* Blu più chiaro */
+}
+
+#currentDateButton:hover {
+    background-color: #138496; /* Un blu leggermente più scuro per l'hover */
+}
+
+.header {
+    display: flex;
+    justify-content: center; /* Centrato orizzontalmente */
+    align-items: center; /* Centrato verticalmente */
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0 20px; /* Aggiunge spazio tra il testo e i bottoni */
+    color: #0056b3; /* Manteniamo il colore coerente */
+    font-size: 1.5em;
+}
+
+.selected-day {
+    background-color: #FFD700; /* o qualsiasi altro colore preferisci */
+    color: white;
+}
+
+.events-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.events-container li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.events-container h3 {
+    margin-top: 0;
+}
+
+.events-container div,
+.events-container p {
+    margin: 5px 0;
+}
