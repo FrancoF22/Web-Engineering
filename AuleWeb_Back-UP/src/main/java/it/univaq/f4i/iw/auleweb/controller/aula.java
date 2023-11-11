@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Professore;
+import java.util.*;
 
 /**
  *
@@ -24,7 +25,9 @@ public class aula extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
 
             List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
+            //List<String> attrezzature = 
             request.setAttribute("ListaProfessori", professori);
+            //request.setAttribute("ListaAttrezzatura", attrezzature);
             if (id_aula > 0) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
@@ -51,7 +54,7 @@ public class aula extends AuleWebBaseController {
             } else {
                 aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
             }
-            if (aula != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("luogo") != null && request.getParameter("edificio") != null && request.getParameter("piano") != null) {
+            if (aula != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("luogo") != null && request.getParameter("edificio") != null && request.getParameter("piano") != null && request.getParameter("ListaAttrezzatura") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
                 if (prof != null) {
                     aula.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
@@ -63,10 +66,14 @@ public class aula extends AuleWebBaseController {
                     aula.setLuogo(SecurityHelpers.addSlashes(request.getParameter("luogo")));
                     aula.setEdificio(SecurityHelpers.addSlashes(request.getParameter("edificio")));
                     aula.setPiano(SecurityHelpers.addSlashes(request.getParameter("piano")));
-                    if (request.getParameter("attrezzatura") != null) {
-                        // devo vedere come gestire la lista di attrezzature che vuole
-                        //aula.setAttrezzature(SecurityHelpers.addSlashes(request.getParameter("attrezzatura")));
+                    String[] attrezzatura = request.getParameterValues("ListaAttrezzatura");
+                    ArrayList<String> att = new ArrayList<>();
+                    if (attrezzatura != null) {
+                        att.addAll(Arrays.asList(attrezzatura));
+                        aula.setAttrezzature(att);
                     }
+                        
+                    
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     action_write(request, response, aula.getKey());
                 } else {
