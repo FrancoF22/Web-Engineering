@@ -6,14 +6,10 @@ import it.univaq.f4i.iw.auleweb.data.proxy.AulaProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
-import java.sql.*;
 
 /**
  *
@@ -24,7 +20,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     public AulaDAO_MySQL(DataLayer d) {
         super(d);
     }
-    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo, sAllAule;
+    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo, sAllAule, sAllAttrezzature;
     private PreparedStatement iAula, uAula, dAula;
 
     @Override
@@ -42,7 +38,9 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
-
+            
+            sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = aula AND COLUMN_NAME = attrezzatura");
+            
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uAula = connection.prepareStatement("UPDATE aula SET nome=?, capienza=?, prese_elettriche=?, prese_rete=?, attrezzatura=?, nota=?, luogo=?, edificio=?, piano=?, id_professore=? WHERE id=?");
             dAula = connection.prepareStatement("DELETE FROM aula WHERE id=?");
@@ -90,7 +88,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
             String attrezzature = rs.getString("attrezzatura");
             String[] attArr = attrezzature.split(",");
-            ArrayList<String> attList = new ArrayList<String>(Arrays.asList(attArr));
+            List<String> attList = new ArrayList<>(Arrays.asList(attArr));
             a.setAttrezzature(attList);
 
             a.setNota(rs.getString("nota"));
@@ -320,11 +318,21 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
     @Override
     public List<String> getAllAttrezzature() throws DataException {
-        ArrayList<String> result = new ArrayList<>();
-       
+        List<String> result = new ArrayList();
+        try {
+            try (ResultSet rs = sAllAttrezzature.executeQuery()) {
+                String tipo = rs.getString("COLUMN_TYPE");
+                String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
+                for (String value: values){
+                    result.add(value.trim());
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
         return result;
     }
-
+    
     //i metodi di seguito vanno modificati, oppure non servono
     @Override
     public Attrezzatura createAttrezzatura() {
