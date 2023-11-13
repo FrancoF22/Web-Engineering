@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
+import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
@@ -59,4 +60,9 @@ public class AuleWebDataLayer extends DataLayer {
     public ProfessoreDAO getProfessoreDAO() {
         return (ProfessoreDAO) getDAO(Professore.class);
     }
+    
+    public CalendarioDAO getCalendarioDAO() {
+        return (CalendarioDAO) getDAO(Calendario.class);
+    }
+    
 }
