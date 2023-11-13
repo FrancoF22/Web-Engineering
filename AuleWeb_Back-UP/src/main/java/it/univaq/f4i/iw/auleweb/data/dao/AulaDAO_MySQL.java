@@ -2,6 +2,7 @@ package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
+import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.proxy.AulaProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -357,6 +358,16 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     @Override
     public List<String> getLuoghi() throws DataException {
         throw new UnsupportedOperationException("getLuoghi not supported yet.");
+    }
+
+    @Override
+    public List<Aula> getAllAule(Calendario calendario) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Aula> getAuleLibere() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

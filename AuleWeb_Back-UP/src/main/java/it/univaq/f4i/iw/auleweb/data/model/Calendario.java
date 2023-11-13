@@ -5,8 +5,8 @@
 package it.univaq.f4i.iw.auleweb.data.model;
 
 import it.univaq.f4i.iw.framework.data.DataItem;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.*;
+import java.time.LocalTime;
 
 /**
  *
@@ -20,9 +20,9 @@ public interface Calendario extends DataItem<Integer>{
    
     Date getGiorno(); 
     
-    Time getOraInizio(); 
+    LocalTime getOraInizio(); 
    
-    Time getOraFine();
+    LocalTime getOraFine();
     
     void setAula(Aula aula);
     
@@ -30,7 +30,7 @@ public interface Calendario extends DataItem<Integer>{
     
     void setGiorno(Date giorno);
 
-    void setOraInizio(Time oraInizio);
+    void setOraInizio(LocalTime oraInizio);
     
-    void setOraFine(Time oraFine);
+    void setOraFine(LocalTime oraFine);
 }

@@ -6,6 +6,7 @@ package it.univaq.f4i.iw.auleweb.data.dao;
 
 import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
+import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.framework.data.DataException;
 import java.util.*;
 
@@ -29,7 +30,17 @@ public interface AulaDAO {
     
     List<Aula> getAllAule() throws DataException;
     
+    List<Aula> getAllAule(Calendario calendario) throws DataException;
+    
     List<Aula> getAllAuleGI(int id_gruppo) throws DataException;
+    
+    List<String> getAllAttrezzature() throws DataException;
+    
+    List<String> getLuoghi() throws DataException;
+    
+    List<Aula> getAuleFromLuogo(String luogo) throws DataException;
+
+    List<Aula> getAuleLibere() throws DataException;
     
     void storeAula(Aula aula) throws DataException;
     
@@ -39,10 +50,4 @@ public interface AulaDAO {
     
     void deleteAttrezzatura(String nome) throws DataException;
 
-    List<String> getAllAttrezzature() throws DataException;
-    
-    List<String> getLuoghi() throws DataException;
-    
-    List<Aula> getAuleFromLuogo(String luogo) throws DataException;
-    
 }

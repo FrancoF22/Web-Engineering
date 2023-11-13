@@ -6,9 +6,7 @@ package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
-import java.sql.Time;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.*;
 import java.time.LocalTime;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
@@ -22,15 +20,15 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     private Aula aula;
     private Evento eventi;
     private Date giorno;
-    private Time oraInizio, oraFine;
+    private LocalTime oraInizio, oraFine;
 
     public CalendarioImpl() {
        super();
        this.aula = null;
        this.eventi = null;
-       this.giorno = Date.valueOf(LocalDate.now());
-       this.oraInizio = Time.valueOf(LocalTime.now());
-       this.oraFine = Time.valueOf(LocalTime.now());
+       this.giorno = null;
+       this.oraInizio = null;
+       this.oraFine = null;
     }
 
     @Override
@@ -49,12 +47,12 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     }
 
     @Override
-    public Time getOraInizio() {
+    public LocalTime getOraInizio() {
         return oraInizio;
     }
 
     @Override
-    public Time getOraFine() {
+    public LocalTime getOraFine() {
         return oraFine;
     }
 
@@ -74,12 +72,12 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
     }
 
     @Override
-    public void setOraInizio(Time oraInizio) {
+    public void setOraInizio(LocalTime oraInizio) {
         this.oraInizio = oraInizio;
     }
 
     @Override
-    public void setOraFine(Time oraFine) {
+    public void setOraFine(LocalTime oraFine) {
         this.oraFine = oraFine;
     }
 }

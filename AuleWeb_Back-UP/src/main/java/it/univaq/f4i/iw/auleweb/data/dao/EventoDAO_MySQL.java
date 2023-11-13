@@ -16,8 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -507,7 +506,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                uCalendario.setDate(4, calendario.getGiorno());
+                uCalendario.setDate(4, (Date) calendario.getGiorno());
                 uCalendario.setTime(6, calendario.getOraInizio());
                 uCalendario.setTime(7, calendario.getOraFine());
                 uCalendario.setInt(8, calendario.getKey());
@@ -527,7 +526,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                iCalendario.setDate(4, calendario.getGiorno());
+                iCalendario.setDate(4, (Date) calendario.getGiorno());
                 iCalendario.setTime(6, calendario.getOraInizio());
                 iCalendario.setTime(7, calendario.getOraFine());
                 

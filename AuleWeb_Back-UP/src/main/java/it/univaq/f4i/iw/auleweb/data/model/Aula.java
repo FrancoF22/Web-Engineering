@@ -33,6 +33,8 @@ public interface Aula extends DataItem<Integer>{
   
     Professore getProfessore();
     
+    Calendario getCalendario();
+    
     void setNome(String nome);
     
     void setCapienza(Integer capienza);
@@ -52,4 +54,7 @@ public interface Aula extends DataItem<Integer>{
     void setPiano(String piano);
   
     void setProfessore(Professore resp);
+    
+    void setCalendario(Calendario calendario);
+    
 }

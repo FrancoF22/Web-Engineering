@@ -8,8 +8,8 @@ import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
+import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,13 +77,13 @@ public class CalendarioProxy extends CalendarioImpl implements DataItemProxy{
     }
 
     @Override
-    public void setOraInizio(Time oraInizio) {
+    public void setOraInizio(LocalTime oraInizio) {
         super.setOraInizio(oraInizio);
         this.modified = true;
     }
 
     @Override
-    public void setOraFine(Time oraFine) {
+    public void setOraFine(LocalTime oraFine) {
        super.setOraFine(oraFine);
         this.modified = true;
     }

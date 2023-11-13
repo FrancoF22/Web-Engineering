@@ -12,6 +12,7 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.*;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.Calendar;
 import java.util.Collections;
@@ -163,8 +164,8 @@ public class calendario extends  AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCAlendario(id_calendaio);
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
-                    request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getUnassignedArticles());
-                    request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getArticles(issue));
+                    request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
+                    request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
                     res.activate("compose_single.ftl.html", request, response);
                 } else {
                     handleError("Undefined issue", request, response);
@@ -174,14 +175,17 @@ public class calendario extends  AuleWebBaseController {
                 //issue_key==0 indica un nuovo numero 
                 //issue_key==0 indicates a new calendario
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
-                issue.setNumber(((NewspaperDataLayer) request.getAttribute("datalayer")).getIssueDAO().getLatestIssueNumber() + 1);
-                issue.setDate(Calendar.getInstance().getTime());
+                //issue.setNumber(((NewspaperDataLayer) request.getAttribute("datalayer")).getIssueDAO().getLatestIssueNumber() + 1);
+                calendario.setGiorno(Calendar.getInstance().getTime());
+                //probabile modifica
+                calendario.setOraInizio(LocalTime.MIN);
+                calendario.setOraFine(LocalTime.MIN);
                 request.setAttribute("calendario", calendario);
                 //forza prima a compilare i dati essenziali per creare un numero
                 //forces first to compile the mandatory fields to create an calendario
                 request.setAttribute("unused", Collections.EMPTY_LIST);
                 request.setAttribute("used", Collections.EMPTY_LIST);
-                res.activate("compose_single.ftl.html", request, response);
+                res.activate("calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -204,7 +208,7 @@ public class calendario extends  AuleWebBaseController {
                 date.set(SecurityHelpers.checkNumeric(request.getParameter("year")),
                         SecurityHelpers.checkNumeric(request.getParameter("month")) - 1,
                         SecurityHelpers.checkNumeric(request.getParameter("day")));
-                calendario.setDate(date.getTime());
+                calendario.setGiorno(date.getTime());
                 ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
                 //delega il resto del processo all'azione compose
                 //delegates the rest of the process to the compose action
@@ -217,16 +221,16 @@ public class calendario extends  AuleWebBaseController {
         }
     }
 
-    private void action_add_article(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
+    private void action_add_aula(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCAlendario(id_calendario);
 
             if (calendario != null && request.getParameter("aarticle") != null && request.getParameter("page") != null) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("aaaula")));
-                Article article = ((NewspaperDataLayer) request.getAttribute("datalayer")).getArticleDAO().getArticle(SecurityHelpers.checkNumeric(request.getParameter("aarticle")));
                 if (aula != null) {
-                    article.setIssue(calendario);
-                    article.setPage(SecurityHelpers.checkNumeric(request.getParameter("page")));
+                    //article.setIssue(calendario);
+                    aula.setCalendario(calendario);
+                    //article.setPage(SecurityHelpers.checkNumeric(request.getParameter("page")));
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     //delega il resto del processo all'azione compose
                     //delegates the rest of the process to the compose action
@@ -242,17 +246,15 @@ public class calendario extends  AuleWebBaseController {
         }
     }
 
-    //cambiare in remove Aula (forse fare anche per remove Evento)
-    private void action_remove_article(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
+    private void action_remove_aula(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCAlendario(id_calendario);
             if (calendario != null && request.getParameter("rarticle") != null) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("raaula")));
-                Article article = ((NewspaperDataLayer) request.getAttribute("datalayer")).getArticleDAO().getArticle(SecurityHelpers.checkNumeric(request.getParameter("rarticle")));
                 if (aula != null) {
-                    if (article.getIssue().getKey() == calendario.getKey()) {
-                        article.setPage(0);
-                        article.setIssue(null);
+                    if (aula.getCalendario().getKey() == calendario.getKey()) {
+                        //article.setPage(0);
+                        aula.setCalendario(null);
                         //modificae in modo da avere storeAula
                         ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     }
@@ -282,9 +284,9 @@ public class calendario extends  AuleWebBaseController {
             if (request.getParameter("n") != null) {
                 id_calendario = SecurityHelpers.checkNumeric(request.getParameter("n"));
                 if (request.getParameter("add") != null) {
-                    action_add_article(request, response, id_calendario);
+                    action_add_aula(request, response, id_calendario);
                 } else if (request.getParameter("remove") != null) {
-                    action_remove_article(request, response, id_calendario);
+                    action_remove_aula(request, response, id_calendario);
                 } else if (request.getParameter("update") != null) {
                     action_set_properties(request, response, id_calendario);
                 } else {

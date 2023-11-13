@@ -4,9 +4,7 @@
  */
 package it.univaq.f4i.iw.auleweb.data.impl;
 
-import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
-import it.univaq.f4i.iw.auleweb.data.model.Aula;
-import it.univaq.f4i.iw.auleweb.data.model.Professore;
+import it.univaq.f4i.iw.auleweb.data.model.*;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 import java.util.*;
 
@@ -20,6 +18,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     private String nome, luogo, nota, edificio, piano;
     private List<String> attrezzatura;
     private Professore professore;
+    private Calendario calendario;
     
     public AulaImpl(){
         super();
@@ -32,6 +31,7 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
         this.piano = "";
         this.attrezzatura = new ArrayList<>();
         this.professore = null;
+        this.calendario = null;
     }
 
 
@@ -94,6 +94,11 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     }
 
     @Override
+    public Calendario getCalendario() {
+        return calendario;
+    }
+    
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -141,6 +146,11 @@ public class AulaImpl extends DataItemImpl<Integer> implements Aula{
     @Override
     public void setProfessore(Professore resp) {
         this.professore = resp;
+    }
+    
+    @Override
+    public void setCalendario(Calendario calendario) {
+        this.calendario = calendario;
     }
 
 }
