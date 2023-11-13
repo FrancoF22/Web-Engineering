@@ -25,9 +25,9 @@ public class aula extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
 
             List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
-            //List<String> attrezzature = 
+            List<String> attrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature();
             request.setAttribute("ListaProfessori", professori);
-            //request.setAttribute("ListaAttrezzatura", attrezzature);
+            request.setAttribute("ListaAttrezzatura", attrezzature);
             if (id_aula > 0) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
