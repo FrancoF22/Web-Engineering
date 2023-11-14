@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+/* Stili base */
+body, html {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 11pt;
+    background: #73A2BD;
+}
+
+/* Utilizzo di .container per centrare e contenere il layout */
+.container {
+    max-width: 1200px; /* Massima larghezza del contenitore */
+    margin: 0 auto; /* Centra il contenitore */
+    padding: 20px; /* Padding per non attaccare il contenuto ai bordi */
+}
+
+/* Stili per l'header */
+#header {
+    right: 0;
+    height: 70px;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    background-color: #53829D;
+    color: white;
+}
+
+.subtitle {
+    font-size: 50%;
+}
+
+/* Stili per le informazioni di login */
+.logininfo {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: right;
+    margin-right: 1em;
+}
+
+.logged-in {
+    color: green;
+}
+
+.not-logged-in {
+    color: red;
+}
+
+/* Adattamento di #body e .columns per integrarsi con la griglia */
+#body {
+    background-color: white;
+    padding: 15px; /* Aggiunto padding */
+}
+
+.fifteen.columns {
+    margin-left: 1em; /* Margine sinistro per la spaziatura */
+    /* Assicurati che questa classe non confligga con grid.css */
+}
+
+/* Stili per il footer */
+#footer {
+    height: 30px;
+    font-size: 9pt;
+    text-align: center;
+    background-color: #73A2BD;
+    color: white;
+}
+
+/* Stili per i controlli del form */
+input, select, textarea {
+    border: 1px solid #53829D;
+    background: white;
+    font-size: 80%;
+    width: 85%;
+}
+
+select.small, input.small {
+    width: 15%;
+}
+
+select.medium, input.medium {
+    width: 40%;
+}
+
+/* Stili per le label */
+.clabel {
+    font-weight: bold;
+}
+
+/* Stili per il menu */
+.menu {
+    background: white;
+    color: #73A2BD;
+    font-size: 80%;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.menu.horizontal {
+    border-bottom: 2px dashed #53829D;
+}
+
+.menu.vertical {
+    border-right: 2px dashed #53829D;
+}
+
+.menu a {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+}
+
+.menu a:hover {
+    background-color: #73A2BD;
+    color: white;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.menu.horizontal li {
+    margin: 0 5px;
+    float: left;
+}
+
+.menu.vertical li {
+    margin: 5px 0;
+}
+
+/* Stili per le figure e le immagini */
+.figures {
+    overflow: hidden;
+}
+
+.figure {
+    border: 1px solid #CCC;
+    padding: 5px;
+    margin: 10px;
+    float: right;
+}
+
+.figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.figure .caption {
+    display: block;
+    text-align: center;
+    font-size: 80%;
+}
+
+/* Media Queries per dispositivi più piccoli */
+@media only screen and (max-width: 959px) {
+    body, html {
+        font-size: 10pt;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body, html {
+        font-size: 12pt;
+    }
+
+    #header {
+        font-size: 24pt;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .menu, .menu.horizontal, .menu.vertical {
+        border-bottom: 2px dashed #53829D;
+        border-right: none;
+    }
+
+    .menu.horizontal li,
+    .menu.vertical li {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+
+    .menu a {
+        padding: 10px;
+        font-size: larger;
+    }
+
+    .logininfo {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    input, select, textarea {
+        width: 95%;
+    }
+
+    select.small, input.small {
+        width: 30%;
+    }
+
+    select.medium, input.medium {
+        width: 60%;
+    }
+
+    .figure {
+        float: none;
+        margin: 10px auto;
+    }
+}

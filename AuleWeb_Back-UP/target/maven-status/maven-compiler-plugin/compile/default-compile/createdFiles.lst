@@ -1,5 +1,6 @@
 it\univaq\f4i\iw\auleweb\data\impl\CorsoImpl.class
 it\univaq\f4i\iw\auleweb\data\model\Aula.class
+it\univaq\f4i\iw\auleweb\data\dao\EventoDAO_MySQL.class
 it\univaq\f4i\iw\framework\data\DataException.class
 it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO_MySQL.class
 it\univaq\f4i\iw\framework\result\StreamResult.class
@@ -24,13 +25,16 @@ it\univaq\f4i\iw\auleweb\data\dao\CorsoDAO.class
 it\univaq\f4i\iw\auleweb\controller\evento.class
 it\univaq\f4i\iw\auleweb\data\proxy\CorsoProxy.class
 it\univaq\f4i\iw\framework\data\DAO.class
+it\univaq\f4i\iw\auleweb\controller\Logout.class
 it\univaq\f4i\iw\framework\data\OptimisticLockException.class
 it\univaq\f4i\iw\auleweb\data\model\Utente.class
 it\univaq\f4i\iw\auleweb\data\dao\ProfessoreDAO.class
 it\univaq\f4i\iw\auleweb\data\proxy\Gruppo_AulaProxy.class
 it\univaq\f4i\iw\auleweb\data\impl\GruppoImpl.class
+it\univaq\f4i\iw\auleweb\data\dao\CorsoDAO_MySQL.class
 it\univaq\f4i\iw\auleweb\data\model\Gruppo.class
 it\univaq\f4i\iw\auleweb\data\model\Professore.class
+it\univaq\f4i\iw\auleweb\controller\Login.class
 it\univaq\f4i\iw\framework\controller\AbstractBaseController.class
 it\univaq\f4i\iw\auleweb\data\dao\CalendarioDAO_MySQL.class
 it\univaq\f4i\iw\auleweb\data\model\Calendario.class
@@ -63,5 +67,6 @@ it\univaq\f4i\iw\framework\data\DataCache.class
 it\univaq\f4i\iw\framework\data\DataLayer.class
 it\univaq\f4i\iw\auleweb\data\dao\CalendarioDAO.class
 it\univaq\f4i\iw\auleweb\data\model\Gruppo_Aula.class
+it\univaq\f4i\iw\auleweb\data\proxy\EventoProxy.class
 it\univaq\f4i\iw\auleweb\controller\Home.class
 it\univaq\f4i\iw\framework\data\DataItemProxy.class

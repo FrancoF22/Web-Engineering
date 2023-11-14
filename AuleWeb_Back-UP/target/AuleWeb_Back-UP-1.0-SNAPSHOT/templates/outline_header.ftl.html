@@ -1,0 +1,40 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="style/header.css" rel="stylesheet" />
+
+<div class="row" id="header">
+    <div class="sixteen columns">
+        <a href="home" style="float: left;">
+            <img
+                alt="UnivaqLogo1852"
+                src="images/UnivAQ_logoC.png"
+                class="home-univaq-logo"
+                />
+        </a>
+        <div class="header-content">
+            <span class="logo-text">Aule Web</span>
+            <div class="subtitle">${page_title!"Untitled page"}</div>
+        </div>
+
+        <div class="user-info">
+            <#if logininfo??>
+            <div class="user-icon">
+                <i class="fa fa-user"></i> <!-- Icona FontAwesome -->
+            </div>
+            <span class="username">${logininfo.username}</span>
+            <div class="user-dropdown">
+                <a href="home_admin?referrer=${thispageurl?url}">Home Admin</a>
+                <a href="logout?referrer=${thispageurl?url}">Logout</a>
+            </div>
+            <#else>
+            <p class="not-logged-in">
+                <em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
+            </p>
+            </#if>
+        </div>
+
+
+
+    </div>
+</div>
+
+
