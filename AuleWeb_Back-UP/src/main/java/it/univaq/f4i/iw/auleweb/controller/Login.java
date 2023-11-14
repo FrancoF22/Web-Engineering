@@ -25,7 +25,7 @@ public class Login extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, TemplateManagerException {
         TemplateResult result = new TemplateResult(getServletContext());
         request.setAttribute("referrer", request.getParameter("referrer"));
-        result.activate("login.ftl.html", request, response);
+        result.activate("Login.ftl.html", request, response);
 
 //        //esempio di creazione utente
 //        //create user example

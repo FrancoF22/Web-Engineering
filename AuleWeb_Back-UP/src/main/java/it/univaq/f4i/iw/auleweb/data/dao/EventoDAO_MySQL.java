@@ -149,8 +149,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             c.setAulaKey(rs.getInt("id_aula"));
             c.setEventoKey(rs.getInt("id_evento"));
             c.setGiorno(rs.getDate("giorno"));
-            c.setOraInizio(rs.getTime("ora_inizio"));
-            c.setOraFine(rs.getTime("ora_fine"));
+            c.setOraInizio(rs.getTime("ora_inizio").toLocalTime());
+            c.setOraFine(rs.getTime("ora_fine").toLocalTime());
 
         } catch (SQLException ex) {
             throw new DataException("Unable to create calendar object form ResultSet", ex);
@@ -507,8 +507,10 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                     uCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
                 uCalendario.setDate(4, (Date) calendario.getGiorno());
-                uCalendario.setTime(6, calendario.getOraInizio());
-                uCalendario.setTime(7, calendario.getOraFine());
+                Time t = Time.valueOf(calendario.getOraInizio());
+                uCalendario.setTime(6, t);
+                Time f = Time.valueOf(calendario.getOraFine());
+                uCalendario.setTime(7, f);
                 uCalendario.setInt(8, calendario.getKey());
                 if (uEvento.executeUpdate() == 0) {
                     throw new OptimisticLockException(calendario);
@@ -527,8 +529,10 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                     iCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
                 iCalendario.setDate(4, (Date) calendario.getGiorno());
-                iCalendario.setTime(6, calendario.getOraInizio());
-                iCalendario.setTime(7, calendario.getOraFine());
+                Time t = Time.valueOf(calendario.getOraInizio());
+                iCalendario.setTime(5, t);
+                Time f = Time.valueOf(calendario.getOraFine());
+                iCalendario.setTime(6, f);
                 
                 if (iCalendario.executeUpdate() == 1) {
                     try (ResultSet keys = iCalendario.getGeneratedKeys()) {
