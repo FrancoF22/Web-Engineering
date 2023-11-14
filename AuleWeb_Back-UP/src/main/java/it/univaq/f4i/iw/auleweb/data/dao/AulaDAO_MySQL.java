@@ -21,7 +21,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     public AulaDAO_MySQL(DataLayer d) {
         super(d);
     }
-    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo, sAllAule, sAllAttrezzature;
+    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo, sAllAule, sUnusedAule, sAllAttrezzature;
     private PreparedStatement iAula, uAula, dAula;
 
     @Override
@@ -39,7 +39,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
-            
+            sUnusedAule = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario");
             sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = aula AND COLUMN_NAME = attrezzatura");
             
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -334,6 +334,36 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         return result;
     }
     
+    @Override
+    public List<Aula> getAllAule(Calendario calendario) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Aula> getAuleLibere() throws DataException {
+        List<Aula> result = new ArrayList<>();
+        List<Aula> used = new ArrayList<>();
+        List<Aula> all = new ArrayList<>();
+        try {
+            try (ResultSet rs = sUnusedAule.executeQuery()) {
+                while (rs.next()) {
+                    used.add((Aula) getAula(rs.getInt("id")));
+                }
+            }
+            try (ResultSet sr = sAllAule.executeQuery()) {
+                while (sr.next()) {
+                    all.add((Aula) getAula(sr.getInt("id")));
+                } 
+            }
+            for(Aula elemento : all) {
+                if(!used.contains(elemento)) result.add(elemento);
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+
     //i metodi di seguito vanno modificati, oppure non servono
     @Override
     public Attrezzatura createAttrezzatura() {
@@ -358,16 +388,6 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     @Override
     public List<String> getLuoghi() throws DataException {
         throw new UnsupportedOperationException("getLuoghi not supported yet.");
-    }
-
-    @Override
-    public List<Aula> getAllAule(Calendario calendario) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Aula> getAuleLibere() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

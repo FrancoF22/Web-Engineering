@@ -66,8 +66,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             uEvento = connection.prepareStatement("UPDATE evento SET nome=?,descrizione=?,tipologia=?,id_corso=?,id_responsabile=? WHERE ID=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE id=?");
             
-            iCalendario = connection.prepareStatement("INSERT INTO Calendario (id_aula,id_evento,ricorrenza,giorno,giorno_fine,ora_inizio,ora_fine) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uCalendario = connection.prepareStatement("UPDATE Calendario SET id_aula=?,id_evento=?,ricorrenza=?,giorno=?,giorno_fine=?,ora_inizio=?,ora_fine=? WHERE ID=?");
+            iCalendario = connection.prepareStatement("INSERT INTO Calendario (id_aula,id_evento,giorno,ora_inizio,ora_fine) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            uCalendario = connection.prepareStatement("UPDATE Calendario SET id_aula=?,id_evento=?,giorno=?,ora_inizio=?,ora_fine=? WHERE ID=?");
             dCalendario = connection.prepareStatement("DELETE FROM Calendario WHERE id=?");
             
         } catch (SQLException ex) {
@@ -506,12 +506,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                uCalendario.setDate(4, (Date) calendario.getGiorno());
+                uCalendario.setDate(3, (Date) calendario.getGiorno());
                 Time t = Time.valueOf(calendario.getOraInizio());
-                uCalendario.setTime(6, t);
+                uCalendario.setTime(4, t);
                 Time f = Time.valueOf(calendario.getOraFine());
-                uCalendario.setTime(7, f);
-                uCalendario.setInt(8, calendario.getKey());
+                uCalendario.setTime(5, f);
+                uCalendario.setInt(6, calendario.getKey());
                 if (uEvento.executeUpdate() == 0) {
                     throw new OptimisticLockException(calendario);
                 } else {
@@ -528,11 +528,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                iCalendario.setDate(4, (Date) calendario.getGiorno());
+                iCalendario.setDate(3, (Date) calendario.getGiorno());
                 Time t = Time.valueOf(calendario.getOraInizio());
-                iCalendario.setTime(5, t);
+                iCalendario.setTime(4, t);
                 Time f = Time.valueOf(calendario.getOraFine());
-                iCalendario.setTime(6, f);
+                iCalendario.setTime(5, f);
                 
                 if (iCalendario.executeUpdate() == 1) {
                     try (ResultSet keys = iCalendario.getGeneratedKeys()) {
