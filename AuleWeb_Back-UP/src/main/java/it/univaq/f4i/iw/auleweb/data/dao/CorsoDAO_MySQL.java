@@ -120,7 +120,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
         return result;
     }
     
-    @Override
+    @Override //permette di salvare le informazioni relative ad un corso nel database
     public void storeCorso(Corso corso) throws DataException {
         
          try {
@@ -158,7 +158,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
         }
     }
 
-    @Override
+    @Override //permette di eliminare un corso
     public void deleteCorso(Integer id_corso) throws DataException {
        try {
             dCorso.setInt(1, id_corso);

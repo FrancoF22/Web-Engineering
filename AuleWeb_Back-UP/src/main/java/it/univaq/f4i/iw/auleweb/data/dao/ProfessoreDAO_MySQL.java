@@ -68,7 +68,8 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
     public Professore createProfessore() {
         return new ProfessoreProxy(getDataLayer());
     }
-
+    
+    // helper
     public Professore createProfessore(ResultSet rs) throws DataException {
         try {
             ProfessoreProxy a = (ProfessoreProxy) createProfessore();
@@ -81,7 +82,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         }
     }
     
-    @Override
+    @Override // permette di ottenere un professore a partire dall'id
     public Professore getProfessoreById(int professore_key) throws DataException {
         
          Professore p = null;
@@ -104,7 +105,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         return p;
     }
 
-    @Override
+    @Override // permette di ottenere un professore a partire dal nome
     public Professore getProfessore(String cognome) throws DataException {
         
          Professore p = null;
@@ -127,7 +128,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         return p;
     }
     
-    @Override
+    @Override // permette di ottenere la lista dei professori
     public List<Professore> getProfessori() throws DataException {
          List<Professore> u = new ArrayList();
         try (ResultSet rs = sProfessori.executeQuery()) {
@@ -140,7 +141,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         return u;
     }
     
-    @Override
+    @Override // permette di salvare le informazioni di un professore nel database
     public void storeProfessore(Professore prof) throws DataException{
         try {
             if (prof.getKey() != null && prof.getKey() > 0) { 
@@ -180,8 +181,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
         }
     }
     
-    
-    @Override
+    @Override // permette di cancellare un professore
     public void deleteProfessore(Integer id_prof) throws DataException {
          try {
             dProfessore.setInt(1, id_prof);

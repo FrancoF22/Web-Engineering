@@ -273,7 +273,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
         return result;
     }
 
-    @Override
+    @Override //permette di salvare le informazioni relative ad un gruppo nel database
     public void storeGruppo(Gruppo gruppo) throws DataException {
         try {
             if (gruppo.getKey() != null && gruppo.getKey() > 0) {
@@ -332,7 +332,7 @@ public class GruppoDAO_MySQL extends DAO implements GruppoDAO {
             throw new DataException("Unable to store Group", ex);
         }
     }
-
+    
     @Override
     public void deleteGruppo(Integer gruppo_key) throws DataException {
         try {

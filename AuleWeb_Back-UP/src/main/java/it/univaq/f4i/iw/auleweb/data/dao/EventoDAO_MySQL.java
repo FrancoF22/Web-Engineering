@@ -283,7 +283,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    //il metodo che segue permette di ottenere gli eventi nell'arco della settimana corrente
+    //permette di ottenere gli eventi nell'arco della settimana corrente
     public List<Calendario> getEventiAulaSettimana(int aulaId) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -299,7 +299,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override//il metodo che segue permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
+    @Override//permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
     public List<Calendario> getEventiAula(int aulaId, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -317,7 +317,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override //il metodo che segue permette di ottenere gli eventi di una determinata aula
+    @Override //permette di ottenere gli eventi di una determinata aula
     public List<Calendario> getAllEventiAula(int aulaId) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -349,7 +349,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
 
-    @Override //il metodo che segue permette di ottenere gli eventi del corso nell'arco di una settimana
+    @Override //permette di ottenere gli eventi del corso nell'arco di una settimana
     public List<Calendario> getEventiCorso(int corsoId, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -428,7 +428,21 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override
+    @Override //serve per ottenere tutti gli eventi
+    public List<Evento> getAllEventi() throws DataException {
+        List<Evento> result = new ArrayList();
+
+        try (ResultSet rs = sAllEventi.executeQuery()) {
+            while (rs.next()) {
+                result.add((Evento) getEvento(rs.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+    
+    @Override //serve per salvare le informazioni riguardo un evento nel database
     public void storeEvento(Evento evento) throws DataException {
          try {
             if (evento.getKey() != null && evento.getKey() > 0) { //update
@@ -487,7 +501,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
     }
     
-    @Override
+    @Override //serve per salvare le informazioni riguardo i giorni di un evento nel database
     public void storeCalendario(Calendario calendario) throws DataException {
          try {
             if (calendario.getKey() != null && calendario.getKey() > 0) { //update
@@ -551,7 +565,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to store calendario", ex);
         }
     }
-     
+    
+    //serve per cancellare un evento
     public void deleteEvento(int id_evento) throws DataException {
          try {
             dEvento.setInt(1, id_evento);
@@ -560,6 +575,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
     }
 
+    //serve per cancellare il giorno in cui si presenta un evento
     public void deleteCalendario(int id_calendario) throws DataException {
          try {
             dCalendario.setInt(1, id_calendario);
@@ -568,23 +584,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
     }
     
-    @Override
+    //a seguire i NON IMPLEMENTATI
+    
+    @Override //serve per cancellare un evento NON IMPLEMENTATO
     public void deleteEvento(Calendario calendario, boolean singolo) throws DataException {
         
     }
 
-    @Override
-    public List<Evento> getAllEventi() throws DataException {
-        List<Evento> result = new ArrayList();
-
-        try (ResultSet rs = sAllEventi.executeQuery()) {
-            while (rs.next()) {
-                result.add((Evento) getEvento(rs.getInt("id")));
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to load Aule", ex);
-        }
-        return result;
-    }
-    
 }
