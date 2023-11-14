@@ -335,7 +335,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     @Override //permette di ottenere gli eventi del corso nell'arco della settimana corrente
     public List<Calendario> getEventiCorsoSettimana(int corsoId) throws DataException {
-         List<Calendario> result = new ArrayList();
+        List<Calendario> result = new ArrayList();
         try {
             sEventiCorsoOggi.setInt(1,corsoId);
             try (ResultSet rs = sEventiCorsoOggi.executeQuery()) {
@@ -526,7 +526,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 Time f = Time.valueOf(calendario.getOraFine());
                 uCalendario.setTime(5, f);
                 uCalendario.setInt(6, calendario.getKey());
-                if (uEvento.executeUpdate() == 0) {
+                if (uCalendario.executeUpdate() == 0) {
                     throw new OptimisticLockException(calendario);
                 } else {
                     //idk cosa deve fare

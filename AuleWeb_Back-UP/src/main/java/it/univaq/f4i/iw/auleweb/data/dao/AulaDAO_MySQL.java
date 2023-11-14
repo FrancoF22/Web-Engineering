@@ -336,30 +336,4 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
     }
     
-    //i metodi di seguito vanno modificati, oppure non servono
-    @Override
-    public Attrezzatura createAttrezzatura() {
-        throw new UnsupportedOperationException("createAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public String getAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("getAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public void addAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("addAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public void deleteAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("deleteAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public List<String> getLuoghi() throws DataException {
-        throw new UnsupportedOperationException("getLuoghi not supported yet.");
-    }
-
 }
