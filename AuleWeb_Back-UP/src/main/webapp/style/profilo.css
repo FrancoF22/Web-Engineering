@@ -1,0 +1,42 @@
+.profilo-frame2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilo-frame2 a {
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    transition: color 0.2s ease-in-out; /* Transizione fluida per il colore del testo */
+}
+
+.profilo-frame2 a:hover,
+.profilo-frame2 a:focus { /* Stile per hover e focus */
+    color: #007bff; /* Cambia colore per un migliore feedback visivo */
+    outline: none; /* Rimuove l'outline predefinito per il focus (opzionale) */
+}
+
+.profilo-frame2 img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Aggiungi transizione per l'ombra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra iniziale leggera */
+}
+
+.profilo-frame2 img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombra più marcata all'hover */
+}
+
+.profilo-text02 {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555; /* Colore del testo leggermente più scuro per migliore leggibilità */
+}
