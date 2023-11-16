@@ -21,7 +21,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     public AulaDAO_MySQL(DataLayer d) {
         super(d);
     }
-    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo, sAllAule, sAllAttrezzature;
+    private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo;
+    private PreparedStatement sAllAule, sUsedAule, sAllAttrezzature;
     private PreparedStatement iAula, uAula, dAula;
 
     @Override
@@ -39,7 +40,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
 
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
-            
+            sUsedAule = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario");
             sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = aula AND COLUMN_NAME = attrezzatura");
             
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -149,7 +150,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         return a;
     }
 
-    @Override
+    @Override //permette di ottenere tutte le aule
     public List<Aula> getAllAule() throws DataException {
         List<Aula> result = new ArrayList();
 
@@ -176,9 +177,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
         return result;
     }
-
-    //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve l'id del gruppo)
-    @Override
+    
+    @Override //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve l'id del gruppo)
     public List<Aula> getAllAuleGI(int id_gruppo) throws DataException {
         List<Aula> result = new ArrayList();
         try {
@@ -207,12 +207,62 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
         return result;
     }
+    
+    @Override //serve a eliminare una data aula
+    public void deleteAula(int id_aula) throws DataException {
+        try {
+            dAula.setInt(1, id_aula);
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete Aula by ID", ex);
+        }
+    }
 
+    @Override //serve per ottenere una lista di attrezzature
+    public List<String> getAllAttrezzature() throws DataException {
+        List<String> result = new ArrayList();
+        try {
+            try (ResultSet rs = sAllAttrezzature.executeQuery()) {
+                String tipo = rs.getString("COLUMN_TYPE");
+                String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
+                for (String value: values){
+                    result.add(value.trim());
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+    
     @Override
+    public List<Aula> getAllAule(Calendario calendario) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override //serve per ottenere una lista di aule disponibili
+    public List<Aula> getAuleLibere() throws DataException {
+        List<Aula> result = new ArrayList<>();
+        List<Aula> used = new ArrayList<>();
+        List<Aula> all = this.getAllAule();
+        try {
+            try (ResultSet rs = sUsedAule.executeQuery()) {
+                while (rs.next()) {
+                    used.add((Aula) getAula(rs.getInt("id")));
+                }
+            }
+            for(Aula elemento : all) {
+                if(!used.contains(elemento)) result.add(elemento);
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+
+    @Override //serve per salvare modifiche ad un'aula nel database o crearne una nuova
     public void storeAula(Aula aula) throws DataException {
         try {
-            if (aula.getKey() != null && aula.getKey() > 0) { //update
-                //non facciamo nulla se l'oggetto è un proxy e indica di non aver subito modifiche
+            if (aula.getKey() != null && aula.getKey() > 0) { 
                 if (aula instanceof DataItemProxy && !((DataItemProxy) aula).isModified()) {
                     return;
                 }
@@ -268,38 +318,16 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                     iAula.setNull(10, java.sql.Types.INTEGER);
                 }
                 if (iAula.executeUpdate() == 1) {
-                    //per leggere la chiave generata dal database
-                    //per il record appena inserito, usiamo il metodo
-                    //getGeneratedKeys sullo statement.
+                    
                     try (ResultSet keys = iAula.getGeneratedKeys()) {
-                        //il valore restituito è un ResultSet con un record
-                        //per ciascuna chiave generata (uno solo nel nostro caso)
                         if (keys.next()) {
-                            //i campi del record sono le componenti della chiave
-                            //(nel nostro caso, un solo intero)
                             int key = keys.getInt(1);
-                            //aggiornaimo la chiave in caso di inserimento
                             aula.setKey(key);
-                            //inseriamo il nuovo oggetto nella cache
                             dataLayer.getCache().add(Aula.class, aula);
                         }
                     }
                 }
             }
-
-//            //se possibile, restituiamo l'oggetto appena inserito RICARICATO
-//            //dal database tramite le API del modello. In tal
-//            //modo terremo conto di ogni modifica apportata
-//            //durante la fase di inserimento
-//            //if possible, we return the just-inserted object RELOADED from the
-//            //database through our API. In this way, the resulting
-//            //object will ambed any data correction performed by
-//            //the DBMS
-//            if (key > 0) {
-//                article.copyFrom(getArticle(key));
-//            }
-            //se abbiamo un proxy, resettiamo il suo attributo dirty
-            //if we have a proxy, reset its dirty attribute
             if (aula instanceof DataItemProxy) {
                 ((DataItemProxy) aula).setModified(false);
             }
@@ -307,67 +335,5 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             throw new DataException("Unable to store aula", ex);
         }
     }
-
-    @Override
-    public void deleteAula(int id_aula) throws DataException {
-        try {
-            dAula.setInt(1, id_aula);
-        } catch (SQLException ex) {
-            throw new DataException("Unable to delete Aula by ID", ex);
-        }
-    }
-
-    @Override
-    public List<String> getAllAttrezzature() throws DataException {
-        List<String> result = new ArrayList();
-        try {
-            try (ResultSet rs = sAllAttrezzature.executeQuery()) {
-                String tipo = rs.getString("COLUMN_TYPE");
-                String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
-                for (String value: values){
-                    result.add(value.trim());
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to load Aule", ex);
-        }
-        return result;
-    }
     
-    //i metodi di seguito vanno modificati, oppure non servono
-    @Override
-    public Attrezzatura createAttrezzatura() {
-        throw new UnsupportedOperationException("createAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public String getAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("getAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public void addAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("addAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public void deleteAttrezzatura(String nome) throws DataException {
-        throw new UnsupportedOperationException("deleteAttrezzatura not supported yet.");
-    }
-
-    @Override
-    public List<String> getLuoghi() throws DataException {
-        throw new UnsupportedOperationException("getLuoghi not supported yet.");
-    }
-
-    @Override
-    public List<Aula> getAllAule(Calendario calendario) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Aula> getAuleLibere() throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

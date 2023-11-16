@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -31,7 +29,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         try {
             super.init();
 
-            //precompiliamo tutte le query utilizzate nella classe
             sUtenteById = connection.prepareStatement("SELECT * FROM utente WHERE Id=?");
             sUtenteByEmail = connection.prepareStatement("SELECT utente.* FROM utente WHERE email=?");
             
@@ -44,7 +41,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
 
     @Override
     public void destroy() throws DataException {
-        //anche chiudere i PreparedStamenent è una buona pratica...
         try {
             sUtenteById.close();
             sUtenteByEmail.close();
@@ -58,17 +54,12 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         super.destroy();
     }
     
-    //metodi "factory" che permettono di creare
-    //e inizializzare opportune implementazioni
-    //delle interfacce del modello dati, nascondendo
-    //all'utente tutti i particolari
-    
     @Override
     public Utente createUtente() {
         return new UtentiProxy(getDataLayer());
     }
 
-    //helper
+    // helper
     private UtentiProxy createUtente(ResultSet rs) throws DataException {
         try {
             UtentiProxy a = (UtentiProxy) createUtente();
@@ -81,24 +72,17 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
     
-    @Override //permette di ottenere un utente tramite l'id
+    @Override // permette di ottenere un utente tramite l'id
     public Utente getUtente(int user_key) throws DataException {
          Utente u = null;
-        //prima vediamo se l'oggetto è già stato caricato
         if (dataLayer.getCache().has(Utente.class, user_key)) {
             u = dataLayer.getCache().get(Utente.class, user_key);
         } else {
-            //altrimenti lo carichiamo dal database
             try {
                 sUtenteById.setInt(1, user_key);
                 try ( ResultSet rs = sUtenteById.executeQuery()) {
                     if (rs.next()) {
-                        //notare come utilizziamo il costrutture
-                        //"helper" della classe UtenteImpl
-                        //per creare rapidamente un'istanza a
-                        //partire dal record corrente
                         u = createUtente(rs);
-                        //e lo mettiamo anche nella cache
                         dataLayer.getCache().add(Utente.class, u);
                     }
                 }
@@ -109,7 +93,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return u;
     }
 
-    @Override //permette di ottenere un utente tramite l'email
+    @Override // permette di ottenere un utente tramite l'email
     public Utente getUtenteByEmail(String email) throws DataException {
         try {
             sUtenteByEmail.setString(1, email);
@@ -124,18 +108,15 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return null;
     }
     
-    @Override
+    @Override // permette di salvare le informazioni di un utente nel database
     public void storeUtente(Utente user) throws DataException {
        try {
-            if (user.getKey() != null && user.getKey() > 0) { //update
-                //non facciamo nulla se l'oggetto è un proxy e indica di non aver subito modifiche
-                //do not store the object if it is a proxy and does not indicate any modification
+            if (user.getKey() != null && user.getKey() > 0) { 
                 if (user instanceof DataItemProxy && !((DataItemProxy) user).isModified()) {
                     return;
                 }
                 uUtente.setString(1, user.getEmail());
                 uUtente.setString(2, user.getPassword());
-
                 uUtente.setInt(3, user.getKey());
 
                 if (uUtente.executeUpdate() == 0) {
@@ -143,24 +124,14 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 } else {
                    //?
                 }
-            } else { //insert
+            } else {
                 iUtente.setString(1, user.getEmail());
                 iUtente.setString(2, user.getPassword());
-
                 if (iUtente.executeUpdate() == 1) {
-                    //per leggere la chiave generata dal database
-                    //per il record appena inserito, usiamo il metodo
-                    //getGeneratedKeys sullo statement.
                     try ( ResultSet keys = iUtente.getGeneratedKeys()) {
-                        //il valore restituito è un ResultSet con un record
-                        //per ciascuna chiave generata (uno solo nel nostro caso)
                         if (keys.next()) {
-                            //i campi del record sono le componenti della chiave
-                            //(nel nostro caso, un solo intero)
                             int key = keys.getInt(1);
-                            //aggiornaimo la chiave in caso di inserimento
                             user.setKey(key);
-                            //inseriamo il nuovo oggetto nella cache
                             dataLayer.getCache().add(Utente.class, user);
                         }
                     }
@@ -175,6 +146,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
     
+    // eliminazione di un utente
     public void deleteUtente(Integer id) throws DataException {
         throw new UnsupportedOperationException("Not supported yet.");
     }

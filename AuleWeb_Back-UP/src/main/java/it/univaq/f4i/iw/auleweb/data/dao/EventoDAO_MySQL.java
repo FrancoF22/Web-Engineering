@@ -66,8 +66,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             uEvento = connection.prepareStatement("UPDATE evento SET nome=?,descrizione=?,tipologia=?,id_corso=?,id_responsabile=? WHERE ID=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE id=?");
             
-            iCalendario = connection.prepareStatement("INSERT INTO Calendario (id_aula,id_evento,ricorrenza,giorno,giorno_fine,ora_inizio,ora_fine) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uCalendario = connection.prepareStatement("UPDATE Calendario SET id_aula=?,id_evento=?,ricorrenza=?,giorno=?,giorno_fine=?,ora_inizio=?,ora_fine=? WHERE ID=?");
+            iCalendario = connection.prepareStatement("INSERT INTO Calendario (id_aula,id_evento,giorno,ora_inizio,ora_fine) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            uCalendario = connection.prepareStatement("UPDATE Calendario SET id_aula=?,id_evento=?,giorno=?,ora_inizio=?,ora_fine=? WHERE ID=?");
             dCalendario = connection.prepareStatement("DELETE FROM Calendario WHERE id=?");
             
         } catch (SQLException ex) {
@@ -283,7 +283,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    //il metodo che segue permette di ottenere gli eventi nell'arco della settimana corrente
+    //permette di ottenere gli eventi nell'arco della settimana corrente
     public List<Calendario> getEventiAulaSettimana(int aulaId) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -299,7 +299,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override//il metodo che segue permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
+    @Override//permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
     public List<Calendario> getEventiAula(int aulaId, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -317,7 +317,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override //il metodo che segue permette di ottenere gli eventi di una determinata aula
+    @Override //permette di ottenere gli eventi di una determinata aula
     public List<Calendario> getAllEventiAula(int aulaId) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -335,7 +335,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     @Override //permette di ottenere gli eventi del corso nell'arco della settimana corrente
     public List<Calendario> getEventiCorsoSettimana(int corsoId) throws DataException {
-         List<Calendario> result = new ArrayList();
+        List<Calendario> result = new ArrayList();
         try {
             sEventiCorsoOggi.setInt(1,corsoId);
             try (ResultSet rs = sEventiCorsoOggi.executeQuery()) {
@@ -349,7 +349,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
 
-    @Override //il metodo che segue permette di ottenere gli eventi del corso nell'arco di una settimana
+    @Override //permette di ottenere gli eventi del corso nell'arco di una settimana
     public List<Calendario> getEventiCorso(int corsoId, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
@@ -428,7 +428,21 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override
+    @Override //serve per ottenere tutti gli eventi
+    public List<Evento> getAllEventi() throws DataException {
+        List<Evento> result = new ArrayList();
+
+        try (ResultSet rs = sAllEventi.executeQuery()) {
+            while (rs.next()) {
+                result.add((Evento) getEvento(rs.getInt("id")));
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+    
+    @Override //serve per salvare le informazioni riguardo un evento nel database
     public void storeEvento(Evento evento) throws DataException {
          try {
             if (evento.getKey() != null && evento.getKey() > 0) { //update
@@ -487,7 +501,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
     }
     
-    @Override
+    @Override //serve per salvare le informazioni riguardo i giorni di un evento nel database
     public void storeCalendario(Calendario calendario) throws DataException {
          try {
             if (calendario.getKey() != null && calendario.getKey() > 0) { //update
@@ -506,13 +520,13 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                uCalendario.setDate(4, (Date) calendario.getGiorno());
+                uCalendario.setDate(3, (Date) calendario.getGiorno());
                 Time t = Time.valueOf(calendario.getOraInizio());
-                uCalendario.setTime(6, t);
+                uCalendario.setTime(4, t);
                 Time f = Time.valueOf(calendario.getOraFine());
-                uCalendario.setTime(7, f);
-                uCalendario.setInt(8, calendario.getKey());
-                if (uEvento.executeUpdate() == 0) {
+                uCalendario.setTime(5, f);
+                uCalendario.setInt(6, calendario.getKey());
+                if (uCalendario.executeUpdate() == 0) {
                     throw new OptimisticLockException(calendario);
                 } else {
                     //idk cosa deve fare
@@ -528,11 +542,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                iCalendario.setDate(4, (Date) calendario.getGiorno());
+                iCalendario.setDate(3, (Date) calendario.getGiorno());
                 Time t = Time.valueOf(calendario.getOraInizio());
-                iCalendario.setTime(5, t);
+                iCalendario.setTime(4, t);
                 Time f = Time.valueOf(calendario.getOraFine());
-                iCalendario.setTime(6, f);
+                iCalendario.setTime(5, f);
                 
                 if (iCalendario.executeUpdate() == 1) {
                     try (ResultSet keys = iCalendario.getGeneratedKeys()) {
@@ -551,7 +565,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to store calendario", ex);
         }
     }
-     
+    
+    //serve per cancellare un evento
     public void deleteEvento(int id_evento) throws DataException {
          try {
             dEvento.setInt(1, id_evento);
@@ -560,6 +575,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
     }
 
+    //serve per cancellare il giorno in cui si presenta un evento
     public void deleteCalendario(int id_calendario) throws DataException {
          try {
             dCalendario.setInt(1, id_calendario);
@@ -568,23 +584,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
     }
     
-    @Override
+    //a seguire i NON IMPLEMENTATI
+    
+    @Override //serve per cancellare un evento NON IMPLEMENTATO
     public void deleteEvento(Calendario calendario, boolean singolo) throws DataException {
         
     }
 
-    @Override
-    public List<Evento> getAllEventi() throws DataException {
-        List<Evento> result = new ArrayList();
-
-        try (ResultSet rs = sAllEventi.executeQuery()) {
-            while (rs.next()) {
-                result.add((Evento) getEvento(rs.getInt("id")));
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to load Aule", ex);
-        }
-        return result;
-    }
-    
 }

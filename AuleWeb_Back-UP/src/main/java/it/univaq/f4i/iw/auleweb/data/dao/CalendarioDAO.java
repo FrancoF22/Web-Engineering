@@ -17,7 +17,7 @@ public interface CalendarioDAO {
     
     Calendario createCalendario();
     
-    Calendario getCAlendario(int id) throws DataException;
+    Calendario getCalendarioById(int id) throws DataException;
     
     List<Calendario> getCalendari() throws DataException;
     
