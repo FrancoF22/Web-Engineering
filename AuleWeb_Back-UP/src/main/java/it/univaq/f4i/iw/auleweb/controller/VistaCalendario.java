@@ -24,9 +24,9 @@ public class VistaCalendario extends AuleWebBaseController {
 
     private void action_calendario(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException {
         try {
-            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCAlendario(n);
+            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(n);
             if (calendario != null) {
-                request.setAttribute("issue", calendario);
+                request.setAttribute("calendario", calendario);
                 //request.setAttribute("page_title", "Calendario #" + calendario.getNumber());
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
