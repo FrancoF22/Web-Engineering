@@ -4,6 +4,7 @@
  */
 package it.univaq.f4i.iw.auleweb.data.impl;
 
+import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
@@ -20,6 +21,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     private Tipologia tipo;
     private Professore professore;
     private Corso corso;
+    private Calendario calendario;
     
     public EventoImpl(){
         super();
@@ -28,6 +30,7 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
         this.tipo = null;
         this.professore = null;
         this.corso = null;
+        this.calendario = null;
     }
 
     @Override
@@ -61,6 +64,11 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     }
 
     @Override
+    public Calendario getCalendario() {
+        return calendario;
+    }
+    
+    @Override
     public void setNome(String n) {
         this.nome = n;
     }
@@ -83,6 +91,11 @@ public class EventoImpl extends DataItemImpl<Integer> implements Evento {
     @Override
     public void setCorso(Corso c) {
         this.corso = c;
+    }
+    
+    @Override
+    public void setCalendario(Calendario calendario) {
+        this.calendario = calendario;
     }
     
 }

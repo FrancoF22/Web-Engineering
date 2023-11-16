@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class VistaAula extends AuleWebBaseController {
 
-    private void action_article(HttpServletRequest request, HttpServletResponse response, int k) throws IOException, ServletException, TemplateManagerException {
+    private void action_aula(HttpServletRequest request, HttpServletResponse response, int k) throws IOException, ServletException, TemplateManagerException {
         try {
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(k);
             if (aula != null) {
@@ -50,7 +50,7 @@ public class VistaAula extends AuleWebBaseController {
         int k;
         try {
             k = SecurityHelpers.checkNumeric(request.getParameter("k"));
-            action_article(request, response, k);
+            action_aula(request, response, k);
         } catch (NumberFormatException ex) {
             handleError("Aula key not specified", request, response);
         } catch (IOException | TemplateManagerException ex) {

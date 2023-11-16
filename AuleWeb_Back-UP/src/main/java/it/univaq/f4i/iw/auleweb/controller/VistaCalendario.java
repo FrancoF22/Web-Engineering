@@ -4,10 +4,15 @@
  */
 package it.univaq.f4i.iw.auleweb.controller;
 
+import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
+import it.univaq.f4i.iw.auleweb.data.model.Calendario;
+import it.univaq.f4i.iw.framework.data.DataException;
+import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
+import it.univaq.f4i.iw.framework.result.TemplateManagerException;
+import it.univaq.f4i.iw.framework.result.TemplateResult;
+import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,61 +20,42 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author franc
  */
-public class VistaCalendario extends HttpServlet {
+public class VistaCalendario extends AuleWebBaseController {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet VistaCalendario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet VistaCalendario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    private void action_calendario(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException {
+        try {
+            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCAlendario(n);
+            if (calendario != null) {
+                request.setAttribute("issue", calendario);
+                //request.setAttribute("page_title", "Calendario #" + calendario.getNumber());
+                //verr� usato automaticamente il template di outline spcificato tra i context parameters
+                //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
+                TemplateResult res = new TemplateResult(getServletContext());
+                //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
+                //add to the template a wrapper object that allows to call the stripslashes function
+                request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
+                res.activate("calendario.ftl.html", request, response);
+            } else {
+                handleError("Unable to load calendario", request, response);
+            }
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException {
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        int n;
+        try {
+            n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+            action_calendario(request, response, n);
+        } catch (NumberFormatException ex) {
+            handleError("Invalid number specified", request, response);
+        } catch (IOException | TemplateManagerException ex) {
+            handleError(ex, request, response);
+        }
     }
 
     /**
@@ -79,7 +65,6 @@ public class VistaCalendario extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Make Issue servlet";
     }// </editor-fold>
-
 }

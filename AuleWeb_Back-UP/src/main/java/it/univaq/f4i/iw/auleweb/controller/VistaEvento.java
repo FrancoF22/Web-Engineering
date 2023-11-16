@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class VistaEvento extends AuleWebBaseController {
 
-    private void action_article(HttpServletRequest request, HttpServletResponse response, int k) throws IOException, ServletException, TemplateManagerException {
+    private void action_evento(HttpServletRequest request, HttpServletResponse response, int k) throws IOException, ServletException, TemplateManagerException {
         try {
             Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(k);
             if (evento != null) {
@@ -50,7 +50,7 @@ public class VistaEvento extends AuleWebBaseController {
         int k;
         try {
             k = SecurityHelpers.checkNumeric(request.getParameter("k"));
-            action_article(request, response, k);
+            action_evento(request, response, k);
         } catch (NumberFormatException ex) {
             handleError("Evento key not specified", request, response);
         } catch (IOException | TemplateManagerException ex) {

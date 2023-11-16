@@ -22,7 +22,9 @@ public interface Evento extends DataItem<Integer>{
     
     Corso getCorso();
     
-    Tipologia getTipologia(); 
+    Tipologia getTipologia();
+    
+    Calendario getCalendario();
     
     void setNome(String n);
     
@@ -33,5 +35,7 @@ public interface Evento extends DataItem<Integer>{
     void setProfessore(Professore p);
     
     void setCorso(Corso c);
+    
+    void setCalendario(Calendario calendario);
     
 }
