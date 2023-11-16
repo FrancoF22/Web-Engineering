@@ -65,6 +65,6 @@ public class VistaCalendario extends AuleWebBaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Make Issue servlet";
+        return "Render Calendario servlet";
     }// </editor-fold>
 }
