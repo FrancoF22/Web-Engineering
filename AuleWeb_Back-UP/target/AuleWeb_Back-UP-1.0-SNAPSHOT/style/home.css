@@ -1,0 +1,62 @@
+/* Stile Base */
+.home-text {
+    color: #0056b3;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.home-frame-Dipartimenti {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.home-frame-Dipartimenti a {
+    display: block; /* Ogni link su una nuova riga */
+    padding: 10px;
+    margin-bottom: 10px; /* Spazio tra i link */
+    border-radius: 4px;
+    text-decoration: none; /* Rimuove il sottolineato dei link */
+    color: #0056b3;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.home-frame-Dipartimenti a:hover {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none; /* Mantiene rimossa la sottolineatura al passaggio del mouse */
+}
+
+/* Media Queries per adattare i layout su diversi schermi */
+@media (max-width: 600px) {
+    .home-frame-Dipartimenti {
+        padding: 15px;
+    }
+
+    .home-frame-Dipartimenti a {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .home-frame-Dipartimenti {
+        padding: 18px;
+    }
+
+    .home-frame-Dipartimenti a {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 1025px) {
+    .home-frame-Dipartimenti {
+        padding: 20px;
+    }
+
+    .home-frame-Dipartimenti a {
+        font-size: 1.5em;
+    }
+}
