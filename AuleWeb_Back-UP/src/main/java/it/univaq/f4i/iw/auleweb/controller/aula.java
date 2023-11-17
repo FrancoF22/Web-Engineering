@@ -28,7 +28,7 @@ public class aula extends AuleWebBaseController {
             //add to the template a wrapper object that allows to call the stripslashes function
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
-            res.activate("write_list_1.ftl.html", request, response);
+            res.activate("lista_aule.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -46,14 +46,14 @@ public class aula extends AuleWebBaseController {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
                     request.setAttribute("aula", aula);
-                    res.activate("write_single_1.html", request, response);
+                    res.activate("agg_mod_aula.html", request, response);
                 } else {
                     handleError("Undefined aula", request, response);
                 }
             } else {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
                 request.setAttribute("aula", aula);
-                res.activate("write_single_1.html", request, response);
+                res.activate("agg_mod_aula.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
@@ -54,7 +50,7 @@ public class calendario extends  AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
-            res.activate("compose_list.ftl.html", request, response);
+            res.activate("calendario.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -75,7 +71,7 @@ public class calendario extends  AuleWebBaseController {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
-                    res.activate("compose_single.ftl.html", request, response);
+                    res.activate("eventi_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
 
@@ -94,7 +90,7 @@ public class calendario extends  AuleWebBaseController {
                 //forces first to compile the mandatory fields to create an calendario
                 request.setAttribute("libera", Collections.EMPTY_LIST);
                 request.setAttribute("occupata", Collections.EMPTY_LIST);
-                res.activate("compose_single.ftl.html", request, response);
+                res.activate("eventi_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

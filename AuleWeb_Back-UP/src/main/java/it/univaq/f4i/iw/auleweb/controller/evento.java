@@ -31,7 +31,7 @@ public class evento extends AuleWebBaseController {
             //add to the template a wrapper object that allows to call the stripslashes function
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
-            res.activate("write_list_2.ftl.html", request, response);
+            res.activate("lista_eventi.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -51,14 +51,14 @@ public class evento extends AuleWebBaseController {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evento);
                 if (evento != null) {
                     request.setAttribute("evento", evento);
-                    res.activate("write_single_2.html", request, response);
+                    res.activate("add_mod_evento.html", request, response);
                 } else {
                     handleError("Undefined evento", request, response);
                 }
             } else {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
                 request.setAttribute("evento", evento);
-                res.activate("write_single_2.html", request, response);
+                res.activate("add_mod_evento.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
