@@ -82,6 +82,10 @@
         <servlet-name>Profilo</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.Profilo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListaEventi</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaEventi</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -117,6 +121,10 @@
     <servlet-mapping>
         <servlet-name>Profilo</servlet-name>
         <url-pattern>/profilo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaEventi</servlet-name>
+        <url-pattern>/listaEventi</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

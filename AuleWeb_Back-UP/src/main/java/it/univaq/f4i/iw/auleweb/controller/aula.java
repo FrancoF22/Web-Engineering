@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Professore;
+import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import java.util.*;
 
 /**
@@ -20,6 +21,19 @@ import java.util.*;
  */
 public class aula extends AuleWebBaseController {
 
+        private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+        try {
+            TemplateResult res = new TemplateResult(getServletContext());
+            //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
+            //add to the template a wrapper object that allows to call the stripslashes function
+            request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
+            request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
+            res.activate("write_list.ftl.html", request, response);
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
+    
     private void action_write(HttpServletRequest request, HttpServletResponse response, int id_aula) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
@@ -88,6 +102,7 @@ public class aula extends AuleWebBaseController {
         }
     }
 
+    /*
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         request.setAttribute("page_title", "Aula");
@@ -108,5 +123,41 @@ public class aula extends AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
+    */
 
+        @Override
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException {
+
+        request.setAttribute("page_title", "Write Article");
+
+        int aula_key;
+        try {
+            if (request.getParameter("k") != null) {
+                aula_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
+                if (request.getParameter("update") != null) {
+                    action_update(request, response, aula_key);
+                } else {
+                    action_write(request, response, aula_key);
+                }
+            } else {
+                action_default(request, response);
+            }
+        } catch (NumberFormatException ex) {
+            handleError("Invalid number submitted", request, response);
+        } catch (IOException | TemplateManagerException ex) {
+            handleError(ex, request, response);
+        }
+    }
+    
+        /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Write Aula servlet";
+    }// </editor-fold>
+    
 }

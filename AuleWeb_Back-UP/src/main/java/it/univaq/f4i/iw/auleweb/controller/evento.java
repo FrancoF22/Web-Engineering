@@ -7,6 +7,7 @@ package it.univaq.f4i.iw.auleweb.controller;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.*;
 import it.univaq.f4i.iw.framework.data.DataException;
+import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
@@ -21,6 +22,20 @@ import javax.servlet.http.HttpServletResponse;
  * @author franc
  */
 public class evento extends AuleWebBaseController {
+    
+    
+    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+        try {
+            TemplateResult res = new TemplateResult(getServletContext());
+            //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
+            //add to the template a wrapper object that allows to call the stripslashes function
+            request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
+            request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
+            res.activate("write_list.ftl.html", request, response);
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
 
     private void action_write(HttpServletRequest request, HttpServletResponse response, int id_evento) throws IOException, ServletException, TemplateManagerException {
         try {
@@ -98,8 +113,10 @@ public class evento extends AuleWebBaseController {
     }
 
     @Override
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        request.setAttribute("page_title", "Evento");
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException {
+
+        request.setAttribute("page_title", "Write Article");
 
         int id_evento;
         try {
@@ -110,6 +127,8 @@ public class evento extends AuleWebBaseController {
                 } else {
                     action_write(request, response, id_evento);
                 }
+            } else {
+                action_default(request, response);
             }
         } catch (NumberFormatException ex) {
             handleError("Invalid number submitted", request, response);
@@ -117,5 +136,15 @@ public class evento extends AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
-
+    
+        /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Write Aula servlet";
+    }// </editor-fold>
+    
 }
