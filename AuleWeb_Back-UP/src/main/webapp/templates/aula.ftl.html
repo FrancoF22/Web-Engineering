@@ -1,0 +1,95 @@
+
+<link href="style/lista_aule.css" rel="stylesheet" />
+
+<div class="container">
+    <h1 class="page-title">Crea e modifica aule</h1>
+    <div class="table-controls">
+        <a href="profilo" class="my-button">Indietro</a>
+        <a href="write_aula" class="my-button">Aggiungi Aula</a>
+        <a href="modifica-attrezzatura" class="my-button">Visualizza attrezzature</a>
+        <a><button id="downloadBtn" class="my-button">Scarica in CSV</button></a>
+    </div>
+    <table id="dataTable" class="my-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Luogo</th>
+                <th>Edificio</th>
+                <th>Piano</th>
+                <th>Capienza</th>
+                <th>Numero di prese elettriche</th>
+                <th>Numero di prese di rete</th>
+                <th>Professore</th>
+                <th>Attrezzature</th>
+                <th>Azione</th>
+            </tr>
+        </thead>
+        <tbody>
+            <#if (ListaAula?size>0)>
+            <#list ListaAula as aula>
+            <tr>
+                <td>${aula.nome}</td>
+                <td>${aula.luogo}</td>
+                <td>${aula.edificio}</td>
+                <td>${aula.piano}</td>
+                <td>${aula.capienza}</td>
+                <td>${aula.preseElettriche}</td>
+                <td>${aula.preseRete}</td>
+                <td>${aula.professore.nome} ${aula.professore.cognome}</td>
+                <td>
+                    <#list aula.attrezzature as att>
+                    ${att}<#if att_has_next>, </#if>
+                    </#list>
+                </td>
+                <td>
+                    <a href="aula?id=${aula.key}" class="Bottone-tabella">Modifica</a>
+                    <a href="modifica-aule?id=${aula.key}" class="Bottone-tabella">Elimina</a>
+                </td>
+            </tr>
+            </#list>
+            </#if>
+        </tbody>            
+    </table>
+</div>
+
+<script>
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+        downloadCSV();
+    });
+
+    function downloadCSV() {
+        var table = document.getElementById('dataTable');
+        var rows = table.getElementsByTagName('tr');
+        var csvData = [];
+
+        // Loop attraverso le righe della tabella e creare un array di array per i dati CSV
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll('td, th');
+
+            for (var j = 0; j < cols.length - 1; j++) {
+                row.push(cols[j].innerText);
+            }
+
+            csvData.push(row.join(','));
+        }
+
+        // Unisci i dati CSV in un'unica stringa
+        var csvString = csvData.join('\n');
+
+        // Crea un oggetto Blob con i dati CSV
+        var blob = new Blob([csvString], {type: 'text/csv'});
+
+        // Crea un URL temporaneo per il download del file CSV
+        var url = window.URL.createObjectURL(blob);
+
+        // Crea un elemento "a" nascosto e simula il clic per avviare il download del file
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'dati.csv';
+        document.body.appendChild(a);
+        a.click();
+
+        // Rimuovi l'elemento "a" nascosto
+        document.body.removeChild(a);
+    }
+</script>
