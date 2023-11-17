@@ -21,14 +21,14 @@ import java.util.*;
  */
 public class aula extends AuleWebBaseController {
 
-        private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
             //add to the template a wrapper object that allows to call the stripslashes function
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
-            res.activate("write_list.ftl.html", request, response);
+            res.activate("write_list_1.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -46,14 +46,14 @@ public class aula extends AuleWebBaseController {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
                     request.setAttribute("aula", aula);
-                    res.activate("write_aula.html", request, response);
+                    res.activate("write_single_1.html", request, response);
                 } else {
                     handleError("Undefined aula", request, response);
                 }
             } else {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
                 request.setAttribute("aula", aula);
-                res.activate("write_aula.html", request, response);
+                res.activate("write_single_1.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -102,34 +102,11 @@ public class aula extends AuleWebBaseController {
         }
     }
 
-    /*
     @Override
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        request.setAttribute("page_title", "Aula");
-
-        int id_aula;
-        try {
-            if (request.getParameter("k") != null) {
-                id_aula = SecurityHelpers.checkNumeric(request.getParameter("k"));
-                if (request.getParameter("update") != null) {
-                    action_update(request, response, id_aula);
-                } else {
-                    action_write(request, response, id_aula);
-                }
-            }
-        } catch (NumberFormatException ex) {
-            handleError("Invalid number submitted", request, response);
-        } catch (IOException | TemplateManagerException ex) {
-            handleError(ex, request, response);
-        }
-    }
-    */
-
-        @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        request.setAttribute("page_title", "Write Article");
+        request.setAttribute("page_title", "Modifica Aula");
 
         int aula_key;
         try {

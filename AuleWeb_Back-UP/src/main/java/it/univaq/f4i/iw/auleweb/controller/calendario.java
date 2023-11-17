@@ -49,103 +49,12 @@ public class calendario extends  AuleWebBaseController {
         }
 
     }
-/*
-    private void action_write(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
-        try {
-            TemplateResult res = new TemplateResult(getServletContext());
 
-            List<Evento> eventi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi();
-            request.setAttribute("ListaProfessori", eventi);
-            List<Aula> aule = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule();
-            request.setAttribute("ListaProfessori", aule);
-            //request.setAttribute("ListaAttrezzatura", attrezzature);
-            if (id_calendario > 0) {
-                Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCAlendario(id_calendario);
-                if (calendario != null) {
-                    request.setAttribute("evento", calendario);
-                    res.activate("write_calendario.html", request, response);
-                } else {
-                    handleError("Undefined calendario", request, response);
-                }
-            } else {
-                Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
-                request.setAttribute("calendario", calendario);
-                res.activate("write_calendario.html", request, response);
-            }
-        } catch (DataException ex) {
-            handleError("Data access exception: " + ex.getMessage(), request, response);
-        }
-    }
-
-    private void action_update(HttpServletRequest request, HttpServletResponse response,int id_evento, int id_aula) throws IOException, ServletException, TemplateManagerException {
-        try {
-            Evento evento;
-            Aula evento;
-            if (id_aula > 0) {
-                evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
-            } else {
-                evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
-            }
-            if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("luogo") != null && request.getParameter("edificio") != null && request.getParameter("piano") != null && request.getParameter("ListaAttrezzatura") != null) {
-                Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
-                if (prof != null) {
-                    evento.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
-                    evento.setProfessore(prof);
-                    evento.setCapienza(SecurityHelpers.checkNumeric(request.getParameter("capienza")));
-                    evento.setPreseElettriche(SecurityHelpers.checkNumeric(request.getParameter("prese_elettriche")));
-                    evento.setPreseRete(SecurityHelpers.checkNumeric(request.getParameter("prese_rete")));
-                    evento.setNota(SecurityHelpers.addSlashes(request.getParameter("nota")));
-                    evento.setLuogo(SecurityHelpers.addSlashes(request.getParameter("luogo")));
-                    evento.setEdificio(SecurityHelpers.addSlashes(request.getParameter("edificio")));
-                    evento.setPiano(SecurityHelpers.addSlashes(request.getParameter("piano")));
-                    String[] attrezzatura = request.getParameterValues("ListaAttrezzatura");
-                    ArrayList<String> att = new ArrayList<>();
-                    if (attrezzatura != null) {
-                        att.addAll(Arrays.asList(attrezzatura));
-                        evento.setAttrezzature(att);
-                    }
-                        
-                    
-                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(evento);
-                    action_write(request, response, evento.getKey());
-                } else {
-                    handleError("Cannot update evento: undefined professor", request, response);
-                }
-            } else {
-                handleError("Cannot update evento: insufficient parameters", request, response);
-
-            }
-        } catch (DataException ex) {
-            handleError("Data access exception: " + ex.getMessage(), request, response);
-        }
-    }
-
-    @Override
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        request.setAttribute("page_title", "Aula");
-
-        int id_aula;
-        try {
-            if (request.getParameter("k") != null) {
-                id_aula = SecurityHelpers.checkNumeric(request.getParameter("k"));
-                if (request.getParameter("update") != null) {
-                    action_update(request, response, id_aula);
-                } else {
-                    action_write(request, response, id_aula);
-                }
-            }
-        } catch (NumberFormatException ex) {
-            handleError("Invalid number submitted", request, response);
-        } catch (IOException | TemplateManagerException ex) {
-            handleError(ex, request, response);
-        }
-    }
-*/
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
-            res.activate("eventi_calendario.ftl.html", request, response);
+            res.activate("compose_list.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -166,7 +75,7 @@ public class calendario extends  AuleWebBaseController {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
-                    res.activate("calendario.ftl.html", request, response);
+                    res.activate("compose_single.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
 
@@ -183,9 +92,9 @@ public class calendario extends  AuleWebBaseController {
                 request.setAttribute("calendario", calendario);
                 //forza prima a compilare i dati essenziali per creare un numero
                 //forces first to compile the mandatory fields to create an calendario
-                request.setAttribute("unused", Collections.EMPTY_LIST);
-                request.setAttribute("used", Collections.EMPTY_LIST);
-                res.activate("calendario.ftl.html", request, response);
+                request.setAttribute("libera", Collections.EMPTY_LIST);
+                request.setAttribute("occupata", Collections.EMPTY_LIST);
+                res.activate("compose_single.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
