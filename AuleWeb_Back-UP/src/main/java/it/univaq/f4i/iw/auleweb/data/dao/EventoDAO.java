@@ -23,13 +23,11 @@ public interface EventoDAO {
     
     Evento getEvento(int id) throws DataException;
     
-    List<Evento> getEventiResponsabile(String email) throws DataException;
-    
     List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException;
+    
+    List<Evento> getAllProssimiEventi() throws DataException;
 
     List<Calendario> getCalendarioEvento(int evento_key) throws DataException;    //ritorna le ripetizioni dell'evento sul calendario
-    
-    List<Calendario> getEventiCorsoSettimana(int corso)throws DataException;
 
     List<Calendario> getEventiAttuali(int id_dipartimento) throws DataException;
 
