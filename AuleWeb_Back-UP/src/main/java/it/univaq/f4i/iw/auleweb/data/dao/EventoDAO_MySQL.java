@@ -41,7 +41,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             super.init();
 
             //precompiliamo tutte le query utilizzate nella classe
-            sEventoById = connection.prepareStatement("SELECT * FROM evento WHERE Id=?");
+            sEventoById = connection.prepareStatement("SELECT * FROM evento WHERE id=?");
             sEventoByNome = connection.prepareStatement("SELECT id FROM evento WHERE nome=?");
             sEventiByTipo = connection.prepareStatement("SELECT id FROM evento WHERE tipologia=?");
             sEventiByResponsabile = connection.prepareStatement("SELECT id FROM evento WHERE id_professore=?");
@@ -52,7 +52,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventoSingolo = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id_evento=? AND giorno=?");
             sCalendarioById = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id=");
             
-            sAllEventi = connection.prepareStatement("SELECT DISTINCT calendario.id_evento FROM calendario");
+            //sAllEventi = connection.prepareStatement("SELECT DISTINCT calendario.id_evento FROM calendario");
+            sAllEventi = connection.prepareStatement("SELECT * FROM evento");
             sEventiAulaSettCur = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND YEAR(c.giorno)=YEAR(CURDATE()) AND WEEK(c.giorno,1)=WEEK(CURDATE(),1)");
             sEventiAulaSettimana = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND YEAR(c.giorno)=YEAR(?) AND WEEK(c.giorno,1)=WEEK(?,1)");
             sEventiAulaOggi =  connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND c.giorno=?");
@@ -434,10 +435,10 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
         try (ResultSet rs = sAllEventi.executeQuery()) {
             while (rs.next()) {
-                result.add((Evento) getEvento(rs.getInt("id")));
+                result.add(getEvento(rs.getInt("id")));
             }
         } catch (SQLException ex) {
-            throw new DataException("Unable to load Aule", ex);
+            throw new DataException("Unable to load Eventi", ex);
         }
         return result;
     }

@@ -159,7 +159,8 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
         try {
             try (ResultSet rs = sAllCalendari.executeQuery()) {
                 while (rs.next()) {
-                    result.add((Calendario) getCalendarioById(rs.getInt("id")));
+                    result.add(getCalendarioById(rs.getInt("id")));
+                    //result.add((Calendario) getCalendarioById(rs.getInt("id")));
                 }
             }
         } catch (SQLException ex) {

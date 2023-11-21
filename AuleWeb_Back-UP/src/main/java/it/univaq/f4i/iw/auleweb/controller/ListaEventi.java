@@ -24,7 +24,7 @@ public class ListaEventi extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("page_title", "Issues");
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
-            res.activate("lista_calendari.ftl.html", request, response);
+            res.activate("lista_calendario.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }

@@ -101,10 +101,10 @@ public class evento extends AuleWebBaseController {
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
                     action_write(request, response, evento.getKey());
                 } else {
-                    handleError("Cannot update aula: undefined professor", request, response);
+                    handleError("Cannot update evento: undefined professor", request, response);
                 }
             } else {
-                handleError("Cannot update aula: insufficient parameters", request, response);
+                handleError("Cannot update evento: insufficient parameters", request, response);
 
             }
         } catch (DataException ex) {

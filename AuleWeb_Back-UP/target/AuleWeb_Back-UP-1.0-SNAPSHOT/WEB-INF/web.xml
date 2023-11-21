@@ -63,10 +63,6 @@
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.VistaAula</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Evento</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.evento</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>VistaEvento</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.VistaEvento</servlet-class>
     </servlet>
@@ -81,6 +77,18 @@
     <servlet>
         <servlet-name>Profilo</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.Profilo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListaEventi</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaEventi</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>aula</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.aula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>evento</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.evento</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -99,8 +107,8 @@
         <url-pattern>/vistaAula</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Evento</servlet-name>
-        <url-pattern>/evento</url-pattern>
+        <servlet-name>aula</servlet-name>
+        <url-pattern>/aula</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VistaEvento</servlet-name>
@@ -117,6 +125,14 @@
     <servlet-mapping>
         <servlet-name>Profilo</servlet-name>
         <url-pattern>/profilo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaEventi</servlet-name>
+        <url-pattern>/listaEventi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>evento</servlet-name>
+        <url-pattern>/evento</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
