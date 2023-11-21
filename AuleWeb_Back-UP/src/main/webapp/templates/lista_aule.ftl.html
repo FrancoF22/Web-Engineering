@@ -1,10 +1,11 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 <link href="style/lista_aule.css" rel="stylesheet" />
 
 <div class="container">
-    <h1 class="page-title">Crea e modifica aule</h1>
+    <h1 class="page-title">Gestisci aule</h1>
     <div class="table-controls">
         <a href="home" class="my-button">Indietro</a>
-        <a href="aula" class="my-button">Aggiungi Aula</a>
+        <a href="agg_mod_aula" class="my-button">Aggiungi Aula</a>
         <a href="modifica-attrezzatura" class="my-button">Visualizza attrezzature</a>
         <a><button id="downloadBtn" class="my-button">Scarica in CSV</button></a>
     </div>
@@ -41,8 +42,8 @@
                     </#list>
                 </td>
                 <td>
-                    <a href="aula?id=${aula.key}" class="Bottone-tabella">Modifica</a>
-                    <a href="modifica-aule?id=${aula.key}" class="Bottone-tabella">Elimina</a>
+                    <a href="agg_mod_aula?id=${aula.key}" class="Bottone-tabella"> <i class="fa fa-edit"></i> </a><!-- Icona di modifica -->
+                    <a href="modifica-aule?id=${aula.key}" class="Bottone-tabella"> <i class="fa fa-trash"></i> </a><!-- Icona di elimina -->
                 </td>
             </tr>
             </#list>
