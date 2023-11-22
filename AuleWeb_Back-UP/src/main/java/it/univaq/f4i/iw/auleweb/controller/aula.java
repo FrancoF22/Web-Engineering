@@ -46,14 +46,14 @@ public class aula extends AuleWebBaseController {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
                     request.setAttribute("aula", aula);
-                    res.activate("agg_mod_aula.html", request, response);
+                    res.activate("agg_mod_aula.ftl.html", request, response);
                 } else {
                     handleError("Undefined aula", request, response);
                 }
             } else {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
                 request.setAttribute("aula", aula);
-                res.activate("agg_mod_aula.html", request, response);
+                res.activate("agg_mod_aula.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

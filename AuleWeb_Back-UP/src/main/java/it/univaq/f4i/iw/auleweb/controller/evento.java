@@ -51,14 +51,14 @@ public class evento extends AuleWebBaseController {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evento);
                 if (evento != null) {
                     request.setAttribute("evento", evento);
-                    res.activate("add_mod_evento.html", request, response);
+                    res.activate("add_mod_evento.ftl.html", request, response);
                 } else {
                     handleError("Undefined evento", request, response);
                 }
             } else {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
                 request.setAttribute("evento", evento);
-                res.activate("add_mod_evento.html", request, response);
+                res.activate("add_mod_evento.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
