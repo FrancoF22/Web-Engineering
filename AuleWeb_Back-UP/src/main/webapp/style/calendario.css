@@ -1,9 +1,29 @@
+:root {
+    --main-bg-color: #f4f4f4;
+    --text-color: #333;
+    --button-bg-color: #0056b3;
+    --button-hover-bg-color: #004494;
+    --border-color: #ddd;
+    --form-background: #fff;
+    --table-background: #fff;
+    --th-background-color: #f4f4f4;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
     margin: 0;
     padding: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9em;
 }
 
 #calendar {
@@ -43,7 +63,7 @@ form select {
 form input[type="submit"] {
     width: 100%;
     padding: 8px;
-    background-color: #0056b3;
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -52,23 +72,21 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #004494;
+    background-color: var(--button-hover-bg-color);
 }
 
 .form-title {
-    font-size: 1.5em; /* Aumenta la dimensione del font */
-    font-weight: bold; /* Rende il testo in grassetto */
-    color: #333; /* Colore del testo */
-    margin-bottom: 20px; /* Spazio sotto il titolo */
-    text-align: center; /* Allinea il testo al centro */
-    padding: 10px; /* Padding intorno al testo */
-    border-bottom: 2px solid #ddd; /* Linea sotto il titolo per separarlo dal resto del form */
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid var(--border-color);
 }
 
 /* Stili per la tabella daily-events */
 #daily-events {
     width: 100%;
-    background: #fff;
+    background: var(--table-background);
     border-collapse: collapse;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 20px; /* Spazio sopra la tabella */
@@ -82,7 +100,7 @@ form input[type="submit"]:hover {
 }
 
 #daily-events th {
-    background-color: #f4f4f4;
+    background-color: var(--th-background-color);
 }
 
 /* Clearfix per il float */
@@ -95,8 +113,5 @@ form input[type="submit"]:hover {
 @media (max-width: 768px) {
     #calendar, #event-form {
         width: 100%;
-        max-width: none;
-        float: none;
-        margin-right: 0;
     }
 }
