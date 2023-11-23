@@ -23,19 +23,25 @@ public interface EventoDAO {
     
     Evento getEvento(int id) throws DataException;
     
+    List<Calendario> getCalendarioEvento(int evento_key) throws DataException;    //ritorna le ripetizioni dell'evento sul calendario
+
     List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException;
     
     List<Evento> getAllProssimiEventi() throws DataException;
 
-    List<Calendario> getCalendarioEvento(int evento_key) throws DataException;    //ritorna le ripetizioni dell'evento sul calendario
-
     List<Calendario> getEventiAttuali(int id_dipartimento) throws DataException;
 
-    List<Calendario> getEventiCorso(int id_corso, Date data) throws DataException;
+    List<Evento> getAllEventi() throws DataException;
+    
+    List<Calendario> getEventiAulaGiorno(int id_aula, Date date) throws DataException;
+
+    List<Calendario> getEventiAulaSettimana(int id_aula, Date date) throws DataException;
+    
+    List<Calendario> getEventiAulaMese(int aulaId, Date d) throws DataException;
     
     List<Calendario> getAllEventiAula(int id_aula) throws DataException;
 
-    List<Calendario> getEventiAula(int id_aula, Date date) throws DataException;
+    List<Calendario> getEventiCorsoSettimana(int id_corso, Date data) throws DataException;
     
     Calendario getCalendario(int evento_key, Date giorno) throws DataException;
 
@@ -45,8 +51,4 @@ public interface EventoDAO {
     
     void storeCalendario(Calendario calendario) throws DataException;
 
-    List<Calendario> getEventiAulaGiorno(int id_aula, Date date) throws DataException;
-
-    List<Evento> getAllEventi() throws DataException;
-    
 }

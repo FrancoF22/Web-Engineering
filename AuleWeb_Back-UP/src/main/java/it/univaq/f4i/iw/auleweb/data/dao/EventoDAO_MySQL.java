@@ -26,7 +26,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
 
     private PreparedStatement sEventoById, sEventoByNome, sEventoByGiornoOra;
     private PreparedStatement sGiorniEvento, sEventoSingolo, sCalendarioById;
-    private PreparedStatement sEventiAulaSettimana, sEventiAulaGiorno, sAllEventiAula, sEventiProssimeOre, sAllEventi;
+    private PreparedStatement sEventiAulaMese, sEventiAulaSettimana, sEventiAulaGiorno, sAllEventiAula, sEventiProssimeOre, sAllEventi;
     private PreparedStatement sEventiCorsoSettimana, sEventiGruppoGiorno;
     private PreparedStatement iEvento, uEvento, dEvento;
     private PreparedStatement iCalendario, uCalendario, dCalendario;
@@ -58,13 +58,14 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             //ricerca di tutti gli eventi nelle prossime 3 ore
             sEventiProssimeOre = connection.prepareStatement("SELECT e.* FROM evento AS e JOIN calendario AS c ON c.id_evento=e.id WHERE CONCAT(c.giorno, ' ', c.ora_inizio) <= NOW() + INTERVAL 3 HOUR AND CONCAT(c.giorno, ' ', c.ora_fine) >= NOW();");
             
-            //ricerca di tutti gli eventi di un'aula data una settimana/un giorno; ricerca di tutti gli eventi da svolgere in una data aula
-            sEventiAulaSettimana = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND YEAR(c.giorno)=YEAR(?) AND WEEK(c.giorno,1) = WEEK(?,1)"); //per settimana corrente l'ultimo valore è il giorno odierno
+            //ricerca di tutti gli eventi di un'aula data una mese/settimana/un giorno; ricerca di tutti gli eventi da svolgere in una data aula
+            sEventiAulaMese = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND MONTH(c.giorno) = MONTH(?)");
+            sEventiAulaSettimana = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND WEEK(c.giorno) = WEEK(?)"); //per settimana corrente l'ultimo valore è il giorno odierno
             sEventiAulaGiorno =  connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND c.giorno=?");
             sAllEventiAula = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=?");
             
             //ricerca di tutti gli eventi di un corso in una data settimana; ricerca di tutti gli eventi di un dipartimento dato un determinato giorno
-            sEventiCorsoSettimana = connection.prepareStatement("SELECT c.* FROM calendario AS c JOIN evento ON c.id_evento = evento.id WHERE evento.id_corso=? AND YEAR(c.giorno)=YEAR(?) AND WEEK(c.giorno,1)=WEEK(?,1)"); //per la settimana corrente l'ultimo valore deve essere il giorno odierno
+            sEventiCorsoSettimana = connection.prepareStatement("SELECT c.* FROM calendario AS c JOIN evento ON c.id_evento = evento.id WHERE evento.id_corso=? AND WEEK(c.giorno)=WEEK(?)"); //per la settimana corrente l'ultimo valore deve essere il giorno odierno
             sEventiGruppoGiorno = connection.prepareStatement("SELECT c.* FROM calendario AS c JOIN aula AS a ON a.id=c.id_aula JOIN gruppo_aula AS gp ON gp.id_aula = a.id WHERE c.giorno=CURDATE() AND gp.id_gruppo=?");
             
             //query per operare nella tabella evento
@@ -95,6 +96,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventoSingolo.close();
             sCalendarioById.close();
             
+            sEventiAulaMese.close();
             sEventiAulaSettimana.close();
             sEventiAulaGiorno.close();
             sAllEventiAula.close();
@@ -287,13 +289,30 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    //permette di ottenere gli eventi nell'arco della settimana corrente
-    /* USARE IL METODO SUCCESSIVO
-    public List<Calendario> getEventiAulaSettimana(int aulaId) throws DataException{
+    @Override //permette di ottenere gli eventi dell'aula in un determinato giorno
+    public List<Calendario> getEventiAulaGiorno(int id_aula, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
-            sEventiAulaSettCur.setInt(1,aulaId);
-            try (ResultSet rs = sEventiAulaSettCur.executeQuery()) {
+            sEventiAulaGiorno.setInt(1,id_aula);
+            sEventiAulaGiorno.setDate(2,d);
+            try (ResultSet rs = sEventiAulaGiorno.executeQuery()) {
+                while (rs.next()) {
+                    result.add((Calendario) getCalendarioById(rs.getInt("id")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Impossibile caricare gli eventi dell'aula del giorno scelto", ex);
+        }
+        return result;
+    }
+    
+    @Override//permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
+    public List<Calendario> getEventiAulaSettimana(int aulaId, Date d) throws DataException{
+        List<Calendario> result = new ArrayList();
+        try {
+            sEventiAulaSettimana.setInt(1,aulaId);
+            sEventiAulaSettimana.setDate(2, d);
+            try (ResultSet rs = sEventiAulaSettimana.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));
                 }
@@ -303,15 +322,14 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    */
-    @Override//permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
-    public List<Calendario> getEventiAula(int aulaId, Date d) throws DataException{
+    
+    @Override //permette di ottenere gli eventi nell'arco di un mese di una determinata aula
+    public List<Calendario> getEventiAulaMese(int aulaId, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
-            sEventiAulaSettimana.setInt(1,aulaId);
-            sEventiAulaSettimana.setDate(2, d);
-            sEventiAulaSettimana.setDate(3, d);
-            try (ResultSet rs = sEventiAulaSettimana.executeQuery()) {
+            sEventiAulaMese.setInt(1,aulaId);
+            sEventiAulaMese.setDate(2, d);
+            try (ResultSet rs = sEventiAulaMese.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));
                 }
@@ -337,13 +355,14 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    /* USARE DIRETTAMENTE IL METODO SUCCESSIVO
-    @Override //permette di ottenere gli eventi del corso nell'arco della settimana corrente
-    public List<Calendario> getEventiCorsoSettimana(int corsoId) throws DataException {
+    
+    @Override //permette di ottenere gli eventi del corso nell'arco di una settimana
+    public List<Calendario> getEventiCorsoSettimana(int corsoId, Date d) throws DataException{
         List<Calendario> result = new ArrayList();
         try {
-            sEventiCorsoOggi.setInt(1,corsoId);
-            try (ResultSet rs = sEventiCorsoOggi.executeQuery()) {
+            sEventiCorsoSettimana.setInt(1,corsoId);
+            sEventiCorsoSettimana.setDate(2, d);
+            try (ResultSet rs = sEventiCorsoSettimana.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));
                 }
@@ -353,22 +372,17 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         }
         return result;
     }
-    */
     
-    @Override //permette di ottenere gli eventi del corso nell'arco di una settimana
-    public List<Calendario> getEventiCorso(int corsoId, Date d) throws DataException{
-        List<Calendario> result = new ArrayList();
-        try {
-            sEventiAulaSettimana.setInt(1,corsoId);
-            sEventiAulaSettimana.setDate(2, d);
-            sEventiAulaSettimana.setDate(3, d);
-            try (ResultSet rs = sEventiAulaSettimana.executeQuery()) {
-                while (rs.next()) {
-                    result.add((Calendario) getCalendarioById(rs.getInt("id")));
-                }
+    @Override //serve per ottenere tutti gli eventi
+    public List<Evento> getAllProssimiEventi() throws DataException {
+        List<Evento> result = new ArrayList();
+
+        try (ResultSet rs = sEventiProssimeOre.executeQuery()) {
+            while (rs.next()) {
+                result.add(getEvento(rs.getInt("id")));
             }
         } catch (SQLException ex) {
-            throw new DataException("Impossibile caricare gli eventi del corso", ex);
+            throw new DataException("Unable to load Eventi", ex);
         }
         return result;
     }
@@ -389,42 +403,12 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         return result;
     }
     
-    @Override //permette di ottenere gli eventi dell'aula in un determinato giorno
-    public List<Calendario> getEventiAulaGiorno(int id_aula, Date d) throws DataException{
-        List<Calendario> result = new ArrayList();
-        try {
-            sEventiAulaGiorno.setInt(1,id_aula);
-            sEventiAulaGiorno.setDate(2,d);
-            try (ResultSet rs = sEventiAulaGiorno.executeQuery()) {
-                while (rs.next()) {
-                    result.add((Calendario) getCalendarioById(rs.getInt("id")));
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Impossibile caricare gli eventi dell'aula del giorno scelto", ex);
-        }
-        return result;
-    }
     
     @Override //serve per ottenere tutti gli eventi
     public List<Evento> getAllEventi() throws DataException {
         List<Evento> result = new ArrayList();
 
         try (ResultSet rs = sAllEventi.executeQuery()) {
-            while (rs.next()) {
-                result.add(getEvento(rs.getInt("id")));
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to load Eventi", ex);
-        }
-        return result;
-    }
-    
-    @Override //serve per ottenere tutti gli eventi
-    public List<Evento> getAllProssimiEventi() throws DataException {
-        List<Evento> result = new ArrayList();
-
-        try (ResultSet rs = sEventiProssimeOre.executeQuery()) {
             while (rs.next()) {
                 result.add(getEvento(rs.getInt("id")));
             }
