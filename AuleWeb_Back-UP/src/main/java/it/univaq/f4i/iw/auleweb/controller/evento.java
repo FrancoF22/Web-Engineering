@@ -42,7 +42,7 @@ public class evento extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
 
             List<Corso> corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi();
-            request.setAttribute("ListaProfessori", corso);
+            request.setAttribute("ListaCorsi", corso);
             List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
             request.setAttribute("ListaProfessori", professori);
             Tipologia[] tipo = Tipologia.values();
@@ -73,24 +73,17 @@ public class evento extends AuleWebBaseController {
             } else {
                 evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
             }
-            if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null) {
+            if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("corso") != null && request.getParameter("tipologia") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
                 Corso corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso")));
                 String tipologiaValue = request.getParameter("tipologia");
-                //Enumeration<?> e = request.getAttributeNames();
                 
-                if (prof != null) {
+                if (prof != null && corso != null) {
                     evento.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
                     evento.setProfessore(prof);
                     if (request.getParameter("descrizione") != null) {
                         evento.setDescrizione(SecurityHelpers.addSlashes(request.getParameter("desrizione")));
                     }
-                    /*
-                    while(e.hasMoreElements()){
-                        Tipologia t = (Tipologia) e.nextElement();
-                        evento.setTipo(t);
-                    }
-                    */
                     if(request.getPart("tipo") != null){
                         if (tipologiaValue != null) {
                             Tipologia tipologia = Tipologia.valueOf(tipologiaValue);
@@ -99,13 +92,12 @@ public class evento extends AuleWebBaseController {
                     }
                     evento.setCorso(corso);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
-                    action_write(request, response, evento.getKey());
+                    action_default(request,response);
                 } else {
                     handleError("Cannot update evento: undefined professor", request, response);
                 }
             } else {
                 handleError("Cannot update evento: insufficient parameters", request, response);
-
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

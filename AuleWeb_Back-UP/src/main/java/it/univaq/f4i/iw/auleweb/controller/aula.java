@@ -71,7 +71,6 @@ public class aula extends AuleWebBaseController {
             if (aula != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("luogo") != null && request.getParameter("edificio") != null && request.getParameter("piano") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
                 if (prof != null) {
-                    System.out.println("### presi i dati del professore ###");
                     aula.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
                     aula.setProfessore(prof);
                     aula.setCapienza(SecurityHelpers.checkNumeric(request.getParameter("capienza")));
