@@ -16,17 +16,17 @@
     <label >Aula:</label>
     <select name="aula">
         <#list ListaAule as aula>
-            <option value="${aula.key}">${aula.nome}</option>
+        <option value="${aula.key}">${aula.nome}</option>
         </#list>
     </select>
 
     <label >Evento:</label>
     <select name="evento">
         <#list ListaEventi as evento>
-            <option value="${evento.key}">${evento.nome}</option>
+        <option value="${evento.key}">${evento.nome}</option>
         </#list>
     </select>
-    
+
     <label for="date">Data:</label>
     <input type="date" id="date" name="date">
 
@@ -35,15 +35,6 @@
 
     <label for="end-time">Ora Fine:</label>
     <input type="time" id="end-time" name="end-time">
-
-    <!-- Opzioni di ripetibilità -->
-    <label for="repetition">Ripetibilit&agrave;:</label>
-    <select id="repetition" name="repetition">
-        <option value="none">Nessuna</option>
-        <option value="daily">Giornaliera</option>
-        <option value="weekly">Settimanale</option>
-        <option value="monthly">Mensile</option>
-    </select>
 
     <input type="submit" value="Aggiungi/Modifica Evento">
 </form>
@@ -93,7 +84,7 @@
             }
         });
         // Carica le aule all'avvio
-        fetchClassrooms();
+        //fetchClassrooms();
 
 
         // Gestione del form di invio degli eventi
@@ -106,7 +97,7 @@
                 date: $('#date').val(),
                 startTime: $('#start-time').val(),
                 endTime: $('#end-time').val(),
-                repetition: $('#repetition').val()
+                //repetition: $('#repetition').val()
             };
 
             // Invia i dati alla servlet tramite AJAX
