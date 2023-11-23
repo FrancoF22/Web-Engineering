@@ -113,7 +113,6 @@
 
         // Funzione per recuperare gli eventi dalla servlet
         function fetchEvents(start, end, timezone, callback) {
-            // Assumiamo che la tua servlet restituisca dati in un formato testuale o HTML
             fetch('/evento?action=getEvents&start=' + start.format() + '&end=' + end.format())
                     .then(response => response.text())
                     .then(textResponse => {
@@ -124,8 +123,7 @@
         }
 
         function parseEventsFromTextResponse(textResponse) {
-            // Qui dovrai analizzare il testo della risposta e convertirlo in un array di oggetti evento
-            // Questa è una parte complessa e dipende dal formato esatto della tua risposta della servlet
+            // Implementa la logica per interpretare la risposta testuale e convertirla in eventi del calendario
             return []; // Restituire un array di oggetti evento
         }
 
