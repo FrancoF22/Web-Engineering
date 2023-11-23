@@ -14,7 +14,9 @@
     <div class="form-title">Gestisci Eventi</div>
 
     <label for="room">Aula:</label>
-    <input type="text" id="room" name="room">
+    <select id="room" name="room">
+        <!-- Le opzioni saranno aggiunte dinamicamente via JavaScript -->
+    </select>
 
     <label for="date">Data:</label>
     <input type="date" id="date" name="date">
@@ -50,11 +52,8 @@
             },
             // Gestione del click su un giorno
             dayClick: function (date, jsEvent, view) {
-                // Formatta la data come desideri, ad esempio "YYYY-MM-DD"
-                var formattedDate = date.format();
-
-                // Imposta il valore del campo "Data" nel form
-                $('#date').val(formattedDate);
+                var formattedDate = date.format();// Formatta la data come desideri, ad esempio "YYYY-MM-DD"
+                $('#date').val(formattedDate);// Imposta il valore del campo "Data" nel form
 
                 // (Opzionale) Apri una modalità di dialogo o sposta lo scroll alla form
             },
@@ -84,6 +83,26 @@
                 });
             }
         });
+        // Carica le aule all'avvio
+        fetchClassrooms();
+
+        // Funzione per caricare le aule
+        function fetchClassrooms() {
+            $.ajax({
+                url: 'lista_aule',//'path_to_aula_servlet', // Aggiorna con il percorso corretto
+                type: 'GET',
+                dataType: 'json',
+                success: function (aulas) {
+                    var roomSelect = $('#room');
+                    aulas.forEach(function (aula) {
+                        roomSelect.append(new Option(aula.nome, aula.id)); // Assumi che 'nome' e 'id' siano i campi dell'oggetto 'aula'
+                    });
+                },
+                error: function () {
+                    alert('Errore nel caricamento delle aule');
+                }
+            });
+        }
 
         // Gestione del form di invio degli eventi
         $('#event-form').on('submit', function (e) {
@@ -114,6 +133,7 @@
                 }
             });
         });
+
     });
 </script>
 
