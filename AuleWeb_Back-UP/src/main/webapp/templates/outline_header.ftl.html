@@ -24,17 +24,17 @@
             <div class="user-dropdown">
                 <a href="profilo?referrer=${thispageurl?url}"><i class="fa fa-user"></i> Profilo</a>
                 <!-- <a href="vistaAula?referrer=${thispageurl?url}">Vista Aula</a> -->
-                <a href="aula?referrer=${thispageurl?url}"><i class="fa fa-edit"></i> Aula</a>
+                <a href="aula?referrer=${thispageurl?url}"><i class="fa fa-building"></i> Aula</a>
                 <!-- <a href="vistaEvento?referrer=${thispageurl?url}">vista Evento -->
-                <a href="evento?referrer=${thispageurl?url}"><i class="fa fa-edit"></i> Evento</a>
-                <a href="listaEventi?referrer=${thispageurl?url}">lista eventi</a>
-                <a href="vistaCalendario?referrer=${thispageurl?url}">vista calendario</a> <!-- dà problemi -->
-                <a href="calendario?referrer=${thispageurl?url}"><i class="fa fa-calendar"></i> Calendario</a>
-                <a href="logout?referrer=${thispageurl?url}">Logout</a>
+                <a href="evento?referrer=${thispageurl?url}"><i class="fa fa-calendar-alt"></i> Evento</a>
+                <a href="listaEventi?referrer=${thispageurl?url}"><i class="fa fa-list"></i> lista eventi</a>
+                <a href="vistaCalendario?referrer=${thispageurl?url}"><i class="fa fa-calendar"></i> vista calendario</a> <!-- dà problemi -->
+                <a href="calendario?referrer=${thispageurl?url}"><i class="fa fa-calendar-check"></i> Calendario</a>
+                <a href="logout?referrer=${thispageurl?url}"><i class="fa fa-sign-out-alt"></i> Logout</a>
             </div>
             <#else>
             <p class="not-logged-in">
-                <em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
+                <em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}"><i class="fa fa-sign-in-alt"></i> login</a>)
             </p>
             </#if>
         </div>
