@@ -48,10 +48,20 @@
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
+            // Gestione del click su un giorno
+            dayClick: function (date, jsEvent, view) {
+                // Formatta la data come desideri, ad esempio "YYYY-MM-DD"
+                var formattedDate = date.format();
+
+                // Imposta il valore del campo "Data" nel form
+                $('#date').val(formattedDate);
+
+                // (Opzionale) Apri una modalità di dialogo o sposta lo scroll alla form
+            },
             editable: true, // Rende gli eventi trascinabili e modificabili
             events: function (start, end, timezone, callback) {
                 $.ajax({
-                    url: 'lista_eventi',//'path_to_your_servlet_for_loading_events',
+                    url: 'lista_eventi', //'path_to_your_servlet_for_loading_events',
                     dataType: 'json',
                     data: {
                         // Parametri che potresti dover inviare alla servlet
@@ -90,7 +100,7 @@
 
             // Invia i dati alla servlet tramite AJAX
             $.ajax({
-                url: 'add_mod_evento',//'path_to_your_servlet_for_event_creation_or_modification',
+                url: 'add_mod_evento', //'path_to_your_servlet_for_event_creation_or_modification',
                 type: 'POST',
                 data: eventData,
                 success: function (response) {

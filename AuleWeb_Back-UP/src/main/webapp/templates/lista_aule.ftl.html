@@ -5,11 +5,8 @@
     <h1 class="page-title">Gestisci aule</h1>
     <div class="table-controls">
         <a href="home" class="my-button">Indietro</a>
-        <a class="my-button"><input type="submit" name="action_write" value="Aggiungi Aula"/></a>
-        <!-- <a href="agg_mod_aula" class="my-button">Aggiungi Aula</a>-->
-        <a href="modifica-attrezzatura" class="my-button">Visualizza attrezzature</a>
-        
-        
+        <a class="my-button"><input type="submit" name="action_write?k=0" value="Aggiungi Aula"/></a>
+        <!-- <a href="modifica-attrezzatura" class="my-button">Visualizza attrezzature</a> -->
         <a><button id="downloadBtn" class="my-button">Scarica in CSV</button></a>
     </div>
 
@@ -47,9 +44,7 @@
                     </#list>
                 </td>
                 <td>
-                    <a class="Bottone-tabella"><input type="submit" name="action_update"/><i class="fa fa-edit"></i></a>
-                    <!--<a href="agg_mod_aula?id=${aula.key}" class="Bottone-tabella"> <i class="fa fa-edit"></i> </a><!-- Icona di modifica -->
-                    <!--<a href="modifica-aule?id=${aula.key}" class="Bottone-tabella"> <i class="fa fa-trash"></i> </a> mi sa manco ci và più <!-- Icona di elimina --> 
+                    <a class="Bottone-tabella"><input type="submit" name="update?k=aula.id"/><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
             </#list>
