@@ -1,0 +1,93 @@
+/* Stili di base per la pagina */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Titolo della pagina */
+h2 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Contenitore principale degli eventi */
+.eventi-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Lista degli eventi */
+.eventi-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Singolo elemento della lista eventi */
+.evento-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+/* Nome dell'evento */
+.evento-nome {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Link per la modifica dell'evento */
+.evento-modifica {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.evento-modifica:hover {
+    text-decoration: underline;
+}
+
+/* Descrizione dell'evento */
+.evento-descrizione {
+    color: #666666;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Tipo di evento */
+.evento-tipo {
+    color: #555555;
+    font-style: italic;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+/* Link per creare un nuovo evento */
+.evento-nuovo a {
+    display: inline-block;
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.evento-nuovo a:hover {
+    background-color: #218838;
+}
+
+/* Stili per schermi piccoli e dispositivi mobili */
+@media screen and (max-width: 768px) {
+    .eventi-container {
+        padding: 10px;
+        margin: 10px;
+    }
+}
