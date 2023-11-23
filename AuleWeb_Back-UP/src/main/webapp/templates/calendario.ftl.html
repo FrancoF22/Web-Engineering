@@ -49,10 +49,30 @@
                 right: 'month,agendaWeek,agendaDay'
             },
             editable: true, // Rende gli eventi trascinabili e modificabili
-            events: [
-                // Qui puoi aggiungere eventi dinamicamente
-            ],
-            // Altri eventi e configurazioni come necessario
+            events: function (start, end, timezone, callback) {
+                $.ajax({
+                    url: 'lista_eventi',//'path_to_your_servlet_for_loading_events',
+                    dataType: 'json',
+                    data: {
+                        // Parametri che potresti dover inviare alla servlet
+                        start: start.format(),
+                        end: end.format()
+                    },
+                    success: function (response) {
+                        var events = [];
+                        // Elabora la risposta per trasformarla in eventi di FullCalendar
+                        response.forEach(function (event) {
+                            events.push({
+                                title: event.title,
+                                start: event.start, // Assicurati che sia nel formato corretto
+                                end: event.end // Assicurati che sia nel formato corretto
+                                        // Altre proprietà dell'evento...
+                            });
+                        });
+                        callback(events);
+                    }
+                });
+            }
         });
 
         // Gestione del form di invio degli eventi
@@ -70,25 +90,21 @@
 
             // Invia i dati alla servlet tramite AJAX
             $.ajax({
-                url: 'path_to_your_servlet',
+                url: 'add_mod_evento',//'path_to_your_servlet_for_event_creation_or_modification',
                 type: 'POST',
                 data: eventData,
                 success: function (response) {
-                    // Aggiungi l'evento al calendario
-                    $('#calendar').fullCalendar('renderEvent', {
-                        title: eventData.room, // Ad esempio, usa il nome dell'aula come titolo
-                        start: eventData.date + 'T' + eventData.startTime,
-                        end: eventData.date + 'T' + eventData.endTime
-                                // Altre proprietà dell'evento come necessario
-                    }, true); // "true" per rendere l'evento persistente
+                    // Codice per gestire la risposta, aggiornare il calendario, ecc.
+                    // Esempio: ricarica gli eventi nel calendario
+                    $('#calendar').fullCalendar('refetchEvents');
                 },
                 error: function () {
                     // Gestisci errori
+                    alert('Si è verificato un errore durante il salvataggio dell\'evento.');
                 }
             });
-
-            // Qui puoi aggiungere ulteriore logica per gestire la ripetizione
         });
     });
 </script>
+
 
