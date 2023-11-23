@@ -1,20 +1,20 @@
 .home-container {
     max-width: 750px;
-    margin: auto;
-    padding: 20px;
+    margin: 40px auto;
+    padding: 30px;
     background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cambia la font-family */
 }
 
 .home-text {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px; /* Aumenta leggermente la dimensione del font */
+    color: #444;
     text-align: center;
 }
+
 
 form {
     margin-top: 10px;
@@ -22,23 +22,31 @@ form {
 
 form label {
     display: block;
-    margin: 10px 0 5px;
-    color: #555;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold; /* Rende i label più visibili */
 }
 
 form input[type="text"],
+form select, /* Stilizzazione per i menu a tendina */
 form input[type="submit"] {
     width: 100%;
-    padding: 8px;
-    margin: 5px 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px; /* Aumenta il padding per migliorare l'usabilità */
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
     box-sizing: border-box;
+    font-size: 16px; /* Aumenta la dimensione del font */
+}
+
+form select {
+    cursor: pointer; /* Aggiunge un cursore a mano per i menu a tendina */
 }
 
 form input[type="checkbox"] {
     margin-right: 10px;
 }
+
 
 .agiungi-evento-professore-text18 {
     width: 100%;
@@ -50,30 +58,53 @@ form input[type="checkbox"] {
 .agiungi-evento-professore-text18 th,
 .agiungi-evento-professore-text18 td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px; /* Aumenta il padding */
+    text-align: center; /* Centra il contenuto delle celle */
 }
 
 .agiungi-evento-professore-text18 th {
-    background-color: #007bff;
+    background-color: #0056b3; /* Cambia il colore per una maggiore coerenza */
     color: white;
 }
 
+/* Stile specifico per il bottone "Salva" */
+.Bottone-salva .button {
+    background-color: #28a745; /* Colore verde per il bottone "Salva" */
+    color: white; /* Testo bianco per contrasto */
+}
+
+.Bottone-salva .button:hover {
+    background-color: #218838; /* Colore leggermente più scuro al passaggio del mouse */
+}
+
+/* Stile generale dei bottoni */
 .button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
+    width: auto;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 12px 20px;
+    font-size: 18px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:not(.Bottone-salva .button) {
+    background-color: #007bff; /* Colore blu per gli altri bottoni */
+    color: white;
+}
+
+.button:not(.Bottone-salva .button):hover {
+    background-color: #0056b3;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #004a9f; /* Colore diverso per l'hover */
 }
 
 .Bottone-salva,
 .Bottone-indietro {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px; /* Aumenta lo spazio sopra i bottoni */
 }
