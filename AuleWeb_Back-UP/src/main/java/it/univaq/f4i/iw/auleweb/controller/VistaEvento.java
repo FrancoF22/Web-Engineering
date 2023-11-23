@@ -26,7 +26,7 @@ public class VistaEvento extends AuleWebBaseController {
         try {
             Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(k);
             if (evento != null) {
-                request.setAttribute("aula", evento);
+                request.setAttribute("evento", evento);
                 request.setAttribute("page_title", "Leggi Evento");
                 //verrà usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template

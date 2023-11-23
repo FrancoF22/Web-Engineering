@@ -17,10 +17,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author franc
- */
 public class calendario extends  AuleWebBaseController {
     
         //creiamo e inizializziamo gli array statici per i campi data
