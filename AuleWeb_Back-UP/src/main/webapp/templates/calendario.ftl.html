@@ -52,40 +52,58 @@
             },
             // Gestione del click su un giorno
             dayClick: function (date, jsEvent, view) {
-                var formattedDate = date.format();// Formatta la data come desideri, ad esempio "YYYY-MM-DD"
-                $('#date').val(formattedDate);// Imposta il valore del campo "Data" nel form
+                var formattedDate = date.format(); // Formatta la data come desideri, ad esempio "YYYY-MM-DD"
+                $('#date').val(formattedDate); // Imposta il valore del campo "Data" nel form
 
                 // (Opzionale) Apri una modalità di dialogo o sposta lo scroll alla form
             },
             editable: true, // Rende gli eventi trascinabili e modificabili
-            events: function (start, end, timezone, callback) {
-                $.ajax({
-                    url: 'lista_eventi', //'path_to_your_servlet_for_loading_events',
-                    dataType: 'json',
-                    data: {
-                        // Parametri che potresti dover inviare alla servlet
-                        start: start.format(),
-                        end: end.format()
-                    },
-                    success: function (response) {
-                        var events = [];
-                        // Elabora la risposta per trasformarla in eventi di FullCalendar
-                        response.forEach(function (event) {
-                            events.push({
-                                title: event.title,
-                                start: event.start, // Assicurati che sia nel formato corretto
-                                end: event.end // Assicurati che sia nel formato corretto
-                                        // Altre proprietà dell'evento...
-                            });
-                        });
-                        callback(events);
-                    }
-                });
-            }
+            events: fetchEvents // Carica gli eventi tramite la funzione fetchEvents
         });
-        // Carica le aule all'avvio
-        //fetchClassrooms();
 
+        // Funzione per recuperare gli eventi dalla servlet
+        function fetchEvents(start, end, timezone, callback) {
+            // Assumiamo che la tua servlet restituisca dati in un formato testuale o HTML
+            fetch('/evento?action=getEvents&start=' + start.format() + '&end=' + end.format())
+                    .then(response => response.text())
+                    .then(textResponse => {
+                        var events = parseEventsFromTextResponse(textResponse);
+                        callback(events);
+                    })
+                    .catch(error => console.error('Error fetching events:', error));
+        }
+
+        function parseEventsFromTextResponse(textResponse) {
+            // Qui dovrai analizzare il testo della risposta e convertirlo in un array di oggetti evento
+            // Questa è una parte complessa e dipende dal formato esatto della tua risposta della servlet
+            return []; // Restituire un array di oggetti evento
+        }
+
+        $('#event-form').on('submit', function (e) {
+            e.preventDefault();
+            var eventData = {
+                room: $('#room').val(),
+                date: $('#date').val(),
+                startTime: $('#start-time').val(),
+                endTime: $('#end-time').val(),
+                // Aggiungi altri campi se necessario
+            };
+
+            // Invia i dati dell'evento alla servlet
+            submitEvent(eventData);
+        });
+
+        function submitEvent(eventData) {
+            // Qui dovrai modificare per adattarti al formato di dati atteso dalla tua servlet
+            // In questo esempio, inviamo dati come query string, ma potrebbe essere necessario inviare come form data
+            fetch('/evento?action=submitEvent&room=' + eventData.room + '&date=' + eventData.date + '&startTime=' + eventData.startTime + '&endTime=' + eventData.endTime, {
+                method: 'POST'
+            })
+                    .then(() => {
+                        $('#calendar').fullCalendar('refetchEvents');
+                    })
+                    .catch(error => console.error('Error submitting event:', error));
+        }
 
         // Gestione del form di invio degli eventi
         $('#event-form').on('submit', function (e) {
@@ -97,27 +115,14 @@
                 date: $('#date').val(),
                 startTime: $('#start-time').val(),
                 endTime: $('#end-time').val(),
-                //repetition: $('#repetition').val()
+                // repetition: $('#repetition').val(), // Aggiungi altri campi se necessario
             };
 
-            // Invia i dati alla servlet tramite AJAX
-            $.ajax({
-                url: 'add_mod_evento', //'path_to_your_servlet_for_event_creation_or_modification',
-                type: 'POST',
-                data: eventData,
-                success: function (response) {
-                    // Codice per gestire la risposta, aggiornare il calendario, ecc.
-                    // Esempio: ricarica gli eventi nel calendario
-                    $('#calendar').fullCalendar('refetchEvents');
-                },
-                error: function () {
-                    // Gestisci errori
-                    alert('Si è verificato un errore durante il salvataggio dell\'evento.');
-                }
-            });
+            // Invia i dati dell'evento alla servlet
+            submitEvent(eventData);
         });
-
     });
 </script>
+
 
 
