@@ -65,6 +65,25 @@ form input[type="submit"]:hover {
     border-bottom: 2px solid #ddd; /* Linea sotto il titolo per separarlo dal resto del form */
 }
 
+/* Stili per la tabella daily-events */
+#daily-events {
+    width: 100%;
+    background: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Spazio sopra la tabella */
+    margin-bottom: 20px; /* Spazio sotto la tabella */
+}
+
+#daily-events th, #daily-events td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#daily-events th {
+    background-color: #f4f4f4;
+}
 
 /* Clearfix per il float */
 .clearfix::after {

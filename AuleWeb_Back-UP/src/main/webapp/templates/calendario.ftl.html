@@ -10,34 +10,44 @@
 
 <div id="calendar"></div>
 
+<!-- Form per la gestione degli eventi -->
 <form id="event-form">
     <div class="form-title">Gestisci Eventi</div>
-
-    <label >Aula:</label>
+    <label>Aula:</label>
     <select name="aula">
         <#list ListaAule as aula>
         <option value="${aula.key}">${aula.nome}</option>
         </#list>
     </select>
-
-    <label >Evento:</label>
+    <label>Evento:</label>
     <select name="evento">
         <#list ListaEventi as evento>
         <option value="${evento.key}">${evento.nome}</option>
         </#list>
     </select>
-
     <label for="date">Data:</label>
     <input type="date" id="date" name="date">
-
     <label for="start-time">Ora Inizio:</label>
     <input type="time" id="start-time" name="start-time">
-
     <label for="end-time">Ora Fine:</label>
     <input type="time" id="end-time" name="end-time">
-
     <input type="submit" value="Aggiungi/Modifica Evento">
 </form>
+
+<!-- Tabella per visualizzare gli eventi del giorno selezionato -->
+<table id="daily-events">
+    <thead>
+        <tr>
+            <th>Evento</th>
+            <th>Orario Inizio</th>
+            <th>Orario Fine</th>
+            <!-- Aggiungi altre colonne se necessario -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Le righe verranno aggiunte dinamicamente qui -->
+    </tbody>
+</table>
 
 
 <script>
@@ -55,11 +65,38 @@
                 var formattedDate = date.format(); // Formatta la data come desideri, ad esempio "YYYY-MM-DD"
                 $('#date').val(formattedDate); // Imposta il valore del campo "Data" nel form
 
+                loadDailyEvents(formattedDate);// Carica e mostra gli eventi di quel giorno nella tabella
+
                 // (Opzionale) Apri una modalità di dialogo o sposta lo scroll alla form
             },
             editable: true, // Rende gli eventi trascinabili e modificabili
             events: fetchEvents // Carica gli eventi tramite la funzione fetchEvents
         });
+
+        function loadDailyEvents(date) {
+            // Fai una richiesta per ottenere gli eventi di quel giorno
+            fetch('/evento?action=getDailyEvents&date=' + date)
+                    .then(response => response.json())
+                    .then(events => {
+                        updateDailyEventsTable(events);
+                    })
+                    .catch(error => console.error('Error loading daily events:', error));
+        }
+
+        function updateDailyEventsTable(events) {
+            var $tableBody = $('#daily-events tbody');
+            $tableBody.empty(); // Pulisci la tabella
+
+            events.forEach(event => {
+                var $row = $('<tr></tr>');
+                $row.append($('<td></td>').text(event.title));
+                $row.append($('<td></td>').text(event.startTime));
+                $row.append($('<td></td>').text(event.endTime));
+                // Aggiungi altre celle se necessario
+
+                $tableBody.append($row);
+            });
+        }
 
         // Funzione per recuperare gli eventi dalla servlet
         function fetchEvents(start, end, timezone, callback) {
