@@ -46,6 +46,8 @@ public class calendario extends  AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
+            request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
+            request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
             res.activate("calendario.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

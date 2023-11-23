@@ -1,0 +1,13 @@
+<h2>Eventi disponibili</h2>
+<#if (eventi?size>0)>
+<ul>
+    <#list eventi as evento>
+    <li>
+        ${strip_slashes(evento.nome)}&nbsp;<a href="write?k=${evento.key}">[modify evento]</a>
+        <br/>        
+    </li>
+    </#list>
+</ul>
+</#if>
+<p><a href="write?k=0">Create a new evento</a></p>
+
