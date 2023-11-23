@@ -1,12 +1,11 @@
 package it.univaq.f4i.iw.auleweb.data.proxy;
 
 import it.univaq.f4i.iw.auleweb.data.dao.CorsoDAO;
+import it.univaq.f4i.iw.auleweb.data.dao.ProfessoreDAO;
 import it.univaq.f4i.iw.auleweb.data.impl.EventoImpl;
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
-import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.auleweb.data.model.Professore;
 import it.univaq.f4i.iw.auleweb.data.model.Tipologia;
-import it.univaq.f4i.iw.auleweb.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -30,20 +29,26 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
         this.corso_key = 0;
         this.professore_key = 0;
     }
-    
+
     @Override
     public void setKey(Integer key) {
         super.setKey(key);
         this.modified = true;
     }
-    
-    @Override
-    public void setCorso(Corso corso) {
-        super.setCorso(corso);
-        if(corso != null)this.corso_key = corso.getKey();
-        this.modified = true;
-    }
 
+    @Override
+    public Professore getProfessore() {
+        if (super.getProfessore() == null && professore_key > 0) {
+            try {
+                super.setProfessore(((ProfessoreDAO) dataLayer.getDAO(Professore.class)).getProfessoreById(professore_key));
+            } catch (DataException ex) {
+                Logger.getLogger(ProfessoreProxy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
+        return super.getProfessore();
+    }
+    
     @Override
     public void setNome(String nome) {
         super.setNome(nome);
@@ -55,53 +60,25 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
         super.setDescrizione(descrizione);
         this.modified = true;
     }
-
-   @Override
-    public void setProfessore(Professore prof) {
-        super.setProfessore(prof);
-        this.professore_key = prof.getKey();
-        this.modified = true;
-    }
-
+    
     @Override
     public void setTipo(Tipologia t) {
         super.setTipo(t);
         this.modified = true;
     }
-
-    @Override
-    public Corso getCorso() {
-        if (super.getCorso() == null && corso_key > 0) {
-            try {
-                super.setCorso(((CorsoDAO) dataLayer.getDAO(Gruppo.class)).getCorsoById(corso_key));
-            } catch (DataException ex) {
-                Logger.getLogger(AulaProxy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-       return super.getCorso();
-    }
-    /*
-    @Override
-    public Responsabile getUtente() {
-       if (super.getUtente() == null && !email_responsabile.isEmpty()) {
-            try {
-                super.setUtente(((ResponsabileDAO) dataLayer.getDAO(Responsabile.class)).getUtente(email_responsabile));
-            } catch (DataException ex) {
-                Logger.getLogger(AulaProxy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-       return super.getUtente();
-    }
-    */
     
-    public void setCorsoKey(int corso_key) {
-        this.corso_key = corso_key;
-        super.setCorso(null);
+    @Override
+    public void setProfessore(Professore p) {
+        super.setProfessore(p);
+        this.professore_key = p.getKey();
+        this.modified = true;
     }
-
-    public void setProfessoreKey(int professore_key) {
-        this.professore_key = professore_key;
-        super.setProfessore(null);
+    
+    @Override
+    public void setCorso(Corso c) {
+        super.setCorso(c);
+        this.professore_key = c.getKey();
+        this.modified = true;
     }
     
    @Override
@@ -114,4 +91,13 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
         this.modified = dirty;
     }
     
+    public void setProfessoreKey(int prof_key) {
+        this.professore_key = prof_key;
+        super.setProfessore(null);
+    }
+    
+    public void setCorsoKey(int corso_key) {
+        this.corso_key = corso_key;
+        super.setCorso(null);
+    }
 }

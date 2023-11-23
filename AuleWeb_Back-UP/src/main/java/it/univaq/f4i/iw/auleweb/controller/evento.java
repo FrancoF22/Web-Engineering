@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class evento extends AuleWebBaseController {
     
-    
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
@@ -32,6 +31,7 @@ public class evento extends AuleWebBaseController {
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
             res.activate("write_list.ftl.html", request, response);
+            System.out.println("PORCO DIO LADRO");
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -42,10 +42,10 @@ public class evento extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
 
             List<Corso> corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi();
-            request.setAttribute("ListaCorsi", corso);
             List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
-            request.setAttribute("ListaProfessori", professori);
             Tipologia[] tipo = Tipologia.values();
+            request.setAttribute("ListaCorsi", corso);
+            request.setAttribute("ListaProfessori", professori);
             request.setAttribute("tipo", tipo);
             if (id_evento > 0) {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evento);

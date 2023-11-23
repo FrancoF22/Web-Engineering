@@ -35,8 +35,6 @@ public class AulaProxy extends AulaImpl implements DataItemProxy {
 
     @Override
     public Professore getProfessore() {
-        //notare come l'autore in relazione venga caricato solo su richiesta
-        //note how the related author is loaded only after it is requested
         if (super.getProfessore() == null && professore_key > 0) {
             try {
                 super.setProfessore(((ProfessoreDAO) dataLayer.getDAO(Professore.class)).getProfessoreById(professore_key));
