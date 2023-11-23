@@ -1,3 +1,97 @@
+<!-- FullCalendar CSS -->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+
+<!-- Dipendenze richieste da FullCalendar -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+<!-- FullCalendar script -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
 
 <div>CREA UN CALENDARIO</div>
+<br>
+<div id="calendar"></div> <!-- Div per il calendario grafico -->
+
+
+<br></br>
+<div> Form per aggiungere/modificare gli eventi</div>
+<br>
+<form id="event-form">
+    <label for="room">Aula:</label>
+    <input type="text" id="room" name="room">
+
+    <label for="date">Data:</label>
+    <input type="date" id="date" name="date">
+
+    <label for="start-time">Ora Inizio:</label>
+    <input type="time" id="start-time" name="start-time">
+
+    <label for="end-time">Ora Fine:</label>
+    <input type="time" id="end-time" name="end-time">
+
+    <!-- Opzioni di ripetibilità -->
+    <label for="repetition">Ripetibilità:</label>
+    <select id="repetition" name="repetition">
+        <option value="none">Nessuna</option>
+        <option value="daily">Giornaliera</option>
+        <option value="weekly">Settimanale</option>
+        <option value="monthly">Mensile</option>
+    </select>
+
+    <input type="submit" value="Aggiungi/Modifica Evento">
+</form>
+
+<script>
+    $(document).ready(function () {
+        // Inizializzazione di FullCalendar
+        $('#calendar').fullCalendar({
+            // Opzioni di configurazione
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true, // Rende gli eventi trascinabili e modificabili
+            events: [
+                // Qui puoi aggiungere eventi dinamicamente
+            ],
+            // Altri eventi e configurazioni come necessario
+        });
+
+        // Gestione del form di invio degli eventi
+        $('#event-form').on('submit', function (e) {
+            e.preventDefault();
+
+            // Raccogli i dati del form
+            var eventData = {
+                room: $('#room').val(),
+                date: $('#date').val(),
+                startTime: $('#start-time').val(),
+                endTime: $('#end-time').val(),
+                repetition: $('#repetition').val()
+            };
+
+            // Invia i dati alla servlet tramite AJAX
+            $.ajax({
+                url: 'path_to_your_servlet',
+                type: 'POST',
+                data: eventData,
+                success: function (response) {
+                    // Aggiungi l'evento al calendario
+                    $('#calendar').fullCalendar('renderEvent', {
+                        title: eventData.room, // Ad esempio, usa il nome dell'aula come titolo
+                        start: eventData.date + 'T' + eventData.startTime,
+                        end: eventData.date + 'T' + eventData.endTime
+                                // Altre proprietà dell'evento come necessario
+                    }, true); // "true" per rendere l'evento persistente
+                },
+                error: function () {
+                    // Gestisci errori
+                }
+            });
+
+            // Qui puoi aggiungere ulteriore logica per gestire la ripetizione
+        });
+    });
+</script>
 
