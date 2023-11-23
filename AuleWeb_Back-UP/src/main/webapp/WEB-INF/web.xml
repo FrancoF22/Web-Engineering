@@ -90,6 +90,22 @@
         <servlet-name>evento</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.evento</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EventiAulaSettimana</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.EventiAulaSettimana</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EventiAulaGiorno</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.EventiAulaGiorno</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EventiProssimeOre</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.EventiProssimeOre</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EventiCorsoSettimana</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.EventiCorsoSettimana</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -133,6 +149,22 @@
     <servlet-mapping>
         <servlet-name>evento</servlet-name>
         <url-pattern>/evento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EventiAulaSettimana</servlet-name>
+        <url-pattern>/eventiAulaSettimana</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EventiAulaGiorno</servlet-name>
+        <url-pattern>/eventiAulaGiorno</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EventiProssimeOre</servlet-name>
+        <url-pattern>/eventiProssimeOre</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EventiCorsoSettimana</servlet-name>
+        <url-pattern>/eventiCorsoSettimana</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
