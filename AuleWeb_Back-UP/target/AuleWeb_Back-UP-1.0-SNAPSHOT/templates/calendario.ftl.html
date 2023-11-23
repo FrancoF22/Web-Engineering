@@ -1,22 +1,18 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/calendario.css" type="text/css" />
 <!-- FullCalendar CSS -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
-
 <!-- Dipendenze richieste da FullCalendar -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-
 <!-- FullCalendar script -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
 
-<div>CREA UN CALENDARIO</div>
-<br>
-<div id="calendar"></div> <!-- Div per il calendario grafico -->
+<div id="calendar"></div>
 
-
-<br></br>
-<div> Form per aggiungere/modificare gli eventi</div>
-<br>
 <form id="event-form">
+    <div class="form-title">Gestisci Eventi</div>
+
     <label for="room">Aula:</label>
     <input type="text" id="room" name="room">
 
@@ -30,7 +26,7 @@
     <input type="time" id="end-time" name="end-time">
 
     <!-- Opzioni di ripetibilità -->
-    <label for="repetition">Ripetibilità:</label>
+    <label for="repetition">Ripetibilit&agrave;:</label>
     <select id="repetition" name="repetition">
         <option value="none">Nessuna</option>
         <option value="daily">Giornaliera</option>
@@ -40,6 +36,7 @@
 
     <input type="submit" value="Aggiungi/Modifica Evento">
 </form>
+
 
 <script>
     $(document).ready(function () {

@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 10px;
+}
+
+#calendar {
+    max-width: 60%;
+    float: left;
+    margin-right: 20px;
+}
+
+#event-form {
+    max-width: 35%;
+    float: left;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="time"],
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+form input[type="submit"]:hover {
+    background-color: #004494;
+}
+
+.form-title {
+    font-size: 1.5em; /* Aumenta la dimensione del font */
+    font-weight: bold; /* Rende il testo in grassetto */
+    color: #333; /* Colore del testo */
+    margin-bottom: 20px; /* Spazio sotto il titolo */
+    text-align: center; /* Allinea il testo al centro */
+    padding: 10px; /* Padding intorno al testo */
+    border-bottom: 2px solid #ddd; /* Linea sotto il titolo per separarlo dal resto del form */
+}
+
+
+/* Clearfix per il float */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media (max-width: 768px) {
+    #calendar, #event-form {
+        width: 100%;
+        max-width: none;
+        float: none;
+        margin-right: 0;
+    }
+}
