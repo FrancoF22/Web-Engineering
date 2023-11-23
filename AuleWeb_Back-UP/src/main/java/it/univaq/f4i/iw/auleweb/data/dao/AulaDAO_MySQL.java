@@ -41,7 +41,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
             sUsedAule = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario");
-            sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = aula AND COLUMN_NAME = attrezzatura");
+            sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'aula' AND COLUMN_NAME = 'attrezzatura'");
             
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uAula = connection.prepareStatement("UPDATE aula SET nome=?, capienza=?, prese_elettriche=?, prese_rete=?, attrezzatura=?, nota=?, luogo=?, edificio=?, piano=?, id_professore=? WHERE id=?");
@@ -222,14 +222,18 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         List<String> result = new ArrayList();
         try {
             try (ResultSet rs = sAllAttrezzature.executeQuery()) {
-                String tipo = rs.getString("COLUMN_TYPE");
-                String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
-                for (String value: values){
-                    result.add(value.trim());
-                }
+                if (rs.next()) {
+                    String tipo = rs.getString("COLUMN_TYPE");
+                    System.out.println(tipo);
+                    String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
+                    for (String value: values){
+                        result.add(value.trim());
+                        System.out.println(result);
+                    }
+                } else System.out.println("rs e vuoto");
             }
         } catch (SQLException ex) {
-            throw new DataException("Unable to load Aule", ex);
+            throw new DataException("Unable to load Attrezzature", ex);
         }
         return result;
     }

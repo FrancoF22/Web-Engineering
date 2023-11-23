@@ -1,4 +1,4 @@
-<form method="post" action="action_write">
+<form method="post" action="aula">
 
     <div>AGGIUNTA E MODIFICA DI UN AULA</div>
 
@@ -11,23 +11,23 @@
         <span class="home-text">Crea e modifica aula</span>
 
         <form action="aula" method="post">
-            <input type="hidden" name="id_aula" value="${aula_modifica.key}">
+            <input type="hidden" name="id_aula" value="${aula.key!0}">
 
             <label for="nome">Nome aula:</label>
-            <input type="text" name="nome" id="nome" value="${aula_modifica.nome}"><br>
+            <input type="text" name="nome" id="nome" value="${aula.nome}"><br>
 
             <label for="luogo">Luogo:</label>
-            <input type="text" name="luogo" id="luogo" value="${aula_modifica.luogo?if_exists}"><br>
+            <input type="text" name="luogo" id="luogo" value="${aula.luogo?if_exists}"><br>
 
             <label for="edificio">Edificio:</label>
-            <input type="text" name="edificio" id="edificio" value="${aula_modifica.edificio?if_exists}"><br>
+            <input type="text" name="edificio" id="edificio" value="${aula.edificio?if_exists}"><br>
 
             <label for="professore">Professore:</label>
 
             <select name="professore">
                 <#list ListaProfessori as professore>
                 <option value="${professore.key}"
-                        <#if (aula_modifica.professore?? && professore.key=aula_modifica.professore.key)>
+                        <#if (aula.professore?? && professore.key=aula.professore.key)>
                     selected="selected"
                     </#if>
                     >${professore.nome} ${professore.cognome}</option>
@@ -35,19 +35,19 @@
             </select>
 
             <label for="note">Note:</label>
-            <input type="text" name="nota" id="nota" value="${aula_modifica.nota?if_exists}"><br>
+            <input type="text" name="nota" id="nota" value="${aula.nota?if_exists}"><br>
 
             <label for="capienza">Capienza:</label>
-            <input type="text" name="capienza" id="capienza" value="${aula_modifica.capienza?if_exists}"><br>
+            <input type="text" name="capienza" id="capienza" value="${aula.capienza?if_exists}"><br>
 
             <label for="prese_elettriche">Prese Elettriche:</label>
-            <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula_modifica.preseElettriche?if_exists}"><br>
+            <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula.preseElettriche?if_exists}"><br>
 
             <label for="piano">Piano:</label>
-            <input type="text" name="piano" id="piano" value="${aula_modifica.piano?if_exists}"><br>
+            <input type="text" name="piano" id="piano" value="${aula.piano?if_exists}"><br>
 
             <label for="prese_rete">Prese Rete:</label>
-            <input type="text" name="prese_rete" id="prese_rete" value="${aula_modifica.preseRete?if_exists}"><br>
+            <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
 
             <table class="agiungi-evento-professore-text18">
                 <thead>
@@ -56,34 +56,49 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <#list ListaAttrezzature as att>
+                    <!--
+                    <#list ListaAttrezzatura as att>
                     <#assign attrezzaturaAula = false>
-                    <#list aula_modifica.attrezzature as attAula>
-                    <#if att.nome == attAula.nome>
+                    <#list aula.attrezzature as attAula>
+                    <#if att == attAula>
                     <#assign attrezzaturaAula = true>
                     </#if>
                     </#list>
                     <tr>
                         <td>
-                            <label for="${att.nome}">
-                                <input type="checkbox" name="${att.nome}" id="${
-                                           att.nome
-                                       }" <#if attrezzaturaAula>checked</#if>>${att.nome}
+                            <label for="${att}">
+                                <input type="checkbox" name="${att}" id="${
+                                           att
+                                       }" <#if attrezzaturaAula>checked</#if>>${att}
                             </label>
                         </td>
                     </tr>
                     </#list>
+                    -->
+                    <!--
+                    <select name="att" multiple>
+                        <#list ListaAttrezzatura as att>
+                            <option value="${att}"
+                                <#list aula.attrezzature as attAula>
+                                    <#if att == attAula>
+                                        selected="selected"
+                                    </#if>
+                                </#list>
+                            >${att}</option>
+                        </#list> 
+                    </select>
+                    -->
                 </tbody>
             </table>
 
             <div class="Bottone-salva">
-                <input type="submit" class="button" value="Salva" name="salva">
+                <input type="submit" class="button" value="Salva" name="update"/>
             </div>
         </form>
 
         <div class="Bottone-indietro">
-            <a href="lista_aule">
-                <button class="button">Indietro</button>
+            <a href="aula" class="button">
+                Indietro
             </a>
         </div>
     </div>
