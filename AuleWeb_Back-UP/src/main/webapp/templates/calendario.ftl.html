@@ -13,11 +13,20 @@
 <form id="event-form">
     <div class="form-title">Gestisci Eventi</div>
 
-    <label for="room">Aula:</label>
-    <select id="room" name="room">
-        <!-- Le opzioni saranno aggiunte dinamicamente via JavaScript -->
+    <label >Aula:</label>
+    <select name="aula">
+        <#list ListaAule as aula>
+            <option value="${aula.key}">${aula.nome}</option>
+        </#list>
     </select>
 
+    <label >Evento:</label>
+    <select name="evento">
+        <#list ListaEventi as evento>
+            <option value="${evento.key}">${evento.nome}</option>
+        </#list>
+    </select>
+    
     <label for="date">Data:</label>
     <input type="date" id="date" name="date">
 
@@ -86,23 +95,6 @@
         // Carica le aule all'avvio
         fetchClassrooms();
 
-        // Funzione per caricare le aule
-        function fetchClassrooms() {
-            $.ajax({
-                url: 'lista_aule',//'path_to_aula_servlet', // Aggiorna con il percorso corretto
-                type: 'GET',
-                dataType: 'json',
-                success: function (aulas) {
-                    var roomSelect = $('#room');
-                    aulas.forEach(function (aula) {
-                        roomSelect.append(new Option(aula.nome, aula.id)); // Assumi che 'nome' e 'id' siano i campi dell'oggetto 'aula'
-                    });
-                },
-                error: function () {
-                    alert('Errore nel caricamento delle aule');
-                }
-            });
-        }
 
         // Gestione del form di invio degli eventi
         $('#event-form').on('submit', function (e) {

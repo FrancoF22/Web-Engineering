@@ -224,11 +224,9 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             try (ResultSet rs = sAllAttrezzature.executeQuery()) {
                 if (rs.next()) {
                     String tipo = rs.getString("COLUMN_TYPE");
-                    System.out.println(tipo);
                     String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
                     for (String value: values){
                         result.add(value.trim());
-                        System.out.println(result);
                     }
                 } else System.out.println("rs e vuoto");
             }
