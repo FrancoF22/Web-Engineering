@@ -1,32 +1,59 @@
-<h2>Write evento</h2>
 
-<form method="post" action="write">
 
-    <div class="container">
+<form method="post" action="evento">
+
+    <meta charset="UTF-8">
+    <title>Gestione Evento</title>
+    <link rel="stylesheet" href="style/evento.css" type="text/css" />
+
+    <div class="form-container">
+        <h2>Gestione Evento</h2>
         <input type="hidden" name="k" value="${evento.key!0}"/>
-        <div class="row">
-            <div class="four columns clabel">Author</div>
-            <div class="twelve columns"><select name="author">
-                    <#list authors as author>
-                    <option value="${author.key}"
-                            <#if (article.author?? && author.key=article.author.key)>
-                            selected="selected"
-                            </#if>
-                            >${author.name} ${author.surname}</option>
-                    </#list> 
-                </select>
-            </div>
+
+        <label for="note">Nome: </label>
+        <input type="text" name="nome" id="nome" value="${evento.nome?if_exists}">
+
+        <label class="form-label">Descrizione: </label>
+        <input type="text" name="descrizione" id="descrizione" value="${evento.nome?if_exists}">
+
+        <label class="form-label">Tipologia: </label>
+        <input type="text" name="tipologia" id="tipologia" value="${evento.tipologia?if_exists}">
+
+        <!-- Selezione Evento Corso-->
+        <div class="form-row">
+            <label for="corso">Evento Corso: </label>
+            <select name="corso">
+                <#list ListaCorsi as corso>
+                <option value="${corso.key}"
+                        <#if (evento.corso?? && corso.key=evento.corso.key)>
+                    selected="selected"
+                    </#if>
+                    >${corso.nome}</option>
+                </#list> 
+            </select>
         </div>
-        <div class="row">
-            <div class="four columns clabel">Title</div>
-            <div class="twelve columns"><input type="text" name="title" value="${strip_slashes(article.title)}"/> </div>
+
+        <!-- Selezione Professore -->
+        <div class="form-row">
+            <label for="professore">Professore: </label>
+            <select name="professore">
+                <#list ListaProfessori as professore>
+                <option value="${professore.key}"
+                        <#if (evento.professore?? && professore.key=evento.professore.key)>
+                    selected="selected"
+                    </#if>
+                    >${professore.nome} ${professore.cognome}</option>
+                </#list> 
+            </select>
         </div>
-        <#if article.title?has_content>
-        <div class="row">
-            <div class="four columns clabel">Text</div>
-            <div class="twelve columns"><textarea name="text">${strip_slashes(article.text)}</textarea></div>
+
+        <!-- Pulsante di Aggiornamento -->
+        <div class="Bottone-salva">
+            <input type="submit" class="button" value="Salva" name="write"/>
         </div>
-        </#if>
-        <div class="row"><input type="submit" name="update" value="Update"/></div>
+
+        <div class="Bottone-indietro">
+            <a href="evento" class="button">Indietro</a>
+        </div>
     </div>
 </form>
