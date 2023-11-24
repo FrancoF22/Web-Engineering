@@ -19,8 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class calendario extends  AuleWebBaseController {
     
-        //creiamo e inizializziamo gli array statici per i campi data
-    //create and initialize static arrays for date fields
+    //creiamo e inizializziamo gli array statici per i campi data
     private static final List<Integer> days;
     private static final List<Integer> months;
     private static final List<Integer> years;
@@ -48,7 +47,7 @@ public class calendario extends  AuleWebBaseController {
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
             request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
             request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
-            res.activate("calendario.ftl.html", request, response);
+            res.activate("compose_list.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -69,7 +68,7 @@ public class calendario extends  AuleWebBaseController {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
-                    res.activate("eventi_calendario.ftl.html", request, response);
+                    res.activate("compose_single.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
 
