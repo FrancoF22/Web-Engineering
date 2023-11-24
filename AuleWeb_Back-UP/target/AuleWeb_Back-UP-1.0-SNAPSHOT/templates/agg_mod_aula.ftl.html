@@ -45,14 +45,9 @@
 
         <label for="prese_rete">Prese Rete:</label>
         <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
-
+        <label>Attrezzatura:</label>
         <table class="agiungi-evento-professore-text18">
-            <thead>
-                <tr>
-                    <th>Attrezzatura</th>
-                </tr>
-            </thead>
-            <tbody>
+
                 <!--
                 <#list ListaAttrezzatura as att>
                 <#assign attrezzaturaAula = false>
@@ -72,7 +67,7 @@
                 </tr>
                 </#list>
                 -->
-                <!--
+
                 <select name="att" multiple>
                     <#list ListaAttrezzatura as att>
                         <option value="${att}"
@@ -84,8 +79,7 @@
                         >${att}</option>
                     </#list> 
                 </select>
-                -->
-            </tbody>
+               
         </table>
 
         <div class="Bottone-salva">
