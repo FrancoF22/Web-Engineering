@@ -106,6 +106,10 @@
         <servlet-name>EventiCorsoSettimana</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.EventiCorsoSettimana</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ComposeCalendrio</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.auleweb.controller.ComposeCalendrio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -165,6 +169,10 @@
     <servlet-mapping>
         <servlet-name>EventiCorsoSettimana</servlet-name>
         <url-pattern>/eventiCorsoSettimana</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComposeCalendrio</servlet-name>
+        <url-pattern>/composeCalendrio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

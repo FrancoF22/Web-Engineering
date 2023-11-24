@@ -26,12 +26,9 @@ public class evento extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
-            //add to the template a wrapper object that allows to call the stripslashes function
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
             res.activate("write_list.ftl.html", request, response);
-            System.out.println("PORCO DIO LADRO");
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }

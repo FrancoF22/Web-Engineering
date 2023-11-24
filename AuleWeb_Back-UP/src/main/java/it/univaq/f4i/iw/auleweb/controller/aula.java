@@ -23,10 +23,7 @@ public class aula extends AuleWebBaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
-            TemplateResult res = new TemplateResult(getServletContext());
-            //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
-            //add to the template a wrapper object that allows to call the stripslashes function
-            request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
+            TemplateResult res = new TemplateResult(getServletContext());request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
             res.activate("lista_aule.ftl.html", request, response);
         } catch (DataException ex) {

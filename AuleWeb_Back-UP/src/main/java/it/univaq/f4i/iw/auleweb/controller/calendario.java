@@ -128,7 +128,7 @@ public class calendario extends  AuleWebBaseController {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
 
-            if (calendario != null && request.getParameter("aarticle") != null && request.getParameter("page") != null) {
+            if (calendario != null && request.getParameter("aaula") != null && request.getParameter("page") != null) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("aaula")));
                 if (aula != null) {
                     //article.setIssue(calendario);
@@ -152,7 +152,7 @@ public class calendario extends  AuleWebBaseController {
     private void action_remove_aula(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
-            if (calendario != null && request.getParameter("rarticle") != null) {
+            if (calendario != null && request.getParameter("raula") != null) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("raaula")));
                 if (aula != null) {
                     if (aula.getCalendario().getKey() == calendario.getKey()) {
