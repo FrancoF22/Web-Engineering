@@ -45,42 +45,34 @@
 
         <label for="prese_rete">Prese Rete:</label>
         <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
+        
         <label>Attrezzatura:</label>
-        <table class="agiungi-evento-professore-text18">
-
-                <!--
-                <#list ListaAttrezzatura as att>
-                <#assign attrezzaturaAula = false>
-                <#list aula.attrezzature as attAula>
-                <#if att == attAula>
-                <#assign attrezzaturaAula = true>
-                </#if>
-                </#list>
-                <tr>
+        <table class="lista-attrezzature">
+            <#list ListaAttrezzatura as att>
+                <#assign attrezzaturaAula = aula.attrezzature?seq_contains(att)>
+                <tr class="attrezzatura-item">
                     <td>
-                        <label for="${att}">
-                            <input type="checkbox" name="${att}" id="${
-                                       att
-                                   }" <#if attrezzaturaAula>checked</#if>>${att}
-                        </label>
+                        <input type="checkbox" name="attrezzatura_${att}" id="${att}" value="${att}" <#if attrezzaturaAula>checked</#if>>
+                    </td>
+                    <td>
+                        <label for="${att}">${att}</label>
                     </td>
                 </tr>
-                </#list>
-                -->
-
-                <select name="att" multiple>
-                    <#list ListaAttrezzatura as att>
-                        <option value="${att}"
-                            <#list aula.attrezzature as attAula>
-                                <#if att == attAula>
-                                    selected="selected"
-                                </#if>
-                            </#list>
-                        >${att}</option>
-                    </#list> 
-                </select>
-               
+            </#list>
         </table>
+            <!-- attrezzature modo alternativo
+                    <select name="att" multiple>
+                        <#list ListaAttrezzatura as att>
+                            <option value="${att}"
+                                <#list aula.attrezzature as attAula>
+                                    <#if att == attAula>
+                                        selected="selected"
+                                    </#if>
+                                </#list>
+                            >${att}</option>
+                        </#list> 
+                    </select>
+            -->
 
         <div class="Bottone-salva">
             <input type="submit" class="button" value="Salva" name="write"/>
