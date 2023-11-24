@@ -20,7 +20,6 @@
         <input type="text" name="edificio" id="edificio" value="${aula.edificio?if_exists}"><br>
 
         <label for="professore">Professore:</label>
-
         <select name="professore">
             <#list ListaProfessori as professore>
             <option value="${professore.key}"
@@ -31,7 +30,7 @@
             </#list> 
         </select>
 
-        <label for="note">Note:</label>
+        <label for="nota">Note:</label>
         <input type="text" name="nota" id="nota" value="${aula.nota?if_exists}"><br>
 
         <label for="capienza">Capienza:</label>
@@ -46,7 +45,7 @@
         <label for="prese_rete">Prese Rete:</label>
         <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
         
-        <label>Attrezzatura:</label>
+        <label for="attrezzatura">Attrezzatura:</label>
         <table class="lista-attrezzature">
             <#list ListaAttrezzatura as att>
                 <#assign attrezzaturaAula = aula.attrezzature?seq_contains(att)>
