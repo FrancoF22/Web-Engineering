@@ -5,8 +5,10 @@
 <!-- Dipendenze richieste da FullCalendar -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-<!-- FullCalendar script -->
+<!-- FullCalendar script e locale italiano-->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/it.js'></script>
+
 
 <div id="calendar"></div>
 
@@ -51,6 +53,7 @@
         // Inizializzazione di FullCalendar
         $('#calendar').fullCalendar({
             // Opzioni di configurazione
+            locale: 'it',
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -83,7 +86,7 @@
             e.preventDefault();
             var eventData = {
                 room: $('#room').val(),
-                event:$('#event').val(),
+                event: $('#event').val(),
                 date: $('#date').val(),
                 startTime: $('#start-time').val(),
                 endTime: $('#end-time').val(),
@@ -101,7 +104,7 @@
             // Raccogli i dati del form
             var eventData = {
                 room: $('#room').val(),
-                event:$('#event').val(),
+                event: $('#event').val(),
                 date: $('#date').val(),
                 startTime: $('#start-time').val(),
                 endTime: $('#end-time').val(),
