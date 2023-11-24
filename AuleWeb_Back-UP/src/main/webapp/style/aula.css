@@ -8,7 +8,6 @@ body {
 
 /* Stile per il Contenitore Principale */
 .home-container {
-    background-color: #f9f9f9;
     max-width: 700px;
     margin: 20px auto;
     padding: 20px;
