@@ -13,7 +13,11 @@
             <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
             <div class="evento-descrizione"><i>${evento.descrizione}</i></div>
             <div class="evento-tipo"><i>Tipologia: ${evento.tipo}</i></div>
+<<<<<<< HEAD
             <#if (evento.corso??)>
+=======
+            <#if evento.corso??>
+>>>>>>> add331f486617a12270b2d2acce93d7cc2d5b696
                 <i>Evento: ${evento.corso.nome}</i>
             </#if>
             <i>Professore: ${evento.professore.nome} ${evento.professore.cognome}</i>

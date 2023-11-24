@@ -37,7 +37,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
 
             //precompiliamo tutte le query utilizzate nella classe
             sCorsoById = connection.prepareStatement("SELECT * FROM corso WHERE Id=?");
-            sAllCorsi = connection.prepareStatement("SELECT * FROM corso WHERE");
+            sAllCorsi = connection.prepareStatement("SELECT * FROM corso");
             
             iCorso = connection.prepareStatement("INSERT INTO corso (nome,descrizione) VALUES(?,?)",Statement.RETURN_GENERATED_KEYS);
             uCorso = connection.prepareStatement("UPDATE corso SET nome=?,descrizione=? WHERE ID=?");
