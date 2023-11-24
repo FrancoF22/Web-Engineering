@@ -21,13 +21,15 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
 
     protected boolean modified;
     protected DataLayer dataLayer;
-    protected int corso_key, professore_key;
+    protected int corso_key = 0;
+    protected int professore_key = 0;
     
     public EventoProxy(DataLayer d){
         super();
         this.modified = false;
         this.corso_key = 0;
         this.professore_key = 0;
+        this.dataLayer = d;
     }
 
     @Override
@@ -47,6 +49,19 @@ public class EventoProxy extends EventoImpl implements DataItemProxy{
         }
        
         return super.getProfessore();
+    }
+    
+    @Override
+    public Corso getCorso() {
+        if (super.getCorso()== null && corso_key > 0) {
+            try {
+                super.setCorso(((CorsoDAO) dataLayer.getDAO(Corso.class)).getCorsoById(corso_key));
+            } catch (DataException ex) {
+                Logger.getLogger(CorsoProxy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
+        return super.getCorso();
     }
     
     @Override

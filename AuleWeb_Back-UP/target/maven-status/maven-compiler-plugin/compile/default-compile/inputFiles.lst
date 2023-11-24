@@ -8,6 +8,7 @@ C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\VistaAula.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\UtenteDAO.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AulaProxy.java
+C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiProssimeOre.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\Profilo.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\TipoGruppo.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\CorsoDAO_MySQL.java
@@ -26,6 +27,7 @@ C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Corso.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\GruppoProxy.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\CalendarioProxy.java
+C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiAulaSettimana.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\EventoDAO_MySQL.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\VistaCalendario.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\ProfessoreDAO.java
@@ -36,6 +38,7 @@ C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\ProfessoreDAO_MySQL.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\GruppoImpl.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Gruppo_Aula.java
+C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiCorsoSettimana.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\proxy\AttrezzaturaProxy.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Utente.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Professore.java
@@ -53,6 +56,7 @@ C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\GruppoDAO_MySQL.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Calendario.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\CalendarioImpl.java
+C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\controller\EventiAulaGiorno.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\dao\EventoDAO.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\impl\AttrezzaturaImpl.java
 C:\Users\franc\Desktop\Web-Engineering\AuleWeb_Back-UP\src\main\java\it\univaq\f4i\iw\auleweb\data\model\Gruppo.java

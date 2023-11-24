@@ -13,6 +13,8 @@
             <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
             <div class="evento-descrizione"><i>${evento.descrizione}</i></div>
             <div class="evento-tipo"><i>Tipologia: ${evento.tipo}</i></div>
+            <i>Evento: ${evento.corso.nome}</i>
+            <i>Professore: ${evento.professore.nome} ${evento.professore.cognome}</i>
         </li>
         </#list>
     </ul>
