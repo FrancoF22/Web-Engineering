@@ -69,8 +69,8 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             sEventiGruppoGiorno = connection.prepareStatement("SELECT c.* FROM calendario AS c JOIN aula AS a ON a.id=c.id_aula JOIN gruppo_aula AS gp ON gp.id_aula = a.id WHERE c.giorno=CURDATE() AND gp.id_gruppo=?");
             
             //query per operare nella tabella evento
-            iEvento = connection.prepareStatement("INSERT INTO evento (nome,descrizione,tipologia,id_corso,id_responsabile) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uEvento = connection.prepareStatement("UPDATE evento SET nome=?,descrizione=?,tipologia=?,id_corso=?,id_responsabile=? WHERE ID=?");
+            iEvento = connection.prepareStatement("INSERT INTO evento (nome,descrizione,tipologia,id_corso,id_professore) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            uEvento = connection.prepareStatement("UPDATE evento SET nome=?,descrizione=?,tipologia=?,id_corso=?,id_professore=? WHERE id=?");
             dEvento = connection.prepareStatement("DELETE FROM evento WHERE id=?");
             
             //query per operare nella tabella calendario
