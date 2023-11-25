@@ -272,14 +272,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 uAula.setInt(2, aula.getCapienza());
                 uAula.setInt(3, aula.getPreseElettriche());
                 uAula.setInt(4, aula.getPreseRete());
-                String attStr = "";
-                for (String x : aula.getAttrezzature()) {
-                    if (attStr.equals("")) {
-                        attStr = x;
-                    } else {
-                        attStr = "," + attStr + x + ",";
-                    }
-                }
+                String attStr = String.join(",", aula.getAttrezzature());
+                System.out.println("### "+attStr+" ###");
                 uAula.setString(5, attStr);
                 uAula.setString(6, aula.getNota());
                 uAula.setString(7, aula.getLuogo());
@@ -301,14 +295,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 iAula.setInt(2, aula.getCapienza());
                 iAula.setInt(3, aula.getPreseElettriche());
                 iAula.setInt(4, aula.getPreseRete());
-                String attStr = "";
-                for (String x : aula.getAttrezzature()) {
-                    if (attStr.equals("")) {
-                        attStr = x;
-                    } else {
-                        attStr = "," + attStr + x + ",";
-                    }
-                }
+                String attStr = String.join(",", aula.getAttrezzature());
+                System.out.println("### "+attStr+" ###");
                 iAula.setString(5, attStr);
                 iAula.setString(6, aula.getNota());
                 iAula.setString(7, aula.getLuogo());

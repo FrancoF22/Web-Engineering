@@ -44,6 +44,8 @@ public interface GruppoDAO {
 
     void storeGruppo(Gruppo gruppo) throws DataException;
     
+    void storeGruppoAula(Gruppo_Aula ga) throws DataException;
+    
     List<Aula> getAuleDisponibili(int id_gruppo) throws DataException;
 
 }

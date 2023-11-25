@@ -44,8 +44,9 @@
 
         <label for="prese_rete">Prese Rete:</label>
         <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
-        <!--
+        
         <label for="attrezzatura">Attrezzatura:</label>
+        <!-- attrezzature modo alternativo
         <table class="lista-attrezzature">
             <#list ListaAttrezzatura as att>
                 <#assign attrezzaturaAula = aula.attrezzature?seq_contains(att)>
@@ -60,20 +61,21 @@
             </#list>
         </table>
         -->
-            <!-- attrezzature modo alternativo
-                    <select name="att" multiple>
-                        <#list ListaAttrezzatura as att>
-                            <option value="${att}"
-                                <#list aula.attrezzature as attAula>
-                                    <#if att == attAula>
-                                        selected="selected"
-                                    </#if>
-                                </#list>
-                            >${att}</option>
-                        </#list> 
-                    </select>
-            -->
-
+        
+        <select name="attrezzatura[]" multiple>
+            <#list ListaAttrezzatura as att>
+                <option value="${att}"
+                   <#if aula.attrezzature?seq_contains(att)> selected</#if>
+                >${att}</option>
+            </#list> 
+        </select>
+        
+        <!-- Gruppi di aula   
+        <label for="gruppo">Dipartimento</label>
+        <select name="gruppo">
+            
+        </select>
+        -->
         <div class="row"><input type="submit" name="update" value="Update"/></div>
 
 

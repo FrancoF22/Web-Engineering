@@ -27,7 +27,7 @@ public interface EventoDAO {
 
     List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException;
     
-    List<Evento> getAllProssimiEventi() throws DataException;
+    List<Evento> getAllProssimiEventi(int id_aula) throws DataException;
 
     List<Calendario> getEventiAttuali(int id_dipartimento) throws DataException;
 

@@ -10,8 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.auleweb.data.model.Aula;
-import it.univaq.f4i.iw.auleweb.data.model.Professore;
+import it.univaq.f4i.iw.auleweb.data.model.*;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import java.util.*;
 
@@ -23,27 +22,36 @@ public class aula extends AuleWebBaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
-            TemplateResult res = new TemplateResult(getServletContext());request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
+            TemplateResult res = new TemplateResult(getServletContext());
+            request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
             res.activate("lista_aule.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-    
+
     private void action_write(HttpServletRequest request, HttpServletResponse response, int id_aula) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
 
             List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
             List<String> attrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature();
+            List<Gruppo> gruppi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllGruppi();
             request.setAttribute("ListaProfessori", professori);
             request.setAttribute("ListaAttrezzatura", attrezzature);
+            //request.setAttribute("ListaGruppi", gruppi);
             if (id_aula > 0) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
                     request.setAttribute("aula", aula);
                     res.activate("agg_mod_aula.ftl.html", request, response);
+                    /*
+                    if (((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula) != null){
+                        List<Gruppo> temp_g = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula);
+                        request.setAttribute("temp_g",temp_g);
+                    }
+                     */
                 } else {
                     handleError("Undefined aula", request, response);
                 }
@@ -77,15 +85,28 @@ public class aula extends AuleWebBaseController {
                     aula.setLuogo(SecurityHelpers.addSlashes(request.getParameter("luogo")));
                     aula.setEdificio(SecurityHelpers.addSlashes(request.getParameter("edificio")));
                     aula.setPiano(SecurityHelpers.addSlashes(request.getParameter("piano")));
-                    String[] attrezzatura = request.getParameterValues("ListaAttrezzatura");
+                    String[] attrezzatureSelezionata = request.getParameterValues("attrezzatura[]");
                     ArrayList<String> att = new ArrayList<>();
-                    if (attrezzatura != null) {
-                        att.addAll(Arrays.asList(attrezzatura));
-                        aula.setAttrezzature(att);
-                    }
+                    if (attrezzatureSelezionata != null) {
+                        for (String attrezzatura : attrezzatureSelezionata) {
+                            // Rimuovi gli apici singoli e aggiungi il valore all'ArrayList
+                            att.add(attrezzatura.replace("'", ""));
+                        }
+                        // Concatena gli elementi dell'ArrayList con virgole
                         
-                    
+                        aula.setAttrezzature(att);
+                        for (String x: aula.getAttrezzature()){
+                            System.out.println("### "+x+" ###");
+                        }
+                    }
+
+                    /*Gruppo gruppo =((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppoById(SecurityHelpers.checkNumeric(request.getParameter("gruppo")));
+                    Gruppo_Aula ga = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().createGruppoAula();
+                    ga.setAula(aula);
+                    ga.setGruppo(gruppo);
+                     */
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
+                    //((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().storeGruppoAula(ga);
                     action_default(request, response);
                 } else {
                     handleError("Cannot update aula: undefined professor", request, response);
@@ -122,7 +143,7 @@ public class aula extends AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *
@@ -132,5 +153,5 @@ public class aula extends AuleWebBaseController {
     public String getServletInfo() {
         return "Write Aula servlet";
     }// </editor-fold>
-    
+
 }
