@@ -1,11 +1,13 @@
 <h2>Tabella Calendario del db (informazioni)</h2>
-<#if (issues?size>0)>
+<#if (calendario?size>0)>
 <ul>
-    <#list issues as issue>
+    <#list calendario as calendario>
     <li>
-        <b>${issue.number}</b> &nbsp; ${issue.date}&nbsp;<a href="compose?n=${issue.key}">[modify issue]</a>
+        <b>${calendario.numero}</b> &nbsp; ${calendario.data}&nbsp;<a href="compose?n=${calendario.key}">[modifica calendario]</a>
     </li>
     </#list>
 </ul>
+<#else>
+<p>Nessun calendario trovato.</p>
 </#if>
-<p><a href="compose?n=0">Create a new issue</a></p>
+<p><a href="compose?n=0">Crea un nuovo calendario</a></p>

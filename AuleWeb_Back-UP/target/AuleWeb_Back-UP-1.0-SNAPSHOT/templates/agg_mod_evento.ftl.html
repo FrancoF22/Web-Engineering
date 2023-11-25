@@ -16,9 +16,24 @@
         <label class="form-label">Descrizione: </label>
         <input type="text" name="descrizione" id="descrizione" value="${evento.nome?if_exists}">
 
+        <!--
         <label class="form-label">Tipologia: </label>
         <input type="text" name="tipologia" id="tipologia" value="${evento.tipologia?if_exists}">
-
+        -->
+        <!-- Selezione Tipologia-->
+        <div class="form-row">
+            <label for="tipologia">Tipologia: </label>
+            <select name="tipologia">
+                <#list ListaTipo as tipologia>
+                <option value="${tipologia.key}"
+                        <#if (evento.tipologia?? && tipologia.key=evento.tipologia.key)>
+                    selected="selected"
+                    </#if>
+                    >${tipologia.nome}</option>
+                </#list> 
+            </select>
+        </div>
+        
         <!-- Selezione Evento Corso-->
         <div class="form-row">
             <label for="corso">Evento Corso: </label>
