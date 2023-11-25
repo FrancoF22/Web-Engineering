@@ -95,7 +95,7 @@ CREATE TABLE `corso` (
   `nome` varchar(45) NOT NULL,
   `descrizione` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `corso` (
 
 LOCK TABLES `corso` WRITE;
 /*!40000 ALTER TABLE `corso` DISABLE KEYS */;
-INSERT INTO `corso` VALUES (1,'Algoritmi strutture dati','Corso di algoritmi'),(2,'Sistemi Operativi','Corso di sistemi operativi'),(3,'Ingegneria del web','Progettazione java web application');
+INSERT INTO `corso` VALUES (1,'Nessun corso','non appartiene ad alcun corso'),(2,'Sistemi Operativi','Corso di sistemi operativi'),(3,'Ingegneria del web','Progettazione java web application'),(4,'Algoritmi strutture dati','Corso di algoritmi');
 /*!40000 ALTER TABLE `corso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ CREATE TABLE `evento` (
   `descrizione` text,
   `tipologia` enum('lezione','seminario','esame','parziale','riunione','lauree') NOT NULL DEFAULT 'lezione',
   `id_professore` int NOT NULL,
-  `id_corso` int DEFAULT NULL,
+  `id_corso` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `evento_ibfk_1_idx` (`id_professore`),
   KEY `evento_ibfk_2_idx` (`id_corso`),
@@ -136,7 +136,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'Algoritmi strutture dati','esame straordinario di novembre','esame',1,1),(2,'Sistemi Operativi Teoria','studio dei sistemi operativi e come funzionano','lezione',3,2),(3,'Intelligenza Artificiale','presentazione','seminario',1,NULL);
+INSERT INTO `evento` VALUES (1,'Algoritmi strutture dati','esame straordinario di novembre','esame',1,1),(2,'Sistemi Operativi Teoria','studio dei sistemi operativi e come funzionano','lezione',3,2),(3,'Intelligenza Artificiale','presentazione','seminario',1,0);
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-24 14:58:44
+-- Dump completed on 2023-11-25 16:37:02
