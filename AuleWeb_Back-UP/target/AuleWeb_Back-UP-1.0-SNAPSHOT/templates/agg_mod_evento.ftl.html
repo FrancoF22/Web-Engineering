@@ -20,12 +20,12 @@
         <div class="form-row">
             <label for="tipo">Tipologia: </label>
             <select name="tipo">
-                <#list tipo?values as tipo>
-                <option value="${tipo}"
-                        <#if (evento.tipo?? && tipo.name()=evento.tipo)>
+                <#list tipo as t>
+                <option value="${t}"
+                        <#if (evento.tipo?? && t=evento.tipo)>
                     selected="selected"
                     </#if>
-                    >${tipo}</option>
+                    >${t}</option>
                 </#list> 
             </select>
         </div>
@@ -59,7 +59,7 @@
         </div>
 
         <!-- Pulsante di Aggiornamento -->
-        <div class="row"><input type="submit" name="update" value="Update"/></div>
+        <div class="row"><input type="submit" name="update" value="Salva"/></div>
 
         <div class="Bottone-indietro">
             <a href="evento" class="button">Indietro</a>
