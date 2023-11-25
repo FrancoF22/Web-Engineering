@@ -70,18 +70,18 @@ public class evento extends AuleWebBaseController {
             } else {
                 evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
             }
-            if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("corso") != null && request.getParameter("tipologia") != null) {
+            if (evento != null && request.getParameter("professore") != null && request.getParameter("nome") != null && request.getParameter("corso") != null && request.getParameter("tipo") != null) {
                 Professore prof = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessoreById(SecurityHelpers.checkNumeric(request.getParameter("professore")));
                 Corso corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsoById(SecurityHelpers.checkNumeric(request.getParameter("corso")));
-                String tipologiaValue = request.getParameter("tipologia");
+                String tipologiaValue = request.getParameter("tipo");
                 
                 if (prof != null && corso != null) {
                     evento.setNome(SecurityHelpers.addSlashes(request.getParameter("nome")));
                     evento.setProfessore(prof);
                     if (request.getParameter("descrizione") != null) {
-                        evento.setDescrizione(SecurityHelpers.addSlashes(request.getParameter("desrizione")));
+                        evento.setDescrizione(SecurityHelpers.addSlashes(request.getParameter("descrizione")));
                     }
-                    if(request.getPart("tipo") != null){
+                    if(request.getParameter("tipo") != null){
                         if (tipologiaValue != null) {
                             Tipologia tipologia = Tipologia.valueOf(tipologiaValue);
                             evento.setTipo(tipologia);
