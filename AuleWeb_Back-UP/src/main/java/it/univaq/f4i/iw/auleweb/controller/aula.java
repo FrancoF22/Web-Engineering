@@ -86,7 +86,7 @@ public class aula extends AuleWebBaseController {
                         
                     
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
-                    action_default(request,response);
+                    action_default(request, response);
                 } else {
                     handleError("Cannot update aula: undefined professor", request, response);
                 }
@@ -123,7 +123,7 @@ public class aula extends AuleWebBaseController {
         }
     }
     
-        /**
+    /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description

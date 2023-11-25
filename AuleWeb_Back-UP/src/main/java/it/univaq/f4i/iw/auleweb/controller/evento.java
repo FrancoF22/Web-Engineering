@@ -107,14 +107,14 @@ public class evento extends AuleWebBaseController {
 
         request.setAttribute("page_title", "Modifica Evento");
 
-        int id_evento;
+        int evento_key;
         try {
             if (request.getParameter("k") != null) {
-                id_evento = SecurityHelpers.checkNumeric(request.getParameter("k"));
+                evento_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
                 if (request.getParameter("update") != null) {
-                    action_update(request, response, id_evento);
+                    action_update(request, response, evento_key);
                 } else {
-                    action_write(request, response, id_evento);
+                    action_write(request, response, evento_key);
                 }
             } else {
                 action_default(request, response);
@@ -126,7 +126,7 @@ public class evento extends AuleWebBaseController {
         }
     }
     
-        /**
+    /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
