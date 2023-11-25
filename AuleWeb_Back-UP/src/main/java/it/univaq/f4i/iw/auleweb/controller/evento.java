@@ -43,7 +43,7 @@ public class evento extends AuleWebBaseController {
             Tipologia[] tipo = Tipologia.values();
             request.setAttribute("ListaCorsi", corso);
             request.setAttribute("ListaProfessori", professori);
-            request.setAttribute("ListaTipo", tipo);
+            request.setAttribute("tipo", tipo);
             if (id_evento > 0) {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evento);
                 if (evento != null) {
