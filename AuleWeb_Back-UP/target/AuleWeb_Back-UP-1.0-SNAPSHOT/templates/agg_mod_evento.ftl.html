@@ -20,12 +20,12 @@
         <div class="form-row">
             <label for="tipo">Tipologia: </label>
             <select name="tipo">
-                <#list tipo as tipo>
-                <option value="${tipo.key}"
-                        <#if (evento.tipo?? && tipo.key=evento.tipo.key)>
+                <#list tipo?values as tipo>
+                <option value="${tipo}"
+                        <#if (evento.tipo?? && tipo.name()=evento.tipo)>
                     selected="selected"
                     </#if>
-                    >${tipo.nome}</option>
+                    >${tipo}</option>
                 </#list> 
             </select>
         </div>
