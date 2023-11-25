@@ -103,7 +103,7 @@ public class aula extends AuleWebBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        request.setAttribute("page_title", "Gestisci Aule");
+        request.setAttribute("page_title", "Aule");
         int aula_key;
         try {
             if (request.getParameter("k") != null) {

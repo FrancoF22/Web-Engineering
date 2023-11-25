@@ -55,7 +55,7 @@ public class evento extends AuleWebBaseController {
             } else {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
                 request.setAttribute("evento", evento);
-                    res.activate("agg_mod_evento.ftl.html", request, response);
+                res.activate("agg_mod_evento.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -89,7 +89,7 @@ public class evento extends AuleWebBaseController {
                     }
                     evento.setCorso(corso);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
-                    action_default(request,response);
+                    action_default(request, response);
                 } else {
                     handleError("Cannot update evento: undefined professor", request, response);
                 }
@@ -105,7 +105,7 @@ public class evento extends AuleWebBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        request.setAttribute("page_title", "Modifica Evento");
+        request.setAttribute("page_title", "Evento");
 
         int evento_key;
         try {
