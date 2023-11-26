@@ -273,7 +273,6 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 uAula.setInt(3, aula.getPreseElettriche());
                 uAula.setInt(4, aula.getPreseRete());
                 String attStr = String.join(",", aula.getAttrezzature());
-                System.out.println("### "+attStr+" ###");
                 uAula.setString(5, attStr);
                 uAula.setString(6, aula.getNota());
                 uAula.setString(7, aula.getLuogo());

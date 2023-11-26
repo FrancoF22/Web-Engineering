@@ -40,18 +40,18 @@ public class aula extends AuleWebBaseController {
             List<Gruppo> gruppi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllGruppi();
             request.setAttribute("ListaProfessori", professori);
             request.setAttribute("ListaAttrezzatura", attrezzature);
-            //request.setAttribute("ListaGruppi", gruppi);
+            request.setAttribute("ListaGruppi", gruppi);
             if (id_aula > 0) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
                     request.setAttribute("aula", aula);
                     res.activate("agg_mod_aula.ftl.html", request, response);
-                    /*
-                    if (((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula) != null){
+
+                    if (((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula) != null) {
                         List<Gruppo> temp_g = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula);
-                        request.setAttribute("temp_g",temp_g);
+                        request.setAttribute("temp_g", temp_g);
                     }
-                     */
+
                 } else {
                     handleError("Undefined aula", request, response);
                 }
@@ -93,20 +93,32 @@ public class aula extends AuleWebBaseController {
                             att.add(attrezzatura.replace("'", ""));
                         }
                         // Concatena gli elementi dell'ArrayList con virgole
-                        
+
                         aula.setAttrezzature(att);
-                        for (String x: aula.getAttrezzature()){
-                            System.out.println("### "+x+" ###");
+
+                    }
+                    String[] gruppiSelezionati = request.getParameterValues("gruppo[]");
+                    ArrayList<Gruppo> gr = new ArrayList<>();
+                    if (gruppiSelezionati != null) {
+                        for (String gruppo_nome : gruppiSelezionati) {
+                            gr.add(((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo(gruppo_nome));
+                            System.out.println("### " + gruppo_nome + " ###");
                         }
                     }
 
-                    /*Gruppo gruppo =((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppoById(SecurityHelpers.checkNumeric(request.getParameter("gruppo")));
-                    Gruppo_Aula ga = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().createGruppoAula();
-                    ga.setAula(aula);
-                    ga.setGruppo(gruppo);
-                     */
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
-                    //((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().storeGruppoAula(ga);
+                    List<Gruppo> temp_g = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(aula.getKey());
+                    for (Gruppo g : gr) {
+                        Gruppo_Aula ga = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().createGruppoAula();
+                        ga.setAula(aula);
+                        ga.setGruppo(g);
+                        if(!temp_g.contains(g)) ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().storeGruppoAula(ga);
+                    }
+                    temp_g.removeAll(gr);
+                    for (Gruppo g: temp_g) {
+                        ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().deleteAulaFromGruppo(g.getKey(), aula.getKey());
+                    }
+                    
                     action_default(request, response);
                 } else {
                     handleError("Cannot update aula: undefined professor", request, response);

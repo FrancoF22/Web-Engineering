@@ -45,23 +45,7 @@
         <label for="prese_rete">Prese Rete:</label>
         <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
         
-        <label for="attrezzatura">Attrezzatura:</label>
-        <!-- attrezzature modo alternativo
-        <table class="lista-attrezzature">
-            <#list ListaAttrezzatura as att>
-                <#assign attrezzaturaAula = aula.attrezzature?seq_contains(att)>
-                <tr class="attrezzatura-item">
-                    <td>
-                        <input type="checkbox" name="attrezzatura_${att}" id="${att}" value="${att}" <#if attrezzaturaAula>checked</#if>>
-                    </td>
-                    <td>
-                        <label for="${att}">${att}</label>
-                    </td>
-                </tr>
-            </#list>
-        </table>
-        -->
-        
+        <label for="attrezzatura">Attrezzatura:</label>        
         <select name="attrezzatura[]" multiple>
             <#list ListaAttrezzatura as att>
                 <option value="${att}"
@@ -70,12 +54,16 @@
             </#list> 
         </select>
         
-        <!-- Gruppi di aula   
-        <label for="gruppo">Dipartimento</label>
-        <select name="gruppo">
-            
+        
+        <label for="gruppo">Dipartimenti e Poli:</label>
+        <select name="gruppo[]" multiple>
+            <#list ListaGruppi as gruppo>
+                <option value="${gruppo.nome}"
+                   <#if temp_g?? && temp_g?seq_contains(gruppo)> selected</#if>
+                >${gruppo.nome}</option>
+            </#list> 
         </select>
-        -->
+        
         <div class="row"><input type="submit" name="update" value="Update"/></div>
 
 
