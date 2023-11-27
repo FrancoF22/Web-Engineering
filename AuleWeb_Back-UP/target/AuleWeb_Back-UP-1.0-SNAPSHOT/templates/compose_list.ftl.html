@@ -1,13 +1,39 @@
-<h2>Tabella Calendario del db (informazioni)</h2>
-<#if (calendario?size>0)>
-<ul>
-    <#list calendario as calendario>
-    <li>
-        <b>${calendario.numero}</b> &nbsp; ${calendario.data}&nbsp;<a href="compose?n=${calendario.key}">[modifica calendario]</a>
-    </li>
-    </#list>
-</ul>
-<#else>
-<p>Nessun calendario trovato.</p>
-</#if>
-<p><a href="compose?n=0">Crea un nuovo calendario</a></p>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/calendario.css" type="text/css" />
+
+<div class="container">
+    <h1 class="page-title">Gestisci calendario</h1>
+    <div class="table-controls">
+        <a href="home" class="my-button">Indietro</a>
+        <a href="compose?n=0" class="my-button">Aggiungi calendario</a>
+    </div>
+
+    <table id="dataTable" class="my-table">
+        <thead>
+            <tr>
+                <th>Aula</th>
+                <th>Evento</th>
+                <th>Data</th>
+                <th>Ora Inizio</th>
+                <th>Ora Fine</th>
+                <th>Azione</th>
+            </tr>
+        </thead>
+        <tbody>
+            <#if (calendario?size>0)>
+            <#list calendario as calendario>
+            <tr>
+                <td>${calendario.aula.nome}</td>
+                <td>${calendario.evento.nome}</td>
+                <td>${calendario.date}</td>
+                <td>${calendario.start-time}</td>
+                <td>${calendario.end-time}</td>
+                <td>
+                    <a href="compose?n=${compose.key}" class="my-button">modifica</a>
+                </td>
+            </tr>
+            </#list>
+            </#if>
+        </tbody>            
+    </table>
+</div>

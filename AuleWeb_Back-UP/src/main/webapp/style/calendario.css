@@ -1,117 +1,91 @@
-:root {
-    --main-bg-color: #f4f4f4;
-    --text-color: #333;
-    --button-bg-color: #0056b3;
-    --button-hover-bg-color: #004494;
-    --border-color: #ddd;
-    --form-background: #fff;
-    --table-background: #fff;
-    --th-background-color: #f4f4f4;
-}
-
+/* Stile base per entrambe le pagine di calendario*/
 body {
     font-family: Arial, sans-serif;
-    background-color: var(--main-bg-color);
-    color: var(--text-color);
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 10px;
+    padding: 0;
 }
 
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-
-#calendar {
-    max-width: 60%;
-    float: left;
-    margin-right: 20px;
-}
-
-#event-form {
-    max-width: 35%;
-    float: left;
-    background: #fff;
+.container {
+    width: 80%;
+    margin: 20px auto;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-
-form input[type="text"],
-form input[type="date"],
-form input[type="time"],
-form select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-
-form input[type="submit"] {
-    width: 100%;
-    padding: 8px;
-    background-color: var(--button-bg-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-
-form input[type="submit"]:hover {
-    background-color: var(--button-hover-bg-color);
-}
-
-.form-title {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+/* Stili per la pagina di gestione del calendario */
+.page-title {
+    color: #333;
     text-align: center;
-    padding: 10px;
-    border-bottom: 2px solid var(--border-color);
 }
 
-/* Stili per la tabella daily-events */
-#daily-events {
+.my-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.my-table {
     width: 100%;
-    background: var(--table-background);
     border-collapse: collapse;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Spazio sopra la tabella */
-    margin-bottom: 20px; /* Spazio sotto la tabella */
+    margin-top: 20px;
 }
 
-#daily-events th, #daily-events td {
+.my-table th, .my-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-#daily-events th {
-    background-color: var(--th-background-color);
+.my-table th {
+    background-color: #f8f9fa;
 }
 
-/* Clearfix per il float */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+/* Stili per la pagina di creazione/modifica degli eventi */
+h2 {
+    color: #333;
+    text-align: center;
 }
 
-@media (max-width: 768px) {
-    #calendar, #event-form {
-        width: 100%;
-    }
+.form-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #555;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
 }
