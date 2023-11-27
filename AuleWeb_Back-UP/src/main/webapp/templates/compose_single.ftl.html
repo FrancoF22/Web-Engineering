@@ -1,31 +1,3 @@
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style/calendario.css" type="text/css" />
 
 <h2>CREAZIONE DELL'OGGETO CALNDARIO (LA TABELLA DEL DB)</h2>
 
-<div class="container">
-    <!-- Form per la gestione degli eventi -->
-    <form id="event-form">
-        <div class="form-title">Gestisci Eventi</div>
-        <label>Aula:</label>
-        <select name="aula">
-            <#list ListaAule as aula>
-            <option value="${aula.key}">${aula.nome}</option>
-            </#list>
-        </select>
-        <label>Evento:</label>
-        <select name="evento">
-            <#list ListaEventi as evento>
-            <option value="${evento.key}">${evento.nome}</option>
-            </#list>
-        </select>
-        <label for="date">Data:</label>
-        <input type="date" id="date" name="date">
-        <label for="start-time">Ora Inizio:</label>
-        <input type="time" id="start-time" name="start-time">
-        <label for="end-time">Ora Fine:</label>
-        <input type="time" id="end-time" name="end-time">
-        <!-- <input type="submit" class="button" value="Salva" name="update"/> -->
-        <input type="submit" name="Aggiungi/Modifica Evento" value="salva">
-    </form>
-</div>

@@ -5,7 +5,7 @@
     <h1 class="page-title">Gestisci calendario</h1>
     <div class="table-controls">
         <a href="home" class="my-button">Indietro</a>
-        <a href="compose?n=0" class="my-button">Aggiungi calendario</a>
+        <a href="calendario?n=0" class="my-button">Aggiungi calendario</a>
     </div>
 
     <table id="dataTable" class="my-table">
@@ -25,11 +25,11 @@
             <tr>
                 <td>${calendario.aula.nome}</td>
                 <td>${calendario.evento.nome}</td>
-                <td>${calendario.date}</td>
+                <td>${calendario.giorno}</td>
                 <td>${calendario.start-time}</td>
                 <td>${calendario.end-time}</td>
                 <td>
-                    <a href="compose?n=${compose.key}" class="my-button">modifica</a>
+                    <a href="calendario?n=${calendario.key}" class="my-button">modifica</a>
                 </td>
             </tr>
             </#list>
