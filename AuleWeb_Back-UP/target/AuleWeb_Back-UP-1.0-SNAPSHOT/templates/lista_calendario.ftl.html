@@ -1,91 +1,39 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/calendario.css" type="text/css" />
 
-<div>LISTA DI EVENTI RIPETUTI NEL DB (LISTA DI EVENTI ASSOCIATI AD UNA AULA CON GIORNO ED ORA)</div>
+<div class="container">
+    <h1 class="page-title">Gestisci calendario</h1>
+    <div class="table-controls">
+        <a href="home" class="my-button">Indietro</a>
+        <a href="compose?n=0" class="my-button">Aggiungi calendario</a>
+    </div>
 
-
-
-<link href="style/Tabelle.css" rel="stylesheet" />
-
-<div class="lower">
-    <form action="eventi-corso?corso=${corsoID}" method="post">
-        <label>Filtra per settimana:</label>
-        <input style="border: solid 1px black ;" type="date" id="filtroData" name="datepicker" required>
-        <input style="border: solid 1px black ; background-color: skyblue; border-radius: 7px;  " type="submit" name="filtra" value="Filtra!">
-    </form>
-    <a href="eventi-corso?corso=${corsoID}"><button style="border: solid 1px black ; background-color: skyblue; border-radius: 7px;" >Tutti</button></a>
-    <table id="dataTable" >
+    <table id="dataTable" class="my-table">
         <thead>
-
             <tr>
-                <th>Corso</th>
-                <th>Data</th>
-                <th>Inizio</th>
-                <th>Fine</th>
                 <th>Aula</th>
-                <th>Nome Evento</th>
-                <th>Descrizione</th>
-                <th>Tipologia</th>
+                <th>Evento</th>
+                <th>Data</th>
+                <th>Ora Inizio</th>
+                <th>Ora Fine</th>
+                <th>Azione</th>
             </tr>
         </thead>
         <tbody>
-            <#if (EventiCorso?size>0)>
-            <#list EventiCorso as calendario>
+            <#if (calendario?size>0)>
+            <#list calendario as calendario>
             <tr>
-                <td><#if calendario.evento.corso??>${calendario.evento.corso.nome}</#if></td>
-                <td>${calendario.giorno?date?string('dd-MM-yyyy')}</td>
-                <td>${calendario.oraInizio?time?string('HH:mm')}</td>
-                <td>${calendario.oraFine?time?string('HH:mm')}</td>
                 <td>${calendario.aula.nome}</td>
                 <td>${calendario.evento.nome}</td>
-                <td>${calendario.evento.descrizione}</td>
-                <td>${calendario.evento.tipologia}</td>
+                <td>${calendario.giorno}</td>
+                <td>${calendario.oraInizio}</td>
+                <td>${calendario.oraFine}</td>
+                <td>
+                    <a href="calendario?n=${calendario.key}" class="my-button">modifica</a>
+                </td>
             </tr>
             </#list>
             </#if>
-        </tbody>
+        </tbody>            
     </table>
-    <button class="my-button" id="downloadBtn" >Scarica in CSV</button>
-    <a href="eventi?id_aula=${aulaID}"><button class="my-button">Indietro</button></a>
-    <script>
-        document.getElementById('downloadBtn').addEventListener('click', function () {
-            downloadCSV();
-        });
-
-        function downloadCSV() {
-            var table = document.getElementById('dataTable');
-            var rows = table.getElementsByTagName('tr');
-            var csvData = [];
-
-            // Loop attraverso le righe della tabella e creare un array di array per i dati CSV
-            for (var i = 0; i < rows.length; i++) {
-                var row = [], cols = rows[i].querySelectorAll('td, th');
-
-                for (var j = 0; j < cols.length; j++) {
-                    row.push(cols[j].innerText);
-                }
-
-                csvData.push(row.join(','));
-            }
-
-            // Unisci i dati CSV in un'unica stringa
-            var csvString = csvData.join('\n');
-
-            // Crea un oggetto Blob con i dati CSV
-            var blob = new Blob([csvString], {type: 'text/csv'});
-
-            // Crea un URL temporaneo per il download del file CSV
-            var url = window.URL.createObjectURL(blob);
-
-            // Crea un elemento "a" nascosto e simula il clic per avviare il download del file
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = 'dati.csv';
-            document.body.appendChild(a);
-            a.click();
-
-            // Rimuovi l'elemento "a" nascosto
-            document.body.removeChild(a);
-        }
-    </script>
 </div>
-</div>
-

@@ -47,7 +47,7 @@ public class calendario extends  AuleWebBaseController {
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
             request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
             request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
-            res.activate("compose_list.ftl.html", request, response);
+            res.activate("lista_calendario.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -68,14 +68,14 @@ public class calendario extends  AuleWebBaseController {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
-                    res.activate("compose_single.ftl.html", request, response);
+                    res.activate(".ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
 
                 }
             } else {
                 //issue_key==0 indica un nuovo numero 
-                //issue_key==0 indicates a new calendario
+                //issue_key==0 indicates a new calendaadd_mod_calendariorio
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
                 //issue.setNumber(((NewspaperDataLayer) request.getAttribute("datalayer")).getIssueDAO().getLatestIssueNumber() + 1);
                 calendario.setGiorno(Calendar.getInstance().getTime());
@@ -87,7 +87,7 @@ public class calendario extends  AuleWebBaseController {
                 //forces first to compile the mandatory fields to create an calendario
                 request.setAttribute("libera", Collections.EMPTY_LIST);
                 request.setAttribute("occupata", Collections.EMPTY_LIST);
-                res.activate("eventi_calendario.ftl.html", request, response);
+                res.activate("add_mod_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
