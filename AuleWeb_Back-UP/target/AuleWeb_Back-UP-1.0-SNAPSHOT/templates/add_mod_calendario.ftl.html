@@ -9,18 +9,19 @@
         <div class="form-title">Gestisci Eventi Calendario</div>
         <label>Aula:</label>
         <select name="aula">
-            <#list ListaAule as aula>
-            <option value="${aula.key}">${aula.nome}</option>
+            <#list libere as aula>
+                <option value="${aula.key}">${aula.nome}</option>
             </#list>
         </select>
         <label>Evento:</label>
         <select name="evento">
             <#list ListaEventi as evento>
-            <option value="${evento.key}">${evento.nome}</option>
+                <option value="${evento.key}">${evento.nome}</option>
             </#list>
         </select>
         <label for="date">Data:</label>
         <input type="date" id="date" name="date">
+        
         <label for="start-time">Ora Inizio:</label>
         <input type="time" id="oraInizio" name="oraInizio">
         <label for="end-time">Ora Fine:</label>

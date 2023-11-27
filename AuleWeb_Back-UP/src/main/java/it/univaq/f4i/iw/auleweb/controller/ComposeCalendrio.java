@@ -73,7 +73,7 @@ public class ComposeCalendrio extends  AuleWebBaseController {
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                    request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
+                    request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleOccupate());
                     res.activate("eventi_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);

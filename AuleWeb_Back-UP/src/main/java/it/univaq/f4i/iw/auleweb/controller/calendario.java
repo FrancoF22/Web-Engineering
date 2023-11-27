@@ -17,8 +17,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class calendario extends  AuleWebBaseController {
-    
+public class calendario extends AuleWebBaseController {
+
     //creiamo e inizializziamo gli array statici per i campi data
     private static final List<Integer> days;
     private static final List<Integer> months;
@@ -45,8 +45,6 @@ public class calendario extends  AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
-            request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
-            request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
             res.activate("lista_calendario.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -56,8 +54,7 @@ public class calendario extends  AuleWebBaseController {
     private void action_compose(HttpServletRequest request, HttpServletResponse response, int id_calendaio) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
-            //add to the template a wrapper object that allows to call the stripslashes function
+            request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("days", days);
             request.setAttribute("months", months);
@@ -67,26 +64,21 @@ public class calendario extends  AuleWebBaseController {
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                    request.setAttribute("occupate", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule(calendario));
+                    request.setAttribute("assegnata", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
                     res.activate("add_mod_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
 
                 }
             } else {
-                //issue_key==0 indica un nuovo numero 
-                //issue_key==0 indicates a new calendaadd_mod_calendariorio
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
-                //issue.setNumber(((NewspaperDataLayer) request.getAttribute("datalayer")).getIssueDAO().getLatestIssueNumber() + 1);
                 calendario.setGiorno(Calendar.getInstance().getTime());
                 //probabile modifica
                 calendario.setOraInizio(LocalTime.MIN);
                 calendario.setOraFine(LocalTime.MIN);
                 request.setAttribute("calendario", calendario);
-                //forza prima a compilare i dati essenziali per creare un numero
-                //forces first to compile the mandatory fields to create an calendario
-                request.setAttribute("libera", Collections.EMPTY_LIST);
-                request.setAttribute("occupata", Collections.EMPTY_LIST);
+                request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
+                //request.setAttribute("assegnata", Collections.EMPTY_LIST);
                 res.activate("add_mod_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
@@ -174,7 +166,7 @@ public class calendario extends  AuleWebBaseController {
         }
     }
 
-        private void action_add_evento(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
+    private void action_add_evento(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
 
@@ -224,7 +216,7 @@ public class calendario extends  AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-    
+
     //modificare in modo che lavori per la pagina Calendario
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -256,15 +248,15 @@ public class calendario extends  AuleWebBaseController {
             handleError(ex, request, response);
         }
     }
-    
+
     /**
-    * Returns a short description of the servlet.
-    *
-    * @return a String containing servlet description
-    */
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Caledario servlet";
     }// </editor-fold>
-    
+
 }

@@ -1,6 +1,5 @@
 package it.univaq.f4i.iw.auleweb.data.dao;
 
-import it.univaq.f4i.iw.auleweb.data.model.Attrezzatura;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.auleweb.data.proxy.AulaProxy;
@@ -22,7 +21,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         super(d);
     }
     private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo;
-    private PreparedStatement sAllAule, sUsedAule, sAllAttrezzature;
+    private PreparedStatement sAllAule, sUsedAule, sAuleCalendario, sAllAttrezzature;
     private PreparedStatement iAula, uAula, dAula;
 
     @Override
@@ -39,10 +38,11 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAuleByLuogo = connection.prepareStatement("SELECT aula.* FROM aula WHERE aula.luogo = ?");
 
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
-            //procedure di inserimento, aggiornamento e eliminazione delle aule
+
             sUsedAule = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario");
+            sAuleCalendario = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario WHERE calendario.id=?");
             sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'aula' AND COLUMN_NAME = 'attrezzatura'");
-            
+            //procedure di inserimento, aggiornamento e eliminazione delle aule
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             uAula = connection.prepareStatement("UPDATE aula SET nome=?, capienza=?, prese_elettriche=?, prese_rete=?, attrezzatura=?, nota=?, luogo=?, edificio=?, piano=?, id_professore=? WHERE id=?");
             dAula = connection.prepareStatement("DELETE FROM aula WHERE id=?");
@@ -63,6 +63,9 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAuleByLuogo.close();
 
             sAllAule.close();
+            sUsedAule.close();
+            sAuleCalendario.close();
+            sAllAttrezzature.close();
 
             iAula.close();
             uAula.close();
@@ -98,7 +101,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             a.setEdificio(rs.getString("edificio"));
             a.setPiano(rs.getString("piano"));
             a.setProfessoreKey(rs.getInt("id_professore"));
-          
+
         } catch (SQLException ex) {
             throw new DataException("Unable to create aula object form ResultSet", ex);
         }
@@ -177,7 +180,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
         return result;
     }
-    
+
     @Override //serve a ottenere la lista delle aule appartenenti a un determinato gruppo (serve l'id del gruppo)
     public List<Aula> getAllAuleGI(int id_gruppo) throws DataException {
         List<Aula> result = new ArrayList();
@@ -207,7 +210,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         }
         return result;
     }
-    
+
     @Override //serve a eliminare una data aula
     public void deleteAula(int id_aula) throws DataException {
         try {
@@ -225,20 +228,33 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 if (rs.next()) {
                     String tipo = rs.getString("COLUMN_TYPE");
                     String[] values = tipo.replaceAll("set|\\(|\\)", "").split(",");
-                    for (String value: values){
+                    for (String value : values) {
                         result.add(value.trim());
                     }
-                } else System.out.println("rs e vuoto");
+                } else {
+                    System.out.println("rs e vuoto");
+                }
             }
         } catch (SQLException ex) {
             throw new DataException("Unable to load Attrezzature", ex);
         }
         return result;
     }
-    
-    @Override
-    public List<Aula> getAllAule(Calendario calendario) throws DataException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+    @Override //serve per ottenere una lista di aule disponibili
+    public Aula getAula(Calendario calendario) throws DataException {
+        Aula result = null;
+        try {
+            sAuleCalendario.setInt(1, calendario.getKey());
+            try (ResultSet rs = sAuleCalendario.executeQuery()) {
+                while (rs.next()) {
+                    result = ((Aula) getAula(rs.getInt("id_aula")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule with Calendar", ex);
+        }
+        return result;
     }
 
     @Override //serve per ottenere una lista di aule disponibili
@@ -249,11 +265,14 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         try {
             try (ResultSet rs = sUsedAule.executeQuery()) {
                 while (rs.next()) {
-                    used.add((Aula) getAula(rs.getInt("id")));
+                    used.add((Aula) getAula(rs.getInt("id_aula")));
                 }
             }
-            for(Aula elemento : all) {
-                if(!used.contains(elemento)) result.add(elemento);
+            for (Aula elemento : all) {
+                if (!used.contains(elemento)) {
+                    result.add(elemento);
+                    System.out.println("### unused: "+elemento+" ###");
+                }
             }
         } catch (SQLException ex) {
             throw new DataException("Unable to load Aule", ex);
@@ -261,10 +280,25 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         return result;
     }
 
+    @Override //serve per ottenere una lista di aule disponibili
+    public List<Aula> getAuleOccupate() throws DataException {
+        List<Aula> result = new ArrayList<>();
+        try {
+            try (ResultSet rs = sUsedAule.executeQuery()) {
+                while (rs.next()) {
+                    result.add((Aula) getAula(rs.getInt("id_aula")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Aule", ex);
+        }
+        return result;
+    }
+    
     @Override //serve per salvare modifiche ad un'aula nel database o crearne una nuova
     public void storeAula(Aula aula) throws DataException {
         try {
-            if (aula.getKey() != null && aula.getKey() > 0) { 
+            if (aula.getKey() != null && aula.getKey() > 0) {
                 if (aula instanceof DataItemProxy && !((DataItemProxy) aula).isModified()) {
                     return;
                 }
@@ -283,7 +317,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 } else {
                     uAula.setNull(10, java.sql.Types.INTEGER);
                 }
-                uAula.setInt(11,aula.getKey());
+                uAula.setInt(11, aula.getKey());
                 if (uAula.executeUpdate() == 0) {
                     throw new OptimisticLockException(aula);
                 } else {
@@ -295,7 +329,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                 iAula.setInt(3, aula.getPreseElettriche());
                 iAula.setInt(4, aula.getPreseRete());
                 String attStr = String.join(",", aula.getAttrezzature());
-                System.out.println("### "+attStr+" ###");
+                System.out.println("### " + attStr + " ###");
                 iAula.setString(5, attStr);
                 iAula.setString(6, aula.getNota());
                 iAula.setString(7, aula.getLuogo());
@@ -307,7 +341,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
                     iAula.setNull(10, java.sql.Types.INTEGER);
                 }
                 if (iAula.executeUpdate() == 1) {
-                    
+
                     try (ResultSet keys = iAula.getGeneratedKeys()) {
                         if (keys.next()) {
                             int key = keys.getInt(1);
@@ -324,5 +358,5 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             throw new DataException("Unable to store aula", ex);
         }
     }
-    
+
 }
