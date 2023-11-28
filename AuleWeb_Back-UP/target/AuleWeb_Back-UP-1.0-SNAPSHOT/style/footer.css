@@ -1,60 +1,54 @@
+/* Nuovo Stile CSS per il Footer */
 .footer {
-    position: fixed; /* Modifica da sticky a fixed */
-    bottom: 0; /* Fissa il footer in fondo alla pagina */
-    left: 0; /* Estende il footer lungo tutta la larghezza */
-    width: 100%; /* Assicura che il footer copra l'intera larghezza */
-    background-color: #002855; /* Blu scuro */
-    color: #ffffff; /* Bianco per il testo */
-    text-align: left;
-    padding: 50px 30px;
-}
-
-.footer .footer-section h4 {
-    color: #FFFFFF; /* Testo degli header in bianco */
-    margin-bottom: 20px;
+    background-color: #002855; /* Colore di sfondo Blu scuro */
+    color: #ffffff; /* Colore del testo Bianco */
+    padding: 40px 20px; /* Padding ridotto per un look più snello */
+    text-align: center; /* Testo centrato per un aspetto uniforme */
 }
 
 .footer .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly; /* Distribuzione uniforme dei contenuti */
+    max-width: 1200px; /* Larghezza massima per contenere il layout */
+    margin: auto; /* Centratura del contenuto */
 }
 
 .footer .footer-section {
     flex: 1;
-    min-width: 250px;
-    margin-right: 30px;
+    min-width: 200px; /* Larghezza minima ridotta per una migliore adattabilità */
+    margin-bottom: 20px; /* Spazio tra le sezioni */
 }
 
 .footer .footer-section h4 {
-    color: #0056b3; /* Un blu leggermente più scuro per i titoli */
-    margin-bottom: 20px;
+    color: #FFD700; /* Giallo oro per i titoli per un maggiore impatto visivo */
+    margin-bottom: 15px; /* Margin ridotto */
 }
 
 .footer .footer-links ul,
 .footer .footer-section p,
 .footer .footer-section a {
     list-style: none;
-    color: #ffffff; /* Testo bianco */
+    color: #ffffff; /* Mantenimento del testo bianco */
     text-decoration: none;
+    line-height: 1.6; /* Maggiore leggibilità con spaziatura delle linee */
 }
 
 .footer .footer-links ul li a:hover,
 .footer .footer-section a:hover {
-    color: #FFD700; /* Giallo oro per il testo al passaggio del mouse, per un buon contrasto */
+    color: #007bff; /* Blu al passaggio del mouse per coerenza con il tema */
 }
 
 .social-icons a i {
-    color: #007bff; /* Blu anziché grigio per maggiore coerenza con il tema */
+    color: #007bff; /* Blu per le icone social */
     margin-right: 10px;
-    transition: color 0.3s;
 }
 
 .social-icons a i:hover {
-    color: #FFD700; /* Icone social diventano giallo oro al passaggio del mouse */
+    color: #FFD700; /* Icone social giallo oro al passaggio del mouse */
 }
 
-/* Responsività */
+/* Responsività migliorata per dispositivi mobili */
 @media (max-width: 768px) {
     .footer .footer-content {
         flex-direction: column;
@@ -62,9 +56,6 @@
 
     .footer .footer-section {
         margin-bottom: 20px;
-    }
-
-    .main-content {
-        min-height: calc(100vh - 120px); /* Regola per dispositivi mobili */
+        min-width: auto; /* Adattabilità migliorata per schermi piccoli */
     }
 }
