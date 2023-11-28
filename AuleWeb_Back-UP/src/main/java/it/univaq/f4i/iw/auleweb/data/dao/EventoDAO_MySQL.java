@@ -56,7 +56,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             //ricerca di tutti gli eventi
             sAllEventi = connection.prepareStatement("SELECT * FROM evento");
             //ricerca di tutti gli eventi nelle prossime 3 ore
-            sEventiProssimeOre = connection.prepareStatement("SELECT e.* FROM evento AS e JOIN calendario AS c ON c.id_evento=e.id WHERE CONCAT(c.giorno, ' ', c.ora_inizio) <= NOW() + INTERVAL 3 HOUR AND CONCAT(c.giorno, ' ', c.ora_fine) >= NOW() AND c.id_aula=?;");
+            sEventiProssimeOre = connection.prepareStatement("SELECT e.* FROM evento AS e JOIN calendario AS c ON c.id_evento=e.id JOIN gruppo_aula AS ga ON ga.id_aula= c.id_aula WHERE CONCAT(c.giorno, ' ', c.ora_inizio) <= NOW() + INTERVAL 3 HOUR AND CONCAT(c.giorno, ' ', c.ora_fine) >= NOW() AND ga.id_gruppo=?;");
 
             //ricerca di tutti gli eventi di un'aula data una mese/settimana/un giorno; ricerca di tutti gli eventi da svolgere in una data aula
             sEventiAulaMese = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND MONTH(c.giorno) = MONTH(?)");
@@ -374,17 +374,17 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override //serve per ottenere tutti gli eventi
-    public List<Evento> getAllProssimiEventi(int id_aula) throws DataException {
+    public List<Evento> getAllProssimiEventi(int id_gruppo) throws DataException {
         List<Evento> result = new ArrayList();
         try {
-            sEventiProssimeOre.setInt(1, id_aula);
+            sEventiProssimeOre.setInt(1, id_gruppo);
             try (ResultSet rs = sEventiProssimeOre.executeQuery()) {
                 while (rs.next()) {
                     result.add(getEvento(rs.getInt("id")));
                 }
             }
         } catch (SQLException ex) {
-            throw new DataException("Unable to load Eventi", ex);
+            throw new DataException("Unable to load Eventi of next hours", ex);
         }
         return result;
     }
