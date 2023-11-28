@@ -1,4 +1,8 @@
 .footer {
+    position: fixed; /* Modifica da sticky a fixed */
+    bottom: 0; /* Fissa il footer in fondo alla pagina */
+    left: 0; /* Estende il footer lungo tutta la larghezza */
+    width: 100%; /* Assicura che il footer copra l'intera larghezza */
     background-color: #002855; /* Blu scuro */
     color: #ffffff; /* Bianco per il testo */
     text-align: left;
@@ -58,5 +62,9 @@
 
     .footer .footer-section {
         margin-bottom: 20px;
+    }
+
+    .main-content {
+        min-height: calc(100vh - 120px); /* Regola per dispositivi mobili */
     }
 }
