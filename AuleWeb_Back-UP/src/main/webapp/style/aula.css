@@ -76,6 +76,24 @@ select {
     background-color: #6c757d;
 }
 
+/* Stili per il pulsante Update (aggiunto) */
+input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #007bff; /* Colore uguale a quello del pulsante Indietro */
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Colore al passaggio del mouse uguale a quello del pulsante Indietro */
+}
+
 /* Stili per la Responsività */
 @media screen and (max-width: 768px) {
     .home-container {

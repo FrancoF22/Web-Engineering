@@ -44,26 +44,26 @@
 
         <label for="prese_rete">Prese Rete:</label>
         <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
-        
+
         <label for="attrezzatura">Attrezzatura:</label>        
         <select name="attrezzatura[]" multiple>
             <#list ListaAttrezzatura as att>
-                <option value="${att}"
-                   <#if aula.attrezzature?seq_contains(att)> selected</#if>
+            <option value="${att}"
+                    <#if aula.attrezzature?seq_contains(att)> selected</#if>
                 >${att}</option>
             </#list> 
         </select>
-        
-        
+
+
         <label for="gruppo">Dipartimenti e Poli:</label>
         <select name="gruppo[]" multiple>
             <#list ListaGruppi as gruppo>
-                <option value="${gruppo.nome}"
-                   <#if temp_g?? && temp_g?seq_contains(gruppo)> selected</#if>
+            <option value="${gruppo.nome}"
+                    <#if temp_g?? && temp_g?seq_contains(gruppo)> selected</#if>
                 >${gruppo.nome}</option>
             </#list> 
         </select>
-        
+
         <div class="row"><input type="submit" name="update" value="Update"/></div>
 
 
