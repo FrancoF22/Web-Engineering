@@ -1,6 +1,6 @@
-/* Stile generale */
+/* Stile generale migliorato */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font più moderno */
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
@@ -8,20 +8,22 @@ body {
 }
 
 .container {
-    width: 80%;
+    max-width: 95%;
     margin: auto;
-    overflow-x: auto; /* Gestisce lo scorrimento orizzontale quando necessario */
+    overflow-x: auto;
 }
 
 .page-title {
     color: #333;
     text-align: center;
-    padding: 10px 0;
+    margin: 20px 0;
 }
 
-/* Stile dei bottoni */
+/* Stile dei bottoni con icone */
 .my-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     background-color: #007bff;
     color: white;
@@ -33,26 +35,26 @@ body {
 
 .my-button:hover {
     background-color: #0056b3;
-    transform: scale(1.05); /* Effetto di zoom al passaggio del mouse */
+    transform: scale(1.05);
+}
+
+.my-button i {
+    margin-right: 8px; /* Spazio tra icona e testo */
 }
 
 .table-controls {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
     display: flex;
-    justify-content: center; /* Centra i bottoni */
-    gap: 10px; /* Aggiunge spazio tra i bottoni */
+    justify-content: center;
+    gap: 15px;
 }
 
-
-/* Stili per la tabella */
+/* Stili per la tabella migliorati */
 .my-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Aggiunge un'ombra leggera */
-    background-color: white; /* Sfondo bianco per contrasto */
-    overflow-x: auto; /* Permette lo scorrimento orizzontale */
 }
 
 .my-table th, .my-table td {
@@ -62,26 +64,23 @@ body {
 }
 
 .my-table th {
-    background-color: #007bff;
-    color: #ffffff;
-    font-size: 16px; /* Aumenta la dimensione del font per migliorare la leggibilità */
+    background-color: #f8f9fa;
 }
 
 .my-table tr:nth-child(odd) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
 }
 
 .my-table tr:hover {
     background-color: #e2e6ea;
 }
 
-/* Responsività */
+/* Responsività migliorata */
 @media screen and (max-width: 768px) {
     .container {
-        width: 95%; /* Larghezza maggiore per sfruttare più spazio */
+        width: 100%;
     }
 
-    /* Nasconde colonne specifiche per schermi più piccoli */
     .my-table th:nth-child(6), .my-table td:nth-child(6),
     .my-table th:nth-child(7), .my-table td:nth-child(7) {
         display: none;
@@ -89,22 +88,17 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .container {
-        width: 100%; /* Utilizza l'intera larghezza dello schermo */
-    }
-
-    /* Stile per le celle in modalità mobile */
     .my-table td {
         display: block;
         text-align: right;
         padding-left: 50%;
         position: relative;
-        border-bottom: 1px solid #ddd; /* Aggiunge una linea per separare le righe */
+        border-bottom: 1px solid #ddd;
     }
     .my-table td::before {
         content: attr(data-title);
         position: absolute;
-        left: 10px; /* Posizionamento del titolo della colonna */
+        left: 10px;
         width: 40%;
         padding-right: 10px;
         white-space: nowrap;
