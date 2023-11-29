@@ -357,11 +357,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override //permette di ottenere gli eventi del corso nell'arco di una settimana
-    public List<Calendario> getEventiCorsoSettimana(int corsoId, Date d) throws DataException {
+    public List<Calendario> getEventiCorsoSettimana(int corsoId, java.util.Date d) throws DataException {
         List<Calendario> result = new ArrayList();
         try {
             sEventiCorsoSettimana.setInt(1, corsoId);
-            sEventiCorsoSettimana.setDate(2, d);
+            sEventiCorsoSettimana.setDate(2, new java.sql.Date(d.getTime()));
             try (ResultSet rs = sEventiCorsoSettimana.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));

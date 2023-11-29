@@ -72,8 +72,9 @@ public class calendario extends AuleWebBaseController {
                 }
             } else {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
+                //passa il giorno attuale (probabilmente cambiare)
                 calendario.setGiorno(Calendar.getInstance().getTime());
-                //probabile modifica
+                //probabile modifica usare LocalTime.parse(riferimetno stringa dell'ora, formato dell'ora)
                 calendario.setOraInizio(LocalTime.MIN);
                 calendario.setOraFine(LocalTime.MIN);
                 request.setAttribute("calendario", calendario);
