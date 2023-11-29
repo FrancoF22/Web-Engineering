@@ -5,7 +5,7 @@
 
 <div class="container">
     <!-- Form per la gestione degli eventi -->
-    <form id="event-form">
+    <form id="event-form" method="post" action="calendario">
         <div class="form-title">Gestisci Eventi Calendario</div>
         <label>Aula:</label>
         <select name="aula">
@@ -27,6 +27,6 @@
         <label for="end-time">Ora Fine:</label>
         <input type="time" id="oraFine" name="oraFine">
         <!-- <input type="submit" class="button" value="Salva" name="update"/> -->
-        <input type="submit" name="Aggiungi/Modifica Evento Calendario" value="salva">
+        <input type="submit" name="update" value="update">
     </form>
 </div>
