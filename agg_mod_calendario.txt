@@ -1,0 +1,31 @@
+<!--
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/calendario.css" type="text/css" />
+
+<div class="container">
+    <!-- Form per la gestione degli eventi 
+    <form id="event-form" method="post" action="calendario">
+        <div class="form-title">Gestisci Eventi Calendario</div>
+        <label>Aula:</label>
+        <select name="aula">
+            <#list libere as aula>
+                <option value="${aula.key}">${aula.nome}</option>
+            </#list>
+        </select>
+        <label>Evento:</label>
+        <select name="evento">
+            <#list ListaEventi as evento>
+                <option value="${evento.key}">${evento.nome}</option>
+            </#list>
+        </select>
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date">
+        
+        <label for="start-time">Ora Inizio:</label>
+        <input type="time" id="oraInizio" name="oraInizio">
+        <label for="end-time">Ora Fine:</label>
+        <input type="time" id="oraFine" name="oraFine">
+        <!-- <input type="submit" class="button" value="Salva" name="update"/> 
+        <input type="submit" name="compose" value="Salva">
+    </form>
+</div>-->

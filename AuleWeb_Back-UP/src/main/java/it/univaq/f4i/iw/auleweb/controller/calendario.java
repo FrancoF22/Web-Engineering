@@ -10,8 +10,6 @@ import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.*;
 import java.time.LocalTime;
 import java.util.*;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +42,7 @@ public class calendario extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("calendario", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
+            request.setAttribute("calendari", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
             res.activate("lista_calendario.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -55,8 +53,7 @@ public class calendario extends AuleWebBaseController {
         request.setAttribute("page_title", "Gestisci Calendario");
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
-            request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
+             //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes            request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("days", days);
             request.setAttribute("months", months);
             request.setAttribute("years", years);
@@ -64,8 +61,8 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
-                    request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                    request.setAttribute("assegnata", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
+                    request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
+                    request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
                     res.activate("add_mod_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
@@ -76,12 +73,13 @@ public class calendario extends AuleWebBaseController {
                 //passa il giorno attuale (probabilmente cambiare)
                 calendario.setGiorno(Calendar.getInstance().getTime());
                 //probabile modifica usare LocalTime.parse(riferimetno stringa dell'ora, formato dell'ora)
-                calendario.setOraInizio(LocalTime.MIN);
-                calendario.setOraFine(LocalTime.MIN);
+                //calendario.setOraInizio(LocalTime.MIN);
+                //calendario.setOraFine(LocalTime.MIN);
                 request.setAttribute("calendario", calendario);
-                request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                //request.setAttribute("assegnata", Collections.EMPTY_LIST);
+                request.setAttribute("unused", Collections.EMPTY_LIST);
+                request.setAttribute("used", Collections.EMPTY_LIST);
                 res.activate("add_mod_calendario.ftl.html", request, response);
+                action_default(request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -107,7 +105,6 @@ public class calendario extends AuleWebBaseController {
                 calendario.setGiorno(date.getTime());
                 ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
                 //delega il resto del processo all'azione compose
-                //delegates the rest of the process to the compose action
                 action_compose(request, response, calendario.getKey());
             } else {
                 handleError("Cannot update calendario: insufficient parameters", request, response);
@@ -121,12 +118,10 @@ public class calendario extends AuleWebBaseController {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
 
-            if (calendario != null && request.getParameter("aaula") != null && request.getParameter("page") != null) {
+            if (calendario != null && request.getParameter("aaula") != null) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("aaula")));
                 if (aula != null) {
-                    //article.setIssue(calendario);
                     aula.setCalendario(calendario);
-                    //article.setPage(SecurityHelpers.checkNumeric(request.getParameter("page")));
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     //delega il resto del processo all'azione compose
                     //delegates the rest of the process to the compose action
@@ -168,57 +163,6 @@ public class calendario extends AuleWebBaseController {
         }
     }
 
-    private void action_add_evento(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
-        try {
-            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
-
-            if (calendario != null && request.getParameter("aarticle") != null && request.getParameter("page") != null) {
-                Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(SecurityHelpers.checkNumeric(request.getParameter("aevento")));
-                if (evento != null) {
-                    //article.setIssue(calendario);
-                    evento.setCalendario(calendario);
-                    //article.setPage(SecurityHelpers.checkNumeric(request.getParameter("page")));
-                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
-                    //delega il resto del processo all'azione compose
-                    //delegates the rest of the process to the compose action
-                    action_compose(request, response, id_calendario);
-                } else {
-                    handleError("Cannot add undefined evento", request, response);
-                }
-            } else {
-                handleError("Cannot add evento: insufficient parameters", request, response);
-            }
-        } catch (DataException ex) {
-            handleError("Data access exception: " + ex.getMessage(), request, response);
-        }
-    }
-
-    private void action_remove_evento(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
-        try {
-            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
-            if (calendario != null && request.getParameter("rarticle") != null) {
-                Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(SecurityHelpers.checkNumeric(request.getParameter("aevento")));
-                if (evento != null) {
-                    if (evento.getCalendario().getKey() == calendario.getKey()) {
-                        //article.setPage(0);
-                        evento.setCalendario(null);
-                        //modificae in modo da avere storeAula
-                        ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
-                    }
-                    //delega il resto del processo all'azione di default
-                    //delegates the rest of the process to the default action
-                    action_compose(request, response, id_calendario);
-                } else {
-                    handleError("Cannot remove undefined evento", request, response);
-                }
-            } else {
-                handleError("Cannot remove evento: insufficient parameters", request, response);
-            }
-        } catch (DataException ex) {
-            handleError("Data access exception: " + ex.getMessage(), request, response);
-        }
-    }
-
     //modificare in modo che lavori per la pagina Calendario
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -232,11 +176,9 @@ public class calendario extends AuleWebBaseController {
                 id_calendario = SecurityHelpers.checkNumeric(request.getParameter("n"));
                 if (request.getParameter("add") != null) {
                     action_add_aula(request, response, id_calendario);
-                    action_add_evento(request, response, id_calendario);
-                } else if (request.getParameter("remove") != null) {
+                 } else if (request.getParameter("remove") != null) {
                     action_remove_aula(request, response, id_calendario);
-                    action_remove_evento(request, response, id_calendario);
-                } else if (request.getParameter("update") != null) {
+                 } else if (request.getParameter("update") != null) {
                     action_set_properties(request, response, id_calendario);
                 } else {
                     action_compose(request, response, id_calendario);

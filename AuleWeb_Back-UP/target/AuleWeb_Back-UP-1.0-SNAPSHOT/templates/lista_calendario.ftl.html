@@ -1,4 +1,4 @@
-<meta charset="UTF-8">
+<!--<meta charset="UTF-8">
 <link rel="stylesheet" href="style/calendario.css" type="text/css" />
 
 <h1 class="page-title">Gestisci calendario</h1>
@@ -20,8 +20,8 @@
         </tr>
     </thead>
     <tbody>
-        <#if (calendario?size>0)>
-        <#list calendario as calendario>
+        <#if (calendari?size>0)>
+        <#list calendari as calendario>
         <tr>
             <td>${calendario.aula.nome}</td>
             <td>${calendario.evento.nome}</td>
@@ -29,10 +29,23 @@
             <td>${calendario.oraInizio}</td>
             <td>${calendario.oraFine}</td>
             <td>
-                <a href="calendario?n=${calendario.key}" class="my-button"><i class="fa fa-edit"></i></a>
+                <p><a href="calendario?n=0">Crea calendario</a></p>
+                <!--<a href="calendario?n=${calendario.key}" class="my-button"><i class="fa fa-edit"></i></a>
             </td>
         </tr>
         </#list>
         </#if>
     </tbody>            
 </table>
+-->
+<h2>Calendari disponibili</h2>
+<#if (calendari?size>0)>
+<ul>
+    <#list calendari as calendario>
+    <li>
+        <b>${calendario.key}</b> &nbsp;<b>${calendario.aula.professore.nome}</b> &nbsp;<a href="calendario?n=${calendario.key}">[modify calendario]</a>
+    </li>
+    </#list>
+</ul>
+</#if>
+<p><a href="calendario?n=0">Create a new calendario</a></p>
