@@ -52,6 +52,7 @@ public class calendario extends AuleWebBaseController {
     }
 
     private void action_compose(HttpServletRequest request, HttpServletResponse response, int id_calendaio) throws IOException, ServletException, TemplateManagerException {
+        request.setAttribute("page_title", "Gestisci Calendario");
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("ListaEventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());

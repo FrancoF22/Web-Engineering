@@ -35,6 +35,7 @@ public class evento extends AuleWebBaseController {
     }
 
     private void action_write(HttpServletRequest request, HttpServletResponse response, int id_evento) throws IOException, ServletException, TemplateManagerException {
+        request.setAttribute("page_title", "Gestisci Evento");
         try {
             TemplateResult res = new TemplateResult(getServletContext());
 
@@ -63,6 +64,7 @@ public class evento extends AuleWebBaseController {
     }
 
     private void action_update(HttpServletRequest request, HttpServletResponse response, int id_evento) throws IOException, ServletException, TemplateManagerException {
+        request.setAttribute("page_title", "Gestisci Evento");
         try {
             Evento evento;
             if (id_evento > 0) {

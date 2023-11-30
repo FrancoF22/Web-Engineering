@@ -32,9 +32,10 @@ public class aula extends AuleWebBaseController {
     }
 
     private void action_write(HttpServletRequest request, HttpServletResponse response, int id_aula) throws IOException, ServletException, TemplateManagerException {
+        request.setAttribute("page_title", "Gestisci Aula");
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-
+            
             List<Professore> professori = ((AuleWebDataLayer) request.getAttribute("datalayer")).getProfessoreDAO().getProfessori();
             List<String> attrezzature = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAttrezzature();
             List<Gruppo> gruppi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getAllGruppi();
@@ -66,6 +67,7 @@ public class aula extends AuleWebBaseController {
     }
 
     private void action_update(HttpServletRequest request, HttpServletResponse response, int id_aula) throws IOException, ServletException, TemplateManagerException {
+        request.setAttribute("page_title", "Gestisci Aula");
         try {
             Aula aula;
             if (id_aula > 0) {
