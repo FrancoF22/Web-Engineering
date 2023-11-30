@@ -19,7 +19,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class Login extends AuleWebBaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, TemplateManagerException {
@@ -63,10 +62,11 @@ public class Login extends AuleWebBaseController {
         }
         handleError("Login failed", request, response);
     }
-    
+
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
+        request.setAttribute("page_title", "Login");
         try {
             if (request.getParameter("login") != null) {
                 action_login(request, response);
