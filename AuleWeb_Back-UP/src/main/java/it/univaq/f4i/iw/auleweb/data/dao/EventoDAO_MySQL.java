@@ -497,7 +497,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     uCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                uCalendario.setDate(3, (Date) calendario.getGiorno());
+                uCalendario.setDate(3, new java.sql.Date(calendario.getGiorno().getTime()));
                 Time t = Time.valueOf(calendario.getOraInizio());
                 uCalendario.setTime(4, t);
                 Time f = Time.valueOf(calendario.getOraFine());
@@ -519,7 +519,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                 } else {
                     iCalendario.setNull(2, java.sql.Types.INTEGER);
                 }
-                iCalendario.setDate(3, (Date) calendario.getGiorno());
+                iCalendario.setDate(3, new java.sql.Date(calendario.getGiorno().getTime()));
                 Time t = Time.valueOf(calendario.getOraInizio());
                 iCalendario.setTime(4, t);
                 Time f = Time.valueOf(calendario.getOraFine());
