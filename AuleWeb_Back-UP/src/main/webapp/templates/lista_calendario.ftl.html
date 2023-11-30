@@ -43,7 +43,7 @@
 <ul>
     <#list calendari as calendario>
     <li>
-        <b>${calendario.key}</b> &nbsp;<b>${calendario.aula.professore.nome}</b> &nbsp;<a href="calendario?n=${calendario.key}">[modify calendario]</a>
+        <b>${calendario.giorno}</b> &nbsp;<b>${calendario.evento.nome}</b> &nbsp;<a href="calendario?n=${calendario.key}">[modify calendario]</a>
     </li>
     </#list>
 </ul>

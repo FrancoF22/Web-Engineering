@@ -8,7 +8,7 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.*;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.*;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -21,11 +21,19 @@ public class calendario extends AuleWebBaseController {
     private static final List<Integer> days;
     private static final List<Integer> months;
     private static final List<Integer> years;
+    private static final List<Integer> oraInizio;
+    private static final List<Integer> oraFine;
+    private static final List<Integer> minutiInizio;
+    private static final List<Integer> minutiFine;
 
     static {
         days = new ArrayList();
         months = new ArrayList();
         years = new ArrayList();
+        oraInizio = new ArrayList();
+        oraFine = new ArrayList();
+        minutiInizio = new ArrayList();
+        minutiFine = new ArrayList();
         for (int i = 1; i <= 31; ++i) {
             days.add(i);
         }
@@ -36,7 +44,14 @@ public class calendario extends AuleWebBaseController {
         for (int i = -5; i <= 5; ++i) {
             years.add(base_year + i);
         }
-
+        for (int i = 0; i <= 24; ++i) {
+            oraInizio.add(i);
+            oraFine.add(i);
+        }
+        for (int i = 0; i <= 60; i+=15) {
+            minutiInizio.add(i);
+            minutiFine.add(i);
+        }
     }
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
@@ -57,6 +72,12 @@ public class calendario extends AuleWebBaseController {
             request.setAttribute("days", days);
             request.setAttribute("months", months);
             request.setAttribute("years", years);
+            /*
+            request.setAttribute("oraInizio", oraInizio);
+            request.setAttribute("oraFine", oraFine);
+            request.setAttribute("minutiInizio", minutiInizio);
+            request.setAttribute("minutiFine", minutiFine);
+            */
             if (id_calendario > 0) {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
@@ -72,9 +93,7 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
                 //passa il giorno attuale (probabilmente cambiare)
                 calendario.setGiorno(Calendar.getInstance().getTime());
-                //probabile modifica usare LocalTime.parse(riferimetno stringa dell'ora, formato dell'ora)
-                //calendario.setOraInizio(LocalTime.MIN);
-                //calendario.setOraFine(LocalTime.MIN);
+                
                 request.setAttribute("calendario", calendario);
                 request.setAttribute("unused", Collections.EMPTY_LIST);
                 request.setAttribute("used", Collections.EMPTY_LIST);
@@ -103,6 +122,16 @@ public class calendario extends AuleWebBaseController {
                         SecurityHelpers.checkNumeric(request.getParameter("month")) - 1,
                         SecurityHelpers.checkNumeric(request.getParameter("day")));
                 calendario.setGiorno(date.getTime());
+                /*
+                LocalTime tempoInizio = LocalTime.now();
+                tempoInizio = tempoInizio.withHour(SecurityHelpers.checkNumeric(request.getParameter("orai")));
+                tempoInizio = tempoInizio.withMinute(SecurityHelpers.checkNumeric(request.getParameter("minutiI")));
+                calendario.setOraInizio(tempoInizio);
+                LocalTime tempoFine = LocalTime.now();
+                tempoFine = tempoFine.withHour(SecurityHelpers.checkNumeric(request.getParameter("oraF")));
+                tempoFine = tempoFine.withMinute(SecurityHelpers.checkNumeric(request.getParameter("minutiF")));
+                calendario.setOraFine(tempoFine);
+                */
                 ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
                 //delega il resto del processo all'azione compose
                 action_compose(request, response, calendario.getKey());
