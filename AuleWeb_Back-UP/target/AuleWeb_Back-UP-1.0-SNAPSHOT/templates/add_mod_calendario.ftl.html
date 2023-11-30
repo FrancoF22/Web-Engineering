@@ -50,5 +50,20 @@
         </div>
         </#if>
         
+        <#if (used?size>0)>
+        <div class="row">
+            <div class="four columns clabel">Remove Aula</div>
+            <div class="ten columns"> <select name="raula">
+                    <#list used as a>
+                    <option value="${a.key}">${a.nome}
+                        by ${a.professore.nome} ${a.professore.cognome}
+                    </option>
+                    </#list>            
+                </select>
+                <br/> </div>
+            <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
+        </div>
+        </#if>
+        
     </div>
 </form>

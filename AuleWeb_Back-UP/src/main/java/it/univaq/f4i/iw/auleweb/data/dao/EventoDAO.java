@@ -33,17 +33,17 @@ public interface EventoDAO {
 
     List<Evento> getAllEventi() throws DataException;
     
-    List<Calendario> getEventiAulaGiorno(int id_aula, Date date) throws DataException;
+    List<Calendario> getEventiAulaGiorno(int id_aula, java.util.Date d) throws DataException;
 
-    List<Calendario> getEventiAulaSettimana(int id_aula, Date date) throws DataException;
+    List<Calendario> getEventiAulaSettimana(int id_aula, java.util.Date d) throws DataException;
     
-    List<Calendario> getEventiAulaMese(int aulaId, Date d) throws DataException;
+    List<Calendario> getEventiAulaMese(int aulaId, java.util.Date d) throws DataException;
     
     List<Calendario> getAllEventiAula(int id_aula) throws DataException;
 
     List<Calendario> getEventiCorsoSettimana(int id_corso, java.util.Date data) throws DataException;
     
-    Calendario getCalendario(int evento_key, Date giorno) throws DataException;
+    Calendario getCalendario(int evento_key, java.util.Date d) throws DataException;
 
     void deleteEvento(Calendario calendario, boolean singolo) throws DataException;
     

@@ -114,14 +114,14 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
    }
     
     @Override // permette di ottenere l'evento singolo a partire dall'id_Mastere e dal giorno
-    public Calendario getCalendario(int evento_key, Date giorno) throws DataException {
+    public Calendario getCalendario(int evento_key, java.util.Date d) throws DataException {
         Calendario c = null;
         if (dataLayer.getCache().has(Calendario.class, evento_key)) {
             c = dataLayer.getCache().get(Calendario.class, evento_key);
         } else {
             try {
                 sEventoSingolo.setInt(1, evento_key);
-                sEventoSingolo.setDate(2, giorno);
+                sEventoSingolo.setDate(2, new java.sql.Date(d.getTime()));
                 try (ResultSet rs = sEventoSingolo.executeQuery()) {
                     if (rs.next()) {
                         c = createCalendario(rs);
@@ -247,7 +247,7 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
     }
 
     @Override
-    public List<Calendario> getEventiCorso(int id_corso, Date data) throws DataException {
+    public List<Calendario> getEventiCorso(int id_corso, java.util.Date d) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -257,12 +257,12 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
     }
 
     @Override
-    public List<Calendario> getEventiAula(int id_aula, Date date) throws DataException {
+    public List<Calendario> getEventiAula(int id_aula, java.util.Date d) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Calendario> getEventiAulaGiorno(int id_aula, Date date) throws DataException {
+    public List<Calendario> getEventiAulaGiorno(int id_aula, java.util.Date d) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

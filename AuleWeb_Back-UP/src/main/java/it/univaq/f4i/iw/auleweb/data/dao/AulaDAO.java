@@ -19,7 +19,7 @@ public interface AulaDAO {
     
     List<Aula> getAllAule() throws DataException;
     
-    Aula getAula(Calendario calendario) throws DataException;
+    List<Aula> getAula(Calendario calendario) throws DataException;
     
     List<Aula> getAllAuleGI(int id_gruppo) throws DataException;
     

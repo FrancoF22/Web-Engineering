@@ -27,15 +27,15 @@ public interface CalendarioDAO {
 
     List<Calendario> getEventiAttuali(int id_dipartimento) throws DataException;
 
-    List<Calendario> getEventiCorso(int id_corso, Date data) throws DataException;
+    List<Calendario> getEventiCorso(int id_corso, java.util.Date d) throws DataException;
     
     List<Calendario> getAllEventiAula(int id_aula) throws DataException;
 
-    List<Calendario> getEventiAula(int id_aula, Date date) throws DataException;
+    List<Calendario> getEventiAula(int id_aula, java.util.Date d) throws DataException;
     
-    Calendario getCalendario(int evento_key, Date giorno) throws DataException;
+    Calendario getCalendario(int evento_key, java.util.Date d) throws DataException;
 
-    List<Calendario> getEventiAulaGiorno(int id_aula, Date date) throws DataException;
+    List<Calendario> getEventiAulaGiorno(int id_aula, java.util.Date d) throws DataException;
     
     void storeCalendario(Calendario calendario) throws DataException;
     

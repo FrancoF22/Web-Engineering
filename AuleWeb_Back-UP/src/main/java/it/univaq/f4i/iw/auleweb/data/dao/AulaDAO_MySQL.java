@@ -40,7 +40,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             sAllAule = connection.prepareStatement("SELECT * FROM aula");
 
             sUsedAule = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario");
-            sAuleCalendario = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario WHERE calendario.id=?");
+            sAuleCalendario = connection.prepareStatement("SELECT DISTINCT id_aula FROM calendario WHERE calendario.id_evento=?");
             sAllAttrezzature = connection.prepareStatement("SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'aula' AND COLUMN_NAME = 'attrezzatura'");
             //procedure di inserimento, aggiornamento e eliminazione delle aule
             iAula = connection.prepareStatement("INSERT INTO aula (nome, capienza, prese_elettriche, prese_rete, attrezzatura, nota, luogo, edificio, piano, id_professore) VALUES (?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -242,13 +242,13 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
 
     @Override //serve per ottenere una lista di aule disponibili
-    public Aula getAula(Calendario calendario) throws DataException {
-        Aula result = null;
+    public List<Aula> getAula(Calendario calendario) throws DataException {
+        List<Aula> result = new ArrayList();
         try {
-            sAuleCalendario.setInt(1, calendario.getKey());
+            sAuleCalendario.setInt(1, calendario.getEvento().getKey());
             try (ResultSet rs = sAuleCalendario.executeQuery()) {
                 while (rs.next()) {
-                    result = ((Aula) getAula(rs.getInt("id_aula")));
+                    result.add((Aula) getAula(rs.getInt("id_aula")));
                 }
             }
         } catch (SQLException ex) {

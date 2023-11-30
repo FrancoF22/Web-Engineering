@@ -249,14 +249,14 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override //permette di ottenere l'evento singolo nel calendario
-    public Calendario getCalendario(int evento_key, Date giorno) throws DataException {
+    public Calendario getCalendario(int evento_key, java.util.Date d) throws DataException {
         Calendario c = null;
         if (dataLayer.getCache().has(Calendario.class, evento_key)) {
             c = dataLayer.getCache().get(Calendario.class, evento_key);
         } else {
             try {
                 sEventoSingolo.setInt(1, evento_key);
-                sEventoSingolo.setDate(2, giorno);
+                sEventoSingolo.setDate(2, new java.sql.Date(d.getTime()));
                 try (ResultSet rs = sEventoSingolo.executeQuery()) {
                     if (rs.next()) {
                         c = createCalendario(rs);
@@ -290,11 +290,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override //permette di ottenere gli eventi dell'aula in un determinato giorno
-    public List<Calendario> getEventiAulaGiorno(int id_aula, Date d) throws DataException {
+    public List<Calendario> getEventiAulaGiorno(int id_aula, java.util.Date d) throws DataException {
         List<Calendario> result = new ArrayList();
         try {
             sEventiAulaGiorno.setInt(1, id_aula);
-            sEventiAulaGiorno.setDate(2, d);
+            sEventiAulaGiorno.setDate(2, new java.sql.Date(d.getTime()));
             try (ResultSet rs = sEventiAulaGiorno.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));
@@ -307,11 +307,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override//permette di ottenere gli eventi nell'arco di una settimana di una determinata aula
-    public List<Calendario> getEventiAulaSettimana(int aulaId, Date d) throws DataException {
+    public List<Calendario> getEventiAulaSettimana(int aulaId, java.util.Date d) throws DataException {
         List<Calendario> result = new ArrayList();
         try {
             sEventiAulaSettimana.setInt(1, aulaId);
-            sEventiAulaSettimana.setDate(2, d);
+            sEventiAulaSettimana.setDate(2, new java.sql.Date(d.getTime()));
             try (ResultSet rs = sEventiAulaSettimana.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));
@@ -324,11 +324,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override //permette di ottenere gli eventi nell'arco di un mese di una determinata aula
-    public List<Calendario> getEventiAulaMese(int aulaId, Date d) throws DataException {
+    public List<Calendario> getEventiAulaMese(int aulaId, java.util.Date d) throws DataException {
         List<Calendario> result = new ArrayList();
         try {
             sEventiAulaMese.setInt(1, aulaId);
-            sEventiAulaMese.setDate(2, d);
+            sEventiAulaMese.setDate(2, new java.sql.Date(d.getTime()));
             try (ResultSet rs = sEventiAulaMese.executeQuery()) {
                 while (rs.next()) {
                     result.add((Calendario) getCalendarioById(rs.getInt("id")));
