@@ -51,7 +51,7 @@ public class calendario extends AuleWebBaseController {
         }
     }
 
-    private void action_compose(HttpServletRequest request, HttpServletResponse response, int id_calendaio) throws IOException, ServletException, TemplateManagerException {
+    private void action_compose(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         request.setAttribute("page_title", "Gestisci Calendario");
         try {
             TemplateResult res = new TemplateResult(getServletContext());
@@ -60,8 +60,8 @@ public class calendario extends AuleWebBaseController {
             request.setAttribute("days", days);
             request.setAttribute("months", months);
             request.setAttribute("years", years);
-            if (id_calendaio > 0) {
-                Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendaio);
+            if (id_calendario > 0) {
+                Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("libere", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
@@ -88,11 +88,11 @@ public class calendario extends AuleWebBaseController {
         }
     }
 
-    private void action_set_properties(HttpServletRequest request, HttpServletResponse response, int id_calendaio) throws IOException, ServletException, TemplateManagerException {
+    private void action_set_properties(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario;
-            if (id_calendaio > 0) {
-                calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendaio);
+            if (id_calendario > 0) {
+                calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
             } else {
                 calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
             }
