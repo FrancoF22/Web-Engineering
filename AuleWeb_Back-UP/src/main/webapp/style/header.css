@@ -4,11 +4,14 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px;
-    
+
+}
+.logo-text{
+    color: #FFD700;
 }
 
-.logo-text, .subtitle, .username, .logged-in, .not-logged-in {
-    color:  #FFD700; /* Giallo oro per i titoli per un maggiore impatto visivo */
+.subtitle, .username, .logged-in, .not-logged-in {
+    color:  #fff;
 }
 
 .sixteen.columns {
@@ -46,7 +49,7 @@
 }
 
 .logged-in a, .not-logged-in a {
-    color: #FFF;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -69,7 +72,7 @@
 
 .user-avatar, .user-icon {
     font-size: 24px; /* Dimensione dell'icona */
-    color: #FFD700; /* Colore dell'icona */
+    color: #fff; /* Colore dell'icona */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +88,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #FFF; /* Sfondo bianco */
+    background-color: #fff; /* Sfondo bianco */
     min-width: 160px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombra più evidente */
     border-radius: 4px;
@@ -111,7 +114,7 @@
 }
 
 .user-info:hover .username {
-    color:#FFD700;;
+    color:#FFD700;
 }
 
 .user-info:hover .user-avatar, .user-info:hover .user-icon {
