@@ -1,45 +1,45 @@
 <meta charset="UTF-8">
-<link rel="stylesheet" href="style/calendario.css" type="text/css" />
-
+<link rel="stylesheet" href="style/lista_calendario.css" type="text/css" />
 <h2>Calendario</h2>
 
 <form method="get" action="calendario">
     <div class="container">
         <input type="hidden" name="n" value="${calendario.key!0}"/>
         <div class="row">
-            <div class="four columns clabel">Date</div>
+            <div class="four columns clabel">Data</div>
             <div class="ten columns">
-                <br/>Date: <select name="day" class="small" >
+                <br/><select name="day" class="small" >
                     <#list days as day>
                     <option value="${day}"
                             <#if (day?string=calendario.giorno?string("d"))>
-                            selected="selected"
-                            </#if>
-                            >${day}</option>
+                        selected="selected"
+                        </#if>
+                        >${day}</option>
                     </#list>  
                 </select>/<select name="month" class="small" >
                     <#list months as month>
                     <option value="${month}"
                             <#if (month?string=calendario.giorno?string("M"))>
-                            selected="selected"
-                            </#if>
-                            >${month}</option>
+                        selected="selected"
+                        </#if>
+                        >${month}</option>
                     </#list> 
                 </select>/<select name="year" class="small" >
                     <#list years as year>
                     <option value="${year?c}"
                             <#if (year?c?string=calendario.giorno?string("y"))>
-                            selected="selected"
-                            </#if>
-                            >${year?c}</option>
+                        selected="selected"
+                        </#if>
+                        >${year?c}</option>
                     </#list> 
-                </select></div>
+                </select>
+            </div>
             <div class="two columns"><input type="submit" name="update" value="Update"/></div>
         </div>
-        
+
         <#if (unused?size>0)>
         <div class="row">
-            <div class="four columns clabel">Add aula</div>
+            <div class="four columns clabel">Aggiungi aula</div>
             <div class="ten columns"> <select name="aaula">
                     <#list unused as aula>
                     <option value="${aula.key}">${aula.nome}
@@ -51,10 +51,10 @@
             <div class="two columns"><input type="submit" name="add" value="Add"/></div>
         </div>
         </#if>
-        
+
         <#if (used?size>0)>
         <div class="row">
-            <div class="four columns clabel">Remove Aula</div>
+            <div class="four columns clabel">Rimuovi Aula</div>
             <div class="ten columns"> <select name="raula">
                     <#list used as a>
                     <option value="${a.key}">${a.nome}
@@ -66,6 +66,6 @@
             <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
         </div>
         </#if>
-        
+
     </div>
 </form>
