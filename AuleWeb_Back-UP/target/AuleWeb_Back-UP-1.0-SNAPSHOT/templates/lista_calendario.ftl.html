@@ -1,51 +1,23 @@
-<!--<meta charset="UTF-8">
-<link rel="stylesheet" href="style/calendario.css" type="text/css" />
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/lista_calendario.css" type="text/css" />
 
-<h1 class="page-title">Gestisci calendario</h1>
-
-<div class="table-controls">
-    <a href="home" class="my-button">Indietro</a>
-    <a href="calendario?n=0" class="my-button">Aggiungi calendario</a>
-</div>
-
-<table id="dataTable" class="my-table">
-    <thead>
-        <tr>
-            <th>Aula</th>
-            <th>Evento</th>
-            <th>Data</th>
-            <th>Ora Inizio</th>
-            <th>Ora Fine</th>
-            <th>Azione</th>
-        </tr>
-    </thead>
-    <tbody>
-        <#if (calendari?size>0)>
-        <#list calendari as calendario>
-        <tr>
-            <td>${calendario.aula.nome}</td>
-            <td>${calendario.evento.nome}</td>
-            <td>${calendario.giorno}</td>
-            <td>${calendario.oraInizio}</td>
-            <td>${calendario.oraFine}</td>
-            <td>
-                <p><a href="calendario?n=0">Crea calendario</a></p>
-                <!--<a href="calendario?n=${calendario.key}" class="my-button"><i class="fa fa-edit"></i></a>
-            </td>
-        </tr>
-        </#list>
-        </#if>
-    </tbody>            
-</table>
--->
 <h2>Calendari disponibili</h2>
 <#if (calendari?size>0)>
-<ul>
+<div class="card-container">
     <#list calendari as calendario>
-    <li>
-        <b>${calendario.key}</b> &nbsp;<b>${calendario.aula.professore.nome}</b> &nbsp;<a href="calendario?n=${calendario.key}">[modify calendario]</a>
-    </li>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">${calendario.evento.nome}</h5>
+            <p class="card-text">
+                <strong>Giorno:</strong> ${calendario.giorno}<br>
+                <strong>Aula:</strong> ${calendario.aula.nome}<br>
+                <strong>Ora Inizio:</strong> ${calendario.oraInizio}<br>
+                <strong>Ora Fine:</strong> ${calendario.oraFine}
+            </p>
+            <a href="calendario?n=${calendario.key}" class="card-link">[<i class="fa fa-edit"></i> Calendario]</a>
+        </div>
+    </div>
     </#list>
-</ul>
+</div>
 </#if>
-<p><a href="calendario?n=0">Create a new calendario</a></p>
+<p><a href="calendario?n=0">Crea un Evento Calendario</a></p>
