@@ -1,9 +1,92 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 1 dic 2023, 14:36:04
-    Author     : pcela
-*/
+/* Stili generali per la pagina */
+.page-title, h2 {
+    color: #333;
+    text-align: center;
+}
 
+.my-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Stili per la creazione/modifica degli eventi */
+.form-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #555;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Stili per le card */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    margin: 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.card-link {
+    color: #007bff;
+    text-decoration: none;
+}
+.card-link:hover {
+    text-decoration: underline;
+}
