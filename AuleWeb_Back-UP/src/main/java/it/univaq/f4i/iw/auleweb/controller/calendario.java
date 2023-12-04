@@ -9,6 +9,7 @@ import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -21,19 +22,15 @@ public class calendario extends AuleWebBaseController {
     private static final List<Integer> days;
     private static final List<Integer> months;
     private static final List<Integer> years;
-    private static final List<Integer> oraInizio;
-    private static final List<Integer> oraFine;
-    private static final List<Integer> minutiInizio;
-    private static final List<Integer> minutiFine;
+    private static final List<Integer> startHours;
+    private static final List<Integer> endHours;
 
     static {
         days = new ArrayList();
         months = new ArrayList();
         years = new ArrayList();
-        oraInizio = new ArrayList();
-        oraFine = new ArrayList();
-        minutiInizio = new ArrayList();
-        minutiFine = new ArrayList();
+        startHours = new ArrayList();
+        endHours = new ArrayList();
         for (int i = 1; i <= 31; ++i) {
             days.add(i);
         }
@@ -45,12 +42,8 @@ public class calendario extends AuleWebBaseController {
             years.add(base_year + i);
         }
         for (int i = 0; i <= 24; ++i) {
-            oraInizio.add(i);
-            oraFine.add(i);
-        }
-        for (int i = 0; i <= 60; i+=15) {
-            minutiInizio.add(i);
-            minutiFine.add(i);
+            startHours.add(i);
+            endHours.add(i);
         }
     }
 
@@ -72,12 +65,11 @@ public class calendario extends AuleWebBaseController {
             request.setAttribute("days", days);
             request.setAttribute("months", months);
             request.setAttribute("years", years);
-            /*
-            request.setAttribute("oraInizio", oraInizio);
-            request.setAttribute("oraFine", oraFine);
-            request.setAttribute("minutiInizio", minutiInizio);
-            request.setAttribute("minutiFine", minutiFine);
-            */
+            request.setAttribute("oraInizio", startHours);
+            request.setAttribute("oraFine", endHours);
+            //request.setAttribute("minutiInizio", minutiInizio);
+            //request.setAttribute("minutiFine", minutiFine);
+            
             if (id_calendario > 0) {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
@@ -93,7 +85,9 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
                 //passa il giorno attuale (probabilmente cambiare)
                 calendario.setGiorno(Calendar.getInstance().getTime());
-                
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
+                calendario.setOraInizio(LocalTime.parse(calendario.getOraInizio().toString(), formatter));
+                calendario.setOraFine(LocalTime.parse(calendario.getOraFine().toString(), formatter));
                 request.setAttribute("calendario", calendario);
                 request.setAttribute("unused", Collections.EMPTY_LIST);
                 request.setAttribute("used", Collections.EMPTY_LIST);
@@ -122,6 +116,9 @@ public class calendario extends AuleWebBaseController {
                         SecurityHelpers.checkNumeric(request.getParameter("month")) - 1,
                         SecurityHelpers.checkNumeric(request.getParameter("day")));
                 calendario.setGiorno(date.getTime());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
+                calendario.setOraInizio(LocalTime.parse(calendario.getOraInizio().toString(), formatter));
+                calendario.setOraFine(LocalTime.parse(calendario.getOraFine().toString(), formatter));
                 /*
                 LocalTime tempoInizio = LocalTime.now();
                 tempoInizio = tempoInizio.withHour(SecurityHelpers.checkNumeric(request.getParameter("orai")));
