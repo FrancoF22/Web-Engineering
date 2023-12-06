@@ -10,6 +10,7 @@ import java.util.*;
 import java.time.LocalTime;
 import it.univaq.f4i.iw.auleweb.data.model.Evento;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -27,8 +28,8 @@ public class CalendarioImpl extends DataItemImpl<Integer> implements Calendario 
        this.aula = null;
        this.eventi = null;
        this.giorno = null;
-       this.oraInizio = null;
-       this.oraFine = null;
+       this.oraInizio = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
+       this.oraFine = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     @Override

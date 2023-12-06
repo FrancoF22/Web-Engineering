@@ -38,7 +38,11 @@
         </div>
 
         <div class="four columns clabel">Orari</div>
-              
+            <label for="nota">Inizio:</label>
+            <input type="text" name="oraInizio" value="${calendario.oraInizio?if_exists}"><br>
+
+            <label for="capienza">Fine:</label>
+            <input type="text" name="oraFine"  value="${calendario.oraFine?if_exists}"><br>
         </div>
         
         <#if (unused?size>0)>

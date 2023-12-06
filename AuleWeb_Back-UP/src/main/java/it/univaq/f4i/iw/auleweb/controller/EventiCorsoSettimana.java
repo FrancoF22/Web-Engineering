@@ -26,7 +26,7 @@ public class EventiCorsoSettimana extends AuleWebBaseController {
             List<Corso> corsi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi();
             
             if(corsi != null){
-                for(int i = 0; i < corsi.size(); i++){
+                for(int i = 1; i < corsi.size(); i++){
                     Corso c = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsoById(i);
                     Date giorno = new Date();
                     request.setAttribute("corsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorsoSettimana(c.getKey(), giorno));
