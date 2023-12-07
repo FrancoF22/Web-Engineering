@@ -41,7 +41,7 @@ public class EventiProssimeOre extends AuleWebBaseController {
                     //request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventoGiornoOra(giorno, ora, e.getKey()));
                     
                 }
-                res.activate(".ftl.html", request, response);
+                res.activate("filtro_eventi_prossime_ore.ftl.html", request, response);
             }
             
         } catch (DataException ex) {

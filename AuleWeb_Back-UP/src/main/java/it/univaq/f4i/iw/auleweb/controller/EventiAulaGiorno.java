@@ -38,7 +38,7 @@ public class EventiAulaGiorno extends AuleWebBaseController {
                     request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(a.getKey(), giorno));
                     
                 }
-                res.activate(".ftl.html", request, response);
+                res.activate("filtro_eventi_aula_giorno.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

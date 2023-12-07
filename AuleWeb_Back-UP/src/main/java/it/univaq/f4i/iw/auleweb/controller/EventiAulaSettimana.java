@@ -36,7 +36,7 @@ public class EventiAulaSettimana extends AuleWebBaseController {
                     request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaSettimana(a.getKey(), giorno));
                     
                 }
-                res.activate(".ftl.html", request, response);
+                res.activate("filtro_eventi_aula_settimana.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
