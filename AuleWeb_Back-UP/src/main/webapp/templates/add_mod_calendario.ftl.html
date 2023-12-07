@@ -38,42 +38,42 @@
         </div>
 
         <div class="four columns clabel">Orari</div>
-            <label for="nota">Inizio:</label>
-            <input type="text" name="oraInizio" value="${calendario.oraInizio?if_exists}"><br>
+        <label for="nota">Inizio:</label>
+        <input type="text" name="oraInizio" value="${calendario.oraInizio?if_exists}"><br>
 
-            <label for="capienza">Fine:</label>
-            <input type="text" name="oraFine"  value="${calendario.oraFine?if_exists}"><br>
-        </div>
-        
-        <#if (unused?size>0)>
-        <div class="row">
-            <div class="four columns clabel">Aggiungi aula</div>
-            <div class="ten columns"> <select name="aaula">
-                    <#list unused as aula>
-                    <option value="${aula.key}">${aula.nome}
-                        by ${aula.professore.nome} ${aula.professore.cognome}
-                    </option>
-                    </#list>            
-                </select>
-                <br/> </div>
-            <div class="two columns"><input type="submit" name="add" value="Add"/></div>
-        </div>
-        </#if>
-
-        <#if (used?size>0)>
-        <div class="row">
-            <div class="four columns clabel">Rimuovi Aula</div>
-            <div class="ten columns"> <select name="raula">
-                    <#list used as a>
-                    <option value="${a.key}">${a.nome}
-                        by ${a.professore.nome} ${a.professore.cognome}
-                    </option>
-                    </#list>            
-                </select>
-                <br/> </div>
-            <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
-        </div>
-        </#if>
-
+        <label for="capienza">Fine:</label>
+        <input type="text" name="oraFine"  value="${calendario.oraFine?if_exists}"><br>
     </div>
+
+    <#if (unused?size>0)>
+    <div class="row">
+        <div class="four columns clabel">Aggiungi aula</div>
+        <div class="ten columns"> <select name="aaula">
+                <#list unused as aula>
+                <option value="${aula.key}">${aula.nome}
+                    by ${aula.professore.nome} ${aula.professore.cognome}
+                </option>
+                </#list>            
+            </select>
+            <br/> </div>
+        <div class="two columns"><input type="submit" name="add" value="Add"/></div>
+    </div>
+    </#if>
+
+    <#if (used?size>0)>
+    <div class="row">
+        <div class="four columns clabel">Rimuovi Aula</div>
+        <div class="ten columns"> <select name="raula">
+                <#list used as a>
+                <option value="${a.key}">${a.nome}
+                    by ${a.professore.nome} ${a.professore.cognome}
+                </option>
+                </#list>            
+            </select>
+            <br/> </div>
+        <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
+    </div>
+    </#if>
+
+</div>
 </form>
