@@ -81,7 +81,6 @@ public class calendario extends AuleWebBaseController {
                 request.setAttribute("unused", Collections.EMPTY_LIST);
                 request.setAttribute("used", Collections.EMPTY_LIST);
                 res.activate("add_mod_calendario.ftl.html", request, response);
-                action_default(request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);

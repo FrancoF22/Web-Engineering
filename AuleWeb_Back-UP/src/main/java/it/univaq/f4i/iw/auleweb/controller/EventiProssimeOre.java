@@ -55,7 +55,7 @@ public class EventiProssimeOre extends AuleWebBaseController {
 
             List<Evento> eventi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllProssimiEventi(id_gruppo);
             request.setAttribute("eventi",eventi);
-            res.activate(".ftl.html", request, response);
+            res.activate("filtro_eventi_prossime_ore.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -68,8 +68,9 @@ public class EventiProssimeOre extends AuleWebBaseController {
             if(request.getParameter("k") != null) {
                 id_gruppo = SecurityHelpers.checkNumeric(request.getParameter("k"));
                 action_filtro(request,response,id_gruppo);
-            }
+            }else{
             action_default(request, response);
+            }
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
         } catch (IOException ex) {

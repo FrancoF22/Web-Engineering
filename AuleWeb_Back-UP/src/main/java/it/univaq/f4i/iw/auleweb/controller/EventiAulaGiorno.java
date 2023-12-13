@@ -32,10 +32,10 @@ public class EventiAulaGiorno extends AuleWebBaseController {
             List<Aula> aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule();
             
             if(aula != null){
-                for(int i = 1; i < aula.size(); i++){
-                    Aula a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(i);
+                for(int i = 0; i < aula.size(); i++){
+                    //Aula a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(i);
                     Date giorno = new Date();
-                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(a.getKey(), giorno));
+                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(aula.get(i).getKey(), giorno));
                     
                 }
                 res.activate("filtro_eventi_aula_giorno.ftl.html", request, response);
