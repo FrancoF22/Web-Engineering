@@ -41,7 +41,7 @@ public class EventiCorsoSettimana extends AuleWebBaseController {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        
+        request.setAttribute("page_title", "Filtro Corsi Settimana");
         try {
             action_default(request, response);
         } catch (TemplateManagerException ex) {

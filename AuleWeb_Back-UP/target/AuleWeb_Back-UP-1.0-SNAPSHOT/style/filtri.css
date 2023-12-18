@@ -1,0 +1,50 @@
+/* Stile del contenitore principale */
+.home-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Stile per la sezione della tabella */
+.home-home .lower {
+    margin: auto;
+    overflow-x: auto; /* Gestisce lo scorrimento orizzontale */
+}
+
+/* Stili per la tabella personalizzata */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombreggiatura leggera */
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #f8f9fa; /* Colore dello sfondo dell'intestazione */
+    color: #333; /* Colore del testo */
+    font-size: 16px; /* Dimensione del testo */
+}
+
+.custom-table tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Colore dello sfondo per le righe dispari */
+}
+
+.custom-table tr:hover {
+    background-color: #e2e6ea; /* Colore dello sfondo al passaggio del mouse */
+}
+
+/* Responsività */
+@media screen and (max-width: 768px) {
+    .home-container {
+        padding: 10px;
+    }
+    /* Altre regole responsabili qui, se necessarie */
+}

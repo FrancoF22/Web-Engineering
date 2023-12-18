@@ -64,6 +64,7 @@ public class EventiProssimeOre extends AuleWebBaseController {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         int id_gruppo;
+        request.setAttribute("page_title", "Filtro Prossime Ore(3h)");
         try {
             if(request.getParameter("k") != null) {
                 id_gruppo = SecurityHelpers.checkNumeric(request.getParameter("k"));
