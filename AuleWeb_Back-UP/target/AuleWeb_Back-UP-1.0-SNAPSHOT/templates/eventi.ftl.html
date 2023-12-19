@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+<title>Eventi Disponibili</title>
+<link rel="stylesheet" href="style/lista_eventi.css" type="text/css" />
+
+<h2>Elenco Eventi</h2>
+
+<div class="eventi-container"> <!-- Aggiunto un div esterno per un ulteriore styling e layout -->
+    <p class="evento-nuovo"><a href="evento?k=0">Crea un Nuovo Evento</a></p>
+    <#if (eventi?size > 0)>
+    <ul class="eventi-list"> <!-- Aggiunta la classe per ulteriori stili -->
+        <#list eventi as evento>
+        <li class="evento-item"> <!-- Aggiunta la classe per ogni elemento evento -->
+            <div class="evento-nome">${strip_slashes(evento.nome)}</div>
+            <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
+            <div class="evento-descrizione"><i>${evento.descrizione}</i></div>
+            <div class="evento-tipo"><i>Tipologia: ${evento.tipo}</i></div>
+            <#if evento.corso??>
+            <div><i>Evento Corso: ${evento.corso.nome}</i></div>
+            </#if>
+            <div><i>Professore: ${evento.professore.nome} ${evento.professore.cognome}</i></div>
+
+        </li>
+        </#list>
+    </ul>
+    </#if>
+    
+</div>
+

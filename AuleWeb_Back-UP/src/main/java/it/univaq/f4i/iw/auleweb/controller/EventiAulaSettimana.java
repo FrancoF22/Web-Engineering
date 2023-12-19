@@ -6,6 +6,7 @@ package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
 import it.univaq.f4i.iw.auleweb.data.model.Aula;
+import it.univaq.f4i.iw.auleweb.data.model.Corso;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -30,14 +31,24 @@ public class EventiAulaSettimana extends AuleWebBaseController {
             List<Aula> aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule();
             
             if(aula != null){
-                for(int i = 1; i < aula.size(); i++){
-                    Aula a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(i);
+                for(int i = 0; i < aula.size(); i++){
                     Date giorno = new Date();
-                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaSettimana(a.getKey(), giorno));
+                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaSettimana(aula.get(i).getKey(), giorno));
                     
                 }
-                res.activate("filtro_eventi_aula_settimana.ftl.html", request, response);
+                res.activate("aula_settimana.ftl.html", request, response);
             }
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
+    
+    private void action_filtro(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException, TemplateManagerException {
+        try{
+            TemplateResult res = new TemplateResult(getServletContext());
+            List<Aula> aule = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule();
+            request.setAttribute("aule",aule);
+            res.activate("aula_settimana.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -45,9 +56,13 @@ public class EventiAulaSettimana extends AuleWebBaseController {
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        
+        request.setAttribute("page_title", "Aule Settimanali");
         try {
+            if(request.getParameter("k") != null) {
+                action_filtro(request,response);
+            }else{
             action_default(request, response);
+            }
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
         } catch (IOException ex) {

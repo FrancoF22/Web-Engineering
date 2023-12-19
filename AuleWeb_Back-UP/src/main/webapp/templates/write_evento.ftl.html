@@ -1,0 +1,66 @@
+    <form method="post" action="evento">
+
+    <meta charset="UTF-8">
+    <title>Gestione Evento</title>
+    <link rel="stylesheet" href="style/evento.css" type="text/css" />
+
+    <div class="form-container">
+        <h2>Gestione Evento</h2>
+        <input type="hidden" name="k" value="${evento.key!0}"/>
+
+        <label for="note">Nome: </label>
+        <input type="text" name="nome" id="nome" value="${evento.nome?if_exists}">
+
+        <label class="form-label">Descrizione: </label>
+        <input type="text" name="descrizione" id="descrizione" value="${evento.descrizione?if_exists}">
+
+        <!-- Selezione Tipologia-->
+        <div class="form-row">
+            <label for="tipo">Tipologia: </label>
+            <select name="tipo">
+                <#list tipo as t>
+                <option value="${t}"
+                        <#if (evento.tipo?? && t=evento.tipo)>
+                    selected="selected"
+                    </#if>
+                    >${t}</option>
+                </#list> 
+            </select>
+        </div>
+
+        <!-- Selezione Evento Corso-->
+        <div class="form-row">
+            <label for="corso">Evento Corso: </label>
+            <select name="corso">
+                <#list ListaCorsi as corso>
+                <option value="${corso.key}"
+                        <#if (evento.corso?? && corso.key=evento.corso.key)>
+                    selected="selected"
+                    </#if>
+                    >${corso.nome}</option>
+                </#list> 
+            </select>
+        </div>
+
+        <!-- Selezione Professore -->
+        <div class="form-row">
+            <label for="professore">Professore: </label>
+            <select name="professore">
+                <#list ListaProfessori as professore>
+                <option value="${professore.key}"
+                        <#if (evento.professore?? && professore.key=evento.professore.key)>
+                    selected="selected"
+                    </#if>
+                    >${professore.nome} ${professore.cognome}</option>
+                </#list> 
+            </select>
+        </div>
+
+        <!-- Pulsante di Aggiornamento -->
+        <div class="Bottone-salva"><input type="submit" name="update" value="Salva"/></div>
+
+        <div class="Bottone-indietro">
+            <a href="evento" class="button">Indietro</a>
+        </div>
+    </div>
+</form>

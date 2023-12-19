@@ -25,7 +25,7 @@ public class aula extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
-            res.activate("lista_aule.ftl.html", request, response);
+            res.activate("write_aule.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -46,7 +46,7 @@ public class aula extends AuleWebBaseController {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
                 if (aula != null) {
                     request.setAttribute("aula", aula);
-                    res.activate("agg_mod_aula.ftl.html", request, response);
+                    res.activate("write_aula.ftl.html", request, response);
 
                     if (((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula) != null) {
                         List<Gruppo> temp_g = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(id_aula);
@@ -59,7 +59,7 @@ public class aula extends AuleWebBaseController {
             } else {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().createAula();
                 request.setAttribute("aula", aula);
-                res.activate("agg_mod_aula.ftl.html", request, response);
+                res.activate("write_aula.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -94,8 +94,8 @@ public class aula extends AuleWebBaseController {
                             // Rimuovi gli apici singoli e aggiungi il valore all'ArrayList
                             att.add(attrezzatura.replace("'", ""));
                         }
+                        
                         // Concatena gli elementi dell'ArrayList con virgole
-
                         aula.setAttrezzature(att);
 
                     }
@@ -138,7 +138,7 @@ public class aula extends AuleWebBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        request.setAttribute("page_title", "Aule");
+        request.setAttribute("page_title", "Aggiungi/Modifica Aula");
         int aula_key;
         try {
             if (request.getParameter("k") != null) {

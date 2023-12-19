@@ -12,15 +12,12 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  *
@@ -34,14 +31,13 @@ public class EventiProssimeOre extends AuleWebBaseController {
             List<Evento> evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi();
             
             if(evento != null){
-                for(int i = 1; i < evento.size(); i++){
-                    Evento e = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(i);
+                for(int i = 0; i < evento.size(); i++){
                     LocalTime ora = LocalTime.now();
                     Date giorno = new Date();
-                    //request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventoGiornoOra(giorno, ora, e.getKey()));
+                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventoGiornoOra(giorno, ora, evento.get(i).getKey()));
                     
                 }
-                res.activate("filtro_eventi_prossime_ore.ftl.html", request, response);
+                res.activate("prossime_ore.ftl.html", request, response);
             }
             
         } catch (DataException ex) {
@@ -52,19 +48,18 @@ public class EventiProssimeOre extends AuleWebBaseController {
     private void action_filtro(HttpServletRequest request, HttpServletResponse response, int id_gruppo)  throws IOException, ServletException, TemplateManagerException {
         try{
             TemplateResult res = new TemplateResult(getServletContext());
-
             List<Evento> eventi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllProssimiEventi(id_gruppo);
             request.setAttribute("eventi",eventi);
-            res.activate("filtro_eventi_prossime_ore.ftl.html", request, response);
+            res.activate("prossime_ore.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
-    }
+    }   
     
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         int id_gruppo;
-        request.setAttribute("page_title", "Filtro Prossime Ore(3h)");
+        request.setAttribute("page_title", "Corsi Prossime Ore");
         try {
             if(request.getParameter("k") != null) {
                 id_gruppo = SecurityHelpers.checkNumeric(request.getParameter("k"));

@@ -10,7 +10,6 @@ import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -209,11 +208,11 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override
-    public List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException {
+    public List<Evento> getEventoGiornoOra(java.util.Date g, java.time.LocalTime  t, int aula_key) throws DataException {
         List<Evento> result = new ArrayList();
         try {
-            sEventoByGiornoOra.setDate(1, g);
-            sEventoByGiornoOra.setTime(2, t);
+            sEventoByGiornoOra.setDate(1, new java.sql.Date(g.getTime()));
+            sEventoByGiornoOra.setTime(2, new java.sql.Time(t.getHour()));
             sEventoByGiornoOra.setInt(3, aula_key);
             try (ResultSet rs = sEventoByGiornoOra.executeQuery()) {
                 while (rs.next()) {

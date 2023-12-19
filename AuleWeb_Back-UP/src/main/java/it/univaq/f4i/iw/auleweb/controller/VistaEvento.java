@@ -34,7 +34,7 @@ public class VistaEvento extends AuleWebBaseController {
                 //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
                 //add to the template a wrapper object that allows to call the stripslashes function
                 request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
-                res.activate("evento.ftl.html", request, response);
+                res.activate("eventi.ftl.html", request, response);
             } else {
                 handleError("Unable to load evento", request, response);
             }

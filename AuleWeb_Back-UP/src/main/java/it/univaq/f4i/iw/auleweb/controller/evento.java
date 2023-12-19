@@ -28,7 +28,7 @@ public class evento extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
             request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
-            res.activate("evento.ftl.html", request, response);
+           res.activate("eventi.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -49,14 +49,14 @@ public class evento extends AuleWebBaseController {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evento);
                 if (evento != null) {
                     request.setAttribute("evento", evento);
-                    res.activate("agg_mod_evento.ftl.html", request, response);
+                    res.activate("write_evento.ftl.html", request, response);
                 } else {
                     handleError("Undefined evento", request, response);
                 }
             } else {
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().createEvento();
                 request.setAttribute("evento", evento);
-                res.activate("agg_mod_evento.ftl.html", request, response);
+                res.activate("write_evento.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -107,7 +107,7 @@ public class evento extends AuleWebBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        request.setAttribute("page_title", "Evento");
+        request.setAttribute("page_title", "Aggiungi/Modifica Evento");
 
         int evento_key;
         try {

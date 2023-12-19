@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style/lista_calendario.css" type="text/css" />
+
+<h2>Calendari disponibili</h2>
+<#if (calendari?size>0)>
+<div class="card-container">
+    <#list calendari as calendario>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">${calendario.evento.nome}</h5>
+            <p class="card-text">
+                <strong>Giorno:</strong> ${calendario.giorno}<br>
+                <strong>Aula:</strong> ${calendario.aula.nome}<br>
+                <strong>Ora Inizio:</strong> ${calendario.oraInizio}<br>
+                <strong>Ora Fine:</strong> ${calendario.oraFine}
+            </p>
+            <a href="calendario?n=${calendario.key}" class="card-link">[<i class="fa fa-edit"></i> Calendario]</a>
+        </div>
+    </div>
+    </#list>
+</div>
+</#if>
+<p><a href="calendario?n=0">Crea un Evento Calendario</a></p>

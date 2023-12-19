@@ -25,7 +25,7 @@ public interface EventoDAO {
     
     List<Calendario> getCalendarioEvento(int evento_key) throws DataException;    //ritorna le ripetizioni dell'evento sul calendario
 
-    List<Evento> getEventoGiornoOra(Date g, Time t, int aula_key) throws DataException;
+    List<Evento> getEventoGiornoOra(java.util.Date g, java.time.LocalTime t, int aula_key) throws DataException;
     
     List<Evento> getAllProssimiEventi(int id_gruppo) throws DataException;
 

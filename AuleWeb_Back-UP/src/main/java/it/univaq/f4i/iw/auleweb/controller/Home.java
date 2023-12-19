@@ -30,7 +30,7 @@ public class Home extends AuleWebBaseController {
             request.setAttribute("page_title", "Aule");
             request.setAttribute("ListaAule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAuleGI(gruppo_key));
             request.setAttribute("k", gruppo_key);
-            res.activate("Mostra_Aule.html", request, response);
+            res.activate("aula.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }

@@ -44,7 +44,7 @@ public class calendario extends AuleWebBaseController {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
             request.setAttribute("calendari", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendari());
-            res.activate("lista_calendario.ftl.html", request, response);
+            res.activate("lista_calendari.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
@@ -65,7 +65,7 @@ public class calendario extends AuleWebBaseController {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
-                    res.activate("add_mod_calendario.ftl.html", request, response);
+                    res.activate("compose_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
 
@@ -80,7 +80,7 @@ public class calendario extends AuleWebBaseController {
                 request.setAttribute("calendario", calendario);
                 request.setAttribute("unused", Collections.EMPTY_LIST);
                 request.setAttribute("used", Collections.EMPTY_LIST);
-                res.activate("add_mod_calendario.ftl.html", request, response);
+                res.activate("compose_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -180,7 +180,7 @@ public class calendario extends AuleWebBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        request.setAttribute("page_title", "Calendario");
+        request.setAttribute("page_title", "Aggiungi/Modifica Calendario");
 
         int id_calendario;
         try {

@@ -1,0 +1,76 @@
+<form method="post" action="aula">
+
+    <meta charset="UTF-8">
+    <title>Gestione Aula</title>
+    <link rel="stylesheet" href="style/aula.css" type="text/css" />
+
+
+    <div class="home-container">
+        <span class="home-text">Crea e modifica aula</span>
+
+        <input type="hidden" name="k" value="${aula.key!0}">
+
+        <label for="nome">Nome aula:</label>
+        <input type="text" name="nome" id="nome" value="${aula.nome}"><br>
+
+        <label for="luogo">Luogo:</label>
+        <input type="text" name="luogo" id="luogo" value="${aula.luogo?if_exists}"><br>
+
+        <label for="edificio">Edificio:</label>
+        <input type="text" name="edificio" id="edificio" value="${aula.edificio?if_exists}"><br>
+
+        <label for="professore">Professore:</label>
+        <select name="professore">
+            <#list ListaProfessori as professore>
+            <option value="${professore.key}"
+                    <#if (aula.professore?? && professore.key=aula.professore.key)>
+                selected="selected"
+                </#if>
+                >${professore.nome} ${professore.cognome}</option>
+            </#list> 
+        </select>
+
+        <label for="nota">Note:</label>
+        <input type="text" name="nota" id="nota" value="${aula.nota?if_exists}"><br>
+
+        <label for="capienza">Capienza:</label>
+        <input type="text" name="capienza" id="capienza" value="${aula.capienza?if_exists}"><br>
+
+        <label for="prese_elettriche">Prese Elettriche:</label>
+        <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula.preseElettriche?if_exists}"><br>
+
+        <label for="piano">Piano:</label>
+        <input type="text" name="piano" id="piano" value="${aula.piano?if_exists}"><br>
+
+        <label for="prese_rete">Prese Rete:</label>
+        <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
+
+        <label for="attrezzatura">Attrezzatura:</label>        
+        <select name="attrezzatura[]" multiple>
+            <#list ListaAttrezzatura as att>
+            <option value="${att}"
+                    <#if aula.attrezzature?seq_contains(att)> selected</#if>
+                >${att}</option>
+            </#list> 
+        </select>
+
+
+        <label for="gruppo">Dipartimenti e Poli:</label>
+        <select name="gruppo[]" multiple>
+            <#list ListaGruppi as gruppo>
+            <option value="${gruppo.nome}"
+                    <#if temp_g?? && temp_g?seq_contains(gruppo)> selected</#if>
+                >${gruppo.nome}</option>
+            </#list> 
+        </select>
+
+        <div class="row"><input type="submit" name="update" value="Update"/></div>
+
+
+        <div class="Bottone-indietro">
+            <a href="aula" class="button">
+                Indietro
+            </a>
+        </div>
+    </div>
+</form>

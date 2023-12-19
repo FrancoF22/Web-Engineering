@@ -27,12 +27,7 @@ public class VistaCalendario extends AuleWebBaseController {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(n);
             if (calendario != null) {
                 request.setAttribute("calendario", calendario);
-                //request.setAttribute("page_title", "Calendario #" + calendario.getNumber());
-                //verr� usato automaticamente il template di outline spcificato tra i context parameters
-                //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
                 TemplateResult res = new TemplateResult(getServletContext());
-                //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
-                //add to the template a wrapper object that allows to call the stripslashes function
                 request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
                 res.activate("calendario.ftl.html", request, response);
             } else {

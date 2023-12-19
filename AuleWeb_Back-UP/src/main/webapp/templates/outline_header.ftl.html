@@ -1,6 +1,4 @@
 <link href="style/header.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
 
 <div class="row" id="header" style="background-color:#002855;  /*Blu scuro*/">
     <div class="sixteen columns">
@@ -23,15 +21,15 @@
             </div>
             <span class="username">${logininfo.username}</span>
             <div class="user-dropdown">
-                <a href="profilo?referrer=${thispageurl?url}"><i class="fa fa-user"></i> Profilo</a>
-                <a href="aula?referrer=${thispageurl?url}"><i class="fa fa-building"></i> Aula</a>
-                <a href="evento?referrer=${thispageurl?url}"><i class="fa fa-calendar-alt"></i> Evento</a>
-                <a href="calendario?referrer=${thispageurl?url}"><i class="fa fa-calendar-check"></i> Calendario</a>
-                <a href="logout?referrer=${thispageurl?url}"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                <a href="profilo"><i class="fa fa-user"></i>Profilo</a>
+                <a href="aula"><i class="fa fa-building"></i>Aula</a>
+                <a href="evento"><i class="fa fa-calendar-alt"></i>Evento</a>
+                <a href="calendario"><i class="fa fa-calendar-check"></i>Calendario</a>
+                <a href="logout?referrer=${thispageurl?url}">logout</a>
             </div>
             <#else>
             <p class="not-logged-in">
-                <em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}"><i class="fa fa-sign-in-alt"></i> login</a>)
+                <em>Not logged in</em> (<a href="login?referrer=${thispageurl?url}"><i class="fa fa-sign-in-alt"></i>Login</a>)
             </p>
             </#if>
         </div>

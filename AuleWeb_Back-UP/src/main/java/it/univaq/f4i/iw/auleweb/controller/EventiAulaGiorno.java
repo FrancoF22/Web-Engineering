@@ -33,23 +33,37 @@ public class EventiAulaGiorno extends AuleWebBaseController {
             
             if(aula != null){
                 for(int i = 0; i < aula.size(); i++){
-                    //Aula a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(i);
                     Date giorno = new Date();
                     request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(aula.get(i).getKey(), giorno));
                     
                 }
-                res.activate("filtro_eventi_aula_giorno.ftl.html", request, response);
+                res.activate("aula_giorno.ftl.html", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
 
+    private void action_filtro(HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException, TemplateManagerException {
+        try{
+            TemplateResult res = new TemplateResult(getServletContext());
+            List<Aula> aule = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule();
+            request.setAttribute("aule",aule);
+            res.activate("aula_giorno.ftl.html", request, response);
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
+    
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        request.setAttribute("page_title", "Filtro Aula Giorno");
+        request.setAttribute("page_title", "Aule Giornalieri");
         try {
+            if(request.getParameter("k") != null) {
+                action_filtro(request,response);
+            }else{
             action_default(request, response);
+            }
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
         } catch (IOException ex) {
