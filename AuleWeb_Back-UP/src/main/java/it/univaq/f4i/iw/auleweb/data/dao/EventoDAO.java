@@ -47,6 +47,8 @@ public interface EventoDAO {
 
     void deleteEvento(Calendario calendario, boolean singolo) throws DataException;
     
+    void deleteEvento(int id_evento) throws DataException;
+    
     void storeEvento(Evento evento)throws DataException;
     
     void storeCalendario(Calendario calendario) throws DataException;

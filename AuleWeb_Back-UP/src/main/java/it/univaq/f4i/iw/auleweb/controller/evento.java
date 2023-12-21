@@ -102,22 +102,43 @@ public class evento extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
+    
+    private void action_remove(HttpServletRequest request, HttpServletResponse response, int id_evenyo) throws IOException, ServletException, TemplateManagerException {
+        try {
+            Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evenyo);
+            if (evento != null) {
+                evento.setCalendario(null);
+                evento.setCorso(null);
+                evento.setDescrizione(null);
+                evento.setNome(null);
+                evento.setProfessore(null);
+                evento.setTipo(null);
+               
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().deleteEvento(id_evenyo);    
+            } else {
+                handleError("Cannot remove aula: insufficient parameters", request, response);
+            }
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+        throws ServletException {
 
-        request.setAttribute("page_title", "Aggiungi/Modifica Evento");
-
+        request.setAttribute("page_title", "Aggiungi/Modifica Aula");
         int evento_key;
         try {
             if (request.getParameter("k") != null) {
                 evento_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
                 if (request.getParameter("update") != null) {
                     action_update(request, response, evento_key);
+                } else if (request.getParameter("remove") != null) {
+                    action_remove(request, response, evento_key);
                 } else {
                     action_write(request, response, evento_key);
-                }
+                } 
             } else {
                 action_default(request, response);
             }

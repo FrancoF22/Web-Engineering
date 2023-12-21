@@ -1,6 +1,6 @@
-<meta charset="UTF-8">
+
 <link rel="stylesheet" href="style/lista_calendario.css" type="text/css" />
-<h2>Calendario</h2>
+
 
 <form method="get" action="calendario">
     <div class="container">
@@ -32,48 +32,54 @@
                         </#if>
                         >${year?c}</option>
                     </#list> 
-                </select>
-            </div>
+                </select></div>
             <div class="two columns"><input type="submit" name="update" value="Update"/></div>
         </div>
 
-        <div class="four columns clabel">Orari</div>
+        <div class="four columns clabel">Orari
         <label for="nota">Inizio:</label>
-        <input type="text" name="oraInizio" value="${calendario.oraInizio?if_exists}"><br>
+        <input type="text" name="oraInizio" value="${calendario.oraInizio}">
 
         <label for="capienza">Fine:</label>
-        <input type="text" name="oraFine"  value="${calendario.oraFine?if_exists}"><br>
-    </div>
+        <input type="text" name="oraFine"  value="${calendario.oraFine}">
+        </div>
 
-    <#if (unused?size>0)>
-    <div class="row">
-        <div class="four columns clabel">Aggiungi aula</div>
-        <div class="ten columns"> <select name="aaula">
-                <#list unused as aula>
-                <option value="${aula.key}">${aula.nome}
-                    by ${aula.professore.nome} ${aula.professore.cognome}
-                </option>
-                </#list>            
-            </select>
-            <br/> </div>
-        <div class="two columns"><input type="submit" name="add" value="Add"/></div>
-    </div>
-    </#if>
+        <#if (unused?size>0)>
+        <div class="row">
+            <div class="four columns clabel">Aula & Attivita'</div>
+            <div class="ten columns"><select name="aaula">
+                    <#list unused as aula>
+                    <option value="${aula.key}">${aula.nome}
+                    </option>
+                    </#list>
+                </select>
+                <br/></div>
+            <#if (eventi?size>0)>
+            <div class="ten columns"> <select name="aevento">
+                    <#list eventi as e>
+                    <option value="${e.key}">${e.nome}
+                    </option>
+                    </#list>            
+                </select>
+                <br/></div>
+            </#if>
+            <div class="two columns"><input type="submit" name="add" value="Add"/></div>
+        </div>
+        </#if>
 
-    <#if (used?size>0)>
-    <div class="row">
-        <div class="four columns clabel">Rimuovi Aula</div>
-        <div class="ten columns"> <select name="raula">
-                <#list used as a>
-                <option value="${a.key}">${a.nome}
-                    by ${a.professore.nome} ${a.professore.cognome}
-                </option>
-                </#list>            
-            </select>
-            <br/> </div>
-        <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
-    </div>
-    </#if>
-
+        <#if (used?size>0)>
+        <div class="row">
+            <div class="four columns clabel">Rimuovi </div>
+            <div class="ten columns"> <select name="raula">
+                    <#list used as a>
+                    <option value="${a.key}">${a.nome}
+                    </option>
+                    </#list>            
+                </select>
+                <br/></div>
+            <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
+        </div>
+        </#if>
+        
 </div>
 </form>

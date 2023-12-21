@@ -24,12 +24,12 @@ public class EventiCorsoSettimana extends AuleWebBaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
-            List<Corso> corsi = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi();
+            List<Corso> corso = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getAllCorsi();
             
-            if(corsi != null){
-                for(int i = 0; i < corsi.size(); i++){
+            if(corso != null){
+                for(int i = 0; i < corso.size(); i++){
                     Date giorno = new Date();
-                    request.setAttribute("corsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorsoSettimana(corsi.get(i).getKey(), giorno));
+                    request.setAttribute("corsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiCorsoSettimana(corso.get(i).getKey(), giorno));
                     
                 }
                 res.activate("corso_settimana.ftl.html", request, response);

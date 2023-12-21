@@ -65,6 +65,7 @@ public class calendario extends AuleWebBaseController {
                     request.setAttribute("calendario", calendario);
                     request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
+                    request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                     res.activate("compose_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
@@ -78,8 +79,10 @@ public class calendario extends AuleWebBaseController {
                 request.setAttribute("inizio", LocalTime.parse(calendario.getOraInizio().toString(), formatter));
                 request.setAttribute("fine", LocalTime.parse(calendario.getOraFine().toString(), formatter));
                 request.setAttribute("calendario", calendario);
-                request.setAttribute("unused", Collections.EMPTY_LIST);
+                request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                 request.setAttribute("used", Collections.EMPTY_LIST);
+                //probabile fare quesry per eventi non usati
+                request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                 res.activate("compose_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
@@ -109,7 +112,8 @@ public class calendario extends AuleWebBaseController {
                 LocalTime oraI = LocalTime.parse(inizio);
                 LocalTime oraF = LocalTime.parse(fine);
                 calendario.setOraInizio(oraI);
-                calendario.setOraFine(oraF);((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
+                calendario.setOraFine(oraF);
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
                 //delega il resto del processo all'azione compose
                 action_default(request, response);
                 
@@ -123,23 +127,37 @@ public class calendario extends AuleWebBaseController {
 
     private void action_add_dipendenze(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
-            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
-
-            if (calendario != null && request.getParameter("aaula") != null && request.getParameter("aevento") != null) {
+            
+            Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
+            //passa il giorno attuale (probabilmente cambiare)
+            int day = Integer.parseInt(request.getParameter("day"));
+            int month = Integer.parseInt(request.getParameter("month"));
+            calendario.setGiorno(Calendar.getInstance().getTime());
+            String inizio = request.getParameter("oraInizio");
+            String fine = request.getParameter("oraFine");
+            LocalTime oraI = LocalTime.parse(inizio);
+            LocalTime oraF = LocalTime.parse(fine);
+            calendario.setOraInizio(oraI);
+            calendario.setOraFine(oraF);
+                
+            if (request.getParameter("aaula") != null && request.getParameter("aevento") != null) {
                 Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("aaula")));
                 Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(SecurityHelpers.checkNumeric(request.getParameter("aevento")));
                 if (aula != null && evento != null) {
                     aula.setCalendario(calendario);
                     evento.setCalendario(calendario);
+                    calendario.setAula(aula);
+                    calendario.setEvento(evento);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
-                    //delega il resto del processo all'azione compose
-                    action_compose(request, response, id_calendario);
+                    ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
+                    
+                    action_default(request, response);
                 } else {
                     handleError("Cannot add undefined aula e/o evento", request, response);
                 }
             } else {
-                handleError("Cannot add aula: insufficient parameters", request, response);
+                handleError("Cannot add dipendenze: insufficient parameters", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -155,7 +173,6 @@ public class calendario extends AuleWebBaseController {
                 if (aula != null && evento != null) {
                     if (aula.getCalendario().getKey() == calendario.getKey() &&
                         evento.getCalendario().getKey() == calendario.getKey()) {
-                        
                         aula.setCalendario(null);
                         evento.setCalendario(null);
                         //modificae in modo da avere storeAula

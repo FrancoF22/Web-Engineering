@@ -133,30 +133,57 @@ public class aula extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-
-    @Override
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
-
-        request.setAttribute("page_title", "Aggiungi/Modifica Aula");
-        int aula_key;
+    
+    private void action_remove(HttpServletRequest request, HttpServletResponse response, int id_aula) throws IOException, ServletException, TemplateManagerException {
         try {
-            if (request.getParameter("k") != null) {
-                aula_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
-                if (request.getParameter("update") != null) {
-                    action_update(request, response, aula_key);
-                } else {
-                    action_write(request, response, aula_key);
-                }
+            Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
+            if (aula != null) {
+                aula.setCalendario(null);
+                aula.setAttrezzature(null);
+                aula.setCapienza(null);
+                aula.setEdificio(null);
+                aula.setLuogo(null);
+                aula.setNome(null);
+                aula.setNota(null);
+                aula.setPiano(null);
+                aula.setPreseElettriche(null);
+                aula.setPreseRete(null);
+                aula.setProfessore(null);
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().deleteAula(id_aula);    
             } else {
-                action_default(request, response);
+                handleError("Cannot remove aula: insufficient parameters", request, response);
             }
-        } catch (NumberFormatException ex) {
-            handleError("Invalid number submitted", request, response);
-        } catch (IOException | TemplateManagerException ex) {
-            handleError(ex, request, response);
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
+
+
+@Override
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException {
+
+    request.setAttribute("page_title", "Aggiungi/Modifica Aula");
+    int aula_key;
+    try {
+        if (request.getParameter("k") != null) {
+            aula_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
+            if (request.getParameter("update") != null) {
+                action_update(request, response, aula_key);
+            } else if (request.getParameter("remove") != null) {
+                action_remove(request, response, aula_key);
+            } else {
+                action_write(request, response, aula_key);
+            } 
+        } else {
+            action_default(request, response);
+        }
+    } catch (NumberFormatException ex) {
+        handleError("Invalid number submitted", request, response);
+    } catch (IOException | TemplateManagerException ex) {
+        handleError(ex, request, response);
+    }
+}
 
     /**
      * Returns a short description of the servlet.
