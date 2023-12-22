@@ -543,11 +543,30 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     //serve per cancellare un evento
+    @Override 
     public void deleteEvento(int id_evento) throws DataException {
-        try {
-            dEvento.setInt(1, id_evento);
+    try {
+        // Elimina i record correlati da gruppo_aula
+        PreparedStatement deleteCorso = connection.prepareStatement("DELETE FROM corso WHERE id_evento=?");
+        deleteCorso.setInt(1, id_evento);
+        deleteCorso.executeUpdate();
+        deleteCorso.close(); // Chiudi il PreparedStatement
+        // Elimina i record correlati da gruppo_aula
+        PreparedStatement deleteProfessore = connection.prepareStatement("DELETE FROM professore WHERE id_evento=?");
+        deleteProfessore.setInt(1, id_evento);
+        deleteProfessore.executeUpdate();
+        deleteProfessore.close(); // Chiudi il PreparedStatement
+        // Elimina la riga dalla tabella 'evento'
+        PreparedStatement deleteEvento = connection.prepareStatement("DELETE FROM aula WHERE id=?");
+        deleteEvento.setInt(1, id_evento);
+        int rowsAffected = deleteEvento.executeUpdate(); // Esegui la query di eliminazione
+        deleteEvento.close();// Chiudi il PreparedStatement
+        
+        if (rowsAffected == 0) {
+            // Gestione nel caso in cui nessuna riga sia stata eliminata
+        }
         } catch (SQLException ex) {
-            throw new DataException("Unable to delete Event by ID", ex);
+            throw new DataException("Unable to delete Aula by ID", ex);
         }
     }
 

@@ -94,20 +94,16 @@ public class aula extends AuleWebBaseController {
                             // Rimuovi gli apici singoli e aggiungi il valore all'ArrayList
                             att.add(attrezzatura.replace("'", ""));
                         }
-                        
                         // Concatena gli elementi dell'ArrayList con virgole
                         aula.setAttrezzature(att);
-
                     }
                     String[] gruppiSelezionati = request.getParameterValues("gruppo[]");
                     ArrayList<Gruppo> gr = new ArrayList<>();
                     if (gruppiSelezionati != null) {
                         for (String gruppo_nome : gruppiSelezionati) {
                             gr.add(((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo(gruppo_nome));
-                            System.out.println("### " + gruppo_nome + " ###");
                         }
                     }
-
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     List<Gruppo> temp_g = ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().getGruppo_Aula(aula.getKey());
                     for (Gruppo g : gr) {
@@ -120,14 +116,12 @@ public class aula extends AuleWebBaseController {
                     for (Gruppo g: temp_g) {
                         ((AuleWebDataLayer) request.getAttribute("datalayer")).getGruppoDAO().deleteAulaFromGruppo(g.getKey(), aula.getKey());
                     }
-                    
                     action_default(request, response);
                 } else {
                     handleError("Cannot update aula: undefined professor", request, response);
                 }
             } else {
                 handleError("Cannot update aula: insufficient parameters", request, response);
-
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -137,19 +131,9 @@ public class aula extends AuleWebBaseController {
     private void action_remove(HttpServletRequest request, HttpServletResponse response, int id_aula) throws IOException, ServletException, TemplateManagerException {
         try {
             Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(id_aula);
-            if (aula != null) {
-                aula.setCalendario(null);
-                aula.setAttrezzature(null);
-                aula.setCapienza(null);
-                aula.setEdificio(null);
-                aula.setLuogo(null);
-                aula.setNome(null);
-                aula.setNota(null);
-                aula.setPiano(null);
-                aula.setPreseElettriche(null);
-                aula.setPreseRete(null);
-                aula.setProfessore(null);
-                ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().deleteAula(id_aula);    
+            if (aula != null ) {
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().deleteAula(id_aula);
+                action_default(request, response);
             } else {
                 handleError("Cannot remove aula: insufficient parameters", request, response);
             }

@@ -211,14 +211,28 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
         return result;
     }
 
-    @Override //serve a eliminare una data aula
+    @Override
     public void deleteAula(int id_aula) throws DataException {
-        try {
-            dAula.setInt(1, id_aula);
-        } catch (SQLException ex) {
-            throw new DataException("Unable to delete Aula by ID", ex);
+    try {
+        // Elimina i record correlati da gruppo_aula
+        PreparedStatement deleteGruppoAula = connection.prepareStatement("DELETE FROM gruppo_aula WHERE id_aula=?");
+        deleteGruppoAula.setInt(1, id_aula);
+        deleteGruppoAula.executeUpdate();
+        deleteGruppoAula.close(); // Chiudi il PreparedStatement
+
+        // Elimina la riga dalla tabella 'aula'
+        PreparedStatement deleteAula = connection.prepareStatement("DELETE FROM aula WHERE id=?");
+        deleteAula.setInt(1, id_aula);
+        int rowsAffected = deleteAula.executeUpdate(); // Esegui la query di eliminazione
+        deleteAula.close(); // Chiudi il PreparedStatement
+        
+        if (rowsAffected == 0) {
+            // Gestione nel caso in cui nessuna riga sia stata eliminata
         }
+    } catch (SQLException ex) {
+        throw new DataException("Unable to delete Aula by ID", ex);
     }
+}
 
     @Override //serve per ottenere una lista di attrezzature
     public List<String> getAllAttrezzature() throws DataException {

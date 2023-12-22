@@ -107,10 +107,24 @@ public class calendario extends AuleWebBaseController {
                         SecurityHelpers.checkNumeric(request.getParameter("month")) - 1,
                         SecurityHelpers.checkNumeric(request.getParameter("day")));
                 calendario.setGiorno(date.getTime());
+                /*
                 String inizio = request.getParameter("oraInizio");
                 String fine = request.getParameter("oraFine");
                 LocalTime oraI = LocalTime.parse(inizio);
                 LocalTime oraF = LocalTime.parse(fine);
+                calendario.setOraInizio(oraI);
+                calendario.setOraFine(oraF);
+                */
+                String inizioOra = request.getParameter("oraInizio");
+                String inizioMinuti = request.getParameter("minutiInizio");
+                String fineOra = request.getParameter("oraFine");
+                String fineMinuti = request.getParameter("minutiFine");
+                int oraInizio = Integer.parseInt(inizioOra);
+                int oraFine = Integer.parseInt(fineOra);
+                int minutiInizio = Integer.parseInt(inizioMinuti);
+                int minutiFine = Integer.parseInt(fineMinuti);
+                LocalTime oraI = LocalTime.of(oraInizio, minutiInizio);
+                LocalTime oraF = LocalTime.of(oraFine, minutiFine);
                 calendario.setOraInizio(oraI);
                 calendario.setOraFine(oraF);
                 ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
@@ -127,16 +141,26 @@ public class calendario extends AuleWebBaseController {
 
     private void action_add_dipendenze(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
-            
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
-            //passa il giorno attuale (probabilmente cambiare)
-            int day = Integer.parseInt(request.getParameter("day"));
-            int month = Integer.parseInt(request.getParameter("month"));
             calendario.setGiorno(Calendar.getInstance().getTime());
+            /*
             String inizio = request.getParameter("oraInizio");
             String fine = request.getParameter("oraFine");
             LocalTime oraI = LocalTime.parse(inizio);
             LocalTime oraF = LocalTime.parse(fine);
+            calendario.setOraInizio(oraI);
+            calendario.setOraFine(oraF);
+            */
+            String inizioOra = request.getParameter("oraInizio");
+            String inizioMinuti = request.getParameter("minutiInizio");
+            String fineOra = request.getParameter("oraFine");
+            String fineMinuti = request.getParameter("minutiFine");
+            int oraInizio = Integer.parseInt(inizioOra);
+            int oraFine = Integer.parseInt(fineOra);
+            int minutiInizio = Integer.parseInt(inizioMinuti);
+            int minutiFine = Integer.parseInt(fineMinuti);
+            LocalTime oraI = LocalTime.of(oraInizio, minutiInizio);
+            LocalTime oraF = LocalTime.of(oraFine, minutiFine);
             calendario.setOraInizio(oraI);
             calendario.setOraFine(oraF);
                 
@@ -151,7 +175,6 @@ public class calendario extends AuleWebBaseController {
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
                     ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
-                    
                     action_default(request, response);
                 } else {
                     handleError("Cannot add undefined aula e/o evento", request, response);
@@ -196,9 +219,7 @@ public class calendario extends AuleWebBaseController {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-
         request.setAttribute("page_title", "Aggiungi/Modifica Calendario");
-
         int id_calendario;
         try {
             if (request.getParameter("n") != null) {

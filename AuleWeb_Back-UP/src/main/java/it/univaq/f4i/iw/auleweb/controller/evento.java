@@ -103,20 +103,14 @@ public class evento extends AuleWebBaseController {
         }
     }
     
-    private void action_remove(HttpServletRequest request, HttpServletResponse response, int id_evenyo) throws IOException, ServletException, TemplateManagerException {
+    private void action_remove(HttpServletRequest request, HttpServletResponse response, int id_evento) throws IOException, ServletException, TemplateManagerException {
         try {
-            Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evenyo);
-            if (evento != null) {
-                evento.setCalendario(null);
-                evento.setCorso(null);
-                evento.setDescrizione(null);
-                evento.setNome(null);
-                evento.setProfessore(null);
-                evento.setTipo(null);
-               
-                ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().deleteEvento(id_evenyo);    
+            Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(id_evento);
+            if (evento != null ) {
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().deleteEvento(id_evento);
+                action_default(request, response);
             } else {
-                handleError("Cannot remove aula: insufficient parameters", request, response);
+                handleError("Cannot remove evento: insufficient parameters", request, response);
             }
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
