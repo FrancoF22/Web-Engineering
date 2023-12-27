@@ -29,7 +29,7 @@ public class Login extends AuleWebBaseController {
 //        //esempio di creazione utente
 //        //create user example
 //        try {
-//            User u = ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().createUser();
+//            Utente u = ((AuleWebDatalayer) request.getAttribute("datalayer")).getUtenteDAO().createUtente ();
 //            u.setUsername("a");
 //            u.setPassword(SecurityHelpers.getPasswordHashPBKDF2("p"));
 //            ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().storeUser(u);

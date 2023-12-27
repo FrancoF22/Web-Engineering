@@ -44,8 +44,6 @@ public interface EventoDAO {
     List<Calendario> getEventiCorsoSettimana(int id_corso, java.util.Date data) throws DataException;
     
     Calendario getCalendario(int evento_key, java.util.Date d) throws DataException;
-
-    void deleteEvento(Calendario calendario, boolean singolo) throws DataException;
     
     void deleteEvento(int id_evento) throws DataException;
     
