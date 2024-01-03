@@ -1,61 +1,40 @@
-/* Nuovo Stile CSS per il Footer */
+/* footer.css */
+
 .footer {
-    background-color: #002855; /* Colore di sfondo Blu scuro */
-    color: #ffffff; /* Colore del testo Bianco */
-    padding: 40px 20px; /* Padding ridotto per un look più snello */
-    text-align: center; /* Testo centrato per un aspetto uniforme */
+    background-color: #002855; /* Questo colore dovrebbe essere gestito da default.css, ripetuto qui per coerenza */
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
 }
 
 .footer .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly; /* Distribuzione uniforme dei contenuti */
-    max-width: 1200px; /* Larghezza massima per contenere il layout */
-    margin: auto; /* Centratura del contenuto */
+    justify-content: space-evenly;
 }
 
 .footer .footer-section {
     flex: 1;
-    min-width: 200px; /* Larghezza minima ridotta per una migliore adattabilità */
-    margin-bottom: 20px; /* Spazio tra le sezioni */
+    min-width: 200px;
 }
 
 .footer .footer-section h4 {
-    color: #FFD700; /* Giallo oro per i titoli per un maggiore impatto visivo */
-    margin-bottom: 15px; /* Margin ridotto */
+    color: #FFD700;
+    margin-bottom: 15px;
 }
 
 .footer .footer-links ul,
 .footer .footer-section p,
 .footer .footer-section a {
     list-style: none;
-    color: #ffffff; /* Mantenimento del testo bianco */
-    text-decoration: none;
-    line-height: 1.6; /* Maggiore leggibilità con spaziatura delle linee */
+    line-height: 1.6;
 }
 
-.footer .footer-links ul li a:hover,
-.footer .footer-section a:hover {
-    color: #007bff; /* Blu al passaggio del mouse per coerenza con il tema */
-}
-
-.social-icons a i {
-    color: #FFD700; /* Giallo oro per i titoli per un maggiore impatto visivo */
+.footer .social-icons a i {
+    color: #FFD700;
     margin-right: 10px;
 }
 
-.social-icons a i:hover {
-    color: #FFD700; /* Icone social giallo oro al passaggio del mouse */
-}
-
-/* Responsività migliorata per dispositivi mobili */
-@media (max-width: 768px) {
-    .footer .footer-content {
-        flex-direction: column;
-    }
-
-    .footer .footer-section {
-        margin-bottom: 20px;
-        min-width: auto; /* Adattabilità migliorata per schermi piccoli */
-    }
+.footer .issue-section p {
+    color: #FFD700;
 }
