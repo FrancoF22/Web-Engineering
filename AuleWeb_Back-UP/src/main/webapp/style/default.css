@@ -16,6 +16,12 @@ body {
     min-height: 100vh;
 }
 
+/* Stili per la sezione di contenuto principale */
+.fifteen.columns {
+    /* Imposta gli stili desiderati qui, che verranno applicati a tutte le dimensioni dello schermo */
+    padding: 15px; /* Ad esempio, potresti avere un padding di base qui */
+}
+
 /* Utilizzo di .container per centrare e contenere il layout */
 .container {
     display: flex;
@@ -56,14 +62,55 @@ body {
 
 /* Stili per dispositivi più piccoli */
 @media only screen and (max-width: 767px) {
-    #header {
-        font-size: 18pt;
-        padding: 20px 0;
-    }
-    #footer {
-        padding: 20px 10px;
-    }
     body, html {
-        font-size: 11pt;
+        font-size: 14pt; /* Incrementa la dimensione del font per migliorare la leggibilità */
     }
+
+    .container {
+        padding: 5px; /* Riduci il padding per usare più spazio per il contenuto */
+    }
+
+    #body, .fifteen.columns {
+        padding: 10px; /* Riduci il padding per il contenuto principale */
+        font-size: 16px; /* Aumenta la dimensione del font per i contenuti */
+    }
+    
+    /* Stili per il layout a griglia */
+    .row {
+        margin: 0; /* Rimuovi i margini per utilizzare tutto lo spazio disponibile */
+    }
+
+    .fifteen.columns {
+        /* Assicurati che le colonne si espandano per utilizzare lo spazio disponibile */
+        width: 100%;
+        max-width: none; /* Rimuovi eventuali limitazioni di larghezza massima */
+    }
+
+
+    /* Adatta i controlli del form per dispositivi mobili */
+    input, select, textarea {
+        font-size: 16px; /* Aumenta la dimensione del font per una facile interazione */
+        width: 100%; /* Utilizza la larghezza completa per massimizzare lo spazio disponibile */
+        /* Aggiungi altri stili per form se necessario */
+    }
+
+    /* Assicurati che tutti gli elementi di input e le label siano chiaramente visibili e facilmente interagibili */
+    .clabel {
+        font-size: 12pt; /* Aumenta la dimensione del font per gli elementi del form */
+        width: 100%; /* Sfrutta la larghezza completa per i campi del form */
+    }
+
+    select.small, input.small, select.medium, input.medium {
+        width: 100%; /* Permetti agli elementi del form di utilizzare la larghezza completa */
+    }
+
+    select.medium, input.medium {
+        width: auto; /* Permetti agli elementi di dimensione media di adattarsi al contenuto */
+    }
+
+    /* Riduci ulteriormente il padding del footer se necessario */
+    #footer {
+        padding: 20px 0; /* Rimuovi il padding laterale */
+    }
+
 }
