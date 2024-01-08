@@ -5,9 +5,9 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px; /* Spaziatura tra gli elementi */
-    max-width: 700px;
+    
     margin: 20px auto;
-    padding: 20px;
+    
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -121,8 +121,7 @@ input[type="submit"]:hover {
 /* Stili per la Responsività */
 @media screen and (max-width: 768px) {
     .grid-container {
-        width: 90%;
-        padding: 10px;
+        width: 100%;
     }
 
     .home-text {
