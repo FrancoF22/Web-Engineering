@@ -43,109 +43,121 @@
             </div>
         </div>
 
-        <div class="four columns clabel">Orari
-            <label for="oraInizio">Inizio:</label>
-            <select name="oraInizio" id="oraInizio">
-                <script>
-                    var select = document.getElementById("oraInizio");
+        <div class="row time-selects">Orari
+            <div class="columns">
+                <label for="oraInizio">Inizio:</label>
+                <select name="oraInizio" id="oraInizio">
+                    <script>
+                        var select = document.getElementById("oraInizio");
 
-                    for (var i = 0; i <= 23; i++) {
-                        var option = document.createElement("option");
-                        var hour = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
+                        for (var i = 0; i <= 23; i++) {
+                            var option = document.createElement("option");
+                            var hour = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
 
-                        option.value = i;
-                        option.text = hour;
+                            option.value = i;
+                            option.text = hour;
 
-                        select.appendChild(option);
-                    }
-                </script>
-            </select>
-
-            <label for="minutiInizio">Minuti:</label>
-            <select name="minutiInizio" id="minutiInizio">
-                <script>
-                    var selectMinuti = document.getElementById("minutiInizio");
-
-                    for (var i = 0; i <= 45; i += 15) {
-                        var optionMinuti = document.createElement("option");
-                        var minute = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
-
-                        optionMinuti.value = i;
-                        optionMinuti.text = minute;
-
-                        selectMinuti.appendChild(optionMinuti);
-                    }
-                </script></select>
-
-            <label for="oraFine">Fine:</label>
-            <select name="oraFine" id="oraFine">
-                <script>
-                    var select = document.getElementById("oraFine");
-
-                    for (var i = 0; i <= 23; i++) {
-                        var option = document.createElement("option");
-                        var hour = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
-
-                        option.value = i;
-                        option.text = hour;
-
-                        select.appendChild(option);
-                    }
-                </script>
-            </select>
-
-            <label for="minutiFine">Minuti:</label>
-            <select name="minutiFine" id="minutiFine">
-                <script>
-                    var selectMinuti = document.getElementById("minutiFine");
-
-                    for (var i = 0; i <= 45; i += 15) {
-                        var optionMinuti = document.createElement("option");
-                        var minute = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
-
-                        optionMinuti.value = i;
-                        optionMinuti.text = minute;
-
-                        selectMinuti.appendChild(optionMinuti);
-                    }
-                </script></select></div>
-
-        <#if (unused?size>0)>
-        <div class="row">
-            <div class="four columns clabel">Aula & Attivita'</div>
-            <div class="ten columns"><select name="aaula">
-                    <#list unused as aula>
-                    <option value="${aula.key}">${aula.nome}
-                    </option>
-                    </#list>
+                            select.appendChild(option);
+                        }
+                    </script>
                 </select>
-                <br/></div>
-            <#if (eventi?size>0)>
-            <div class="ten columns"> <select name="aevento">
-                    <#list eventi as e>
-                    <option value="${e.key}">${e.nome}
-                    </option>
-                    </#list>            
+            </div>
+
+            <div class="columns">
+                <label for="minutiInizio">Minuti:</label>
+                <select name="minutiInizio" id="minutiInizio">
+                    <script>
+                        var selectMinuti = document.getElementById("minutiInizio");
+
+                        for (var i = 0; i <= 45; i += 15) {
+                            var optionMinuti = document.createElement("option");
+                            var minute = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
+
+                            optionMinuti.value = i;
+                            optionMinuti.text = minute;
+
+                            selectMinuti.appendChild(optionMinuti);
+                        }
+                    </script>
                 </select>
-                <br/></div>
+            </div>
+
+            <div class="columns">
+                <label for="oraFine">Fine:</label>
+                <select name="oraFine" id="oraFine">
+                    <script>
+                        var select = document.getElementById("oraFine");
+
+                        for (var i = 0; i <= 23; i++) {
+                            var option = document.createElement("option");
+                            var hour = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
+
+                            option.value = i;
+                            option.text = hour;
+
+                            select.appendChild(option);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <div class="columns">
+                <label for="minutiFine">Minuti:</label>
+                <select name="minutiFine" id="minutiFine">
+                    <script>
+                        var selectMinuti = document.getElementById("minutiFine");
+
+                        for (var i = 0; i <= 45; i += 15) {
+                            var optionMinuti = document.createElement("option");
+                            var minute = ("0" + i).slice(-2); // Aggiunge lo zero iniziale se necessario
+
+                            optionMinuti.value = i;
+                            optionMinuti.text = minute;
+
+                            selectMinuti.appendChild(optionMinuti);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <#if (unused?size>0)>
+            <div class="row">
+                <div class="four columns clabel">Aula & Attivita'</div>
+                <div class="ten columns"><select name="aaula">
+                        <#list unused as aula>
+                        <option value="${aula.key}">${aula.nome}
+                        </option>
+                        </#list>
+                    </select>
+                    <br/></div>
+                <#if (eventi?size>0)>
+                <div class="ten columns"> <select name="aevento">
+                        <#list eventi as e>
+                        <option value="${e.key}">${e.nome}
+                        </option>
+                        </#list>            
+                    </select>
+                    <br/></div>
+                </#if>
+                <div class="columns">
+                    <input type="submit" name="add" value="Add"/>
+                </div>
+            </div>
             </#if>
-            <div class="two columns"><input type="submit" name="add" value="Add"/></div>
-        </div>
-        </#if>
-        <!-- comment 
-        <#if (used?size>0)>
-        <div class="row">
-            <div class="four columns clabel">Rimuovi </div>
-            <div class="ten columns"> <select name="raula">
-                    <#list used as a>
-                    <option value="${a.key}">${a.nome}
-                    </option>
-                    </#list>            
-                </select>
-                <br/></div>
-            <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
-        </div>
-        </#if>-->
+            <!-- comment 
+            <#if (used?size>0)>
+            <div class="row">
+                <div class="four columns clabel">Rimuovi </div>
+                <div class="ten columns"> <select name="raula">
+                        <#list used as a>
+                        <option value="${a.key}">${a.nome}
+                        </option>
+                        </#list>            
+                    </select>
+                    <br/></div>
+                <div class="two columns"><input type="submit" name="remove" value="Remove"/></div>
+            </div>
+            </#if>-->
 
-    </div>
+        </div>
 </form>
