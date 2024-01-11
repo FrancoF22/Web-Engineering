@@ -547,14 +547,9 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     public void deleteEvento(int id_evento) throws DataException {
     try {
         // Elimina la riga dalla tabella 'evento'
-        PreparedStatement deleteEvento = connection.prepareStatement("DELETE FROM evento WHERE id=?");
-        deleteEvento.setInt(1, id_evento);
-        int rowsAffected = deleteEvento.executeUpdate(); // Esegui la query di eliminazione
-        deleteEvento.close();// Chiudi il PreparedStatement
+        dEvento.setInt(1, id_evento);
+        dEvento.executeQuery();
         
-        if (rowsAffected == 0) {
-            // Gestione nel caso in cui nessuna riga sia stata eliminata
-        }
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Evento by ID", ex);
         }
@@ -564,6 +559,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     public void deleteCalendario(int id_calendario) throws DataException {
         try {
             dCalendario.setInt(1, id_calendario);
+            dCalendario.executeQuery();
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Event by ID", ex);
         }
