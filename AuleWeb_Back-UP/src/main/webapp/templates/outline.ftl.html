@@ -9,18 +9,17 @@
         <link rel="stylesheet" href="style/grid.css" type="text/css"/>
         <link rel="stylesheet" href="style/header.css" type="text/css"/> 
         <link rel="stylesheet" href="style/footer.css" type="text/css"/> 
-        
+        <#include "outline_header.ftl.html">
     </head>
     <body>
-        <div class="container">
-            <#include "outline_header.ftl.html">
+        <div class="content">
+            
             <div class="row" id="body">
-
-                <div class="fifteen columns" >
+                
                     <#include content_tpl>
-                </div>
+                
             </div>
-            <#include "outline_footer.ftl.html">
         </div>
-    </body>
+        
+    </body><#include "outline_footer.ftl.html">
 </html>
