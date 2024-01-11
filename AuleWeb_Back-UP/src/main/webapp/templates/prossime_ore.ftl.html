@@ -7,24 +7,19 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Luogo</th>
-                    <th>Edificio</th>
-                    <th>Piano</th>
-                    <th>Capienza</th>
-                    <th>Professore</th>
-                    <th>Attrezzature</th>
+                    <th>Aula</th>
+                    <th>Ora Inizio</th>
+                    <th>Ora Fine</th>
                 </tr>
             </thead>
             <tbody>
-                <#if (eventi?size>0)>
-                <#list eventi as aula>
+                <#if (ListaEventi?size>0)>
+                <#list ListaEventi as cal>
                 <tr>
-                    <td>${aula.nome}</td>
-                    <td>${aula.luogo}</td>
-                    <td>${aula.edificio}</td>
-                    <td>${aula.piano}</td>
-                    <td>${aula.capienza}</td>
-                    <td><#if aula.professore??>${aula.professore.nome} ${aula.professore.cognome}</#if></td>
+                    <td>${cal.evento.nome}</td>
+                    <td>${cal.aula.nome}</td>
+                    <td>${cal.oraInizio}</td>
+                    <td>${cal.oraFine}</td>
                 </tr>
                 </#list>
                 </#if>

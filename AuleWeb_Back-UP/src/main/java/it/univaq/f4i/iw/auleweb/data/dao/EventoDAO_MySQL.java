@@ -42,7 +42,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             //ricerca dell'evento per id, nome e ricerca del giorno del calendario
             sEventoById = connection.prepareStatement("SELECT * FROM evento WHERE id=?");
             sEventoByNome = connection.prepareStatement("SELECT id FROM evento WHERE nome=?");
-            sCalendarioById = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id=");
+            sCalendarioById = connection.prepareStatement("SELECT calendario.* FROM calendario WHERE id=?");
 
             //questa sotto non è richiesta
             sEventoByGiornoOra = connection.prepareStatement("SELECT evento.id FROM evento JOIN calendario as c where c.giorno = ? AND c.ora_inizio = ? AND c.id_aula = ?");
@@ -55,7 +55,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             //ricerca di tutti gli eventi
             sAllEventi = connection.prepareStatement("SELECT * FROM evento");
             //ricerca di tutti gli eventi nelle prossime 3 ore
-            sEventiProssimeOre = connection.prepareStatement("SELECT e.* FROM evento AS e JOIN calendario AS c ON c.id_evento=e.id JOIN gruppo_aula AS ga ON ga.id_aula= c.id_aula WHERE CONCAT(c.giorno, ' ', c.ora_inizio) <= NOW() + INTERVAL 3 HOUR AND CONCAT(c.giorno, ' ', c.ora_fine) >= NOW() AND ga.id_gruppo=?;");
+            sEventiProssimeOre = connection.prepareStatement("SELECT c.* FROM calendario AS c JOIN gruppo_aula AS ga ON ga.id_aula= c.id_aula WHERE CONCAT(c.giorno, ' ', c.ora_inizio) <= NOW() + INTERVAL 3 HOUR AND CONCAT(c.giorno, ' ', c.ora_fine) >= NOW() AND ga.id_gruppo=?");
 
             //ricerca di tutti gli eventi di un'aula data una mese/settimana/un giorno; ricerca di tutti gli eventi da svolgere in una data aula
             sEventiAulaMese = connection.prepareStatement("SELECT c.* FROM calendario AS c WHERE c.id_aula=? AND MONTH(c.giorno) = MONTH(?)");
@@ -208,7 +208,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override
-    public List<Evento> getEventoGiornoOra(java.util.Date g, java.time.LocalTime  t, int aula_key) throws DataException {
+    public List<Evento> getEventoGiornoOra(java.util.Date g, java.time.LocalTime t, int aula_key) throws DataException {
         List<Evento> result = new ArrayList();
         try {
             sEventoByGiornoOra.setDate(1, new java.sql.Date(g.getTime()));
@@ -226,13 +226,13 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     //permette di ottenere l'evento singolo nel calendario
-    public Calendario getCalendarioById(int key) throws DataException {
+    public Calendario getCalendarioById(int calendar_id) throws DataException {
         Calendario c = null;
-        if (dataLayer.getCache().has(Calendario.class, key)) {
-            c = dataLayer.getCache().get(Calendario.class, key);
+        if (dataLayer.getCache().has(Calendario.class, calendar_id)) {
+            c = dataLayer.getCache().get(Calendario.class, calendar_id);
         } else {
             try {
-                sCalendarioById.setInt(1, key);
+                sCalendarioById.setInt(1, calendar_id);
                 try (ResultSet rs = sCalendarioById.executeQuery()) {
                     if (rs.next()) {
                         c = createCalendario(rs);
@@ -241,7 +241,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
                     }
                 }
             } catch (SQLException ex) {
-                throw new DataException("Unable to load event", ex);
+                throw new DataException("Unable to load calendar", ex);
             }
         }
         return c;
@@ -373,18 +373,21 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     @Override //serve per ottenere tutti gli eventi
-    public List<Evento> getAllProssimiEventi(int id_gruppo) throws DataException {
-        List<Evento> result = new ArrayList();
+    public List<Calendario> getAllProssimiEventi(int id_dipartimento) throws DataException {
+        List<Calendario> result = new ArrayList();
         try {
-            sEventiProssimeOre.setInt(1, id_gruppo);
+            
+            sEventiProssimeOre.setInt(1, id_dipartimento);
+           
             try (ResultSet rs = sEventiProssimeOre.executeQuery()) {
                 while (rs.next()) {
-                    result.add(getEvento(rs.getInt("id")));
+                    result.add(getCalendarioById(rs.getInt("id")));
                 }
             }
         } catch (SQLException ex) {
-            throw new DataException("Unable to load Eventi of next hours", ex);
+            throw new DataException("Impossibile caricare gli eventi delle prossime ore", ex);
         }
+
         return result;
     }
 
@@ -543,13 +546,13 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     }
 
     //serve per cancellare un evento
-    @Override 
+    @Override
     public void deleteEvento(int id_evento) throws DataException {
-    try {
-        // Elimina la riga dalla tabella 'evento'
-        dEvento.setInt(1, id_evento);
-        dEvento.executeQuery();
-        
+        try {
+            // Elimina la riga dalla tabella 'evento'
+            dEvento.setInt(1, id_evento);
+            dEvento.executeQuery();
+
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Evento by ID", ex);
         }
@@ -564,7 +567,5 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
             throw new DataException("Unable to delete Event by ID", ex);
         }
     }
-
-
 
 }
