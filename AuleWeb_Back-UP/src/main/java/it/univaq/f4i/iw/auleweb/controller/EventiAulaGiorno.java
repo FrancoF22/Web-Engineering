@@ -10,8 +10,12 @@ import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
+import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,41 +30,48 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class EventiAulaGiorno extends AuleWebBaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
-    try {
-        TemplateResult res = new TemplateResult(getServletContext());
-        List<Aula> aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule();
-        
-        if (aula != null) {
-            Date giorno = new Date();
-            
-            if (request.getParameter("k") != null) {
-                int idAula = Integer.parseInt(request.getParameter("k"));
-                List<Calendario> eventiAula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(idAula, giorno);
-                request.setAttribute("aule", eventiAula);
-            } else {
-                List<List<Calendario>> eventiAule = new ArrayList<>();
-                
-                for (Aula aulaItem : aula) {
-                    List<Calendario> eventiAula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(aulaItem.getKey(), giorno);
-                    eventiAule.add(eventiAula);
-                }
-                
-                request.setAttribute("aule", eventiAule);
-            }
-            
-            res.activate("aula_giorno.ftl.html", request, response);
-        }
-    } catch (DataException ex) {
-        handleError("Data access exception: " + ex.getMessage(), request, response);
+    private void action_prev(HttpServletRequest request, HttpServletResponse response, int aula_key, LocalDate g) throws IOException, ServletException, TemplateManagerException {
+        g = g.minus(1, ChronoUnit.DAYS);
+        action_filtro(request, response, aula_key, g);
     }
-}
+
+    private void action_next(HttpServletRequest request, HttpServletResponse response, int aula_key, LocalDate g) throws IOException, ServletException, TemplateManagerException {
+        g = g.plus(1, ChronoUnit.DAYS);
+        action_filtro(request, response, aula_key, g);
+    }
+
+    private void action_filtro(HttpServletRequest request, HttpServletResponse response, int aula_key, LocalDate g) throws IOException, ServletException, TemplateManagerException {
+        try {
+            TemplateResult res = new TemplateResult(getServletContext());
+
+            ZoneId defaultZoneId = ZoneId.systemDefault();
+            List<Calendario> calendari = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(aula_key, Date.from(g.atStartOfDay(defaultZoneId).toInstant()));
+            request.setAttribute("eventi", calendari);
+            request.setAttribute("Day", g);
+            res.activate("aula_giorno.ftl.html", request, response);
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
+
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        request.setAttribute("page_title", "Aule Giornalieri");
+        request.setAttribute("page_title", "Eventi Giornalieri");
+        int id_aula;
+        LocalDate day = LocalDate.now();
         try {
-            action_default(request, response);
+            id_aula = SecurityHelpers.checkNumeric(request.getParameter("i"));
+            if (request.getParameter("next_day") != null) {
+                //day = request.getParameter("d");
+                System.out.println(request.getParameter("d"));
+                action_next(request, response, id_aula, day);
+            }
+            else if (request.getParameter("previous_day") != null) {
+                action_prev(request, response, id_aula, day);
+            }
+            action_filtro(request, response, id_aula, day);
+
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
         } catch (IOException ex) {

@@ -1,7 +1,7 @@
 <link href="style/lista_aule.css" rel="stylesheet" />
 
 <div class="container">
-    <h1 class="page-title">Gestisci aule</h1>
+    <h2 class="page-title">Aule Sistema</h2>
     <div class="table-controls">
         <a href="home" class="my-button">Indietro</a>
         <a href="aula?k=0" class="my-button">Aggiungi Aula</a>
@@ -42,6 +42,7 @@
                 </td>
                 <td>
                    <a href="aula?k=${aula.key}" class="my-button"><i class="fa fa-edit"></i></a>
+                   <button class="my-button" onclick="removeAula('${aula.key}')"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
             </#list>
@@ -89,5 +90,14 @@
 
         // Rimuovi l'elemento "a" nascosto
         document.body.removeChild(a);
+    }
+    
+    function removeAula(key) {
+        
+        var confirmRemove = confirm("Rimuove l'aula?");
+        
+        if (confirmRemove) {
+            window.location.href = "aula?k=" + key + "&remove=true";
+        }
     }
 </script>

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class calendario extends AuleWebBaseController {
 
-    //creiamo e inizializziamo gli array statici per i campi data
+    //creiamo e inizializziamo gli array statici per i campi selectedDate
     private static final List<Integer> days;
     private static final List<Integer> months;
     private static final List<Integer> years;
@@ -63,8 +63,9 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
-                    request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                    request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
+                    //request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
+                    //request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
+                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
                     request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                     res.activate("compose_calendario.ftl.html", request, response);
                 } else {
@@ -75,13 +76,21 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
                 //passa il giorno attuale (probabilmente cambiare)
                 calendario.setGiorno(Calendar.getInstance().getTime());
+                /*
+                int day = Integer.parseInt(request.getParameter("day"));
+                int month = Integer.parseInt(request.getParameter("month"));
+                int year = Integer.parseInt(request.getParameter("year"));
+                LocalDate selectedDate = LocalDate.of(year, month, day);
+                calendario.setGiorno(Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                */
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
                 request.setAttribute("inizio", LocalTime.parse(calendario.getOraInizio().toString(), formatter));
                 request.setAttribute("fine", LocalTime.parse(calendario.getOraFine().toString(), formatter));
                 request.setAttribute("calendario", calendario);
-                request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                request.setAttribute("used", Collections.EMPTY_LIST);
+                //request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
+                //request.setAttribute("used", Collections.EMPTY_LIST);
                 //probabile fare quesry per eventi non usati
+                request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
                 request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                 res.activate("compose_calendario.ftl.html", request, response);
             }
@@ -107,13 +116,17 @@ public class calendario extends AuleWebBaseController {
                         SecurityHelpers.checkNumeric(request.getParameter("month")) - 1,
                         SecurityHelpers.checkNumeric(request.getParameter("day")));
                 calendario.setGiorno(date.getTime());
-                /*
-                String inizio = request.getParameter("oraInizio");
+               /* String inizio = request.getParameter("oraInizio");
                 String fine = request.getParameter("oraFine");
                 LocalTime oraI = LocalTime.parse(inizio);
                 LocalTime oraF = LocalTime.parse(fine);
                 calendario.setOraInizio(oraI);
                 calendario.setOraFine(oraF);
+                int day = Integer.parseInt(request.getParameter("day"));
+                int month = Integer.parseInt(request.getParameter("month"));
+                int year = Integer.parseInt(request.getParameter("year"));
+                LocalDate selectedDate = LocalDate.of(year, month, day);
+                calendario.setGiorno(Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 */
                 String inizioOra = request.getParameter("oraInizio");
                 String inizioMinuti = request.getParameter("minutiInizio");
@@ -187,26 +200,12 @@ public class calendario extends AuleWebBaseController {
         }
     }
 
-    private void action_remove_dipendenze(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
+    private void action_remove(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
-            if (calendario != null && request.getParameter("raula") != null) {
-                Aula aula = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("raula")));
-                Evento evento = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(SecurityHelpers.checkNumeric(request.getParameter("revento")));
-                if (aula != null && evento != null) {
-                    if (aula.getCalendario().getKey() == calendario.getKey() &&
-                        evento.getCalendario().getKey() == calendario.getKey()) {
-                        aula.setCalendario(null);
-                        evento.setCalendario(null);
-                        //modificae in modo da avere storeAula
-                        ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().storeAula(aula);
-                        ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().storeEvento(evento);
-                    }
-                    //delega il resto del processo all'azione di default
-                    action_compose(request, response, id_calendario);
-                } else {
-                    handleError("Cannot remove undefined aula e/o evento", request, response);
-                }
+            if (calendario != null) {
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().deleteCalendario(id_calendario);
+                action_default(request, response);
             } else {
                 handleError("Cannot remove aula: insufficient parameters", request, response);
             }
@@ -214,6 +213,7 @@ public class calendario extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
+
 
     //modificare in modo che lavori per la pagina Calendario
     @Override
@@ -227,7 +227,7 @@ public class calendario extends AuleWebBaseController {
                 if (request.getParameter("add") != null) {
                     action_add_dipendenze(request, response, id_calendario);
                  } else if (request.getParameter("remove") != null) {
-                    action_remove_dipendenze(request, response, id_calendario);
+                    action_remove(request, response, id_calendario);
                  } else if (request.getParameter("update") != null) {
                     action_set_properties(request, response, id_calendario);
                 } else {

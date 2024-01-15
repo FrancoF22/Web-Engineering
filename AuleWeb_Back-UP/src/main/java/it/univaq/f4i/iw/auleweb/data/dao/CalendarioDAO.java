@@ -39,4 +39,6 @@ public interface CalendarioDAO {
     
     void storeCalendario(Calendario calendario) throws DataException;
     
+    void deleteCalendario(int id) throws DataException;
+    
 }

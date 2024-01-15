@@ -265,4 +265,16 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
     public List<Calendario> getEventiAulaGiorno(int id_aula, java.util.Date d) throws DataException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void deleteCalendario(int id) throws DataException {
+        try {
+            // Elimina la riga dalla tabella 'evento'
+            dCalendario.setInt(1, id);
+            dCalendario.executeQuery();
+
+        } catch (SQLException ex) {
+            throw new DataException("Unable to delete Evento by ID", ex);
+        }
+    }
 }

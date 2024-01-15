@@ -5,8 +5,14 @@
     <div class="home-home">
         <input type="hidden" name="i" value="${i!0}"/>
         <input type="hidden" name="d" value="${Day!0}"/>
-        <div class="row"><input type="submit" name="previous_week" value="Settimana Precedente"/></div>
-        <div class="row"><input type="submit" name="next_week" value="Settimana Successiva"/></div>
+        <div class="row"><form action="eventiAulaSettimana" method="GET">
+    <input type="hidden" name="previous_week" value="true">
+    <button type="submit">Settimana precedente</button>
+    </form></div>
+            <div class="row"><form action="eventiAulaSettimana" method="GET">
+        <input type="hidden" name="next_week" value="true">
+        <button type="submit">Settimana successiva</button>
+    </form></div>
         <table class="custom-table">
             <thead>
                 <tr>

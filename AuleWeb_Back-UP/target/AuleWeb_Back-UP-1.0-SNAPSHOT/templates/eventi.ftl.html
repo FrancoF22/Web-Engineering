@@ -1,5 +1,4 @@
 <meta charset="UTF-8">
-<title>Eventi Disponibili</title>
 <link rel="stylesheet" href="style/lista_eventi.css" type="text/css" />
 
 <h2>Elenco Eventi</h2>
@@ -11,18 +10,28 @@
         <#list eventi as evento>
         <li class="evento-item"> <!-- Aggiunta la classe per ogni elemento evento -->
             <div class="evento-nome">${strip_slashes(evento.nome)}</div>
-            <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
             <div class="evento-descrizione"><i>${evento.descrizione}</i></div>
             <div class="evento-tipo"><i>Tipologia: ${evento.tipo}</i></div>
             <#if evento.corso??>
             <div><i>Evento Corso: ${evento.corso.nome}</i></div>
             </#if>
             <div><i>Professore: ${evento.professore.nome} ${evento.professore.cognome}</i></div>
-
+            
+            <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
+            <button class="my-button" onclick="removeEvento('${evento.key}')"><i class="fa fa-trash"></i></button>
         </li>
         </#list>
     </ul>
     </#if>
-    
 </div>
 
+<script>
+    function removeEvento(key) {
+        
+        var confirmRemove = confirm("Rimuove l'evento?");
+        
+        if (confirmRemove) {
+            window.location.href = "evento?k=" + key + "&remove=true";
+        }
+    }
+</script>    

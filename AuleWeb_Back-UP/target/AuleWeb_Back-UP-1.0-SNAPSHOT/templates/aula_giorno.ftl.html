@@ -1,41 +1,25 @@
 <link rel="stylesheet" href="style/filtri.css" type="text/css" />
 
-<div class="home-container">
-    <div class="home-home">
-        <table class="custom-table">
+<div class="home-container">    
+    <table class="custom-table">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Luogo</th>
-                    <th>Edificio</th>
-                    <th>Piano</th>
-                    <th>Capienza</th>
-                    <th>Professore</th>
-                    <th>Attrezzature</th>
+                    <th>Giorno</th>
+                    <th>Ora Inizio</th>
+                    <th>Ora Fine</th>
                 </tr>
             </thead>
             <tbody>
-                <#if (aule?size > 0)>
-                    <#list aule as aula>
-                        <tr>
-                            <td>${aula.nome}</td>
-                            <td>${aula.luogo}</td>
-                            <td>${aula.edificio}</td>
-                            <td>${aula.piano}</td>
-                            <td>${aula.capienza}</td>
-                            <td>
-                                <#if aula.professore??>
-                                    ${aula.professore.nome} ${aula.professore.cognome}
-                                <#else>
-                                    Nessun professore assegnato
-                                </#if>
-                            </td>
-                        </tr>
-                    </#list>
-                <#else>
-                    <tr>
-                        <td colspan="7">Nessun Aula occupata trovato</td>
-                    </tr>
+                <#if (eventi?size>0)>
+                <#list eventi as e>
+                <tr>
+                    <td>${e.evento.nome}</td>
+                    <td>${e.giorno}</td>
+                    <td>${e.oraInizio}</td>
+                    <td>${e.oraFine}</td>
+                </tr>
+                </#list>
                 </#if>
             </tbody>            
         </table>
