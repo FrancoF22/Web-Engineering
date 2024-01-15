@@ -551,7 +551,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
         try {
             // Elimina la riga dalla tabella 'evento'
             dEvento.setInt(1, id_evento);
-            dEvento.executeQuery();
+            dEvento.executeUpdate();
 
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Evento by ID", ex);

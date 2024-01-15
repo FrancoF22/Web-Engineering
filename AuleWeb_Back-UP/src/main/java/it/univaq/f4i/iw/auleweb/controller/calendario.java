@@ -58,15 +58,15 @@ public class calendario extends AuleWebBaseController {
             request.setAttribute("days", days);
             request.setAttribute("months", months);
             request.setAttribute("years", years);
-            
+            request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
+            request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
+                    
             if (id_calendario > 0) {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
                     //request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                     //request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
-                    request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
-                    request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                     res.activate("compose_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
@@ -90,8 +90,6 @@ public class calendario extends AuleWebBaseController {
                 //request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
                 //request.setAttribute("used", Collections.EMPTY_LIST);
                 //probabile fare quesry per eventi non usati
-                request.setAttribute("aule", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAllAule());
-                request.setAttribute("eventi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getAllEventi());
                 res.activate("compose_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {

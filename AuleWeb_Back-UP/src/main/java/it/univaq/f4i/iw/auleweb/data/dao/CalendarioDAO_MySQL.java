@@ -42,8 +42,8 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
             sAllCalendari = connection.prepareStatement("SELECT id FROM calendario");
             
             iCalendario = connection.prepareStatement("INSERT INTO Calendario (id_aula,id_evento,giorno,ora_inizio,ora_fine) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uCalendario = connection.prepareStatement("UPDATE Calendario SET id_aula=?,id_evento=?,giorno=?,ora_inizio=?,ora_fine=? WHERE ID=?");
-            dCalendario = connection.prepareStatement("DELETE FROM Calendario WHERE id=?");
+            uCalendario = connection.prepareStatement("UPDATE calendario SET id_aula=?,id_evento=?,giorno=?,ora_inizio=?,ora_fine=? WHERE ID=?");
+            dCalendario = connection.prepareStatement("DELETE FROM calendario WHERE id=?");
             
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
@@ -271,10 +271,10 @@ public class CalendarioDAO_MySQL extends DAO implements CalendarioDAO {
         try {
             // Elimina la riga dalla tabella 'evento'
             dCalendario.setInt(1, id);
-            dCalendario.executeQuery();
+            dCalendario.executeUpdate();
 
         } catch (SQLException ex) {
-            throw new DataException("Unable to delete Evento by ID", ex);
+            throw new DataException("Unable to delete Calendar by ID", ex);
         }
     }
 }
