@@ -119,13 +119,13 @@ public class calendario extends AuleWebBaseController {
                 LocalTime oraI = LocalTime.parse(inizio);
                 LocalTime oraF = LocalTime.parse(fine);
                 calendario.setOraInizio(oraI);
-                calendario.setOraFine(oraF);
+                calendario.setOraFine(oraF); */
                 int day = Integer.parseInt(request.getParameter("day"));
                 int month = Integer.parseInt(request.getParameter("month"));
                 int year = Integer.parseInt(request.getParameter("year"));
                 LocalDate selectedDate = LocalDate.of(year, month, day);
                 calendario.setGiorno(Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                */
+                System.out.println(selectedDate);
                 String inizioOra = request.getParameter("oraInizio");
                 String inizioMinuti = request.getParameter("minutiInizio");
                 String fineOra = request.getParameter("oraFine");
@@ -153,8 +153,7 @@ public class calendario extends AuleWebBaseController {
     private void action_add_dipendenze(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
-            calendario.setGiorno(Calendar.getInstance().getTime());
-            /*
+            /*calendario.setGiorno(Calendar.getInstance().getTime());
             String inizio = request.getParameter("oraInizio");
             String fine = request.getParameter("oraFine");
             LocalTime oraI = LocalTime.parse(inizio);
@@ -162,6 +161,11 @@ public class calendario extends AuleWebBaseController {
             calendario.setOraInizio(oraI);
             calendario.setOraFine(oraF);
             */
+            int day = Integer.parseInt(request.getParameter("day"));
+            int month = Integer.parseInt(request.getParameter("month"));
+            int year = Integer.parseInt(request.getParameter("year"));
+            LocalDate selectedDate = LocalDate.of(year, month, day);
+            calendario.setGiorno(Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
             String inizioOra = request.getParameter("oraInizio");
             String inizioMinuti = request.getParameter("minutiInizio");
             String fineOra = request.getParameter("oraFine");

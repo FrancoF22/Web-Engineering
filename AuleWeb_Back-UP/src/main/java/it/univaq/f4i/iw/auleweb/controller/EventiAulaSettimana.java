@@ -43,7 +43,8 @@ public class EventiAulaSettimana extends AuleWebBaseController {
             TemplateResult res = new TemplateResult(getServletContext());
             
             ZoneId defaultZoneId = ZoneId.systemDefault();
-            List<Calendario> calendari = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaSettimana(aula_key, Date.from(g.atStartOfDay(defaultZoneId).toInstant()));
+            List<Calendario> calendari = ((AuleWebDataLayer)
+            request.getAttribute("datalayer")).getEventoDAO().getEventiAulaSettimana(aula_key, Date.from(g.atStartOfDay(defaultZoneId).toInstant()));
             request.setAttribute("ListaEventi", calendari);
             request.setAttribute("Day", g);
             res.activate("aula_settimana.ftl.html", request, response);
@@ -66,9 +67,9 @@ public class EventiAulaSettimana extends AuleWebBaseController {
             }
             else if (request.getParameter("previous_week") != null) {
                 action_prev(request, response, id_aula, day);
-            }
+            }else{
             action_filtro(request, response, id_aula, day);
-
+            }
         } catch (TemplateManagerException ex) {
             handleError(ex, request, response);
         } catch (IOException ex) {
