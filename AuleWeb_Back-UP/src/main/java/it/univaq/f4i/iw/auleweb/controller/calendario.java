@@ -65,8 +65,6 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
                 if (calendario != null) {
                     request.setAttribute("calendario", calendario);
-                    //request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                    //request.setAttribute("used", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(calendario));
                     res.activate("compose_calendario.ftl.html", request, response);
                 } else {
                     handleError("Undefined calendario", request, response);
@@ -76,20 +74,11 @@ public class calendario extends AuleWebBaseController {
                 Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
                 //passa il giorno attuale (probabilmente cambiare)
                 calendario.setGiorno(Calendar.getInstance().getTime());
-                /*
-                int day = Integer.parseInt(request.getParameter("day"));
-                int month = Integer.parseInt(request.getParameter("month"));
-                int year = Integer.parseInt(request.getParameter("year"));
-                LocalDate selectedDate = LocalDate.of(year, month, day);
-                calendario.setGiorno(Date.from(selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                */
+               
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
                 request.setAttribute("inizio", LocalTime.parse(calendario.getOraInizio().toString(), formatter));
                 request.setAttribute("fine", LocalTime.parse(calendario.getOraFine().toString(), formatter));
                 request.setAttribute("calendario", calendario);
-                //request.setAttribute("unused", ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAuleLibere());
-                //request.setAttribute("used", Collections.EMPTY_LIST);
-                //probabile fare quesry per eventi non usati
                 res.activate("compose_calendario.ftl.html", request, response);
             }
         } catch (DataException ex) {
@@ -114,12 +103,6 @@ public class calendario extends AuleWebBaseController {
                         SecurityHelpers.checkNumeric(request.getParameter("month")) - 1,
                         SecurityHelpers.checkNumeric(request.getParameter("day")));
                 calendario.setGiorno(date.getTime());
-               /* String inizio = request.getParameter("oraInizio");
-                String fine = request.getParameter("oraFine");
-                LocalTime oraI = LocalTime.parse(inizio);
-                LocalTime oraF = LocalTime.parse(fine);
-                calendario.setOraInizio(oraI);
-                calendario.setOraFine(oraF); */
                 int day = Integer.parseInt(request.getParameter("day"));
                 int month = Integer.parseInt(request.getParameter("month"));
                 int year = Integer.parseInt(request.getParameter("year"));
@@ -153,14 +136,7 @@ public class calendario extends AuleWebBaseController {
     private void action_add_dipendenze(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
-            /*calendario.setGiorno(Calendar.getInstance().getTime());
-            String inizio = request.getParameter("oraInizio");
-            String fine = request.getParameter("oraFine");
-            LocalTime oraI = LocalTime.parse(inizio);
-            LocalTime oraF = LocalTime.parse(fine);
-            calendario.setOraInizio(oraI);
-            calendario.setOraFine(oraF);
-            */
+            
             int day = Integer.parseInt(request.getParameter("day"));
             int month = Integer.parseInt(request.getParameter("month"));
             int year = Integer.parseInt(request.getParameter("year"));
