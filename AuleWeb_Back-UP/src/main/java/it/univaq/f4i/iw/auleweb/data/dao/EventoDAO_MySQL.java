@@ -562,7 +562,7 @@ public class EventoDAO_MySQL extends DAO implements EventoDAO {
     public void deleteCalendario(int id_calendario) throws DataException {
         try {
             dCalendario.setInt(1, id_calendario);
-            dCalendario.executeQuery();
+            dCalendario.executeUpdate();
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Event by ID", ex);
         }

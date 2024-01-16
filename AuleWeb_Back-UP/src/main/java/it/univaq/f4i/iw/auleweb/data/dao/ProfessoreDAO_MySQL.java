@@ -185,6 +185,7 @@ public class ProfessoreDAO_MySQL extends DAO implements ProfessoreDAO {
     public void deleteProfessore(Integer id_prof) throws DataException {
          try {
             dProfessore.setInt(1, id_prof);
+            dProfessore.executeUpdate();
         } catch (SQLException ex) {
             throw new DataException("Unable to delete professor by ID", ex);
         }

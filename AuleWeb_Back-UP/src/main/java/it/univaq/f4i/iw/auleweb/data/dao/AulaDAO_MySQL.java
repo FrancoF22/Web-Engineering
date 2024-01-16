@@ -22,7 +22,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     }
     private PreparedStatement sAulaById, sAulaByNome, sAuleByGruppoN, sAuleByGruppo, sAuleByLuogo;
     private PreparedStatement sAllAule, sUsedAule, sAuleCalendario, sAllAttrezzature;
-    private PreparedStatement iAula, uAula, dAula;
+    private PreparedStatement iAula, uAula, dAula, dGruppoAula;
+    
 
     @Override
 
@@ -47,6 +48,7 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             uAula = connection.prepareStatement("UPDATE aula SET nome=?, capienza=?, prese_elettriche=?, prese_rete=?, attrezzatura=?, nota=?, luogo=?, edificio=?, piano=?, id_professore=? WHERE id=?");
             dAula = connection.prepareStatement("DELETE FROM aula WHERE id=?");
 
+            dGruppoAula = connection.prepareStatement("DELETE FROM gruppo_aula AS ga WHERE ga.id_aula=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing newspaper data layer", ex);
         }
@@ -70,6 +72,8 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
             iAula.close();
             uAula.close();
             dAula.close();
+            
+            dGruppoAula.close();
         } catch (SQLException ex) {
             //
         }
@@ -214,21 +218,10 @@ public class AulaDAO_MySQL extends DAO implements AulaDAO {
     @Override
     public void deleteAula(int id_aula) throws DataException {
     try {
-        // Elimina i record correlati da gruppo_aula
-        PreparedStatement deleteGruppoAula = connection.prepareStatement("DELETE FROM gruppo_aula WHERE id_aula=?");
-        deleteGruppoAula.setInt(1, id_aula);
-        deleteGruppoAula.executeUpdate();
-        deleteGruppoAula.close(); // Chiudi il PreparedStatement
-
-        // Elimina la riga dalla tabella 'aula'
-        PreparedStatement deleteAula = connection.prepareStatement("DELETE FROM aula WHERE id=?");
-        deleteAula.setInt(1, id_aula);
-        int rowsAffected = deleteAula.executeUpdate(); // Esegui la query di eliminazione
-        deleteAula.close(); // Chiudi il PreparedStatement
-        
-        if (rowsAffected == 0) {
-            // Gestione nel caso in cui nessuna riga sia stata eliminata
-        }
+        dGruppoAula.setInt(1, id_aula);
+        dGruppoAula.executeUpdate();
+        dAula.setInt(1,id_aula);
+        dAula.executeUpdate();
     } catch (SQLException ex) {
         throw new DataException("Unable to delete Aula by ID", ex);
     }
