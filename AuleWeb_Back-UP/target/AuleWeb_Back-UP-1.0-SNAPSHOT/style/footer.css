@@ -4,7 +4,6 @@
     background-color: #002855; /* Questo colore dovrebbe essere gestito da default.css, ripetuto qui per coerenza */
     color: white;
     text-align: center;
-    padding: 40px 20px;
 }
 
 .footer .footer-content {
@@ -20,7 +19,6 @@
 
 .footer .footer-section h4 {
     color: #FFD700;
-    margin-bottom: 15px;
 }
 
 .footer .footer-links ul,
