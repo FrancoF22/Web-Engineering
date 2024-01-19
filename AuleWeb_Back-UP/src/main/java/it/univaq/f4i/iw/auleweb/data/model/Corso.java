@@ -16,8 +16,12 @@ public interface Corso extends DataItem<Integer>{
 
     String getDescrizione();
     
+    Gruppo getGruppo();
+    
     void setNome(String n);
     
     void setDescrizione(String d);
+    
+    void setGruppo(Gruppo g);
     
 }

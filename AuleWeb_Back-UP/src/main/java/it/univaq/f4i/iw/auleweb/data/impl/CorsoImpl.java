@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.auleweb.data.impl;
 
 import it.univaq.f4i.iw.auleweb.data.model.Corso;
+import it.univaq.f4i.iw.auleweb.data.model.Gruppo;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
 /**
@@ -13,11 +14,13 @@ import it.univaq.f4i.iw.framework.data.DataItemImpl;
  */
 public class CorsoImpl extends DataItemImpl<Integer> implements Corso {
     private String nome, descrizione;
+    private Gruppo dipartimento;
 
     public CorsoImpl(){
         super();
         this.nome = "";
         this.descrizione = "";
+        this.dipartimento = null;
     }
     
     @Override
@@ -31,6 +34,11 @@ public class CorsoImpl extends DataItemImpl<Integer> implements Corso {
     }
 
     @Override
+    public Gruppo getGruppo() {
+        return dipartimento;
+    }
+    
+    @Override
     public void setNome(String n) {
         this.nome = n;
     }
@@ -38,6 +46,11 @@ public class CorsoImpl extends DataItemImpl<Integer> implements Corso {
     @Override
     public void setDescrizione(String d) {
         this.descrizione = d;
+    }
+    
+    @Override
+    public void setGruppo(Gruppo g) {
+        this.dipartimento = g;
     }
     
 }

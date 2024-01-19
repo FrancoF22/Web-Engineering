@@ -23,48 +23,50 @@ import java.util.List;
  * @author Syd
  */
 public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
-    
-    private PreparedStatement sCorsoById, sAllCorsi, iCorso, uCorso, dCorso;
+
+    private PreparedStatement sCorsoById, sAllCorsi, sCorsiDip, iCorso, uCorso, dCorso;
 
     public CorsoDAO_MySQL(DataLayer d) {
         super(d);
     }
 
     @Override
-    public void init() throws DataException{
+    public void init() throws DataException {
         try {
             super.init();
 
             //precompiliamo tutte le query utilizzate nella classe
             sCorsoById = connection.prepareStatement("SELECT * FROM corso WHERE Id=?");
             sAllCorsi = connection.prepareStatement("SELECT * FROM corso");
-            
-            iCorso = connection.prepareStatement("INSERT INTO corso (nome,descrizione) VALUES(?,?)",Statement.RETURN_GENERATED_KEYS);
+            sCorsiDip = connection.prepareStatement("SELECT * FROM corso WHERE id_dipartimento=?");
+
+            iCorso = connection.prepareStatement("INSERT INTO corso (nome,descrizione) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
             uCorso = connection.prepareStatement("UPDATE corso SET nome=?,descrizione=? WHERE ID=?");
             dCorso = connection.prepareStatement("DELETE FROM corso WHERE ID=?");
-            
+
         } catch (SQLException ex) {
             throw new DataException("Error initializing aula web data layer", ex);
         }
     }
-    
+
     @Override
     public void destroy() throws DataException {
         //chiusura dei preprared statement
         try {
             sCorsoById.close();
             sAllCorsi.close();
-            
+            sCorsiDip.close();
+
             iCorso.close();
             uCorso.close();
             dCorso.close();
-            
+
         } catch (SQLException ex) {
             //
         }
         super.destroy();
     }
-    
+
     @Override
     public Corso createCorso() {
         return new CorsoProxy(getDataLayer());
@@ -83,7 +85,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
         }
         return c;
     }
-    
+
     @Override //permette di ottenere il corso tramite l'id
     public Corso getCorsoById(Integer corso_key) throws DataException {
         Corso c = null;
@@ -119,11 +121,28 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
         }
         return result;
     }
-    
+
+    @Override
+    public List<Corso> getCorsiDipartimento(int id_dipartimento) throws DataException {
+        List<Corso> result = new ArrayList();
+
+        try {
+            sCorsiDip.setInt(1, id_dipartimento);
+            try (ResultSet rs = sCorsiDip.executeQuery()) {
+                while (rs.next()) {
+                    result.add((Corso) getCorsoById(rs.getInt("id")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Impossibile caricare i corsi di questo dipartimento", ex);
+        }
+        return result;
+    }
+
     @Override //permette di salvare le informazioni relative ad un corso nel database
     public void storeCorso(Corso corso) throws DataException {
-        
-         try {
+
+        try {
             if (corso.getKey() != null && corso.getKey() > 0) { //update
                 //non facciamo nulla se l'oggetto è un proxy e indica di non aver subito modifiche
                 if (corso instanceof DataItemProxy && !((DataItemProxy) corso).isModified()) {
@@ -131,7 +150,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
                 }
                 uCorso.setString(1, corso.getNome());
                 uCorso.setString(2, corso.getDescrizione());
-                uCorso.setInt(11,corso.getKey());
+                uCorso.setInt(11, corso.getKey());
                 if (uCorso.executeUpdate() == 0) {
                     throw new OptimisticLockException(corso);
                 } else {
@@ -160,7 +179,7 @@ public class CorsoDAO_MySQL extends DAO implements CorsoDAO {
 
     @Override //permette di eliminare un corso
     public void deleteCorso(Integer id_corso) throws DataException {
-       try {
+        try {
             dCorso.setInt(1, id_corso);
         } catch (SQLException ex) {
             throw new DataException("Unable to delete Corso by ID", ex);

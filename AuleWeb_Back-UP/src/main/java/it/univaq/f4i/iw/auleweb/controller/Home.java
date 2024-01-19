@@ -23,7 +23,7 @@ public class Home extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-
+/*
     private void action_choose(HttpServletRequest request, HttpServletResponse response, int gruppo_key) throws IOException, ServletException, TemplateManagerException {
         try {
             TemplateResult res = new TemplateResult(getServletContext());
@@ -35,7 +35,19 @@ public class Home extends AuleWebBaseController {
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
-
+*/
+    private void action_choose(HttpServletRequest request, HttpServletResponse response, int gruppo_key) throws IOException, ServletException, TemplateManagerException {
+        try {
+            TemplateResult res = new TemplateResult(getServletContext());
+            request.setAttribute("page_title", "Corsi");
+            request.setAttribute("ListaCorsi", ((AuleWebDataLayer) request.getAttribute("datalayer")).getCorsoDAO().getCorsiDipartimento(gruppo_key));
+            request.setAttribute("k", gruppo_key);
+            res.activate("corso.ftl.html", request, response);
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
+    
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {

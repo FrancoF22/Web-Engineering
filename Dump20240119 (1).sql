@@ -47,7 +47,7 @@ CREATE TABLE `aula` (
 
 LOCK TABLES `aula` WRITE;
 /*!40000 ALTER TABLE `aula` DISABLE KEYS */;
-INSERT INTO `aula` VALUES (2,'Aula Magna',40,6,4,'','','Coppito','Blocco 2','Primo',1),(4,'C10',50,6,3,'microfono a filo,Wi Fi','aula grande','coppito','blocco 2','terra',1),(5,'A1.7',65,3,2,'Wi Fi','finestre rotte','Coppito','Blocco 0','primo',2),(6,'D2,10',100,7,4,'impianto audio,Wi Fi','...','Coppito','..','secondo',3),(7,'dd',1,2,6,'',NULL,'dd','dd','ff',2);
+INSERT INTO `aula` VALUES (2,'Aula Magna',40,6,4,'proiettore,schermo manuale','','Coppito','Blocco 2','Primo',1),(4,'C10',50,6,3,'microfono a filo,Wi Fi','aula grande','coppito','blocco 2','terra',1),(5,'A1.7',65,3,2,'Wi Fi','finestre rotte','Coppito','Blocco 0','primo',2),(6,'D2,10',100,7,4,'impianto audio,Wi Fi','...','Coppito','..','secondo',3),(7,'dd',1,2,6,'schermo motorizzato,microfono senza filo','','dd','dd','ff',2);
 /*!40000 ALTER TABLE `aula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +70,7 @@ CREATE TABLE `calendario` (
   KEY `id_evento` (`id_evento`),
   CONSTRAINT `calendario_ibfk_1` FOREIGN KEY (`id_aula`) REFERENCES `aula` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `calendario_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `calendario` (
 
 LOCK TABLES `calendario` WRITE;
 /*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
-INSERT INTO `calendario` VALUES (2,2,1,'2021-10-27','09:30:00','11:30:00'),(3,6,3,'2023-11-28','09:30:00','12:30:00'),(4,6,2,'2023-11-20','10:30:00','12:30:00');
+INSERT INTO `calendario` VALUES (3,6,3,'2023-11-28','09:30:00','12:30:00'),(6,4,2,'2024-01-11','17:00:00','18:00:00'),(8,5,1,'2024-01-11','19:00:00','22:00:00'),(11,4,3,'2024-01-15','15:00:00','18:00:00'),(13,6,2,'2024-01-16','13:45:00','16:45:00'),(19,7,1,'2024-01-19','16:30:00','17:45:00'),(21,6,1,'2024-01-19','15:30:00','18:45:00'),(22,6,1,'2024-01-19','15:30:00','18:45:00');
 /*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +94,10 @@ CREATE TABLE `corso` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   `descrizione` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id_dipartimento` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `corso_ibfk_1_idx` (`id_dipartimento`),
+  CONSTRAINT `corso_ibfk_1` FOREIGN KEY (`id_dipartimento`) REFERENCES `gruppo` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,7 +107,7 @@ CREATE TABLE `corso` (
 
 LOCK TABLES `corso` WRITE;
 /*!40000 ALTER TABLE `corso` DISABLE KEYS */;
-INSERT INTO `corso` VALUES (1,'Nessun corso','non appartiene ad alcun corso'),(2,'Sistemi Operativi','Corso di sistemi operativi'),(3,'Ingegneria del web','Progettazione java web application'),(4,'Algoritmi strutture dati','Corso di algoritmi');
+INSERT INTO `corso` VALUES (1,'Nessun corso','non appartiene ad alcun corso',1),(2,'Sistemi Operativi','Corso di sistemi operativi',3),(3,'Ingegneria del web','Progettazione java web application',3),(4,'Algoritmi strutture dati','Corso di algoritmi',3);
 /*!40000 ALTER TABLE `corso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +130,7 @@ CREATE TABLE `evento` (
   KEY `evento_ibfk_2_idx` (`id_corso`),
   CONSTRAINT `evento_ibfk_1` FOREIGN KEY (`id_professore`) REFERENCES `professore` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `evento_ibfk_2` FOREIGN KEY (`id_corso`) REFERENCES `corso` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +139,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'Algoritmi strutture dati','esame straordinario di novembre','esame',1,1),(2,'Sistemi Operativi Teoria','studio dei sistemi operativi e come funzionano','lezione',3,2),(3,'Intelligenza Artificiale','presentazione','seminario',1,0);
+INSERT INTO `evento` VALUES (1,'Algoritmi strutture dati','esame straordinario di novembre','esame',1,4),(2,'Sistemi Operativi Teoria','studio dei sistemi operativi e come funzionano','lezione',3,2),(3,'Cyber Security','presentazione','seminario',1,1),(4,'Biologia','lezione 12','lezione',3,1);
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +156,7 @@ CREATE TABLE `gruppo` (
   `descrizione` text,
   `tipologia` enum('polo','dipartimento') NOT NULL DEFAULT 'dipartimento',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +165,7 @@ CREATE TABLE `gruppo` (
 
 LOCK TABLES `gruppo` WRITE;
 /*!40000 ALTER TABLE `gruppo` DISABLE KEYS */;
-INSERT INTO `gruppo` VALUES (1,'Ingegneria Informatica','Polo triennale di ingengeria informatica','polo'),(2,'Alan Turing','noto anche come coppito 0 o blocco 0','polo'),(3,'DISIM','Dipartimento Ingegneria,scienza e matematica ','dipartimento'),(4,'MESVA','Dipartimento ...','dipartimento');
+INSERT INTO `gruppo` VALUES (1,'Nessun dipartimetno','..','dipartimento'),(2,'Alan Turing','noto anche come coppito 0 o blocco 0','polo'),(3,'DISIM','Dipartimento Ingegneria,scienza e matematica ','dipartimento'),(4,'MESVA','Dipartimento ...','dipartimento'),(5,'Ingegneria Informatica','Polo triennale di ingengeria informatica','polo');
 /*!40000 ALTER TABLE `gruppo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +192,7 @@ CREATE TABLE `gruppo_aula` (
 
 LOCK TABLES `gruppo_aula` WRITE;
 /*!40000 ALTER TABLE `gruppo_aula` DISABLE KEYS */;
-INSERT INTO `gruppo_aula` VALUES (2,2),(1,4),(3,4),(3,5),(4,6);
+INSERT INTO `gruppo_aula` VALUES (2,2),(3,4),(5,4),(3,5),(4,6);
 /*!40000 ALTER TABLE `gruppo_aula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-25 16:40:50
+-- Dump completed on 2024-01-19 17:55:01

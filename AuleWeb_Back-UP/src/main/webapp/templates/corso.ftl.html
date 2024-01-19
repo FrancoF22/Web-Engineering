@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="style/filtri.css" type="text/css" />
+
+<div class="home-container">
+
+    <div class="home-home">
+        <div class="table-controls">
+                <h2 class="page-title">Filtro Eventi: </h2>
+                <div class="button-container">
+                    <a href="eventiAulaSettimana?k=${k}" class="my-button">aule Settimana</a>
+                    <a href="eventiProssimeOre?k=${k}" class="my-button">Prossime 3h</a>
+                </div>
+            </div>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Eventi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <#if (ListaCorsi?size>0)>
+                <#list ListaCorsi as corso>
+                <tr>
+                    <td>${corso.nome}</td>
+                    <td>${corso.descrizione}</td>
+                    <td><a href="eventiCorsoSettimana?i=${corso.key}" class="my-button">Eventi Settimana</a></td>
+                </tr>
+                </#list>
+                </#if>
+            </tbody>            
+        </table>
+
+    </div>
+</div>
