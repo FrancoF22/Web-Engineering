@@ -86,6 +86,47 @@ public class calendario extends AuleWebBaseController {
         }
     }
 
+    private void action_update(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
+        try {
+            Calendario calendario;
+            if(id_calendario > 0){
+                calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().getCalendarioById(id_calendario);
+            }else{
+                calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
+            }
+            if (calendario != null) {
+                Aula a = ((AuleWebDataLayer) request.getAttribute("datalayer")).getAulaDAO().getAula(SecurityHelpers.checkNumeric(request.getParameter("aula")));
+                Evento e = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEvento(SecurityHelpers.checkNumeric(request.getParameter("evento")));
+                // Recupera i parametri dal form di modifica
+                String inizioOra = request.getParameter("oraInizio");
+                String inizioMinuti = request.getParameter("minutiInizio");
+                String fineOra = request.getParameter("oraFine");
+                String fineMinuti = request.getParameter("minutiFine");
+                int oraInizio = Integer.parseInt(inizioOra);
+                int oraFine = Integer.parseInt(fineOra);
+                int minutiInizio = Integer.parseInt(inizioMinuti);
+                int minutiFine = Integer.parseInt(fineMinuti);
+                LocalTime oraI = LocalTime.of(oraInizio, minutiInizio);
+                LocalTime oraF = LocalTime.of(oraFine, minutiFine);
+                // Aggiorna le informazioni del calendario
+                calendario.setOraInizio(oraI);
+                calendario.setOraFine(oraF);
+                calendario.setAula(a);
+                calendario.setEvento(e);
+                // Salva il calendario aggiornato nel database
+                ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().storeCalendario(calendario);
+                // Reindirizza alla pagina di visualizzazione dei calendari
+                action_default(request, response);
+            } else {
+                    handleError("Cannot update calendario: insufficient parameters", request, response);
+                }
+            } catch (NumberFormatException ex) {
+                handleError("Invalid number format for time", request, response);
+            } catch (DataException ex) {
+                handleError("Data access exception: " + ex.getMessage(), request, response);
+            }
+        }
+   
     private void action_set_properties(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario;
@@ -133,7 +174,7 @@ public class calendario extends AuleWebBaseController {
         }
     }
 
-    private void action_add_dipendenze(HttpServletRequest request, HttpServletResponse response, int id_calendario) throws IOException, ServletException, TemplateManagerException {
+    private void action_add_dipendenze(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         try {
             Calendario calendario = ((AuleWebDataLayer) request.getAttribute("datalayer")).getCalendarioDAO().createCalendario();
             
@@ -202,8 +243,10 @@ public class calendario extends AuleWebBaseController {
         try {
             if (request.getParameter("n") != null) {
                 id_calendario = SecurityHelpers.checkNumeric(request.getParameter("n"));
-                if (request.getParameter("add") != null) {
-                    action_add_dipendenze(request, response, id_calendario);
+                if (request.getParameter("update") != null) {
+                    action_update(request, response, id_calendario);
+                } else if (request.getParameter("add") != null) {
+                    action_add_dipendenze(request, response);
                  } else if (request.getParameter("remove") != null) {
                     action_remove(request, response, id_calendario);
                  } else if (request.getParameter("update") != null) {

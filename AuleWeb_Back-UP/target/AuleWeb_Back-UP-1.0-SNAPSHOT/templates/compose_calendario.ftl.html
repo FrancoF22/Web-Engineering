@@ -120,18 +120,26 @@
             <div class="row">
                 <div class="four columns clabel">Aula & Attivita'</div>
                 <div class="ten columns"><select name="aaula">
-                        <#list aule as a>
-                        <option value="${a.key}">${a.nome}
+                        <#list aule as aula>
+                        <option value="${aula.key}"
+                            <#if (calendario.aula?? && aula.key=calendario.aula.key)>
+                        selected="selected"
+                        </#if>
+                        >${aula.nome}
                         </option>
                         </#list>
                     </select>
                     <br/></div>
                 <#if (eventi?size>0)>
                 <div class="ten columns"> <select name="aevento">
-                        <#list eventi as e>
-                        <option value="${e.key}">${e.nome}
+                        <#list eventi as evento>
+                        <option value="${evento.key}"
+                            <#if (calendario.evento?? && evento.key=calendario.evento.key)>
+                        selected="selected"
+                        </#if>
+                        >${evento.nome}
                         </option>
-                        </#list>            
+                        </#list>        
                     </select>
                     <br/></div>
                 </#if>
