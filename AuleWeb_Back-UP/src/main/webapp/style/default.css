@@ -2,7 +2,6 @@
 
 /* Stili base */
 body, html {
-    padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
     background: #73A2BD;
@@ -14,6 +13,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.content {
+    flex: 1 0 auto; /* Il contenuto espande per riempire lo spazio disponibile */
 }
 
 /* Stili per la sezione di contenuto principale */
@@ -28,7 +31,7 @@ body {
     flex-direction: column;
     flex: 1; /* Occupa tutto lo spazio disponibile */
     width: 100%; /* Larghezza piena */
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box; /* Include padding e border nel calcolo della larghezza */
 }
 
@@ -41,7 +44,7 @@ body {
     text-align: center;
     background-color: #53829D;
     color: white;
-    padding: 10px;
+    padding: 0px;
 }
 
 /* Footer */
@@ -63,54 +66,44 @@ body {
 /* Stili per dispositivi più piccoli */
 @media only screen and (max-width: 767px) {
     body, html {
-        font-size: 14pt; /* Incrementa la dimensione del font per migliorare la leggibilità */
+        font-size: 14pt; /* Meglio usare pixel o rem per i dispositivi mobili */
     }
 
-    .container {
-        padding: 5px; /* Riduci il padding per usare più spazio per il contenuto */
+    .container, #body, .fifteen.columns {
+        padding: 0; /* Rimuovi il padding per sfruttare tutta la larghezza */
     }
 
-    #body, .fifteen.columns {
-        padding: 10px; /* Riduci il padding per il contenuto principale */
-        font-size: 16px; /* Aumenta la dimensione del font per i contenuti */
-    }
-    
-    /* Stili per il layout a griglia */
+    /* Rimuovi i margini esterni dei row se presenti */
     .row {
-        margin: 0; /* Rimuovi i margini per utilizzare tutto lo spazio disponibile */
+        margin: 0;
     }
 
-    .fifteen.columns {
-        /* Assicurati che le colonne si espandano per utilizzare lo spazio disponibile */
+    /* Assicurati che le colonne occupino tutto lo spazio disponibile */
+    [class*="columns"] {
         width: 100%;
-        max-width: none; /* Rimuovi eventuali limitazioni di larghezza massima */
+        
     }
 
-
-    /* Adatta i controlli del form per dispositivi mobili */
+    /* Stili per i controlli del form per dispositivi mobili */
     input, select, textarea {
-        font-size: 16px; /* Aumenta la dimensione del font per una facile interazione */
-        width: 100%; /* Utilizza la larghezza completa per massimizzare lo spazio disponibile */
-        /* Aggiungi altri stili per form se necessario */
+        font-size: 16px; /* Meglio usare pixel o rem qui */
+        width: 100%; /* Sfrutta tutta la larghezza */
     }
 
-    /* Assicurati che tutti gli elementi di input e le label siano chiaramente visibili e facilmente interagibili */
+    /* Stili per le label dei form */
     .clabel {
-        font-size: 12pt; /* Aumenta la dimensione del font per gli elementi del form */
-        width: 100%; /* Sfrutta la larghezza completa per i campi del form */
+        font-size: 12pt; /* Considera l'uso di pixel o rem */
+        width: 100%;
     }
 
-    select.small, input.small, select.medium, input.medium {
-        width: 100%; /* Permetti agli elementi del form di utilizzare la larghezza completa */
-    }
-
-    select.medium, input.medium {
-        width: auto; /* Permetti agli elementi di dimensione media di adattarsi al contenuto */
-    }
-
-    /* Riduci ulteriormente il padding del footer se necessario */
+    /* Footer */
     #footer {
-        padding: 20px 0; /* Rimuovi il padding laterale */
+        padding: 10px 0; /* Riduci il padding */
     }
 
+    /* Header */
+    #header {
+        padding: 0; /* Rimuovi il padding per aumentare lo spazio disponibile */
+        height: auto; /* Lascia che l'altezza si adatti al contenuto interno */
+    }
 }

@@ -15,9 +15,21 @@
                 <strong>Ora Fine:</strong> ${calendario.oraFine}
             </p>
             <a href="calendario?n=${calendario.key}" class="card-link">Modifica<i class="fa fa-edit"></i></a>
+            <button class="my-button" onclick="removeCalendario('${calendario.key}')"><i class="fa fa-trash"></i></button>
         </div>
     </div>
     </#list>
 </div>
 </#if>
 <p><a href="calendario?n=0">Crea un Evento Calendario</a></p>
+
+<script>
+    function removeCalendario(key) {
+        
+        var confirmRemove = confirm("Rimuovere l'evento?");
+        
+        if (confirmRemove) {
+            window.location.href = "calendario?n=" + key + "&remove=true";
+        }
+    }
+</script>   

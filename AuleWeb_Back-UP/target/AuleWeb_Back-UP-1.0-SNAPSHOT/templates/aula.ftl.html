@@ -7,7 +7,6 @@
             <div class="table-controls">
                 <h2 class="page-title">Filtro Eventi: </h2>
                 <div class="button-container">
-                    <a href="eventiAulaGiorno?k=${k}" class="my-button">Aula Giorno</a>
                     <a href="eventiCorsoSettimana?k=${k}" class="my-button">Corso Settimana</a>
                     <a href="eventiProssimeOre?k=${k}" class="my-button">Prossime 3h</a>
                 </div>
@@ -44,7 +43,10 @@
                             ${att},
                             </#list>
                         </td>
-                        <td><a href="eventiAulaSettimana?i=${aula.key}" class="my-button">Aula Settimana</a></td>
+                        <td>
+                            <a href="eventiAulaSettimana?i=${aula.key}" class="my-button">Aula Settimana</a>
+                            <a href="eventiAulaGiorno?i=${aula.key}" class="my-button">Aula Giorno</a>
+                        </td>
                     </tr>
                     </#list>
                     </#if>
