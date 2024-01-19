@@ -3,33 +3,38 @@
 
 <h2>Elenco Eventi</h2>
 
-<div class="eventi-container"> <!-- Aggiunto un div esterno per un ulteriore styling e layout -->
+<div class="eventi-container">
     <p class="evento-nuovo"><a href="evento?k=0">Crea un Nuovo Evento</a></p>
     <#if (eventi?size > 0)>
-    <ul class="eventi-list"> <!-- Aggiunta la classe per ulteriori stili -->
+    <!-- Utilizziamo un div per contenere le card anziché un elenco non ordinato -->
+    <div class="eventi-list"> 
         <#list eventi as evento>
-        <li class="evento-item"> <!-- Aggiunta la classe per ogni elemento evento -->
-            <div class="evento-nome">${strip_slashes(evento.nome)}</div>
-            <div class="evento-descrizione"><i>${evento.descrizione}</i></div>
-            <div class="evento-tipo"><i>Tipologia: ${evento.tipo}</i></div>
-            <#if evento.corso??>
-            <div><i>Evento Corso: ${evento.corso.nome}</i></div>
-            </#if>
-            <div><i>Professore: ${evento.professore.nome} ${evento.professore.cognome}</i></div>
-            
-            <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
-            <button class="my-button" onclick="removeEvento('${evento.key}')"><i class="fa fa-trash"></i></button>
-        </li>
+        <!-- Ogni evento è rappresentato da una card -->
+        <div class="evento-card"> 
+            <div class="card-content">
+                <div class="evento-nome">${strip_slashes(evento.nome)}</div>
+                <div class="evento-descrizione"><i>${evento.descrizione}</i></div>
+                <div class="evento-tipo"><i>Tipologia: ${evento.tipo}</i></div>
+                <#if evento.corso??>
+                <div><i>Evento Corso: ${evento.corso.nome}</i></div>
+                </#if>
+                <div><i>Professore: ${evento.professore.nome} ${evento.professore.cognome}</i></div>
+            </div>
+            <div class="card-actions">
+                <a href="evento?k=${evento.key}" class="evento-modifica">[Modifica Evento]</a>
+                <button class="my-button" onclick="removeEvento('${evento.key}')"><i class="fa fa-trash"></i></button>
+            </div>
+        </div>
         </#list>
-    </ul>
+    </div>
     </#if>
 </div>
 
 <script>
     function removeEvento(key) {
-        
+
         var confirmRemove = confirm("Rimuove l'evento?");
-        
+
         if (confirmRemove) {
             window.location.href = "evento?k=" + key + "&remove=true";
         }

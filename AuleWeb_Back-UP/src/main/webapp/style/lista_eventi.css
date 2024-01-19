@@ -7,31 +7,56 @@ h2 {
 
 /* Contenitore principale degli eventi */
 .eventi-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Distanza tra le card */
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Lista degli eventi */
 .eventi-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    display: flex; /* Imposta il layout flessibile */
+    flex-wrap: wrap; /* Permette agli elementi di passare alla riga successiva se non ci sta spazio */
+    gap: 20px; /* Distanza tra le card */
+    width: 100%; /* Assicurati che il contenitore si estenda per tutta la larghezza */
 }
 
 /* Singolo elemento della lista eventi */
-.evento-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 5px;
+.evento-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    width: calc(33.333% - 20px); /* Tre elementi per riga, 20px per il gap */
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px); /* Effetto di sollevamento alla hover */
 }
 
 /* Nome dell'evento */
 .evento-nome {
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+/* Descrizione dell'evento */
+.evento-descrizione {
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+/* Tipo di evento */
+.evento-tipo {
+    color: #555;
+    font-style: italic;
+    font-size: 0.8em;
+    margin-top: 5px;
 }
 
 /* Link per la modifica dell'evento */
@@ -43,21 +68,6 @@ h2 {
 
 .evento-modifica:hover {
     text-decoration: underline;
-}
-
-/* Descrizione dell'evento */
-.evento-descrizione {
-    color: #666;
-    font-style: italic;
-    font-size: 0.9em;
-}
-
-/* Tipo di evento */
-.evento-tipo {
-    color: #555;
-    font-style: italic;
-    font-size: 0.8em;
-    margin-top: 5px;
 }
 
 /* Link per creare un nuovo evento */
@@ -80,6 +90,15 @@ h2 {
 @media screen and (max-width: 768px) {
     .eventi-container {
         padding: 10px;
-        margin: 10px;
+    }
+    
+    .evento-card {
+        width: calc(50% - 20px); /* Due elementi per riga su schermi più piccoli */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .evento-card {
+        width: 100%; /* Un elemento per riga su schermi molto piccoli */
     }
 }
