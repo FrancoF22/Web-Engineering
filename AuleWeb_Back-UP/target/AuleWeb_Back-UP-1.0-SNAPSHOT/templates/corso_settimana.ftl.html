@@ -3,32 +3,36 @@
 <div class="home-container">
 
     <div class="home-home">
+        
+    <div class="row"><form action="eventiCorsoSettimana" method="GET">
+    <input type="hidden" name="previous_week" value="true">
+    <input type="hidden" name="i" value="${i!0}"/>
+        <input type="hidden" name="d" value="${Day!0}"/>
+    <button type="submit">Settimana precedente</button>
+    </form></div>
+    <div class="row"><form action="eventiCorsoSettimana" method="GET">
+        <input type="hidden" name="next_week" value="true">
+        <input type="hidden" name="i" value="${i!0}"/>
+        <input type="hidden" name="d" value="${Day!0}"/>
+        <button type="submit">Settimana successiva</button>
+    </form></div>
         <table class="custom-table">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Luogo</th>
-                    <th>Edificio</th>
-                    <th>Piano</th>
-                    <th>Capienza</th>
-                    <th>Numero di prese elettriche</th>
-                    <th>Numero di prese di rete</th>
-                    <th>Professore</th>
-                    <th>Attrezzature</th>
+                    <th>Giorno</th>
+                    <th>Ora Inizio</th>
+                    <th>Ora Fine</th>
                 </tr>
             </thead>
             <tbody>
-                <#if (corsi?size>0)>
-                <#list corsi as corso>
+                <#if (ListaEventi?size>0)>
+                <#list ListaEventi as cal>
                 <tr>
-                    <td>${corso.nome}</td>
-                    <td>${aula.luogo}</td>
-                    <td>${aula.edificio}</td>
-                    <td>${aula.piano}</td>
-                    <td>${aula.capienza}</td>
-                    <td>${aula.preseElettriche}</td>
-                    <td>${aula.preseRete}</td>
-                    <td><#if aula.professore??>${aula.professore.nome} ${aula.professore.cognome}</#if></td>
+                    <td>${cal.evento.nome}</td>
+                    <td>${cal.giorno}</td>
+                    <td>${cal.oraInizio}</td>
+                    <td>${cal.oraFine}</td>
                 </tr>
                 </#list>
                 </#if>

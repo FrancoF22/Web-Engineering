@@ -37,6 +37,13 @@ select {
     margin-bottom: 20px;
 }
 
+.row.button-group {
+    display: flex;
+    justify-content: space-between; /* Questo spazierà i bottoni uniformemente ai lati del contenitore */
+    align-items: center; /* Questo li allinea verticalmente */
+    padding: 10px 0; /* Aggiunge un po' di padding sopra e sotto per estetica */
+}
+
 /* Stili per i Pulsanti del Form */
 .Bottone-salva,
 .Bottone-indietro {

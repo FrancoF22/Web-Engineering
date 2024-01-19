@@ -1,30 +1,60 @@
+<meta charset="UTF-8">
+<title>Gestione Aula</title>
+<link rel="stylesheet" href="style/aula.css" type="text/css" />
+
 <form method="post" action="aula" class="form-grid">
-
-    <meta charset="UTF-8">
-    <title>Gestione Aula</title>
-    <link rel="stylesheet" href="style/aula.css" type="text/css" />
-
+    <span class="home-text">Crea e modifica aula</span>
     <div class="grid-container">
-        <span class="home-text">Crea e modifica aula</span>
-
         <input type="hidden" name="k" value="${aula.key!0}">
-        <div class="grid-row">
+        <!-- Prima riga con Nome aula, Piano e Note -->
+        <div class="grid-row top-row">
             <div class="grid-item">
                 <label for="nome">Nome aula:</label>
                 <input type="text" name="nome" id="nome" value="${aula.nome}"><br>
             </div>
+            <div class="grid-item">
+                <label for="piano">Piano:</label>
+                <input type="text" name="piano" id="piano" value="${aula.piano?if_exists}"><br>
+            </div>
+            <div class="grid-item">
+                <label for="nota">Note:</label>
+                <input type="text" name="nota" id="nota" value="${aula.nota?if_exists}"><br>
+            </div>
+        </div>
 
+        <!-- Seconda riga con Luogo e Capienza -->
+        <div class="grid-row">
             <div class="grid-item">
                 <label for="luogo">Luogo:</label>
                 <input type="text" name="luogo" id="luogo" value="${aula.luogo?if_exists}"><br>
             </div>
+
+            <div class="grid-item">
+                <label for="capienza">Capienza:</label>
+                <input type="text" name="capienza" id="capienza" value="${aula.capienza?if_exists}"><br>
+            </div>
+
         </div>
+
+        <!-- Terza riga con Edificio, Presa Corrente e Rete-->
         <div class="grid-row">
             <div class="grid-item">
                 <label for="edificio">Edificio:</label>
                 <input type="text" name="edificio" id="edificio" value="${aula.edificio?if_exists}"><br>
             </div>
+            <div class="grid-item">
+                <label for="prese_elettriche">Prese Elettriche:</label>
+                <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula.preseElettriche?if_exists}"><br>
+            </div>
+            <div class="grid-item">
+                <label for="prese_rete">Prese Rete:</label>
+                <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
+            </div>
 
+        </div>
+
+
+        <div class="grid-row">
             <div class="grid-item">
                 <label for="professore">Professore:</label>
                 <select name="professore">
@@ -38,34 +68,8 @@
                 </select>
             </div>
         </div>
-        <div class="grid-item">
-            <label for="nota">Note:</label>
-            <input type="text" name="nota" id="nota" value="${aula.nota?if_exists}"><br>
-        </div>
         <div class="grid-row">
             <div class="grid-item">
-                <label for="capienza">Capienza:</label>
-                <input type="text" name="capienza" id="capienza" value="${aula.capienza?if_exists}"><br>
-            </div>
-
-            <div class="grid-item">
-                <label for="prese_elettriche">Prese Elettriche:</label>
-                <input type="text" name="prese_elettriche" id="prese_elettriche" value="${aula.preseElettriche?if_exists}"><br>
-            </div>
-        </div>
-        <div class="grid-row">
-            <div class="grid-item">
-                <label for="piano">Piano:</label>
-                <input type="text" name="piano" id="piano" value="${aula.piano?if_exists}"><br>
-            </div>
-
-            <div class="grid-item">
-                <label for="prese_rete">Prese Rete:</label>
-                <input type="text" name="prese_rete" id="prese_rete" value="${aula.preseRete?if_exists}"><br>
-            </div>
-        </div>
-        <div class="grid-row">
-            <div class="grid-item full-width">
                 <label for="attrezzatura">Attrezzatura:</label>        
                 <select name="attrezzatura[]" multiple>
                     <#list ListaAttrezzatura as att>
@@ -74,7 +78,8 @@
                         >${att}</option>
                     </#list> 
                 </select>
-
+            </div>
+            <div class="grid-item">
                 <label for="gruppo">Dipartimenti e Poli:</label>
                 <select name="gruppo[]" multiple>
                     <#list ListaGruppi as gruppo>
@@ -85,15 +90,13 @@
                 </select>
             </div>
         </div>
-        <div class="grid-row button-group">
-            <div class="row">
-                <input type="submit" name="update" value="Update"/>
-            </div>
-        </div>
-
-        <div class="grid-row full-width">
-            <div class="Bottone-indietro">
+        <br>
+        <div class="grid-row">
+            <div class="grid-item">
                 <a href="aula" class="button">Indietro</a>
+            </div>
+            <div class="grid-item">
+                <input type="submit" name="update" value="Update"/>
             </div>
         </div>
 
