@@ -3,6 +3,7 @@
 /* Stili base */
 body, html {
     margin: 0;
+    padding: 0;
     font-family: "Roboto", sans-serif;
     background: #73A2BD;
     overflow-x: hidden; /* Previene la scrollbar orizzontale */
@@ -13,10 +14,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-.content {
-    flex: 1 0 auto; /* Il contenuto espande per riempire lo spazio disponibile */
 }
 
 /* Stili per la sezione di contenuto principale */
@@ -47,21 +44,30 @@ body {
     padding: 0px;
 }
 
+/* Contenuto principale */
+#body {
+    background-color: white;
+    flex: 1; /* Occupa tutto lo spazio disponibile */
+    padding: 0; /* Rimuovi il padding interno */
+    margin: 0; /* Assicurati che non ci siano margini */
+    box-sizing: border-box; /* Include padding e border nel calcolo della larghezza */
+    background-color: white;
+    flex: 1; /* Occupa tutto lo spazio disponibile */
+    padding: 0; /* Rimuovi il padding interno */
+    margin: 0; /* Assicurati che non ci siano margini */
+    box-sizing: border-box; /* Include padding e border nel calcolo della larghezza */
+}
+
 /* Footer */
 #footer {
     flex-shrink: 0; /* Impedisce al footer di restringersi */
     background-color: #002855;
     color: #ffffff;
     text-align: center;
-    padding: 40px 20px;
+    
 }
 
-/* Contenuto principale */
-#body {
-    background-color: white;
-    flex: 1; /* Occupa tutto lo spazio disponibile */
-    padding: 15px;
-}
+
 
 /* Stili per dispositivi più piccoli */
 @media only screen and (max-width: 767px) {
@@ -81,7 +87,7 @@ body {
     /* Assicurati che le colonne occupino tutto lo spazio disponibile */
     [class*="columns"] {
         width: 100%;
-        
+
     }
 
     /* Stili per i controlli del form per dispositivi mobili */
