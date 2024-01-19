@@ -5,14 +5,12 @@
 package it.univaq.f4i.iw.auleweb.controller;
 
 import it.univaq.f4i.iw.auleweb.data.dao.AuleWebDataLayer;
-import it.univaq.f4i.iw.auleweb.data.model.Aula;
 import it.univaq.f4i.iw.auleweb.data.model.Calendario;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -48,6 +46,7 @@ public class EventiAulaGiorno extends AuleWebBaseController {
             List<Calendario> calendari = ((AuleWebDataLayer) request.getAttribute("datalayer")).getEventoDAO().getEventiAulaGiorno(aula_key, Date.from(g.atStartOfDay(defaultZoneId).toInstant()));
             request.setAttribute("eventi", calendari);
             request.setAttribute("Day", g);
+            request.setAttribute("i", aula_key);
             res.activate("aula_giorno.ftl.html", request, response);
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -63,11 +62,11 @@ public class EventiAulaGiorno extends AuleWebBaseController {
         try {
             id_aula = SecurityHelpers.checkNumeric(request.getParameter("i"));
             if (request.getParameter("next_day") != null) {
-                //day = request.getParameter("d");
-                System.out.println(request.getParameter("d"));
+               day = LocalDate.parse(request.getParameter("d"));
                 action_next(request, response, id_aula, day);
             }
             else if (request.getParameter("previous_day") != null) {
+                day = LocalDate.parse(request.getParameter("d"));
                 action_prev(request, response, id_aula, day);
             }
             action_filtro(request, response, id_aula, day);

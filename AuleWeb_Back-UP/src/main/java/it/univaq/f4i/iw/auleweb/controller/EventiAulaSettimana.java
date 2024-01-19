@@ -62,8 +62,6 @@ public class EventiAulaSettimana extends AuleWebBaseController {
         try {
             id_aula = SecurityHelpers.checkNumeric(request.getParameter("i"));
             if (request.getParameter("next_week") != null) {
-                //day = request.getParameter("d");
-                System.out.println(request.getParameter("d"));
                 day = LocalDate.parse(request.getParameter("d"));
                 action_next(request, response, id_aula, day);
             }
