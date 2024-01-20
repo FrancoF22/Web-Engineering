@@ -41,6 +41,53 @@
     background-color: #e2e6ea; /* Colore dello sfondo al passaggio del mouse */
 }
 
+/* Stili per i bottoni */
+.button-container {
+    display: flex;
+    margin-bottom: 20px; /* Aggiunto spazio tra i bottoni e la tabella */
+}
+
+.button-container button {
+    background-color: #007bff; /* Colore del pulsante */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Effetto di transizione */
+}
+
+.button-container button:hover {
+    background-color: #0056b3; /* Cambia colore al passaggio del mouse */
+}
+
+/* Altri stili per migliorare l'aspetto dei pulsanti */
+.form-container {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.row {
+    text-align: center; /* Centra il contenuto all'interno della riga */
+}
+
+/* Stili per i pulsanti di navigazione */
+.button-container button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
 /* Responsività */
 @media screen and (max-width: 768px) {
     .home-container {

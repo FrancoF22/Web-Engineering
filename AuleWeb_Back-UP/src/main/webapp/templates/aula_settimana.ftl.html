@@ -1,21 +1,30 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="style/filtri.css" type="text/css" />
+<link rel="stylesheet" href="style/mostra_aule.css" type="text/css" />
 
 <div class="home-container">
 
     <div class="home-home">
-        
-    <div class="row"><form action="eventiAulaSettimana" method="GET">
-    <input type="hidden" name="previous_week" value="true">
-    <input type="hidden" name="i" value="${i!0}"/>
-        <input type="hidden" name="d" value="${Day!0}"/>
-    <button type="submit">Settimana precedente</button>
-    </form></div>
-    <div class="row"><form action="eventiAulaSettimana" method="GET">
-        <input type="hidden" name="next_week" value="true">
-        <input type="hidden" name="i" value="${i!0}"/>
-        <input type="hidden" name="d" value="${Day!0}"/>
-        <button type="submit">Settimana successiva</button>
-    </form></div>
+
+        <div class="row">
+            <form action="eventiAulaSettimana" method="GET">
+                <input type="hidden" name="previous_week" value="true">
+                <input type="hidden" name="i" value="${i!0}"/>
+                <input type="hidden" name="d" value="${Day!0}"/>
+                <button type="submit">
+                    <i class="fas fa-chevron-left"></i>Settimana precedente
+                </button>
+            </form>
+
+            <form action="eventiAulaSettimana" method="GET">
+                <input type="hidden" name="next_week" value="true">
+                <input type="hidden" name="i" value="${i!0}"/>
+                <input type="hidden" name="d" value="${Day!0}"/>
+                <button type="submit">
+                    <i class="fas fa-chevron-right"></i>Settimana successiva
+                </button>
+            </form>
+        </div>
         <table class="custom-table">
             <thead>
                 <tr>

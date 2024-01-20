@@ -5,45 +5,47 @@
         <input type="hidden" name="n" value="${calendario.key!0}"/>
         <div class="row">
             <div class="columns clabel">Data</div>
-            <div class="columns">
-                <select name="day" class="small" >
-                    <#list days as day>
-                    <option value="${day}"
-                            <#if (day?string=calendario.giorno?string("d"))>
-                        selected="selected"
-                        </#if>
-                        >${day}</option>
-                    </#list>  
-                </select>
-            </div>
-            <div class="columns">
-                <select name="month" class="small" >
-                    <#list months as month>
-                    <option value="${month}"
-                            <#if (month?string=calendario.giorno?string("M"))>
-                        selected="selected"
-                        </#if>
-                        >${month}</option>
-                    </#list> 
-                </select>
-            </div>
-            <div class="columns">
-                <select name="year" class="small" >
-                    <#list years as year>
-                    <option value="${year?c}"
-                            <#if (year?c?string=calendario.giorno?string("y"))>
-                        selected="selected"
-                        </#if>
-                        >${year?c}</option>
-                    </#list> 
-                </select>
+            <div class="columns date-selects">
+                <div class="columns">
+                    <select name="day" class="small" >
+                        <#list days as day>
+                        <option value="${day}"
+                                <#if (day?string=calendario.giorno?string("d"))>
+                            selected="selected"
+                            </#if>
+                            >${day}</option>
+                        </#list>  
+                    </select>
+                </div>
+                <div class="columns">
+                    <select name="month" class="small" >
+                        <#list months as month>
+                        <option value="${month}"
+                                <#if (month?string=calendario.giorno?string("M"))>
+                            selected="selected"
+                            </#if>
+                            >${month}</option>
+                        </#list> 
+                    </select>
+                </div>
+                <div class="columns">
+                    <select name="year" class="small" >
+                        <#list years as year>
+                        <option value="${year?c}"
+                                <#if (year?c?string=calendario.giorno?string("y"))>
+                            selected="selected"
+                            </#if>
+                            >${year?c}</option>
+                        </#list> 
+                    </select>
+                </div>
             </div>
             <div class="columns">
                 <input type="submit" name="update" value="Update"/>
                 <input type="submit" name="remove" value="Remove"/>
             </div>
         </div>
-        <div class="row time-selects">Orari
+        <div class="row">Orari
             <div class="columns">
                 <label for="oraInizio">Inizio:</label>
                 <select name="oraInizio" id="oraInizio">
@@ -119,35 +121,26 @@
             <#if (aule?size>0)>
             <div class="row">
                 <div class="four columns clabel">Aula & Attivita'</div>
-                <div class="ten columns"><select name="aaula">
+                <div class="eight columns">
+                    <select name="aaula">
                         <#list aule as aula>
-                        <option value="${aula.key}"
-                            <#if (calendario.aula?? && aula.key=calendario.aula.key)>
-                        selected="selected"
-                        </#if>
-                        >${aula.nome}
-                        </option>
+                        <option value="${aula.key}"<#if (calendario.aula?? && aula.key=calendario.aula.key)>selected="selected"</#if>>${aula.nome}</option>
                         </#list>
                     </select>
                     <br/></div>
                 <#if (eventi?size>0)>
-                <div class="ten columns"> <select name="aevento">
-                        <#list eventi as evento>
-                        <option value="${evento.key}"
-                            <#if (calendario.evento?? && evento.key=calendario.evento.key)>
-                        selected="selected"
-                        </#if>
-                        >${evento.nome}
-                        </option>
-                        </#list>        
-                    </select>
-                    <br/></div>
+                <select name="aevento">
+                    <#list eventi as evento>
+                    <option value="${evento.key}"<#if (calendario.evento?? && evento.key=calendario.evento.key)>selected="selected"</#if>>${evento.nome}</option>
+                    </#list>        
+                </select>
+                <br/>
                 </#if>
-                <div class="columns">
-                    <input type="submit" name="add" value="Add"/>
-                </div>
             </div>
-            </#if>
+            <div class="columns">
+                <input type="submit" name="add" value="Add"/>
+            </div>
         </div>
+        </#if>
     </div>
 </form>

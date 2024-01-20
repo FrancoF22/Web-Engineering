@@ -1,39 +1,48 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="style/filtri.css" type="text/css" />
+<link rel="stylesheet" href="style/mostra_aule.css" type="text/css" />
 
 <div class="home-container">    
-    <div class="row"><form action="eventiAulaGiorno" method="GET">
-    <input type="hidden" name="previous_day" value="true">
-    <input type="hidden" name="i" value="${i!0}"/>
-        <input type="hidden" name="d" value="${Day!0}"/>
-    <button type="submit">Giorno precedente</button>
-    </form></div>
-    <div class="row"><form action="eventiAulaGiorno" method="GET">
-        <input type="hidden" name="next_day" value="true">
-        <input type="hidden" name="i" value="${i!0}"/>
-        <input type="hidden" name="d" value="${Day!0}"/>
-        <button type="submit">Giorno successivo</button>
-    </form></div>
-    <table class="custom-table">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Giorno</th>
-                    <th>Ora Inizio</th>
-                    <th>Ora Fine</th>
-                </tr>
-            </thead>
-            <tbody>
-                <#if (eventi?size>0)>
-                <#list eventi as e>
-                <tr>
-                    <td>${e.evento.nome}</td>
-                    <td>${e.giorno}</td>
-                    <td>${e.oraInizio}</td>
-                    <td>${e.oraFine}</td>
-                </tr>
-                </#list>
-                </#if>
-            </tbody>            
-        </table>
+    <div class="row">
+        <form action="eventiAulaGiorno" method="GET">
+            <input type="hidden" name="previous_day" value="true">
+            <input type="hidden" name="i" value="${i!0}"/>
+            <input type="hidden" name="d" value="${Day!0}"/>
+            <button type="submit">
+                <i class="fas fa-chevron-left"></i>Giorno precedente
+            </button>
+        </form>
+
+        <form action="eventiAulaGiorno" method="GET">
+            <input type="hidden" name="next_day" value="true">
+            <input type="hidden" name="i" value="${i!0}"/>
+            <input type="hidden" name="d" value="${Day!0}"/>
+            <button type="submit">
+                <i class="fas fa-chevron-right"></i>Giorno successivo
+            </button>
+        </form>
     </div>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Giorno</th>
+                <th>Ora Inizio</th>
+                <th>Ora Fine</th>
+            </tr>
+        </thead>
+        <tbody>
+            <#if (eventi?size>0)>
+            <#list eventi as e>
+            <tr>
+                <td>${e.evento.nome}</td>
+                <td>${e.giorno}</td>
+                <td>${e.oraInizio}</td>
+                <td>${e.oraFine}</td>
+            </tr>
+            </#list>
+            </#if>
+        </tbody>            
+    </table>
+</div>
 </div>
