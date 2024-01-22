@@ -9,16 +9,19 @@
             <input type="hidden" name="i" value="${i!0}"/>
             <input type="hidden" name="d" value="${Day!0}"/>
             <button type="submit">
-                <i class="fas fa-chevron-left"></i>Giorno precedente
+                Giorno precedente <i class="fas fa-chevron-left"></i>
             </button>
         </form>
+        
+        <!-- Visualizza la data riferita all'elemento attuale -->
+        <span id="currentDate" class="current-date">${Day!0}</span>
 
         <form action="eventiAulaGiorno" method="GET">
             <input type="hidden" name="next_day" value="true">
             <input type="hidden" name="i" value="${i!0}"/>
             <input type="hidden" name="d" value="${Day!0}"/>
             <button type="submit">
-                <i class="fas fa-chevron-right"></i>Giorno successivo
+                <i class="fas fa-chevron-right"></i> Giorno successivo
             </button>
         </form>
     </div>
@@ -45,4 +48,14 @@
         </tbody>            
     </table>
 </div>
-</div>
+
+<script>
+    // Funzione per aggiornare la data riferita all'elemento attuale
+    function updateCurrentDate() {
+        var currentDateElement = document.getElementById('currentDate');
+        currentDateElement.innerText = /* Logica per ottenere la data riferita all'elemento attuale */;
+    }
+
+    // Richiama la funzione all'avvio della pagina o quando necessario
+    updateCurrentDate();
+</script>

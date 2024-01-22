@@ -62,8 +62,54 @@
 
 /* Responsività migliorata */
 @media screen and (max-width: 768px) {
-   .eventi-container {
+    .eventi-container {
         padding: 10px;
         margin: 10px;
     }
+
+    /* Nascondi alcune colonne su dispositivi mobili */
+    .my-table th:nth-child(3),
+    .my-table td:nth-child(3),
+    .my-table th:nth-child(4),
+    .my-table td:nth-child(4),
+    .my-table th:nth-child(8),
+    .my-table td:nth-child(8),
+    .my-table th:nth-child(9),
+    .my-table td:nth-child(9) {
+        display: none;
+    }
+
+    /* Aggiungi uno sliding laterale per la tabella su dispositivi mobili */
+    .my-table-container {
+        overflow-x: auto;
+    }
+
+    /* Stili migliorati per la tabella su dispositivi mobili */
+    .my-table tr,
+    .my-table th,
+    .my-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .my-table th,
+    .my-table td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .my-table th {
+        background-color: #f8f9fa;
+    }
+
+    .my-table tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .my-table tr:hover {
+        background-color: #e2e6ea;
+    }
+
 }
