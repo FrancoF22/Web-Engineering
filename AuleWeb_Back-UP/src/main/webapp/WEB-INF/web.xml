@@ -75,10 +75,6 @@
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.VistaCalendario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Profilo</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.auleweb.controller.Profilo</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ListaEventi</servlet-name>
         <servlet-class>it.univaq.f4i.iw.auleweb.controller.ListaEventi</servlet-class>
     </servlet>
@@ -137,10 +133,6 @@
     <servlet-mapping>
         <servlet-name>VistaCalendario</servlet-name>
         <url-pattern>/vistaCalendario</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Profilo</servlet-name>
-        <url-pattern>/profilo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListaEventi</servlet-name>
