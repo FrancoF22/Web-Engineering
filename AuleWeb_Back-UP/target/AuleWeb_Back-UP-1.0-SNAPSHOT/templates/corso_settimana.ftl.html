@@ -6,13 +6,13 @@
 
     <div class="home-home">
 
-        <div class="row">
+        <div class="row-button">
             <form action="eventiCorsoSettimana" method="GET">
                 <input type="hidden" name="previous_week" value="true">
                 <input type="hidden" name="i" value="${i!0}"/>
                 <input type="hidden" name="d" value="${Day!0}"/>
                 <button type="submit">
-                    <i class="fas fa-chevron-left"></i>Settimana precedente
+                    Settimana precedente <i class="fas fa-chevron-left"></i>
                 </button>
             </form>
             
@@ -21,7 +21,7 @@
                 <input type="hidden" name="i" value="${i!0}"/>
                 <input type="hidden" name="d" value="${Day!0}"/>
                 <button type="submit">
-                    <i class="fas fa-chevron-right"></i>Settimana successiva
+                    <i class="fas fa-chevron-right"></i> Settimana successiva
                 </button>
             </form>
         </div>

@@ -75,21 +75,8 @@
     background-color: #F0E68C; /* Sfondo giallo più chiaro al passaggio del mouse */
 }
 
-/* Allinea gli elementi nella stessa riga */
-.row {
-    display: flex;
-    align-items: center;
-}
-
-/* Stile per i bottoni */
-form {
-    margin-right: 10px; /* Aggiungi spazio tra i bottoni */
-}
-
-/* Stile per la data */
-.current-date {
-    margin-right: 10px; /* Aggiungi spazio tra la data e i bottoni */
-    font-weight: bold;
+.row-button {
+        display: flex;
 }
 
 
