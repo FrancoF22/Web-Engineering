@@ -68,7 +68,10 @@ public class EventiAulaSettimana extends AuleWebBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         request.setAttribute("page_title", "Eventi Settimanali");
         int id_aula;
-        int gruppo_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
+        int gruppo_key;
+        if(request.getParameter("k") != null){
+            gruppo_key = SecurityHelpers.checkNumeric(request.getParameter("k"));
+        } else gruppo_key = 0;
         LocalDate day = LocalDate.now();
 
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM- d");
