@@ -38,19 +38,44 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var userIcon = document.querySelector('.user-icon');
-    var userDropdown = document.querySelector('.user-dropdown');
+    document.addEventListener('DOMContentLoaded', function () {
+        var userIcon = document.querySelector('.user-icon');
+        var userDropdown = document.querySelector('.user-dropdown');
 
-    userIcon.addEventListener('click', function() {
-        userDropdown.classList.toggle('open');
-    });
+        var isUserIconClicked = false;
 
-    // Chiudi il menù se si clicca fuori da esso
-    document.addEventListener('click', function(event) {
-        if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
+        userIcon.addEventListener('click', function () {
+            isUserIconClicked = !isUserIconClicked;
+            userDropdown.classList.toggle('open', isUserIconClicked);
+        });
+
+        userIcon.addEventListener('mouseenter', function () {
+            userDropdown.classList.add('open', isUserIconClicked);
+        });
+
+        userIcon.addEventListener('mouseleave', function () {
+            if (!isUserIconClicked) {
+                userDropdown.classList.remove('open');
+            }
+        });
+
+        userDropdown.addEventListener('mouseenter', function () {
+            isUserIconClicked = true;
+        });
+
+        userDropdown.addEventListener('mouseleave', function () {
+            isUserIconClicked = false;
             userDropdown.classList.remove('open');
-        }
+        });
+
+        // Chiudi il menù se si clicca fuori da esso
+        document.addEventListener('click', function (event) {
+            if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
+                isUserIconClicked = false;
+                userDropdown.classList.remove('open');
+            }
+        });
     });
-});
+
 </script>
+

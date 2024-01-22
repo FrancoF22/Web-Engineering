@@ -90,6 +90,7 @@
     opacity: 1;
     visibility: visible;
     margin-top: 5px;
+    transition: opacity 0.3s ease-in-out; /* Aggiunge una transizione per una visualizzazione più fluida */
 }
 
 /* Rimozione dello stile di hover per i dispositivi mobili */
@@ -99,6 +100,26 @@
         opacity: 0;
         visibility: hidden;
         margin-top: 0;
+        transition: none; /* Rimuove la transizione per dispositivi mobili */
     }
+}
+
+/* Stile del singolo elemento nel menu a tendina */
+#header .user-dropdown a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #002855;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd; /* Aggiunge una sottile linea tra gli elementi */
+    transition: background-color 0.3s ease-in-out; /* Aggiunge una transizione al cambio di colore di sfondo */
+}
+
+#header .user-dropdown a:last-child {
+    border-bottom: none; /* Rimuove la linea inferiore sull'ultimo elemento del menu */
+}
+
+#header .user-dropdown a:hover {
+    background-color: #f2f2f2;
 }
 
