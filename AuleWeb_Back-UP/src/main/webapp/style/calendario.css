@@ -1,71 +1,26 @@
-/* Stili generali per la pagina */
-.page-title, h2 {
-    color: #333;
-    text-align: center;
+/* Stili per la disposizione delle righe */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
-/* Utilizza flexbox per i bottoni per una migliore disposizione */
-.my-button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 14px;
-    text-align: center;
+/* Colonne con spaziatura e allineamento migliorati */
+.columns {
+    flex: 1;
+    margin-bottom: 15px;
 }
 
-/* Aggiustamenti per la form */
-.form-title {
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #555;
-}
-
-/* Stili migliorati per le label */
+/* Stili per le label */
 label {
     display: block;
-    margin-top: 10px;
-    margin-bottom: 5px; /* Spazio aggiunto sotto la label */
-    color: #333; /* Colore più scuro per una migliore leggibilità */
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
 }
 
-/* Stili per le selezioni della data all'interno di una flex row */
-.date-selects {
-    display: flex;
-    align-items: center; /* Allinea verticalmente al centro */
-    gap: 10px; /* Spazio tra gli elementi */
-}
-
-/* Stili specifici per i select della data per gestire la larghezza */
-.date-selects select {
-    max-width: 80px; /* Larghezza massima per i campi della data */
-}
-
-/* Stili per gli orari, simili a quelli della data */
-.time-selects {
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-}
-
-/* Stili per i select degli orari per gestire la larghezza */
-.time-selects select {
-    max-width: 80px;
-}
-
-/* Stili uniformi per input e select */
-input[type="date"],
-input[type="time"],
-select, 
-input[type="text"], /* Aggiunto il tipo text */
-input[type="submit"] { /* Stili comuni per input e submit */
-    width: auto; /* Impostato a auto per permettere la larghezza massima */
-    max-width: 200px; /* Larghezza massima per non allungarsi troppo */
-    padding: 10px;
-    margin: 5px auto; /* Centrato con margin auto */
-    display: block; /* Permette di usare margin auto */
-    
+/* Stili per i select */
+select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -74,48 +29,28 @@ input[type="submit"] { /* Stili comuni per input e submit */
     box-sizing: border-box;
 }
 
-/* Separato il bottone submit per un colore diverso */
+/* Stili per gli input text e submit */
+input[type="text"],
+input[type="submit"] {
+    width: 100%;
+    padding: 12px; /* Aumentato il padding per una migliore dimensione */
+    margin-top: 10px;
+    margin-bottom: 10px; /* Aggiunto margin-bottom per separazione */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Stili separati per il bottone submit */
 input[type="submit"] {
     background-color: #28a745;
     color: white;
     cursor: pointer;
-    margin-top: 20px; /* Spazio aggiunto sopra il bottone */
+    margin-top: 20px;
+    border: none;
 }
 
-/* Feedback visivo per l'hover del bottone */
+/* Feedback visivo per l'hover del bottone submit */
 input[type="submit"]:hover {
     background-color: #218838;
 }
-
-/* Stili per la container della form */
-.container {
-    
-    background-color: #f9f9f9; /* Sfondo per separare la form */
-    border-radius: 8px; /* Bordi arrotondati */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombra per profondità */
-}
-
-/* Stili per la disposizione delle righe */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px; /* Spazio tra le righe */
-}
-
-/* Centra il bottone rispetto al contenitore */
-.two.columns input[type="submit"] {
-    margin: 30px auto 0; /* Margin top, auto per i lati, 0 bottom */
-}
-
-/* Colonne e label con flexbox per una migliore disposizione */
-.columns {
-    flex: 1; /* Occupa lo spazio disponibile */
-}
-
-.clabel {
-    flex-basis: 100%; /* La label occupa l'intera riga */
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-

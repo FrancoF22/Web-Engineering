@@ -3,8 +3,9 @@
 <form method="get" action="calendario" onload="createOra()">
     <div class="container">
         <input type="hidden" name="n" value="${calendario.key!0}"/>
+        <div class="columns clabel">Data</div>
         <div class="row">
-            <div class="columns clabel">Data</div>
+
             <div class="columns date-selects">
                 <div class="columns">
                     <select name="day" class="small" >
@@ -46,10 +47,11 @@
                 <input type="submit" name="add" value="Add"/>
             </div>
         </div>
- 
-        <div class="row time-selects">Orari
-            <div class="columns">
-                <label for="oraInizio">Inizio:</label>
+
+        <div class="row time-selects">
+
+            <div class="row">
+                <label for="oraInizio">Ora Inizio:</label>
                 <select name="oraInizio" id="oraInizio">
                     <script>
                         var select = document.getElementById("oraInizio");
@@ -65,9 +67,7 @@
                         }
                     </script>
                 </select>
-            </div>
-            <div class="columns">
-                <label for="minutiInizio">Minuti:</label>
+
                 <select name="minutiInizio" id="minutiInizio">
                     <script>
                         var selectMinuti = document.getElementById("minutiInizio");
@@ -84,8 +84,10 @@
                     </script>
                 </select>
             </div>
-            <div class="columns">
-                <label for="oraFine">Fine:</label>
+
+            <div class="row">
+                <label for="oraFine">Ora Fine:</label>
+
                 <select name="oraFine" id="oraFine">
                     <script>
                         var select = document.getElementById("oraFine");
@@ -101,9 +103,7 @@
                         }
                     </script>
                 </select>
-            </div>
-            <div class="columns">
-                <label for="minutiFine">Minuti:</label>
+
                 <select name="minutiFine" id="minutiFine">
                     <script>
                         var selectMinuti = document.getElementById("minutiFine");
@@ -119,27 +119,31 @@
                         }
                     </script>
                 </select>
+
             </div>
+
             <#if (aule?size>0)>
-            <div class="row">
-                <div class="four columns clabel">Aula & Attivita'</div>
-                <div class="eight columns">
-                    <select name="aaula">
-                        <#list aule as aula>
-                        <option value="${aula.key}"<#if (calendario.aula?? && aula.key=calendario.aula.key)>selected="selected"</#if>>${aula.nome}</option>
-                        </#list>
-                    </select>
-                    <br/></div>
-                <#if (eventi?size>0)>
-                <select name="aevento">
-                    <#list eventi as evento>
-                    <option value="${evento.key}"<#if (calendario.evento?? && evento.key=calendario.evento.key)>selected="selected"</#if>>${evento.nome}</option>
-                    </#list>        
-                </select>
-                <br/>
-                </#if>
-            </div>
+        </div>
+        <div class="four columns clabel">Aula & Attivita'</div>
+        <div class="row">
+            <select name="aaula">
+                <#list aule as aula>
+                <option value="${aula.key}"<#if (calendario.aula?? && aula.key=calendario.aula.key)>selected="selected"</#if>>${aula.nome}</option>
+                </#list>
+            </select>
+            <br/>
+        </div>    
+        <#if (eventi?size>0)>
+        <div class="row">
+            <select name="aevento">
+                <#list eventi as evento>
+                <option value="${evento.key}"<#if (calendario.evento?? && evento.key=calendario.evento.key)>selected="selected"</#if>>${evento.nome}</option>
+                </#list>        
+            </select>
+            <br/>
         </div>
         </#if>
     </div>
+    </#if>
+</div>
 </form>
