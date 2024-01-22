@@ -9,9 +9,12 @@
         <link rel="stylesheet" href="style/grid.css" type="text/css"/>
         <link rel="stylesheet" href="style/header.css" type="text/css"/> 
         <link rel="stylesheet" href="style/footer.css" type="text/css"/> 
-        <#include "outline_header.ftl.html">
+        
     </head>
     <body>
+        <div id="header">
+            <#include "outline_header.ftl.html">
+        </div>
         <div class="container">
             <!--<div class="row" id="body">-->
             <#include content_tpl>

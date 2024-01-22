@@ -37,4 +37,20 @@
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var userIcon = document.querySelector('.user-icon');
+    var userDropdown = document.querySelector('.user-dropdown');
 
+    userIcon.addEventListener('click', function() {
+        userDropdown.classList.toggle('open');
+    });
+
+    // Chiudi il menù se si clicca fuori da esso
+    document.addEventListener('click', function(event) {
+        if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
+            userDropdown.classList.remove('open');
+        }
+    });
+});
+</script>
