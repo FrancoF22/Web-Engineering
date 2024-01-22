@@ -52,7 +52,6 @@ it\univaq\f4i\iw\framework\result\TemplateResult.class
 it\univaq\f4i\iw\auleweb\data\impl\Gruppo_AulaImpl.class
 it\univaq\f4i\iw\framework\result\TemplateManagerException.class
 it\univaq\f4i\iw\auleweb\data\dao\AulaDAO.class
-it\univaq\f4i\iw\auleweb\controller\Profilo.class
 it\univaq\f4i\iw\auleweb\data\impl\CalendarioImpl.class
 it\univaq\f4i\iw\auleweb\controller\calendario.class
 it\univaq\f4i\iw\auleweb\controller\VistaAula.class

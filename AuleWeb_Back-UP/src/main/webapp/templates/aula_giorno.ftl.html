@@ -2,7 +2,9 @@
 <link rel="stylesheet" href="style/filtri.css" type="text/css" />
 <link rel="stylesheet" href="style/mostra_aule.css" type="text/css" />
 
-<div class="home-container">    
+<div class="home-container">
+    <div class="home-home">
+        
     <div class="row-button">
         <form action="eventiAulaGiorno" method="GET">
             <input type="hidden" name="previous_day" value="true">
@@ -12,9 +14,6 @@
                 Giorno precedente <i class="fas fa-chevron-left"></i>
             </button>
         </form>
-        
-        <!-- Visualizza la data riferita all'elemento attuale -->
-        <span id="currentDate" class="current-date">${Day!0}</span>
 
         <form action="eventiAulaGiorno" method="GET">
             <input type="hidden" name="next_day" value="true">
@@ -24,7 +23,8 @@
                 <i class="fas fa-chevron-right"></i> Giorno successivo
             </button>
         </form>
-    </div>
+    </div>  
+
     <table class="custom-table">
         <thead>
             <tr>
@@ -46,16 +46,6 @@
             </#list>
             </#if>
         </tbody>            
-    </table>
+        </table>
+    </div>
 </div>
-
-<script>
-    // Funzione per aggiornare la data riferita all'elemento attuale
-    function updateCurrentDate() {
-        var currentDateElement = document.getElementById('currentDate');
-        currentDateElement.innerText = /* Logica per ottenere la data riferita all'elemento attuale */;
-    }
-
-    // Richiama la funzione all'avvio della pagina o quando necessario
-    updateCurrentDate();
-</script>
